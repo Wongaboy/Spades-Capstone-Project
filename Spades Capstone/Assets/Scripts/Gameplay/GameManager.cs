@@ -24,20 +24,22 @@ public class GameManager : MonoBehaviour
     #endregion
 
     [SerializeField] public Deck deck;
+    [SerializeField] public DraftManager draftManager;
     public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
+    public Character lead;
 
     // Start is called before the first frame update
     void Start()
     {
         // Initialize game components
+        lead = Character.DEATH; // Death always goes first for tutorial
     }
 
     // Update is called once per frame
     void Update()
     {
         
-
     }
 
     public void ChangePhase(Phase newPhase)
@@ -54,7 +56,7 @@ public class GameManager : MonoBehaviour
 
                 break;
             case Phase.SCORING:
-                // return cards to deck
+                // Clear hands
                 // update scoreboard
                 break;
             default:
@@ -70,3 +72,4 @@ public class GameManager : MonoBehaviour
     }
 }
 public enum Phase { DRAFT, PLAYERTURN, AITURN, SCORING };
+public enum Character { DEATH, PLAYER};

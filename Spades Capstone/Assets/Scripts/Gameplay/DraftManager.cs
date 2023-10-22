@@ -4,21 +4,49 @@ using UnityEngine;
 
 public class DraftManager : MonoBehaviour
 {
-    void Awake()
+    #region "Singleton"
+    private static DraftManager _instance;
+
+    public static DraftManager Instance { get { return _instance; } }
+
+    private void Awake()
     {
-        GameManager.OnPhaseChanged += startDraft;
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+        
+    }
+    #endregion
+
+    void Start()
+    {
+        
     }
 
     private void OnDestroy()
     {
-        GameManager.OnPhaseChanged -= startDraft;
+
     }
 
-    public void startDraft(Phase phase)
+    public void startDraft()
     {
-        if(phase == Phase.DRAFT)
-        {
 
+    }
+
+    public void endDraft()
+    {
+        if(GameManager.Instance.lead == Character.DEATH)
+        {
+            GameManager.Instance.ChangePhase(Phase.AITURN);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
         }
     }
 }
