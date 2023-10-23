@@ -23,11 +23,16 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
+    #region "Class References/Variables"
+
     [SerializeField] public Deck deck;
     [SerializeField] public DraftManager draftManager;
+
     public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
     public Character lead;
+
+    #endregion
 
     // Start is called before the first frame update
     void Start()
@@ -57,7 +62,7 @@ public class GameManager : MonoBehaviour
                 break;
             case Phase.SCORING:
                 // Clear hands
-                // update scoreboard
+                // Update scoreboard
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
@@ -72,4 +77,4 @@ public class GameManager : MonoBehaviour
     }
 }
 public enum Phase { DRAFT, PLAYERTURN, AITURN, SCORING };
-public enum Character { DEATH, PLAYER};
+public enum Character { DEATH, PLAYER };
