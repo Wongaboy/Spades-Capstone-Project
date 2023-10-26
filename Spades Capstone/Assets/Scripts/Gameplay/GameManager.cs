@@ -53,7 +53,6 @@ public class GameManager : MonoBehaviour
             case Phase.PLAYERTURN:
                 break;
             case Phase.AITURN:
-
                 break;
             case Phase.SCORING:
                 // Clear hands
@@ -71,5 +70,5 @@ public class GameManager : MonoBehaviour
         deck.Shuffle();
     }
 }
-public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERTURN, AITURN, SCORING };
+public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, PLAYERTURN, AITURN, SCORING };
 public enum Character { DEATH, PLAYER };
