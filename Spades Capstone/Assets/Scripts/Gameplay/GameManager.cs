@@ -46,8 +46,9 @@ public class GameManager : MonoBehaviour
         currentPhase = newPhase;
         switch (newPhase)
         {
-            case Phase.DRAFT:
-                ShuffleDeck();
+            case Phase.PLAYERDRAFT:
+                break;
+            case Phase.AIDRAFT:
                 break;
             case Phase.PLAYERTURN:
                 break;
@@ -56,6 +57,7 @@ public class GameManager : MonoBehaviour
                 break;
             case Phase.SCORING:
                 // Clear hands
+                ShuffleDeck();
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
@@ -69,5 +71,5 @@ public class GameManager : MonoBehaviour
         deck.Shuffle();
     }
 }
-public enum Phase { DRAFT, PLAYERTURN, AITURN, SCORING };
+public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERTURN, AITURN, SCORING };
 public enum Character { DEATH, PLAYER };
