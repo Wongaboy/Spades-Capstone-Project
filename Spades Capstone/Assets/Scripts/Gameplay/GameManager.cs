@@ -26,7 +26,6 @@ public class GameManager : MonoBehaviour
     #region "Class References/Variables"
 
     [SerializeField] public Deck deck;
-    [SerializeField] public DraftManager draftManager;
 
     public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
@@ -41,11 +40,6 @@ public class GameManager : MonoBehaviour
         lead = Character.DEATH; // Death always goes first for tutorial
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     public void ChangePhase(Phase newPhase)
     {
@@ -62,7 +56,6 @@ public class GameManager : MonoBehaviour
                 break;
             case Phase.SCORING:
                 // Clear hands
-                // Update scoreboard
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);

@@ -25,10 +25,10 @@ public class ScoreManager : MonoBehaviour
     #region "Class Variables"
 
     int player_Score = 0;
-    int player_Bonus = 0;
+    int player_Bags = 0;
 
     int death_Score = 0;
-    int death_Bonus = 0;
+    int death_Bags = 0;
 
     #endregion
 
@@ -38,11 +38,6 @@ public class ScoreManager : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     // Function to calculate result of round (i.e Who Won?)
     public void CheckRoundResult()
