@@ -73,7 +73,7 @@ public class AIManager : MonoBehaviour
                 bidEstimate += 0.5f;
             }
         }
-
+        
         currentBid = (int)bidEstimate; // need to make sure this rounds correctly
         return currentBid; 
     }

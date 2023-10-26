@@ -31,9 +31,12 @@ public class ScoreManager : MonoBehaviour
     int aiBid = 0;
     int playerScore = 0;
     int playerBags = 0;
-    int deathScore = 0;
-    int deathBags = 0;
+    int aiScore = 0;
+    int aiBags = 0;
+    int playerTricks;
+    int aiTricks;
     Character currLead;
+    Character winningChar;
     TallyBoard tallyBoard;
 
     #endregion
@@ -58,13 +61,36 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // tally up the points for the round, add them to total, and see if the game is over
+    // tally up the points for the round, add them to total, then subtract bags if applicable
+    // if a player has won, end the game
     private void HandleScoring(){
+        int roundScore;
+        int roundBags;
+        (roundScore, roundBags) = _CalcScore(playerBid, playerTricks); // idk if this is legal syntax, if not there are other ways to do this
+        playerScore += roundScore;
+        playerBags += roundBags;
+        if(playerBags >= 10){
+            playerScore -= 100;
+            playerBags -= 10;
+        }
+
+        (roundScore, roundBags) = _CalcScore(aiBid, aiTricks);
+        aiScore += roundScore;
+        aiBags += roundBags;
+        if(playerBags >= 10){
+            playerScore -= 100;
+            playerBags -= 10;
+        }
+
+        if(playerScore > aiScore){
+            winningChar = Character.PLAYER;
+        }
+        else{
+            winningChar = Character.DEATH;
+        }
         
-        
-        
-        if(CheckWin()){
-            // end the game
+        if(_CheckWin()){
+            GameManager.Instance.EndGame(winningChar); // change to winner eventually
         }
     }
 
@@ -97,8 +123,18 @@ public class ScoreManager : MonoBehaviour
     }
 
     // if either score is above 500, the game is over
-    private bool CheckWin()
+    private bool _CheckWin()
     {
-        return (playerScore > 500 || deathScore > 500);
+        return (playerScore > 500 || aiScore > 500);
+    }
+
+    // helper func to calculate a score based on bid and tricks taken
+    private (int, int) _CalcScore(int bid, int tricks){
+        if(bid > tricks){
+            return (-10 * (bid - tricks), 0); // lose ten points for every trick failed to take, get no bags
+        }
+        else{
+            return ((10 * bid), tricks - bid); // gain ten points for every trick bid, and gain a bad for every extra trick
+        }
     }
 }

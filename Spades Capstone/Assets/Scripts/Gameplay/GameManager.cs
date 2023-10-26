@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
+    public static event Action<Character> OnTrickTaken;
     public Character lead;
 
     #endregion
@@ -65,10 +66,14 @@ public class GameManager : MonoBehaviour
         OnPhaseChanged?.Invoke(newPhase);
     }
 
+    public void EndGame(Character winner){
+        // end the game - ending cutscene based on winner
+    }
+
     private void ShuffleDeck()
     {
         deck.Shuffle();
     }
 }
-public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, PLAYERTURN, AITURN, SCORING };
+public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, PLAYERTURN, AITURN, SCORING, ENDING };
 public enum Character { DEATH, PLAYER };
