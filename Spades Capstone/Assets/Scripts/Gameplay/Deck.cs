@@ -8,7 +8,7 @@ public class Deck : MonoBehaviour
     GameObject deckObj;
 
     private Card[] cards;
-    private Suit[] intToSuit = { Suit.SPADE, Suit.DIAMOND, Suit.CLUB, Suit.HEART};
+    public static Suit[] intToSuit = { Suit.SPADE, Suit.DIAMOND, Suit.CLUB, Suit.HEART};
     private const int numCards = 52;
     
     
@@ -17,7 +17,7 @@ public class Deck : MonoBehaviour
         // Populate the standard 52 Card deck
         cards = new Card[numCards];
         int c = 0;
-        for(int i  = 1; i <= 13; i++)
+        for(int i  = 2; i <= 14; i++)
         {
             for(int j = 0; j < 4; j++)
             {

@@ -22,8 +22,8 @@ public class AIManager : MonoBehaviour
     }
     #endregion
 
-    private Card[] Death_Hand;
-    private int current_Death_Bid;
+    private Hand aiHand;
+    private int currentBid;
 
     // Start is called before the first frame update
     void Start()
@@ -48,17 +48,34 @@ public class AIManager : MonoBehaviour
         // Else -> DISCARD
         return true;
     }
+
     // Function to calculate Death's Bid amount based on Death's Hand
     public int GetBid()
     {
         // !Work In Progress!
+        float bidEstimate = 0.0f;
+        
+        // add a bid for every !! non Spades !! suit Death is low in
+        for(int i = 0; i< 4; i++){
+            Suit currSuit = Deck.intToSuit[i];
+            int numCurrSuit = aiHand.NumOfSuit(currSuit);
+            if( numCurrSuit <= 2 && i != 0){ // might want to refine this later
+                bidEstimate += 1.0f; 
+            }
 
-        // Temporary Formula:
-        // Number of Spades + Number of Card Above 10 (i.e Jacks, Queens, Kings, Ace) + a little up/down?
+            // add a bid for every ace
+            if(aiHand.HasValue(currSuit, 14)){
+                bidEstimate += 1.0f;
+            }
 
-        int new_bid = 0;
-        current_Death_Bid = new_bid;
-        return current_Death_Bid; // Temp Value
+            // add a half bid for every King
+            if(aiHand.HasValue(currSuit, 13)){
+                bidEstimate += 0.5f;
+            }
+        }
+
+        currentBid = (int)bidEstimate; // need to make sure this rounds correctly
+        return currentBid; 
     }
 
     // Function to Calculate Logic for what Death plays based on Death's hand
@@ -66,4 +83,6 @@ public class AIManager : MonoBehaviour
     {
         // !Work in Progress!
     }
+
+    
 }
