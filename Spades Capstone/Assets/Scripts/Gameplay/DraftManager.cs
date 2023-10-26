@@ -42,6 +42,7 @@ public class DraftManager : MonoBehaviour
         while(drafting){
             // yield HandleTurn(drafter)
         }
+        
     }
 
     public void endDraft()
@@ -57,6 +58,7 @@ public class DraftManager : MonoBehaviour
     }
 
     private void HandleTurn(Character drafter){
+
 
     }
 }
