@@ -22,19 +22,20 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    private Card[] Player_Hand;
-    private int current_PlayerBid;
+    private Hand playerHand;
+    private int currentPlayerBid;
+    private Character _thisCharacter = Character.PLAYER;
 
     // Start is called before the first frame update
     void Start()
     {
-
+        GameManager.OnPhaseChanged -= PlayerManagerOnPhaseChanged;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-
+    private void PlayerManagerOnPhaseChanged(Phase phase){
+        if(phase == Phase.PLAYERTURN){
+            HandlePlayerTurn();
+        }
     }
 
     // !THESE FUNCTIONS ARE JUST STUFF COPIED FROM DEATH, CAN CHANGE THEM LATER!
@@ -50,8 +51,8 @@ public class PlayerManager : MonoBehaviour
     // Function to call to set Player's Bid
     public int SetBid(int bid)
     {
-        current_PlayerBid = bid;
-        return current_PlayerBid;
+        currentPlayerBid = bid;
+        return currentPlayerBid;
     }
 
     // Function to call to Play Chosen Card
@@ -66,5 +67,15 @@ public class PlayerManager : MonoBehaviour
         // !Work In Progress!
 
         return true; // Temp value
+    }
+
+    
+    private void HandlePlayerTurn(){
+
+    }
+
+    // unsubscribe from events when destroyed to prevent errors
+    void OnDestroy(){
+        GameManager.OnPhaseChanged -= PlayerManagerOnPhaseChanged;
     }
 }

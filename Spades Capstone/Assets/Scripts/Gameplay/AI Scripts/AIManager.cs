@@ -24,17 +24,21 @@ public class AIManager : MonoBehaviour
 
     private Hand aiHand;
     private int currentBid;
+    private Character _thisCharacter = Character.DEATH;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    void Start(){
+        GameManager.OnPhaseChanged += AIManagerOnPhaseChanged;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    private void AIManagerOnPhaseChanged(Phase phase){
+        if(phase == Phase.AITURN){
+            HandleAITurn();
+        }
+    }
+
+    private void HandleAITurn(){
+        PlayCard();
+        // if there is dialogue to play, might want to activate it here
     }
 
     // Function to Decide if Death keeps or dumps the drawn card
@@ -84,5 +88,8 @@ public class AIManager : MonoBehaviour
         // !Work in Progress!
     }
 
-    
+    // unsubscribe from events when destroyed to prevent errors
+    void OnDestroy(){
+        GameManager.OnPhaseChanged -= AIManagerOnPhaseChanged;
+    }
 }

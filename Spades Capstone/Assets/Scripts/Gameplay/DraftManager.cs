@@ -26,7 +26,6 @@ public class DraftManager : MonoBehaviour
     #region "Class Reference/ Variables"
     private Deck deck;
     private Character lead;
-    private Character drafter;
     #endregion
 
     void Start()
@@ -35,17 +34,8 @@ public class DraftManager : MonoBehaviour
         lead = GameManager.Instance.lead;
     }
 
-    public void startDraft()
-    {
-        drafter = lead;
-        bool drafting = true;
-        while(drafting){
-            // yield HandleTurn(drafter)
-        }
-        
-    }
-
-    public void endDraft()
+    // transition from Draft into the next phase
+    private void endDraft()
     {
         if(lead == Character.DEATH)
         {
@@ -57,8 +47,4 @@ public class DraftManager : MonoBehaviour
         }
     }
 
-    private void HandleTurn(Character drafter){
-
-
-    }
 }

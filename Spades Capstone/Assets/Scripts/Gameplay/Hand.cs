@@ -40,14 +40,17 @@ public class Hand : MonoBehaviour
         return least;
     }
 
+    // get the number of cards of a particular suit
     public int NumOfSuit(Suit suit){
         return cardsInHand[suit].Count;
     }
     
+    // get the list of cards of a particular suit
     public List<Card> GetCards(Suit suit){
         return cardsInHand[suit];
     }
 
+    // returns true if this card is in a given hand
     public bool HasValue(Suit s, int v){
         foreach(Card c in cardsInHand[s]){
             if(c.val == v){

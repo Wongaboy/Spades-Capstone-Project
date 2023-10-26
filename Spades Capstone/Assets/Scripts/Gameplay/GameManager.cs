@@ -51,13 +51,22 @@ public class GameManager : MonoBehaviour
                 break;
             case Phase.AIDRAFT:
                 break;
+            case Phase.PLAYERBID:
+                break;
+            case Phase.AIBID:
+                break;
             case Phase.PLAYERTURN:
                 break;
             case Phase.AITURN:
                 break;
+            case Phase.ENDOFTRICK:
+                break;
             case Phase.SCORING:
                 // Clear hands
+                // Calc new lead?
                 ShuffleDeck();
+                break;
+            case Phase.ENDING:
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
@@ -70,10 +79,11 @@ public class GameManager : MonoBehaviour
         // end the game - ending cutscene based on winner
     }
 
+
     private void ShuffleDeck()
     {
         deck.Shuffle();
     }
 }
-public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, PLAYERTURN, AITURN, SCORING, ENDING };
+public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING };
 public enum Character { DEATH, PLAYER };

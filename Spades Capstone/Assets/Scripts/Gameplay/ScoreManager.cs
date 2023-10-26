@@ -20,10 +20,6 @@ public class ScoreManager : MonoBehaviour
             _instance = this;
         }
     }
-
-    void OnDestroy(){
-        GameManager.OnPhaseChanged -= ScoreManagerOnPhaseChanged;
-    }
     #endregion
 
     #region "Class Variables"
@@ -82,6 +78,8 @@ public class ScoreManager : MonoBehaviour
             playerBags -= 10;
         }
 
+        tallyBoard.updateScoreText(playerScore, aiScore);
+
         if(playerScore > aiScore){
             winningChar = Character.PLAYER;
         }
@@ -136,5 +134,10 @@ public class ScoreManager : MonoBehaviour
         else{
             return ((10 * bid), tricks - bid); // gain ten points for every trick bid, and gain a bad for every extra trick
         }
+    }
+
+    // unsubscribe from events when destroyed to prevent errors
+    void OnDestroy(){
+        GameManager.OnPhaseChanged -= ScoreManagerOnPhaseChanged;
     }
 }
