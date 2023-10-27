@@ -39,6 +39,10 @@ public class AIManager : MonoBehaviour
         {
             MakeDraftDecision(GameManager.Instance.DrawCard());
         }
+        else if(phase == Phase.AIBID)
+        {
+            // GetBid();
+        }
     }
 
     // Function to Decide if Death keeps or dumps the drawn card

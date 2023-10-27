@@ -9,7 +9,7 @@ public class DraftUI : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        DraftUIPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -19,7 +19,7 @@ public class DraftUI : MonoBehaviour
     }
 
     // Called to Trigger Draft UI Prompt for Player to Choose Card
-    public void TriggerDraftUI()
+    public void ToggleDraftUI()
     {
         DraftUIPanel.SetActive(!DraftUIPanel.activeSelf);
     }
@@ -28,7 +28,7 @@ public class DraftUI : MonoBehaviour
     public void OnKeepClick()
     {
         // Disable UI
-        DraftUIPanel.SetActive(!DraftUIPanel.activeSelf);
+        ToggleDraftUI();
 
         // Add Card to Player's Hand
 
@@ -43,7 +43,7 @@ public class DraftUI : MonoBehaviour
     public void OnDiscardClick()
     {
         // Disable UI 
-        DraftUIPanel.SetActive(!DraftUIPanel.activeSelf);
+        ToggleDraftUI();
 
         // Discard currently Viewed Card
 

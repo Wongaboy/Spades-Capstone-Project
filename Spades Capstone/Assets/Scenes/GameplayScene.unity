@@ -893,7 +893,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1713956533}
         m_TargetAssemblyTypeName: DraftUI, Assembly-CSharp
-        m_MethodName: TriggerDraftUI
+        m_MethodName: ToggleDraftUI
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1298,6 +1298,9 @@ MonoBehaviour:
   deck: {fileID: 0}
   currentPhase: 0
   lead: 0
+  playerCard: {fileID: 0}
+  aiCard: {fileID: 0}
+  spadesBroken: 0
 --- !u!4 &1621724427
 Transform:
   m_ObjectHideFlags: 0

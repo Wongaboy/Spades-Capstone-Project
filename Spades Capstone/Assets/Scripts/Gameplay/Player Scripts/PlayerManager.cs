@@ -34,8 +34,17 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void PlayerManagerOnPhaseChanged(Phase phase){
-        if(phase == Phase.PLAYERTURN){
+        if(phase == Phase.PLAYERTURN)
+        {
             HandlePlayerTurn();
+        }
+        else if(phase == Phase.PLAYERDRAFT)
+        {
+            // DraftDecision(Card card)
+        }
+        else if(phase == Phase.PLAYERBID)
+        {
+            // SetBid(int bid)
         }
     }
 

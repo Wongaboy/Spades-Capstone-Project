@@ -42,10 +42,19 @@ public class Deck : MonoBehaviour
     }
 
     // return the "top" card of the deck, and "discard" it (put it at the very end)
-    public Card DrawCard(){
+    public Card DrawCard()
+    {
         Card toReturn = cards[0];
         cards.RemoveAt(0);
         cards.Add(toReturn);
         return toReturn;
+    }
+
+    // Discard the "top" card of the deck
+    public void DiscardCard()
+    {
+        Card toDiscard = cards[0];
+        cards.RemoveAt(0);
+        cards.Add(toDiscard);
     }
 }
