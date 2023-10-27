@@ -99,7 +99,7 @@ public class GameManager : MonoBehaviour
     // implement the rules of trick taking - warning: awful code
     private Character DetermineTrickWinner()
     {
-        if(playerCard.suit == aiCard.suit)
+        if(playerCard.suit == aiCard.suit) // if lead was followed, the higher value card wins
         {
             if(playerCard.val > aiCard.val)
             {
@@ -107,23 +107,23 @@ public class GameManager : MonoBehaviour
             }
             return Character.DEATH;
         }
-        else if(playerCard.suit == Suit.SPADE)
+        else if(playerCard.suit == Suit.SPADE) // if lead suit was not followed, spades always wins
         {
             spadesBroken = true;
             return Character.PLAYER;
         }
-        else if(aiCard.suit == Suit.SPADE)
+        else if(aiCard.suit == Suit.SPADE) // same as above
         {
             spadesBroken = true;   
             return Character.DEATH;
         }
-        else if(lead == Character.PLAYER)
+        else if(lead == Character.PLAYER) // if lead suit was not followed and a spade was not played, lead wins
         {
             return Character.PLAYER;
         }
         else
         {
-            return Character.DEATH;
+            return Character.DEATH; // same as above
         }
         
     }

@@ -73,7 +73,7 @@ public class PlayerManager : MonoBehaviour
         return true;
     }
 
-    // activate UI that lets the player play a card
+    // activate UI that lets the player play a card - maybe move this to draft ui thing
     private void HandlePlayerTurn(){
 
     }
