@@ -23,8 +23,9 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     private Hand playerHand;
-    private int currentPlayerBid;
-    private Character _thisCharacter = Character.PLAYER;
+    private int currentPlayerBid; // not sure if we need this here
+    private Character thisCharacter = Character.PLAYER;
+    private bool isLead = false;
 
     // Start is called before the first frame update
     void Start()
@@ -55,23 +56,32 @@ public class PlayerManager : MonoBehaviour
         return currentPlayerBid;
     }
 
-    // Function to call to Play Chosen Card
-    public void PlayCard(Card played_card)
-    {
-        // !Work In Progress!
-    }
-
     // Used to check valid moves (Ex. Only allow same suit card if opponent plays a suit you have)
     public bool CheckValidMove(Card picked_card)
     {
-        // !Work In Progress!
-
-        return true; // Temp value
+        if(isLead && picked_card.suit == Suit.SPADE && !GameManager.Instance.spadesBroken)
+        { 
+            return false; // cannot lead a Spade if spades haven't been played yet
+        }
+        else if(!isLead && picked_card.suit != GameManager.Instance.aiCard.suit)
+        {
+            if (playerHand.HasSuit(GameManager.Instance.aiCard.suit))
+            {
+                return false; // must follow suit if you can
+            }
+        }
+        return true;
     }
 
-    
+    // activate UI that lets the player play a card
     private void HandlePlayerTurn(){
 
+    }
+
+    // Function to call to tell the GameManager what card was played - might not need
+    private void PlayCard(Card playedCard)
+    {
+        GameManager.Instance.playerCard = playedCard;
     }
 
     // unsubscribe from events when destroyed to prevent errors

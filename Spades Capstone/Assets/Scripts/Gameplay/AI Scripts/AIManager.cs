@@ -24,7 +24,8 @@ public class AIManager : MonoBehaviour
 
     private Hand aiHand;
     private int currentBid;
-    private Character _thisCharacter = Character.DEATH;
+    private Character thisCharacter = Character.DEATH;
+    private bool isLead = false;
 
     void Start(){
         GameManager.OnPhaseChanged += AIManagerOnPhaseChanged;
@@ -34,15 +35,14 @@ public class AIManager : MonoBehaviour
         if(phase == Phase.AITURN){
             HandleAITurn();
         }
-    }
-
-    private void HandleAITurn(){
-        PlayCard();
-        // if there is dialogue to play, might want to activate it here
+        else if(phase == Phase.AIDRAFT)
+        {
+            MakeDraftDecision(GameManager.Instance.DrawCard());
+        }
     }
 
     // Function to Decide if Death keeps or dumps the drawn card
-    public bool DraftDecision(Card card)
+    private bool MakeDraftDecision(Card card)
     {
         // !Work In Progress!
 
@@ -50,6 +50,8 @@ public class AIManager : MonoBehaviour
         // If SPADE -> KEEP
         // Else If Above 10 (i.e Jacks, Queens, Kings, Ace) -> KEEP
         // Else -> DISCARD
+        // Keep: aiHand.AddCardToHand
+        // Remove: draw and then add that to hand
         return true;
     }
 
@@ -82,10 +84,39 @@ public class AIManager : MonoBehaviour
         return currentBid; 
     }
 
+    private void HandleAITurn(){
+        PlayCard();
+        // if there is dialogue to play, might want to activate it here
+        if (isLead)
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
+        }
+    }
+
     // Function to Calculate Logic for what Death plays based on Death's hand
-    public void PlayCard()
+    private void PlayCard()
     {
-        // !Work in Progress!
+        if (isLead)
+        {
+            GameManager.Instance.aiCard = ChooseCardToLead();
+        }
+        else
+        {
+            ChooseCardToFollow(GameManager.Instance.playerCard);
+        }
+    }
+    // 
+    private Card ChooseCardToLead()
+    {
+        return null; // INCOMPLETE
+    }
+    private Card ChooseCardToFollow(Card playerCard)
+    {
+        return null; // INCOMPLETE
     }
 
     // unsubscribe from events when destroyed to prevent errors

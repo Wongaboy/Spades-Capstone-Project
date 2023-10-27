@@ -25,12 +25,16 @@ public class GameManager : MonoBehaviour
 
     #region "Class References/Variables"
 
-    [SerializeField] public Deck deck;
+    [SerializeField] private Deck deck;
 
     public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
     public static event Action<Character> OnTrickTaken;
     public Character lead;
+
+    public Card playerCard;
+    public Card aiCard;
+    public bool spadesBroken = false; // keeps track of if you are allowed to lead spades
 
     #endregion
 
@@ -40,7 +44,6 @@ public class GameManager : MonoBehaviour
         // Initialize game components
         lead = Character.DEATH; // Death always goes first for tutorial
     }
-
 
     public void ChangePhase(Phase newPhase)
     {
@@ -60,11 +63,13 @@ public class GameManager : MonoBehaviour
             case Phase.AITURN:
                 break;
             case Phase.ENDOFTRICK:
+                HandleEndOfTrick();
                 break;
             case Phase.SCORING:
                 // Clear hands
-                // Calc new lead?
-                ShuffleDeck();
+                spadesBroken = false;
+                SwapLead();
+                deck.Shuffle();
                 break;
             case Phase.ENDING:
                 break;
@@ -75,14 +80,61 @@ public class GameManager : MonoBehaviour
         OnPhaseChanged?.Invoke(newPhase);
     }
 
-    public void EndGame(Character winner){
-        // end the game - ending cutscene based on winner
+    public Card DrawCard()
+    {
+        return deck.DrawCard();
     }
 
+    // end the game - ending cutscene based on winner
+    public void EndGame(Character winner){
+        
+    }
 
-    private void ShuffleDeck()
+    // figure out who won the trick, log it, and move on
+    private void HandleEndOfTrick()
     {
-        deck.Shuffle();
+        OnTrickTaken.Invoke(DetermineTrickWinner());
+    }
+
+    // implement the rules of trick taking - warning: awful code
+    private Character DetermineTrickWinner()
+    {
+        if(playerCard.suit == aiCard.suit)
+        {
+            if(playerCard.val > aiCard.val)
+            {
+                return Character.PLAYER;
+            }
+            return Character.DEATH;
+        }
+        else if(playerCard.suit == Suit.SPADE)
+        {
+            spadesBroken = true;
+            return Character.PLAYER;
+        }
+        else if(aiCard.suit == Suit.SPADE)
+        {
+            spadesBroken = true;   
+            return Character.DEATH;
+        }
+        else if(lead == Character.PLAYER)
+        {
+            return Character.PLAYER;
+        }
+        else
+        {
+            return Character.DEATH;
+        }
+        
+    }
+
+    private void SwapLead()
+    {
+        if(lead == Character.DEATH)
+        {
+            lead = Character.PLAYER;
+        }
+        else { lead = Character.DEATH; }
     }
 }
 public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING };

@@ -41,6 +41,7 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         GameManager.OnPhaseChanged += ScoreManagerOnPhaseChanged;
+        GameManager.OnTrickTaken += takeTrick;
     }
 
     // when the phase is changed, see if it's time for scoring
@@ -78,7 +79,10 @@ public class ScoreManager : MonoBehaviour
             playerBags -= 10;
         }
 
+        // update tallyboard and reset tricks for next round
         tallyBoard.updateScoreText(playerScore, aiScore);
+        playerTricks = 0;
+        aiTricks = 0;
 
         if(playerScore > aiScore){
             winningChar = Character.PLAYER;
@@ -88,7 +92,7 @@ public class ScoreManager : MonoBehaviour
         }
         
         if(_CheckWin()){
-            GameManager.Instance.EndGame(winningChar); // change to winner eventually
+            GameManager.Instance.EndGame(winningChar);
         }
     }
 
@@ -120,6 +124,15 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    private void takeTrick(Character trickWinner)
+    {
+        if(trickWinner == Character.PLAYER)
+        {
+            playerTricks += 1;
+        }
+        else { aiTricks += 1; }
+    }
+
     // if either score is above 500, the game is over
     private bool _CheckWin()
     {
@@ -139,5 +152,6 @@ public class ScoreManager : MonoBehaviour
     // unsubscribe from events when destroyed to prevent errors
     void OnDestroy(){
         GameManager.OnPhaseChanged -= ScoreManagerOnPhaseChanged;
+        GameManager.OnTrickTaken -= takeTrick;
     }
 }

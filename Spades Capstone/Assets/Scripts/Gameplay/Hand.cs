@@ -44,6 +44,11 @@ public class Hand : MonoBehaviour
     public int NumOfSuit(Suit suit){
         return cardsInHand[suit].Count;
     }
+
+    public bool HasSuit(Suit suit)
+    {
+        return cardsInHand[suit].Count > 0;
+    }
     
     // get the list of cards of a particular suit
     public List<Card> GetCards(Suit suit){

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Deck : MonoBehaviour
 {
     [SerializeField] 
-    GameObject deckObj;
+    GameObject deckObj; // maybe we do it this way?
 
     private List<Card> cards;
     public static Suit[] intToSuit = { Suit.SPADE, Suit.DIAMOND, Suit.CLUB, Suit.HEART};

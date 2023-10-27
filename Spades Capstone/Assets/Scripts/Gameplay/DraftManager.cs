@@ -2,35 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// Class for updating the UI as draft phase moves along - might be unnecessary
 public class DraftManager : MonoBehaviour
 {
-    #region "Singleton"
-    private static DraftManager _instance;
-
-    public static DraftManager Instance { get { return _instance; } }
-
-    private void Awake()
-    {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            _instance = this;
-        }
-        
-    }
-    #endregion
-
-    #region "Class Reference/ Variables"
     private Deck deck;
     private Character lead;
-    #endregion
 
     void Start()
     {
-        deck = GameManager.Instance.deck;
         lead = GameManager.Instance.lead;
     }
 
