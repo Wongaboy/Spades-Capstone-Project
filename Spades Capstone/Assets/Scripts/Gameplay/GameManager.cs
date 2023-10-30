@@ -43,6 +43,12 @@ public class GameManager : MonoBehaviour
     {
         // Initialize game components
         lead = Character.DEATH; // Death always goes first for tutorial
+
+    }
+
+    public void TestFunc()
+    {
+        ChangePhase(Phase.PLAYERDRAFT);
     }
 
     public void ChangePhase(Phase newPhase)
@@ -83,6 +89,11 @@ public class GameManager : MonoBehaviour
     public Card DrawCard()
     {
         return deck.DrawCard();
+    }
+
+    public void DiscardCard()
+    {
+        deck.DiscardCard();
     }
 
     // end the game - ending cutscene based on winner

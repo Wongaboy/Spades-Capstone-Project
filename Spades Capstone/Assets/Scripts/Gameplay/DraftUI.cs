@@ -4,12 +4,33 @@ using UnityEngine;
 
 public class DraftUI : MonoBehaviour
 {
+    #region "Singleton"
+    private static DraftUI _instance;
+
+    public static DraftUI Instance { get { return _instance; } }
+
+    private void Awake()
+    {
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
+    #endregion
+
     [SerializeField] GameObject DraftUIPanel;
+    Card decision_Card;
     
     // Start is called before the first frame update
     void Start()
     {
         DraftUIPanel.SetActive(false);
+
+        GameManager.OnPhaseChanged += DraftUIOnPhaseChanged;
     }
 
     // Update is called once per frame
@@ -18,39 +39,55 @@ public class DraftUI : MonoBehaviour
         
     }
 
-    // Called to Trigger Draft UI Prompt for Player to Choose Card
-    public void ToggleDraftUI()
+    // On Phase Change to Phase.PlayerDraft
+    private void DraftUIOnPhaseChanged(Phase phase)
     {
-        DraftUIPanel.SetActive(!DraftUIPanel.activeSelf);
+        if(phase == Phase.PLAYERDRAFT)
+        {
+            // Deal/Draw Card
+            decision_Card = GameManager.Instance.DrawCard();
+            // Toggle UI for Player to See
+            ToggleDraftUI(true);
+        }
+    }
+
+
+    // Called to Trigger Draft UI Prompt for Player to Choose Card
+    public void ToggleDraftUI(bool ui_state)
+    {
+        DraftUIPanel.SetActive(ui_state);
     }
 
     // Function for when Players KEEPs Drawn Card (KEEP Button Pressed)
     public void OnKeepClick()
     {
         // Disable UI
-        ToggleDraftUI();
+        ToggleDraftUI(false);
 
         // Add Card to Player's Hand
-
+            // PlayerManager.Instance.Hand.AddCardToHand(decision_Card);
         // Discard Next Card in Deck
-
+            // GameManager.Instance.DiscardCard();
         // Switch Turns
-
-        Debug.Log("KEEP Clicked");
+            // GameManager.Instance.ChangePhase(Phase.AIDraft);
     }
 
     // Function for when Players DISCARDs Drawn Card (DISCARD Button Pressed)
     public void OnDiscardClick()
     {
         // Disable UI 
-        ToggleDraftUI();
+        ToggleDraftUI(false);
 
         // Discard currently Viewed Card
+        // (Techically already discarded)
+        // decision_Card = GameManager.Instance.DrawCard();
 
         // Add Next Card to Player Hand
+        // PlayerManager.Instance.Hand.AddCardToHand(decision_Card);
 
         // Switch Turns
-
-        Debug.Log("DISCARD Clicked");
+        // GameManager.Instance.ChangePhase(Phase.AIDraft);
+        // Or
+        // Changes to AI Bid Phase
     }
 }
