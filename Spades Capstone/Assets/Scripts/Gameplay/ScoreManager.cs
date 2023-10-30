@@ -74,9 +74,9 @@ public class ScoreManager : MonoBehaviour
         (roundScore, roundBags) = _CalcScore(aiBid, aiTricks);
         aiScore += roundScore;
         aiBags += roundBags;
-        if(playerBags >= 10){
-            playerScore -= 100;
-            playerBags -= 10;
+        if(aiBags >= 10){
+            aiScore -= 100;
+            aiBags -= 10;
         }
 
         // update tallyboard and reset tricks for next round
