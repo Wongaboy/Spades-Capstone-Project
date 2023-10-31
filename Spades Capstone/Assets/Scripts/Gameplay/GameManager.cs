@@ -44,6 +44,8 @@ public class GameManager : MonoBehaviour
         // Initialize game components
         lead = Character.DEATH; // Death always goes first for tutorial
 
+        deck.Shuffle();
+
     }
 
     public void TestFunc()
