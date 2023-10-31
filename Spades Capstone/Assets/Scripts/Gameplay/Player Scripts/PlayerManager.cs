@@ -22,7 +22,7 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    private Hand playerHand;
+    [SerializeField] Hand playerHand;
     private int currentPlayerBid; // not sure if we need this here
     private Character thisCharacter = Character.PLAYER;
     private bool isLead = false;
@@ -52,10 +52,18 @@ public class PlayerManager : MonoBehaviour
 
     // Function to call when Decides to Player keeps or dumps the drawn card
     // !May become obsolete depending on how we implement Card Drawing (i.e What object/script performs the "draw")
-    public bool DraftDecision(Card card)
+    public void DraftCard(Card card)
     {
         // !Work In Progress!
-        return true;
+        playerHand.AddCardToHand(card);
+
+        /* Debug Code
+        Debug.Log("Drafted Card");
+        Debug.Log(playerHand.NumOfSuit(Suit.DIAMOND));
+        Debug.Log(playerHand.NumOfSuit(Suit.SPADE));
+        Debug.Log(playerHand.NumOfSuit(Suit.CLUB));
+        Debug.Log(playerHand.NumOfSuit(Suit.HEART));
+        */
     }
 
     // Function to call to set Player's Bid

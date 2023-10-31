@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    private Dictionary<Suit, List<Card>> cardsInHand;
+    private Dictionary<Suit, List<Card>> cardsInHand = new Dictionary<Suit, List<Card>>() { {Suit.SPADE, new List<Card>()
+            }, { Suit.DIAMOND, new List<Card>()},{ Suit.CLUB, new List<Card>()},{ Suit.HEART, new List<Card>()} };
 
     void Awake(){
-        cardsInHand = new Dictionary<Suit, List<Card>>();
+        cardsInHand = new Dictionary<Suit, List<Card>>() { 
+            { Suit.SPADE, new List<Card>()}, 
+            { Suit.DIAMOND, new List<Card>()},
+            { Suit.CLUB, new List<Card>()},
+            { Suit.HEART, new List<Card>()} 
+        };
     }
 
     public void AddCardToHand(Card card){

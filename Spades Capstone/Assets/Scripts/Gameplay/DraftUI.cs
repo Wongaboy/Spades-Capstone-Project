@@ -65,7 +65,7 @@ public class DraftUI : MonoBehaviour
         ToggleDraftUI(false);
 
         // Add Card to Player's Hand
-            // PlayerManager.Instance.Hand.AddCardToHand(decision_Card);
+        PlayerManager.Instance.DraftCard(decision_Card);
 
         // Discard Next Card in Deck
         GameManager.Instance.DiscardCard();
