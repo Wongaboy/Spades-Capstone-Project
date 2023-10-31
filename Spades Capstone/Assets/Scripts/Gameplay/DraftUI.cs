@@ -66,10 +66,13 @@ public class DraftUI : MonoBehaviour
 
         // Add Card to Player's Hand
             // PlayerManager.Instance.Hand.AddCardToHand(decision_Card);
+
         // Discard Next Card in Deck
-            // GameManager.Instance.DiscardCard();
+        GameManager.Instance.DiscardCard();
+
         // Switch Turns
-            // GameManager.Instance.ChangePhase(Phase.AIDraft);
+        // (Need to add check somewhere for IF need to switch to BID PHASE)
+        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
     }
 
     // Function for when Players DISCARDs Drawn Card (DISCARD Button Pressed)
@@ -78,16 +81,15 @@ public class DraftUI : MonoBehaviour
         // Disable UI 
         ToggleDraftUI(false);
 
-        // Discard currently Viewed Card
-        // (Techically already discarded)
-        // decision_Card = GameManager.Instance.DrawCard();
+        // Discard currently Viewed Card (Already gets discarded)
+        // Draw new Card
+        decision_Card = GameManager.Instance.DrawCard();
 
         // Add Next Card to Player Hand
         // PlayerManager.Instance.Hand.AddCardToHand(decision_Card);
 
         // Switch Turns
-        // GameManager.Instance.ChangePhase(Phase.AIDraft);
-        // Or
-        // Changes to AI Bid Phase
+        // (Need to add check somewhere for IF need to switch to BID PHASE)
+        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
     }
 }
