@@ -23,8 +23,8 @@ public class ScoreManager : MonoBehaviour
     #endregion
 
     #region "Class Variables"
-    int playerBid = 0;
-    int aiBid = 0;
+    public int playerBid = 0;
+    public int aiBid = 0;
     int playerScore = 0;
     int playerBags = 0;
     int aiScore = 0;
@@ -45,7 +45,8 @@ public class ScoreManager : MonoBehaviour
     }
 
     // when the phase is changed, see if it's time for scoring
-    private void ScoreManagerOnPhaseChanged(Phase phase){
+    private void ScoreManagerOnPhaseChanged(Phase phase)
+    {
         currLead = GameManager.Instance.lead;
         if(phase == Phase.SCORING){
             HandleScoring(); // do everything that is required for scoring
@@ -97,8 +98,8 @@ public class ScoreManager : MonoBehaviour
     }
 
     // make a ui element visible/ glowing to the player that allows them to choose their bid
-    private void HandlePlayerBid(){
-        
+    private void HandlePlayerBid()
+    {
         /* use this logic when exiting player bid logic
         if(currLead == Character.PLAYER){
             GameManager.Instance.ChangePhase(Phase.AIBID);
@@ -110,10 +111,16 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    public void SetPlayerBid(int new_bid)
+    {
+        playerBid = new_bid;
+    }
+
     // have the AI place a bid based on their cards
-    private void HandleAIBid(){
+    private void HandleAIBid()
+    {
         aiBid = AIManager.Instance.GetBid();
-        tallyBoard.updateAIBidText(aiBid);
+        // tallyBoard.updateAIBidText(aiBid);
 
         // If player has already bid, they begin play. Otherwhise let them bid.
         if(currLead == Character.DEATH){

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class DraftUI : MonoBehaviour
 {
@@ -23,6 +24,8 @@ public class DraftUI : MonoBehaviour
     #endregion
 
     [SerializeField] GameObject DraftUIPanel;
+    [SerializeField] TMP_Text cardSuit_Text;
+    [SerializeField] TMP_Text cardValue_Text;
     Card decision_Card;
     
     // Start is called before the first frame update
@@ -56,6 +59,10 @@ public class DraftUI : MonoBehaviour
     public void ToggleDraftUI(bool ui_state)
     {
         DraftUIPanel.SetActive(ui_state);
+        // Display Card info to Player
+        cardSuit_Text.text = decision_Card.suit.ToString();
+        cardValue_Text.text = decision_Card.val.ToString();
+
     }
 
     // Function for when Players KEEPs Drawn Card (KEEP Button Pressed)
@@ -70,9 +77,9 @@ public class DraftUI : MonoBehaviour
         // Discard Next Card in Deck
         GameManager.Instance.DiscardCard();
 
+        GameManager.Instance.IncrementDraftTurn();
         // Switch Turns
-        // (Need to add check somewhere for IF need to switch to BID PHASE)
-        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+        Decide_ChangePhase();
     }
 
     // Function for when Players DISCARDs Drawn Card (DISCARD Button Pressed)
@@ -81,15 +88,26 @@ public class DraftUI : MonoBehaviour
         // Disable UI 
         ToggleDraftUI(false);
 
-        // Discard currently Viewed Card (Already gets discarded)
-        // Draw new Card
+        // "Discard" currently Viewed Card (i.e Overwrite it with new one)
         decision_Card = GameManager.Instance.DrawCard();
 
         // Add Next Card to Player Hand
-        // PlayerManager.Instance.Hand.AddCardToHand(decision_Card);
+        PlayerManager.Instance.DraftCard(decision_Card);
 
+        GameManager.Instance.IncrementDraftTurn();
         // Switch Turns
-        // (Need to add check somewhere for IF need to switch to BID PHASE)
-        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+        Decide_ChangePhase();
+    }
+
+    public void Decide_ChangePhase()
+    {
+        if (GameManager.Instance.GetDraftTurn() >= 26)
+        {
+            GameManager.Instance.ChangePhase(Phase.AIBID);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+        }
     }
 }

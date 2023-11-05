@@ -22,22 +22,26 @@ public class AIManager : MonoBehaviour
     }
     #endregion
 
-    private Hand aiHand;
+    [SerializeField] Hand aiHand;
     private int currentBid;
     private Character thisCharacter = Character.DEATH;
     private bool isLead = false;
 
+    // Start is called before the first frame update
     void Start(){
         GameManager.OnPhaseChanged += AIManagerOnPhaseChanged;
     }
 
     private void AIManagerOnPhaseChanged(Phase phase){
-        if(phase == Phase.AITURN){
+        if(phase == Phase.AITURN)
+        {
             HandleAITurn();
         }
         else if(phase == Phase.AIDRAFT)
         {
             MakeDraftDecision(GameManager.Instance.DrawCard());
+            GameManager.Instance.IncrementDraftTurn();
+            Decide_DraftChangePhase();
         }
         else if(phase == Phase.AIBID)
         {
@@ -54,9 +58,37 @@ public class AIManager : MonoBehaviour
         // If SPADE -> KEEP
         // Else If Above 10 (i.e Jacks, Queens, Kings, Ace) -> KEEP
         // Else -> DISCARD
+
+        if (card.suit == Suit.SPADE)
+        {
+            DraftCard(card);
+            GameManager.Instance.DiscardCard();
+        }
+        else
+        {
+            GameManager.Instance.DiscardCard();
+            DraftCard(GameManager.Instance.DrawCard());
+        }
+
+
         // Keep: aiHand.AddCardToHand
         // Remove: draw and then add that to hand
         return true;
+    }
+
+    // Function to call to Add card to AI Hand
+    public void DraftCard(Card card)
+    {
+        // !Work In Progress!
+        aiHand.AddCardToHand(card);
+
+        /* Debug Code
+        Debug.Log("AI Drafted Card");
+        Debug.Log(playerHand.NumOfSuit(Suit.DIAMOND));
+        Debug.Log(playerHand.NumOfSuit(Suit.SPADE));
+        Debug.Log(playerHand.NumOfSuit(Suit.CLUB));
+        Debug.Log(playerHand.NumOfSuit(Suit.HEART));
+        */
     }
 
     // Function to calculate Death's Bid amount based on Death's Hand
@@ -83,22 +115,27 @@ public class AIManager : MonoBehaviour
                 bidEstimate += 0.5f;
             }
         }
-        
+
+        // Anthony Test Code
+        bidEstimate += aiHand.NumOfSuit(Suit.SPADE);
+
+
         currentBid = (int)bidEstimate; // need to make sure this rounds correctly
+
         return currentBid; 
     }
 
     private void HandleAITurn(){
-        PlayCard();
-        // if there is dialogue to play, might want to activate it here
-        if (isLead)
-        {
-            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
-        }
-        else
-        {
-            GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
-        }
+        //PlayCard();
+        //// if there is dialogue to play, might want to activate it here
+        //if (isLead)
+        //{
+        //    GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
+        //}
+        //else
+        //{
+        //    GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
+        //}
     }
 
     // Function to Calculate Logic for what Death plays based on Death's hand
@@ -121,6 +158,26 @@ public class AIManager : MonoBehaviour
     private Card ChooseCardToFollow(Card playerCard)
     {
         return null; // INCOMPLETE
+    }
+
+    public void Decide_DraftChangePhase()
+    {
+        if (GameManager.Instance.GetDraftTurn() >= 26)
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERBID);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+        }
+    }
+
+    public void Debug_ShowHand()
+    {
+        Debug.Log(aiHand.NumOfSuit(Suit.DIAMOND));
+        Debug.Log(aiHand.NumOfSuit(Suit.SPADE));
+        Debug.Log(aiHand.NumOfSuit(Suit.CLUB));
+        Debug.Log(aiHand.NumOfSuit(Suit.HEART));
     }
 
     // unsubscribe from events when destroyed to prevent errors

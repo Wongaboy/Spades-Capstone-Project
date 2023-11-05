@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public Card aiCard;
     public bool spadesBroken = false; // keeps track of if you are allowed to lead spades
 
+    public int num_DraftTurns = 0;
     #endregion
 
     // Start is called before the first frame update
@@ -45,16 +46,27 @@ public class GameManager : MonoBehaviour
         lead = Character.DEATH; // Death always goes first for tutorial
 
         deck.Shuffle();
-
     }
 
-    public void TestFunc()
+    public void TestPDraft()
     {
         ChangePhase(Phase.PLAYERDRAFT);
     }
 
+    public void TestPBid()
+    {
+        ChangePhase(Phase.PLAYERBID);
+    }
+
+    public void TestD_Draft()
+    {
+        ChangePhase(Phase.AIDRAFT);
+    }
+
     public void ChangePhase(Phase newPhase)
     {
+        Debug.Log("Change to " + newPhase.ToString());
+
         currentPhase = newPhase;
         switch (newPhase)
         {
@@ -86,6 +98,7 @@ public class GameManager : MonoBehaviour
         }
 
         OnPhaseChanged?.Invoke(newPhase);
+
     }
 
     public Card DrawCard()
@@ -96,6 +109,16 @@ public class GameManager : MonoBehaviour
     public void DiscardCard()
     {
         deck.DiscardCard();
+    }
+
+    public void IncrementDraftTurn() 
+    { 
+        num_DraftTurns++; 
+    }
+
+    public int GetDraftTurn()
+    {
+        return num_DraftTurns;
     }
 
     // end the game - ending cutscene based on winner

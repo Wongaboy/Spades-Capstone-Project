@@ -32,7 +32,7 @@ public class Deck : MonoBehaviour
     {
         System.Random shuffler = new System.Random();
         int currCard = cards.Count;
-        while (numCards > 1)
+        while (currCard > 1)
         {
             int nextCard = shuffler.Next(currCard--);
             Card temp = cards[currCard];

@@ -50,20 +50,11 @@ public class PlayerManager : MonoBehaviour
 
     // !THESE FUNCTIONS ARE JUST STUFF COPIED FROM DEATH, CAN CHANGE THEM LATER!
 
-    // Function to call when Decides to Player keeps or dumps the drawn card
-    // !May become obsolete depending on how we implement Card Drawing (i.e What object/script performs the "draw")
+    // Function to call when Player keeps the shown card
     public void DraftCard(Card card)
     {
         // !Work In Progress!
         playerHand.AddCardToHand(card);
-
-        /* Debug Code
-        Debug.Log("Drafted Card");
-        Debug.Log(playerHand.NumOfSuit(Suit.DIAMOND));
-        Debug.Log(playerHand.NumOfSuit(Suit.SPADE));
-        Debug.Log(playerHand.NumOfSuit(Suit.CLUB));
-        Debug.Log(playerHand.NumOfSuit(Suit.HEART));
-        */
     }
 
     // Function to call to set Player's Bid
@@ -99,6 +90,14 @@ public class PlayerManager : MonoBehaviour
     private void PlayCard(Card playedCard)
     {
         GameManager.Instance.playerCard = playedCard;
+    }
+
+    public void Debug_ShowHand()
+    {
+        Debug.Log(playerHand.NumOfSuit(Suit.DIAMOND));
+        Debug.Log(playerHand.NumOfSuit(Suit.SPADE));
+        Debug.Log(playerHand.NumOfSuit(Suit.CLUB));
+        Debug.Log(playerHand.NumOfSuit(Suit.HEART));
     }
 
     // unsubscribe from events when destroyed to prevent errors
