@@ -37,6 +37,7 @@ public class GameManager : MonoBehaviour
     public bool spadesBroken = false; // keeps track of if you are allowed to lead spades
 
     public int num_DraftTurns = 0;
+    public int num_Turns = 0;
     #endregion
 
     // Start is called before the first frame update
@@ -86,10 +87,14 @@ public class GameManager : MonoBehaviour
                 HandleEndOfTrick();
                 break;
             case Phase.SCORING:
+                // I moved this section into the scoremanager just for the time being, pretty sure with some refactoring of my code it can be moved
                 // Clear hands
-                spadesBroken = false;
-                SwapLead();
-                deck.Shuffle();
+                //spadesBroken = false;
+                //deck.Shuffle();
+                //num_DraftTurns = 0;
+                //num_Turns = 0;
+                //playerCard = null;
+                //aiCard = null;
                 break;
             case Phase.ENDING:
                 break;
@@ -112,24 +117,59 @@ public class GameManager : MonoBehaviour
     }
 
     public void IncrementDraftTurn() 
-    { 
+    {
         num_DraftTurns++; 
     }
 
+    public void ResetGM()
+    {
+        // Clear hands
+        spadesBroken = false;
+        deck.Shuffle();
+        num_DraftTurns = 0;
+        num_Turns = 0;
+        playerCard = null;
+        aiCard = null;
+    }
     public int GetDraftTurn()
     {
         return num_DraftTurns;
     }
 
+    public void IncrementTurn()
+    {
+        num_Turns++;
+    }
+
+    public int GetTurn()
+    {
+        return num_Turns;
+    }
+
     // end the game - ending cutscene based on winner
     public void EndGame(Character winner){
-        
+        Debug.Log("Winner is " + winner.ToString());
     }
 
     // figure out who won the trick, log it, and move on
     private void HandleEndOfTrick()
     {
         OnTrickTaken.Invoke(DetermineTrickWinner());
+        if (num_Turns >= 13)
+        {
+            TurnUI.Instance.ToggleTurnUI(false);
+            ChangePhase(Phase.SCORING);
+        }
+        else if (DetermineTrickWinner() == Character.DEATH)
+        {
+            SwapTurnLead(Character.DEATH);
+            ChangePhase(Phase.AITURN);
+        }
+        else
+        {
+            SwapTurnLead(Character.PLAYER);
+            ChangePhase(Phase.PLAYERTURN);
+        }
     }
 
     // implement the rules of trick taking - warning: awful code
@@ -164,13 +204,33 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void SwapLead()
+    public void SwapLead()
     {
         if(lead == Character.DEATH)
         {
             lead = Character.PLAYER;
+            SwapTurnLead(Character.PLAYER);
         }
-        else { lead = Character.DEATH; }
+        else 
+        { 
+            lead = Character.DEATH;
+            SwapTurnLead(Character.DEATH);
+        }
+    }
+
+    private void SwapTurnLead(Character trick_winner)
+    {
+        if (trick_winner == Character.DEATH)
+        {
+            PlayerManager.Instance.ChangeInternalLead(false);
+            AIManager.Instance.ChangeInternalLead(true);
+        }
+        else
+        {
+            PlayerManager.Instance.ChangeInternalLead(true);
+            AIManager.Instance.ChangeInternalLead(false);
+        
+        }
     }
 }
 public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING };

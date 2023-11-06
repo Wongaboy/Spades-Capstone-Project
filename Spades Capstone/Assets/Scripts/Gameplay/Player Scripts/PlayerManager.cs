@@ -25,18 +25,18 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Hand playerHand;
     private int currentPlayerBid; // not sure if we need this here
     private Character thisCharacter = Character.PLAYER;
-    private bool isLead = false;
+    public bool isLead = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.OnPhaseChanged -= PlayerManagerOnPhaseChanged;
+        GameManager.OnPhaseChanged += PlayerManagerOnPhaseChanged;
     }
 
     private void PlayerManagerOnPhaseChanged(Phase phase){
         if(phase == Phase.PLAYERTURN)
         {
-            HandlePlayerTurn();
+            // HandlePlayerTurn();
         }
         else if(phase == Phase.PLAYERDRAFT)
         {
@@ -64,6 +64,11 @@ public class PlayerManager : MonoBehaviour
         return currentPlayerBid;
     }
 
+    public void ChangeInternalLead(bool new_lead)
+    {
+        isLead = new_lead;
+    }
+
     // Used to check valid moves (Ex. Only allow same suit card if opponent plays a suit you have)
     public bool CheckValidMove(Card picked_card)
     {
@@ -82,14 +87,27 @@ public class PlayerManager : MonoBehaviour
     }
 
     // activate UI that lets the player play a card - maybe move this to draft ui thing
-    private void HandlePlayerTurn(){
+    public void HandlePlayerTurn(){
 
+        Card tobe_played = playerHand.GetAllCards()[0];
+        PlayCard(tobe_played);
+        playerHand.RemoveCardFromHand(tobe_played);
+        // if there is dialogue to play, might want to activate it here
+        //if (isLead)
+        //{
+        //    GameManager.Instance.ChangePhase(Phase.AITURN);
+        //}
+        //else
+        //{
+        //    GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
+        //}
     }
 
     // Function to call to tell the GameManager what card was played - might not need
     private void PlayCard(Card playedCard)
     {
         GameManager.Instance.playerCard = playedCard;
+        TurnUI.Instance.UpdatePlayerCardInfo(playedCard);
     }
 
     public void Debug_ShowHand()

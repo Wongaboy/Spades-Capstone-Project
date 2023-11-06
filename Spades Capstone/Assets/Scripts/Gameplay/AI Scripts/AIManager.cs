@@ -25,7 +25,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] Hand aiHand;
     private int currentBid;
     private Character thisCharacter = Character.DEATH;
-    private bool isLead = false;
+    private bool isLead = true;
 
     // Start is called before the first frame update
     void Start(){
@@ -56,7 +56,6 @@ public class AIManager : MonoBehaviour
 
         // Temporary Formula:
         // If SPADE -> KEEP
-        // Else If Above 10 (i.e Jacks, Queens, Kings, Ace) -> KEEP
         // Else -> DISCARD
 
         if (card.suit == Suit.SPADE)
@@ -66,13 +65,9 @@ public class AIManager : MonoBehaviour
         }
         else
         {
-            GameManager.Instance.DiscardCard();
             DraftCard(GameManager.Instance.DrawCard());
         }
 
-
-        // Keep: aiHand.AddCardToHand
-        // Remove: draw and then add that to hand
         return true;
     }
 
@@ -125,39 +120,51 @@ public class AIManager : MonoBehaviour
         return currentBid; 
     }
 
+    public void ChangeInternalLead(bool new_lead)
+    {
+        isLead = new_lead;
+    }
+
     private void HandleAITurn(){
-        //PlayCard();
-        //// if there is dialogue to play, might want to activate it here
-        //if (isLead)
-        //{
-        //    GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
-        //}
-        //else
-        //{
-        //    GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
-        //}
+
+        PlayCard();
+        // if there is dialogue to play, might want to activate it here
+        if (isLead == true)
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
+        }
     }
 
     // Function to Calculate Logic for what Death plays based on Death's hand
     private void PlayCard()
     {
+        Card tobe_played;
         if (isLead)
         {
-            GameManager.Instance.aiCard = ChooseCardToLead();
+            tobe_played = ChooseCardToLead();
         }
         else
         {
-            ChooseCardToFollow(GameManager.Instance.playerCard);
+            tobe_played = ChooseCardToFollow(GameManager.Instance.playerCard);
         }
+
+        GameManager.Instance.aiCard = tobe_played;
+        TurnUI.Instance.UpdateAICardInfo(tobe_played);
+        aiHand.RemoveCardFromHand(tobe_played);
     }
     // 
     private Card ChooseCardToLead()
     {
-        return null; // INCOMPLETE
+        // Temp Code
+        return aiHand.GetAllCards()[0]; // INCOMPLETE
     }
     private Card ChooseCardToFollow(Card playerCard)
     {
-        return null; // INCOMPLETE
+        return aiHand.GetAllCards()[0]; // INCOMPLETE
     }
 
     public void Decide_DraftChangePhase()

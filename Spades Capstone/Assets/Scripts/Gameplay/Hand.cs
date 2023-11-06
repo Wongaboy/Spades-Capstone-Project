@@ -70,6 +70,36 @@ public class Hand : MonoBehaviour
         }
         return false;
     }
+
+    // Returns number of cards in hand
+    public int NumofCards()
+    {
+        return NumOfSuit(Suit.SPADE) + NumOfSuit(Suit.DIAMOND) + NumOfSuit(Suit.CLUB) + NumOfSuit(Suit.HEART);
+    }
+
+    // Returns a List of all cards in Hand
+    public List<Card> GetAllCards()
+    {
+        List<Card> all_cards = new List<Card>();
+        if (HasSuit(Suit.SPADE))
+        {
+            all_cards.AddRange(GetCards(Suit.SPADE));
+        }
+        if (HasSuit(Suit.DIAMOND))
+        {
+            all_cards.AddRange(GetCards(Suit.DIAMOND));
+        }
+        if (HasSuit(Suit.CLUB))
+        {
+            all_cards.AddRange(GetCards(Suit.CLUB));
+        }
+        if (HasSuit(Suit.HEART))
+        {
+            all_cards.AddRange(GetCards(Suit.HEART));
+        }
+
+        return all_cards;
+    }
 }
 
 

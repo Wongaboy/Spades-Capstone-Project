@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class ScoreManager : MonoBehaviour
 {
@@ -34,6 +35,13 @@ public class ScoreManager : MonoBehaviour
     Character currLead;
     Character winningChar;
     TallyBoard tallyBoard;
+
+    [SerializeField] TMP_Text AI_Score;
+    [SerializeField] TMP_Text AI_Bags;
+    [SerializeField] TMP_Text AI_Tricks;
+    [SerializeField] TMP_Text Player_Score;
+    [SerializeField] TMP_Text Player_Bags;
+    [SerializeField] TMP_Text Player_Tricks;
 
     #endregion
 
@@ -81,11 +89,14 @@ public class ScoreManager : MonoBehaviour
         }
 
         // update tallyboard and reset tricks for next round
-        tallyBoard.updateScoreText(playerScore, aiScore);
+        // tallyBoard.updateScoreText(playerScore, aiScore);
         playerTricks = 0;
         aiTricks = 0;
 
-        if(playerScore > aiScore){
+        UpdateScoreUI(); //Temp Code
+        UpdateTrickUI(); //Temp Code
+
+        if (playerScore > aiScore){
             winningChar = Character.PLAYER;
         }
         else{
@@ -95,6 +106,36 @@ public class ScoreManager : MonoBehaviour
         if(_CheckWin()){
             GameManager.Instance.EndGame(winningChar);
         }
+        else
+        {
+            GameManager.Instance.ResetGM();
+            GameManager.Instance.SwapLead();
+            if (GameManager.Instance.lead == Character.DEATH)
+            {            
+                GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+            }
+            else
+            {              
+                GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+            }
+        }
+    }
+
+    public void UpdateScoreUI()
+    {
+        AI_Score.text = aiScore.ToString();
+        AI_Bags.text = aiBags.ToString();
+
+        Player_Score.text = playerScore.ToString();
+        Player_Bags.text = playerBags.ToString();
+    }
+
+    public void UpdateTrickUI()
+    {
+        AI_Tricks.text = aiTricks.ToString();
+
+        Player_Tricks.text = playerTricks.ToString();
+        
     }
 
     // make a ui element visible/ glowing to the player that allows them to choose their bid
@@ -138,12 +179,16 @@ public class ScoreManager : MonoBehaviour
             playerTricks += 1;
         }
         else { aiTricks += 1; }
+
+        GameManager.Instance.IncrementTurn();
+        UpdateTrickUI();
     }
 
     // if either score is above 500, the game is over
     private bool _CheckWin()
     {
-        return (playerScore > 500 || aiScore > 500);
+        // Temp 100 just for testing
+        return (playerScore > 100 || aiScore > 100);
     }
 
     // helper func to calculate a score based on bid and tricks taken
