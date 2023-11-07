@@ -25,6 +25,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] Hand aiHand;
     private int currentBid;
     private Character thisCharacter = Character.DEATH;
+    // Tracks if Character Leads
     private bool isLead = true;
 
     // Start is called before the first frame update

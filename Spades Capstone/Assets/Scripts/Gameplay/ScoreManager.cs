@@ -35,14 +35,6 @@ public class ScoreManager : MonoBehaviour
     Character currLead;
     Character winningChar;
     [SerializeField] TallyBoard tallyBoard;
-
-    //[SerializeField] TMP_Text AI_Score;
-    //[SerializeField] TMP_Text AI_Bags;
-    //[SerializeField] TMP_Text AI_Tricks;
-    //[SerializeField] TMP_Text Player_Score;
-    //[SerializeField] TMP_Text Player_Bags;
-    //[SerializeField] TMP_Text Player_Tricks;
-
     #endregion
 
     // start listening to the game manager 
@@ -88,12 +80,13 @@ public class ScoreManager : MonoBehaviour
             aiBags -= 10;
         }
 
-        // update tallyboard and reset tricks for next round
-        tallyBoard.updateScoreText(playerScore, aiScore);
-        tallyBoard.updateBagText(playerBags, aiBags);
-
+        // Reset Tricks
         playerTricks = 0;
         aiTricks = 0;
+
+        // Update tallyboard with correct info & Reset Tricks and Bid UI for next round
+        tallyBoard.updateScoreText(playerScore, aiScore);
+        tallyBoard.updateBagText(playerBags, aiBags);     
 
         tallyBoard.updateTrickText(Character.PLAYER, 0);
         tallyBoard.updateTrickText(Character.DEATH, 0);
@@ -108,9 +101,11 @@ public class ScoreManager : MonoBehaviour
             winningChar = Character.DEATH;
         }
         
+        // If there is a Winner Endgame
         if(_CheckWin()){
             GameManager.Instance.EndGame(winningChar);
         }
+        // Else: Reset GameManager counters, Swap Lead, and change phase to approriate Character
         else
         {
             GameManager.Instance.ResetGM();
@@ -126,9 +121,12 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // make a ui element visible/ glowing to the player that allows them to choose their bid
+    // Make a ui element visible/ glowing to the player that allows them to choose their bid
     private void HandlePlayerBid()
     {
+        // Toggle BID UI
+        BidUI.Instance.ToggleBidUI(true);
+
         /* use this logic when exiting player bid logic
         if(currLead == Character.PLAYER){
             GameManager.Instance.ChangePhase(Phase.AIBID);
@@ -140,13 +138,14 @@ public class ScoreManager : MonoBehaviour
 
     }
 
+    // Update Player Bid data & UI
     public void SetPlayerBid(int new_bid)
     {
         playerBid = new_bid;
         tallyBoard.updateBidText(Character.PLAYER, new_bid);
     }
 
-    // have the AI place a bid based on their cards
+    // Have the AI place a bid based on their cards
     private void HandleAIBid()
     {
         aiBid = AIManager.Instance.GetBid();

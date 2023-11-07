@@ -46,10 +46,10 @@ public class BidUI : MonoBehaviour
     // On Phase Change to Phase.PlayerDraft
     private void BidOnPhaseChanged(Phase phase)
     {
-        if (phase == Phase.PLAYERBID)
-        {
-            ToggleBidUI(true);
-        }
+        //if (phase == Phase.PLAYERBID)
+        //{
+        //    ToggleBidUI(true);
+        //}
     }
 
     public void ToggleBidUI(bool ui_state)

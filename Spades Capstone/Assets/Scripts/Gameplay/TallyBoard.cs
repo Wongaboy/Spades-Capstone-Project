@@ -25,6 +25,8 @@ public class TallyBoard : MonoBehaviour
 
     [SerializeField]
     private GameObject tallyBoard;
+
+    // All the Text for TallyBoard, Will eventually be replaced with Art/UI
     [SerializeField] private TMP_Text PlayerScoreText;
     [SerializeField] private TMP_Text AIScoreText;
     [SerializeField] private TMP_Text PlayerBagText;
@@ -40,19 +42,23 @@ public class TallyBoard : MonoBehaviour
         AIScoreText.text = "0";
     }
 
-    // feed in new player and ai scores at the end of a round
+    // Feed in new player and ai SCORES during of Phase.SCORING
     // WIP: will want more ceremony, ie a sound and anim to play
     public void updateScoreText(int playerScore, int aiScore){
         PlayerScoreText.text = playerScore.ToString();
         AIScoreText.text = aiScore.ToString();
     }
 
+    // Feed in new player and ai BAGS at the end of a Phase.SCORING
+    // WIP: will want more ceremony, ie a sound and anim to play
     public void updateBagText(int playerBag, int aiBag)
     {
         PlayerBagText.text = playerBag.ToString();
         AIBagText.text = aiBag.ToString();
     }
 
+    // Feed in new player OR ai TRICKS at the end of a Phase.ENDOFTRICK
+    // WIP: will want more ceremony, ie a sound and anim to play
     public void updateTrickText(Character character, int newTrick)
     {
         if (character == Character.DEATH)
@@ -61,6 +67,8 @@ public class TallyBoard : MonoBehaviour
         { PlayerTrickText.text = newTrick.ToString(); }        
     }
 
+    // Feed in new player OR ai BIDS at the end of a Phase.BID
+    // WIP: will want more ceremony, ie a sound and anim to play
     public void updateBidText(Character character, int newBid)
     {
         if (character == Character.DEATH)

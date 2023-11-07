@@ -41,7 +41,7 @@ public class Deck : MonoBehaviour
         }
     }
 
-    // return the "top" card of the deck, and "discard" it (put it at the very end)
+    // return the "top" card of the deck, and "discard" it (put at the Bottom of Deck, end of list)
     public Card DrawCard()
     {
         Card toReturn = cards[0];
@@ -50,7 +50,7 @@ public class Deck : MonoBehaviour
         return toReturn;
     }
 
-    // Discard the "top" card of the deck
+    // Discard the "top" card of the deck (Gets put at the Bottom of Deck, end of list)
     public void DiscardCard()
     {
         Card toDiscard = cards[0];

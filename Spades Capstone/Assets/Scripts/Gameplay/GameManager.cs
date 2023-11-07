@@ -52,14 +52,10 @@ public class GameManager : MonoBehaviour
         deck.Shuffle();
     }
 
+    // Debug Testing Functions (Switch to PlayerDraft or AIDraft)
     public void TestPDraft()
     {
         ChangePhase(Phase.PLAYERDRAFT);
-    }
-
-    public void TestPBid()
-    {
-        ChangePhase(Phase.PLAYERBID);
     }
 
     public void TestD_Draft()
@@ -110,6 +106,7 @@ public class GameManager : MonoBehaviour
 
     }
 
+    // Reset tracker variables within GameManager
     public void ResetGM()
     {
         // Clear hands
@@ -120,69 +117,81 @@ public class GameManager : MonoBehaviour
         playerCard = null;
         aiCard = null;
     }
+
+    // Calls Deck.DrawCard
     public Card DrawCard()
     {
         return deck.DrawCard();
     }
 
+    // Calls Deck.Discard
     public void DiscardCard()
     {
         deck.DiscardCard();
     }
 
+    // Increment DraftTurn counter
     public void IncrementDraftTurn() 
     {
         num_DraftTurns++; 
     }
 
+    // Gets DraftTurn counter
     public int GetDraftTurn()
     {
         return num_DraftTurns;
     }
 
+    // Increment "Round" Turn counter
     public void IncrementTurn()
     {
         num_Turns++;
     }
 
+    // Gets "Round" Turn counter
     public int GetTurn()
     {
         return num_Turns;
     }
 
+    // Update UI with new Phase Name
     public void UpdatePhaseName(Phase newPhase)
     {
         phase_text.text = newPhase.ToString();
     }
 
-    // end the game - ending cutscene based on winner
+    // End the game - ending cutscene based on winner
     public void EndGame(Character winner){
         Debug.Log("Winner is " + winner.ToString());
     }
 
-    // figure out who won the trick, log it, and move on
+    // Figure out who won the trick, log it, and move on
     private void HandleEndOfTrick()
     {
         OnTrickTaken.Invoke(DetermineTrickWinner());
+        // Clear Card UI for next Trick
         TurnUI.Instance.ClearCardInfo();
-        if (num_Turns >= 13)
+        if (num_Turns >= 13)  // IF there are not more Tricks to play
         {
+            // Turn Off UI and Switch to Score Phase
             TurnUI.Instance.ToggleTurnUI(false);
             ChangePhase(Phase.SCORING);
         }
-        else if (DetermineTrickWinner() == Character.DEATH)
+        else if (DetermineTrickWinner() == Character.DEATH)  // IF Death won Trick and more Tricks to Play
         {
+            // Ensure Death Leads next Trick and Change Phase
             SwapTurnLead(Character.DEATH);
             ChangePhase(Phase.AITURN);
         }
-        else
+        else // IF Player won Trick and more Tricks to Play
         {
+            // Ensure Player Leads next Trick and Change Phase
             SwapTurnLead(Character.PLAYER);
             ChangePhase(Phase.PLAYERTURN);
         }
     }
 
-    // implement the rules of trick taking - warning: awful code
+    // Implement the rules of trick taking - warning: awful code
     private Character DetermineTrickWinner()
     {
         if(playerCard.suit == aiCard.suit) // if lead was followed, the higher value card wins
@@ -214,6 +223,7 @@ public class GameManager : MonoBehaviour
         
     }
 
+    // Swap Lead of next Round(Draft & Bid)
     public void SwapLead()
     {
         if(lead == Character.DEATH)
@@ -228,6 +238,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Changes Internal Player/AI Manager Lead variable (Is used to check who leads a Trick, NOT the Draft or Bid)
     private void SwapTurnLead(Character trick_winner)
     {
         if (trick_winner == Character.DEATH)
