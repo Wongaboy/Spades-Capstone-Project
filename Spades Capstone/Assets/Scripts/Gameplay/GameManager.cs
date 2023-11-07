@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -38,6 +39,8 @@ public class GameManager : MonoBehaviour
 
     public int num_DraftTurns = 0;
     public int num_Turns = 0;
+
+    [SerializeField] private TMP_Text phase_text;
     #endregion
 
     // Start is called before the first frame update
@@ -69,6 +72,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("Change to " + newPhase.ToString());
 
         currentPhase = newPhase;
+        UpdatePhaseName(currentPhase);
         switch (newPhase)
         {
             case Phase.PLAYERDRAFT:
@@ -106,6 +110,16 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void ResetGM()
+    {
+        // Clear hands
+        spadesBroken = false;
+        deck.Shuffle();
+        num_DraftTurns = 0;
+        num_Turns = 0;
+        playerCard = null;
+        aiCard = null;
+    }
     public Card DrawCard()
     {
         return deck.DrawCard();
@@ -121,16 +135,6 @@ public class GameManager : MonoBehaviour
         num_DraftTurns++; 
     }
 
-    public void ResetGM()
-    {
-        // Clear hands
-        spadesBroken = false;
-        deck.Shuffle();
-        num_DraftTurns = 0;
-        num_Turns = 0;
-        playerCard = null;
-        aiCard = null;
-    }
     public int GetDraftTurn()
     {
         return num_DraftTurns;
@@ -146,6 +150,11 @@ public class GameManager : MonoBehaviour
         return num_Turns;
     }
 
+    public void UpdatePhaseName(Phase newPhase)
+    {
+        phase_text.text = newPhase.ToString();
+    }
+
     // end the game - ending cutscene based on winner
     public void EndGame(Character winner){
         Debug.Log("Winner is " + winner.ToString());
@@ -155,6 +164,7 @@ public class GameManager : MonoBehaviour
     private void HandleEndOfTrick()
     {
         OnTrickTaken.Invoke(DetermineTrickWinner());
+        TurnUI.Instance.ClearCardInfo();
         if (num_Turns >= 13)
         {
             TurnUI.Instance.ToggleTurnUI(false);

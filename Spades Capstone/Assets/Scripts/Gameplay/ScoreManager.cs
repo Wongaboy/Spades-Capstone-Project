@@ -34,14 +34,14 @@ public class ScoreManager : MonoBehaviour
     int aiTricks;
     Character currLead;
     Character winningChar;
-    TallyBoard tallyBoard;
+    [SerializeField] TallyBoard tallyBoard;
 
-    [SerializeField] TMP_Text AI_Score;
-    [SerializeField] TMP_Text AI_Bags;
-    [SerializeField] TMP_Text AI_Tricks;
-    [SerializeField] TMP_Text Player_Score;
-    [SerializeField] TMP_Text Player_Bags;
-    [SerializeField] TMP_Text Player_Tricks;
+    //[SerializeField] TMP_Text AI_Score;
+    //[SerializeField] TMP_Text AI_Bags;
+    //[SerializeField] TMP_Text AI_Tricks;
+    //[SerializeField] TMP_Text Player_Score;
+    //[SerializeField] TMP_Text Player_Bags;
+    //[SerializeField] TMP_Text Player_Tricks;
 
     #endregion
 
@@ -89,12 +89,17 @@ public class ScoreManager : MonoBehaviour
         }
 
         // update tallyboard and reset tricks for next round
-        // tallyBoard.updateScoreText(playerScore, aiScore);
+        tallyBoard.updateScoreText(playerScore, aiScore);
+        tallyBoard.updateBagText(playerBags, aiBags);
+
         playerTricks = 0;
         aiTricks = 0;
 
-        UpdateScoreUI(); //Temp Code
-        UpdateTrickUI(); //Temp Code
+        tallyBoard.updateTrickText(Character.PLAYER, 0);
+        tallyBoard.updateTrickText(Character.DEATH, 0);
+
+        tallyBoard.updateBidText(Character.PLAYER, 0);
+        tallyBoard.updateBidText(Character.DEATH, 0);
 
         if (playerScore > aiScore){
             winningChar = Character.PLAYER;
@@ -121,23 +126,6 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    public void UpdateScoreUI()
-    {
-        AI_Score.text = aiScore.ToString();
-        AI_Bags.text = aiBags.ToString();
-
-        Player_Score.text = playerScore.ToString();
-        Player_Bags.text = playerBags.ToString();
-    }
-
-    public void UpdateTrickUI()
-    {
-        AI_Tricks.text = aiTricks.ToString();
-
-        Player_Tricks.text = playerTricks.ToString();
-        
-    }
-
     // make a ui element visible/ glowing to the player that allows them to choose their bid
     private void HandlePlayerBid()
     {
@@ -155,19 +143,35 @@ public class ScoreManager : MonoBehaviour
     public void SetPlayerBid(int new_bid)
     {
         playerBid = new_bid;
+        tallyBoard.updateBidText(Character.PLAYER, new_bid);
     }
 
     // have the AI place a bid based on their cards
     private void HandleAIBid()
     {
         aiBid = AIManager.Instance.GetBid();
-        // tallyBoard.updateAIBidText(aiBid);
+        tallyBoard.updateBidText(Character.DEATH, aiBid);
 
+        StartCoroutine(WaitTimeBid());
         // If player has already bid, they begin play. Otherwhise let them bid.
-        if(currLead == Character.DEATH){
+        //if (currLead == Character.DEATH){
+        //    GameManager.Instance.ChangePhase(Phase.PLAYERBID);
+        //} 
+        //else{
+        //    GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
+        //}
+    }
+
+    private IEnumerator WaitTimeBid()
+    {
+        yield return new WaitForSeconds(1);
+
+        if (currLead == Character.DEATH)
+        {
             GameManager.Instance.ChangePhase(Phase.PLAYERBID);
-        } 
-        else{
+        }
+        else
+        {
             GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
         }
     }
@@ -177,11 +181,15 @@ public class ScoreManager : MonoBehaviour
         if(trickWinner == Character.PLAYER)
         {
             playerTricks += 1;
+            tallyBoard.updateTrickText(Character.PLAYER, playerTricks);
         }
-        else { aiTricks += 1; }
+        else 
+        { 
+            aiTricks += 1;
+            tallyBoard.updateTrickText(Character.DEATH, aiTricks);
+        }
 
         GameManager.Instance.IncrementTurn();
-        UpdateTrickUI();
     }
 
     // if either score is above 500, the game is over

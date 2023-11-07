@@ -79,6 +79,14 @@ public class TurnUI : MonoBehaviour
         AIValue_Text.text = card.val.ToString();
     }
 
+    public void ClearCardInfo()
+    {
+        PlayerSuit_Text.text = "";
+        PlayerValue_Text.text = "";
+        AISuit_Text.text = "";
+        AIValue_Text.text = "";
+    }
+
     public void OnPlayClicked()
     {
         PlayerManager.Instance.HandlePlayerTurn();

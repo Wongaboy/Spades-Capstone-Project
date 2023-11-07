@@ -41,7 +41,7 @@ public class AIManager : MonoBehaviour
         {
             MakeDraftDecision(GameManager.Instance.DrawCard());
             GameManager.Instance.IncrementDraftTurn();
-            Decide_DraftChangePhase();
+            StartCoroutine(WaitTimeDraft());
         }
         else if(phase == Phase.AIBID)
         {
@@ -128,15 +128,17 @@ public class AIManager : MonoBehaviour
     private void HandleAITurn(){
 
         PlayCard();
-        // if there is dialogue to play, might want to activate it here
-        if (isLead == true)
-        {
-            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
-        }
-        else
-        {
-            GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
-        }
+
+        StartCoroutine(WaitTimePlayCard());
+        // if there is dialogue to play, might want to activate it here       
+        //if (isLead == true)
+        //{
+        //    GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
+        //}
+        //else
+        //{
+        //    GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
+        //}
     }
 
     // Function to Calculate Logic for what Death plays based on Death's hand
@@ -176,6 +178,34 @@ public class AIManager : MonoBehaviour
         else
         {
             GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+        }
+    }
+
+    private IEnumerator WaitTimeDraft()
+    {      
+        yield return new WaitForSeconds(1);
+
+        Decide_DraftChangePhase();
+    }
+
+    private IEnumerator WaitTimeBid()
+    {
+        yield return new WaitForSeconds(1);
+
+        Decide_DraftChangePhase();
+    }
+
+    private IEnumerator WaitTimePlayCard()
+    {
+        yield return new WaitForSeconds(1);
+
+        if (isLead == true)
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
         }
     }
 
