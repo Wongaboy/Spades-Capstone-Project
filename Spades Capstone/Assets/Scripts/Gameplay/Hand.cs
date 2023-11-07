@@ -35,9 +35,9 @@ public class Hand : MonoBehaviour
         return greatest;
     }
 
-    // return the lowest value card of a given suit
+    // return the lowest value card of a given suit - DEPRECATED
     public Card GetLowest(Suit suit){
-        Card least = new Card(0, suit);
+        Card least = new Card(15, suit);
         foreach(Card c in cardsInHand[suit]){
             if(c.val < least.val){
                 least = c;
@@ -46,7 +46,7 @@ public class Hand : MonoBehaviour
         return least;
     }
 
-    // get the number of cards of a particular suit
+    // get the number of cards of a particular suit - DEPRECATED
     public int NumOfSuit(Suit suit){
         return cardsInHand[suit].Count;
     }
