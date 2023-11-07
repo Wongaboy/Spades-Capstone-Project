@@ -23,15 +23,14 @@ public class TurnUI : MonoBehaviour
     }
     #endregion
 
+    // UI Panel Object
     [SerializeField] GameObject TurnUIPanel;
+
+    // Played Cards Info (Player and AI)
     [SerializeField] TMP_Text AISuit_Text;
     [SerializeField] TMP_Text AIValue_Text;
     [SerializeField] TMP_Text PlayerSuit_Text;
     [SerializeField] TMP_Text PlayerValue_Text;
-
-    //private Card player_card;
-    //private Card ai_card;
-
 
     // Start is called before the first frame update
     void Start()
@@ -47,6 +46,7 @@ public class TurnUI : MonoBehaviour
         
     }
 
+    // On Phase Change to Phase.PlayerTurn
     public void TurnOnPhaseChanged(Phase phase)
     {
         if (phase == Phase.PLAYERTURN)
@@ -55,30 +55,32 @@ public class TurnUI : MonoBehaviour
         }
     }
 
+    // Called to Trigger Turn UI Prompt for Player to Play a Card
     public void ToggleTurnUI(bool ui_state)
     {
+        // When UI is toggled off Reset the info
         if (ui_state == false)
         {
-            PlayerSuit_Text.text = "";
-            PlayerValue_Text.text = "";
-            AISuit_Text.text = "";
-            AIValue_Text.text = "";
+            ClearCardInfo();
         }
         TurnUIPanel.SetActive(ui_state);
     }
 
+    // Update Player's Played Card
     public void UpdatePlayerCardInfo(Card card)
     {
         PlayerSuit_Text.text = card.suit.ToString();
         PlayerValue_Text.text = card.val.ToString();
     }
 
+    // Update AI's Played Card
     public void UpdateAICardInfo(Card card)
     {
         AISuit_Text.text = card.suit.ToString();
         AIValue_Text.text = card.val.ToString();
     }
 
+    // Clears Card UI info
     public void ClearCardInfo()
     {
         PlayerSuit_Text.text = "";
@@ -87,11 +89,13 @@ public class TurnUI : MonoBehaviour
         AIValue_Text.text = "";
     }
 
+    // Handles Player trying to play card
     public void OnPlayClicked()
     {
         PlayerManager.Instance.HandlePlayerTurn();
     }
 
+    // Decides which Phase to switch to
     public void Decide_ChangePhase()
     {
         if (PlayerManager.Instance.isLead == true)

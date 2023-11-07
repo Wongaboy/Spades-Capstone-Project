@@ -22,7 +22,7 @@ public class BidUI : MonoBehaviour
         }
     }
     #endregion
-
+    // UI Panel Object
     [SerializeField] GameObject BidUIPanel;
     [SerializeField] TMP_Text CurrentBid_Text;
     private int current_bid;
@@ -34,7 +34,8 @@ public class BidUI : MonoBehaviour
     {
         BidUIPanel.SetActive(false);
 
-        GameManager.OnPhaseChanged += BidOnPhaseChanged;
+        // !!Previous Version Code!!
+        // GameManager.OnPhaseChanged += BidOnPhaseChanged;
     }
 
     // Update is called once per frame
@@ -43,6 +44,7 @@ public class BidUI : MonoBehaviour
         
     }
 
+    // !!Previous Version Code!!
     // On Phase Change to Phase.PlayerDraft
     private void BidOnPhaseChanged(Phase phase)
     {
@@ -52,28 +54,38 @@ public class BidUI : MonoBehaviour
         //}
     }
 
+    // Called to Trigger Bid UI Prompt for Player to Select Bid
     public void ToggleBidUI(bool ui_state)
     {
         BidUIPanel.SetActive(ui_state);
+
+        // Initialize Selector UI
         current_bid = 0;
         CurrentBid_Text.text = current_bid.ToString();
     }
 
+    // Function for UI buttons to increment/decrement BID selector
     public void ChangeBid(int change)
     {
         current_bid += change;
+        // Limit Bid to 0-13
         LimitBid();
         CurrentBid_Text.text = current_bid.ToString();
     }
 
+    // Limits selector Bid to 0-13
     private void LimitBid()
     {
+        // If currentbid is Out of Bounds, set it to the boundary value
         if (current_bid > 13) { current_bid = 13; }
         else if (current_bid < 0) { current_bid = 0; }
     }
 
+    // Confirm Players Bid and Switch to Appropriate Phase
     public void ConfirmPlayerBid()
     {
+        // Disable UI before Switching
+        ToggleBidUI(false);
         // Change Player bid to current_bid
         ScoreManager.Instance.SetPlayerBid(current_bid);
 
@@ -86,7 +98,5 @@ public class BidUI : MonoBehaviour
         {
             GameManager.Instance.ChangePhase(Phase.AIBID);
         }
-
-        ToggleBidUI(false);
     }
 }

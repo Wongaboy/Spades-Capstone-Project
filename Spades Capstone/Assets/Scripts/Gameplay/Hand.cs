@@ -72,7 +72,7 @@ public class Hand : MonoBehaviour
     }
 
     // Returns number of cards in hand
-    public int NumofCards()
+    public int NumberofCards()
     {
         return NumOfSuit(Suit.SPADE) + NumOfSuit(Suit.DIAMOND) + NumOfSuit(Suit.CLUB) + NumOfSuit(Suit.HEART);
     }

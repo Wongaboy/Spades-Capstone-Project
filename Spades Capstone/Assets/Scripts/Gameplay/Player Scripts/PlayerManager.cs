@@ -34,6 +34,8 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void PlayerManagerOnPhaseChanged(Phase phase){
+        // A lot of these sections get handled In the respective "name"+UI scripts
+        // I believe it is possible to allow Player Manager to handle them
         if(phase == Phase.PLAYERTURN)
         {
             // HandlePlayerTurn();
@@ -44,16 +46,14 @@ public class PlayerManager : MonoBehaviour
         }
         else if(phase == Phase.PLAYERBID)
         {
+            // Like AI, this is handles rn in the ScoreManager
             // SetBid(int bid)
         }
     }
 
-    // !THESE FUNCTIONS ARE JUST STUFF COPIED FROM DEATH, CAN CHANGE THEM LATER!
-
     // Function to call when Player keeps the shown card
     public void DraftCard(Card card)
     {
-        // !Work In Progress!
         playerHand.AddCardToHand(card);
     }
 
@@ -64,6 +64,7 @@ public class PlayerManager : MonoBehaviour
         return currentPlayerBid;
     }
 
+    // Changes Lead Boolean (bool is for Trick Lead, NOT Draft/Bid Lead)
     public void ChangeInternalLead(bool new_lead)
     {
         isLead = new_lead;
@@ -88,11 +89,16 @@ public class PlayerManager : MonoBehaviour
 
     // activate UI that lets the player play a card - maybe move this to draft ui thing
     public void HandlePlayerTurn(){
+        // !Work in Progress!
 
+        // Plays First Card that gets returned from Hand.GetAllCards()
         Card tobe_played = playerHand.GetAllCards()[0];
         PlayCard(tobe_played);
+        // Remove Card from Player's hand
         playerHand.RemoveCardFromHand(tobe_played);
+
         // if there is dialogue to play, might want to activate it here
+        // Right Now this section below is handled in TurnUI (Can be rearranged)
         //if (isLead)
         //{
         //    GameManager.Instance.ChangePhase(Phase.AITURN);
@@ -103,13 +109,14 @@ public class PlayerManager : MonoBehaviour
         //}
     }
 
-    // Function to call to tell the GameManager what card was played - might not need
+    // Function to call to tell the GameManager what card was played & Update UI
     private void PlayCard(Card playedCard)
     {
         GameManager.Instance.playerCard = playedCard;
         TurnUI.Instance.UpdatePlayerCardInfo(playedCard);
     }
 
+    // Debug Function to show amount of each suits in hand
     public void Debug_ShowHand()
     {
         Debug.Log(playerHand.NumOfSuit(Suit.DIAMOND));

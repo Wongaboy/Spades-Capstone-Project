@@ -22,10 +22,12 @@ public class DraftUI : MonoBehaviour
         }
     }
     #endregion
-
+    // UI Panel Object
     [SerializeField] GameObject DraftUIPanel;
+    // Drafting Card Text UI
     [SerializeField] TMP_Text cardSuit_Text;
     [SerializeField] TMP_Text cardValue_Text;
+    // Card to KEEP or DISCARD
     Card decision_Card;
     
     // Start is called before the first frame update
@@ -54,7 +56,6 @@ public class DraftUI : MonoBehaviour
         }
     }
 
-
     // Called to Trigger Draft UI Prompt for Player to Choose Card
     public void ToggleDraftUI(bool ui_state)
     {
@@ -67,41 +68,41 @@ public class DraftUI : MonoBehaviour
 
     // Function for when Players KEEPs Drawn Card (KEEP Button Pressed)
     public void OnKeepClick()
-    {
-        // Disable UI
-        ToggleDraftUI(false);
-
+    {       
         // Add Card to Player's Hand
         PlayerManager.Instance.DraftCard(decision_Card);
 
         // Discard Next Card in Deck
         GameManager.Instance.DiscardCard();
 
-        GameManager.Instance.IncrementDraftTurn();
-        // Switch Turns
+        // Switch to appropriate Phase
         Decide_ChangePhase();
     }
 
     // Function for when Players DISCARDs Drawn Card (DISCARD Button Pressed)
     public void OnDiscardClick()
-    {
-        // Disable UI 
-        ToggleDraftUI(false);
-
+    {       
         // "Discard" currently Viewed Card (i.e Overwrite it with new one)
         decision_Card = GameManager.Instance.DrawCard();
 
         // Add Next Card to Player Hand
         PlayerManager.Instance.DraftCard(decision_Card);
 
-        GameManager.Instance.IncrementDraftTurn();
-        // Switch Turns
+        // Switch to appropriate Phase
         Decide_ChangePhase();
     }
 
+    // Decides which Phase to switch to & Perform other neccesary actions
     public void Decide_ChangePhase()
     {
-        if (GameManager.Instance.GetDraftTurn() >= 26)
+        // Disable UI before Switching
+        ToggleDraftUI(false);
+
+        // Increment Draft Turn
+        GameManager.Instance.IncrementDraftTurn();
+
+        // Switch Phase based on Number of Drafts have happened
+        if (GameManager.Instance.GetDraftTurn() >= 26)  // If DraftTurn reaches 26 that means no more cards
         {
             GameManager.Instance.ChangePhase(Phase.AIBID);
         }
