@@ -5749,6 +5749,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deckObj: {fileID: 1409819720}
+  cardSOs: []
 --- !u!4 &1409819722
 Transform:
   m_ObjectHideFlags: 0

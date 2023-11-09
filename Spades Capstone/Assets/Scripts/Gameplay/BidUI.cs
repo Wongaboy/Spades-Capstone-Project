@@ -84,11 +84,10 @@ public class BidUI : MonoBehaviour
     // Confirm Players Bid and Switch to Appropriate Phase
     public void ConfirmPlayerBid()
     {
-        // Disable UI before Switching
-        ToggleBidUI(false);
         // Change Player bid to current_bid
         ScoreManager.Instance.SetPlayerBid(current_bid);
-
+        // Disable UI before Switching
+        ToggleBidUI(false);
         // Change Phase based on if you were lead (LEAD = AI -> Phase.AITURN; LEAD = PLAYER -> Phase.AIBID)
         if (GameManager.Instance.lead == Character.DEATH)
         {

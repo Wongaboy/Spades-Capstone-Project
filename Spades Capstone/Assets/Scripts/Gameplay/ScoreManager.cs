@@ -142,7 +142,7 @@ public class ScoreManager : MonoBehaviour
     public void SetPlayerBid(int new_bid)
     {
         playerBid = new_bid;
-        tallyBoard.updateBidText(Character.PLAYER, new_bid);
+        tallyBoard.updateBidText(Character.PLAYER, playerBid);
     }
 
     // Have the AI place a bid based on their cards
