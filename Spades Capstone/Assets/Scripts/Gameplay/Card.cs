@@ -6,6 +6,7 @@ public class Card : MonoBehaviour
 {
     public Suit suit;
     public int val;
+    public GameObject cardObj;
     // private SpriteRenderer face;
     // private SpriteRenderer back;
     public Card(int v, Suit s)

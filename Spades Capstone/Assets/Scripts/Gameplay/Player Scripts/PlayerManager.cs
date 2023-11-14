@@ -23,6 +23,7 @@ public class PlayerManager : MonoBehaviour
     #endregion
 
     [SerializeField] Hand playerHand;
+    [SerializeField] HandUI playerHandUI;
     private int currentPlayerBid; // not sure if we need this here
     private Character thisCharacter = Character.PLAYER;
     public bool isLead = false;

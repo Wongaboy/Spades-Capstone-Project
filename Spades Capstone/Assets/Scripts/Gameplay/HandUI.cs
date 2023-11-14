@@ -7,7 +7,8 @@ public class HandUI : MonoBehaviour
     [SerializeField]
     private Transform[] cardPositions;
     [SerializeField]
-    private Hand playerHand;
+    private Hand myHand;
+    private Transform tableSpot;
 
     private List<GameObject> cardObjs;
 
@@ -27,6 +28,15 @@ public class HandUI : MonoBehaviour
         card.transform.position = cardPositions[openSlot].position;
 
         return true;
+    }
+
+    public bool ShowCardPlayed(GameObject card){
+        if(!cardObjs.Contains(card)){return false;}
+        else{
+            // move card to spot on table 
+            card.transform.position = tableSpot.position; // will replace this with smooth anim to later
+            cardObjs.Remove(card);
+        }
     }
     
 }
