@@ -7,14 +7,21 @@ public class HandUI : MonoBehaviour
     [SerializeField]
     private Transform[] cardPositions;
     [SerializeField]
-    private Hand myHand;
     private Transform tableSpot;
+
+    private Hand myHand;
+    
 
     private List<GameObject> cardObjs;
 
     public void Start()
     {
         cardObjs = new List<GameObject>();
+    }
+
+    public void AssignHand(Hand hand)
+    {
+        myHand = hand;
     }
     
     public bool ShowCard(GameObject card)
@@ -36,6 +43,7 @@ public class HandUI : MonoBehaviour
             // move card to spot on table 
             card.transform.position = tableSpot.position; // will replace this with smooth anim to later
             cardObjs.Remove(card);
+            return true;
         }
     }
     

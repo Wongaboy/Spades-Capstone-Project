@@ -22,16 +22,19 @@ public class PlayerManager : MonoBehaviour
     }
     #endregion
 
-    [SerializeField] Hand playerHand;
+    
     [SerializeField] HandUI playerHandUI;
-    private int currentPlayerBid; // not sure if we need this here
+    [SerializeField] Hand playerHand;
+
     private Character thisCharacter = Character.PLAYER;
+    [HideInInspector]
     public bool isLead = false;
 
     // Start is called before the first frame update
     void Start()
     {
         GameManager.OnPhaseChanged += PlayerManagerOnPhaseChanged;
+        playerHandUI.AssignHand(playerHand);
     }
 
     private void PlayerManagerOnPhaseChanged(Phase phase){
@@ -58,27 +61,20 @@ public class PlayerManager : MonoBehaviour
         playerHand.AddCardToHand(card);
     }
 
-    // Function to call to set Player's Bid
-    public int SetBid(int bid)
-    {
-        currentPlayerBid = bid;
-        return currentPlayerBid;
-    }
-
     // Changes Lead Boolean (bool is for Trick Lead, NOT Draft/Bid Lead)
-    public void ChangeInternalLead(bool new_lead)
+    public void ChangeInternalLead(bool isCurrLead)
     {
-        isLead = new_lead;
+        isLead = isCurrLead;
     }
 
     // Used to check valid moves (Ex. Only allow same suit card if opponent plays a suit you have)
-    public bool CheckValidMove(Card picked_card)
+    public bool CheckValidMove(Card selected)
     {
-        if(isLead && picked_card.suit == Suit.SPADE && !GameManager.Instance.spadesBroken)
+        if(isLead && selected.suit == Suit.SPADE && !GameManager.Instance.spadesBroken)
         { 
             return false; // cannot lead a Spade if spades haven't been played yet
         }
-        else if(!isLead && picked_card.suit != GameManager.Instance.aiCard.suit)
+        else if(!isLead && selected.suit != GameManager.Instance.aiCard.suit)
         {
             if (playerHand.HasSuit(GameManager.Instance.aiCard.suit))
             {
@@ -93,10 +89,10 @@ public class PlayerManager : MonoBehaviour
         // !Work in Progress!
 
         // Plays First Card that gets returned from Hand.GetAllCards()
-        Card tobe_played = playerHand.GetAllCards()[0];
-        PlayCard(tobe_played);
+        Card toPlay = playerHand.GetAllCards()[0];
+        PlayCard(toPlay);
         // Remove Card from Player's hand
-        playerHand.RemoveCardFromHand(tobe_played);
+        playerHand.RemoveCardFromHand(toPlay);
 
         // if there is dialogue to play, might want to activate it here
         // Right Now this section below is handled in TurnUI (Can be rearranged)

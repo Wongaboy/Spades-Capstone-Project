@@ -98,17 +98,6 @@ public class DraftUI : MonoBehaviour
         // Disable UI before Switching
         ToggleDraftUI(false);
 
-        // Increment Draft Turn
-        GameManager.Instance.IncrementDraftTurn();
-
-        // Switch Phase based on Number of Drafts have happened
-        if (GameManager.Instance.GetDraftTurn() >= 26)  // If DraftTurn reaches 26 that means no more cards
-        {
-            GameManager.Instance.ChangePhase(Phase.AIBID);
-        }
-        else
-        {
-            GameManager.Instance.ChangePhase(Phase.AIDRAFT);
-        }
+        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
     }
 }

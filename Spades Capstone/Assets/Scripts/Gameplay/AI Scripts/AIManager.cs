@@ -33,23 +33,21 @@ public class AIManager : MonoBehaviour
         GameManager.OnPhaseChanged += AIManagerOnPhaseChanged;
     }
 
-    private void AIManagerOnPhaseChanged(Phase phase){
-        if(phase == Phase.AITURN)
+    // React to Phase changes for turn based gameplayt
+    private void AIManagerOnPhaseChanged(Phase phase)
+    {
+        if (phase == Phase.AITURN)
         {
             HandleAITurn();
         }
-        else if(phase == Phase.AIDRAFT)
+        else if (phase == Phase.AIDRAFT)
         {
             // Decides to Keep or Discard & then waits to switch Turn/Phase
             MakeDraftDecision(GameManager.Instance.DrawCard());
-            GameManager.Instance.IncrementDraftTurn();
             StartCoroutine(WaitTimeDraft());
         }
-        else if(phase == Phase.AIBID)
-        {
-            // This gets handled by the ScoreManager, can stay in case
-        }
     }
+    #region "AI logic"
 
     // Function to Decide if Death keeps or dumps the drawn card
     private bool MakeDraftDecision(Card card)
@@ -62,21 +60,15 @@ public class AIManager : MonoBehaviour
 
         if (card.suit == Suit.SPADE)
         {
-            DraftCard(card);
+            aiHand.AddCardToHand(card);
             GameManager.Instance.DiscardCard();
         }
         else
         {
-            DraftCard(GameManager.Instance.DrawCard());
+            aiHand.AddCardToHand(GameManager.Instance.DrawCard());
         }
 
         return true;
-    }
-
-    // Function to call to Add card to AI Hand
-    public void DraftCard(Card card)
-    {
-        aiHand.AddCardToHand(card);
     }
 
     // Function to calculate Death's Bid amount based on Death's Hand
@@ -111,44 +103,6 @@ public class AIManager : MonoBehaviour
         return currentBid; 
     }
 
-    // Changes Lead Boolean (bool is for Trick Lead, NOT Draft/Bid Lead)
-    public void ChangeInternalLead(bool new_lead)
-    {
-        isLead = new_lead;
-    }
-
-    private void HandleAITurn(){
-        // AI Determines what card to play and Plays It
-        // !Work in Progress!
-        PlayCard();
-
-        // Wait to Switch Phases
-        StartCoroutine(WaitTimePlayCard());
-
-    }
-
-    // Function to Calculate Logic for what Death plays based on Death's hand
-    private void PlayCard()
-    {
-        Card tobe_played;
-        if (isLead)
-        {
-            // !Work in Progress!
-            tobe_played = ChooseCardToLead();
-        }
-        else
-        {
-            // !Work in Progress!
-            tobe_played = ChooseCardToFollow(GameManager.Instance.playerCard);
-        }
-        // Feed GameManager Played Card
-        GameManager.Instance.aiCard = tobe_played;
-        // Update UI for AI's Card
-        TurnUI.Instance.UpdateAICardInfo(tobe_played);
-        // Remove Card from AI's Hand
-        aiHand.RemoveCardFromHand(tobe_played);
-    }
-
     // Decide Card when AI plays 1st
     private Card ChooseCardToLead()
     {
@@ -163,25 +117,62 @@ public class AIManager : MonoBehaviour
         return aiHand.GetAllCards()[0]; // INCOMPLETE
     }
 
-    // Decides what Phase to switch to After AI Draft (No more cards -> PlayerBID; Still Cards -> PlayerDraft)
-    public void Decide_DraftChangePhase()
+    #endregion
+
+    #region "Public Helper Functions"
+
+    // Changes Lead Boolean (bool is for Trick Lead, NOT Draft/Bid Lead)
+    public void ChangeInternalLead(bool isCurrLead)
     {
-        if (GameManager.Instance.GetDraftTurn() >= 26)
+        isLead = isCurrLead;
+    }
+
+    #endregion
+
+    #region "Private Helper Functions"
+
+    private void HandleAITurn()
+    {
+        // AI Determines what card to play and Plays It
+        // !Work in Progress!
+        PlayCard();
+
+        // Wait to Switch Phases
+        StartCoroutine(WaitTimePlayCard());
+
+    }
+
+    private void PlayCard()
+    {
+        Card toPlay;
+        if (isLead)
         {
-            GameManager.Instance.ChangePhase(Phase.PLAYERBID);
+            // !Work in Progress!
+            toPlay = ChooseCardToLead();
         }
         else
         {
-            GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+            // !Work in Progress!
+            toPlay = ChooseCardToFollow(GameManager.Instance.playerCard);
         }
+        // Feed GameManager Played Card
+        GameManager.Instance.aiCard = toPlay;
+        // Update UI for AI's Card
+        TurnUI.Instance.UpdateAICardInfo(toPlay); // SOON TO BE DEPRECATED
+        // Remove Card from AI's Hand
+        aiHand.RemoveCardFromHand(toPlay);
     }
+
+    #endregion
+
+    #region "IEnumerators"
 
     // Waits 1 second after Draft to Switch Phases
     private IEnumerator WaitTimeDraft()
     {      
         yield return new WaitForSeconds(1);
 
-        Decide_DraftChangePhase();
+        GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
     }
 
     // Waits 1 second after playing AI card to Switch Phases
@@ -200,6 +191,9 @@ public class AIManager : MonoBehaviour
         }
     }
 
+    #endregion
+
+    #region "Debug Functions"
     // Debug Function to show amount of each suits in hand
     public void Debug_ShowHand()
     {
@@ -208,6 +202,7 @@ public class AIManager : MonoBehaviour
         Debug.Log(aiHand.NumOfSuit(Suit.CLUB));
         Debug.Log(aiHand.NumOfSuit(Suit.HEART));
     }
+    #endregion
 
     // Unsubscribe from events when destroyed to prevent errors
     void OnDestroy(){

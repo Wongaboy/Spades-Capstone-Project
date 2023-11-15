@@ -64,7 +64,7 @@ public class ScoreManager : MonoBehaviour
     private void HandleScoring(){
         int roundScore;
         int roundBags;
-        (roundScore, roundBags) = _CalcScore(playerBid, playerTricks); // idk if this is legal syntax, if not there are other ways to do this
+        (roundScore, roundBags) = _CalcScore(playerBid, playerTricks);
         playerScore += roundScore;
         playerBags += roundBags;
         if(playerBags >= 10){
@@ -187,8 +187,6 @@ public class ScoreManager : MonoBehaviour
             aiTricks += 1;
             tallyBoard.updateTrickText(Character.DEATH, aiTricks);
         }
-
-        GameManager.Instance.IncrementTurn();
     }
 
     // if either score is above 500, the game is over

@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Hand : MonoBehaviour
 {
-    [SerializeField] Transform handArea;
     private Dictionary<Suit, List<Card>> cardsInHand = new Dictionary<Suit, List<Card>>() { {Suit.SPADE, new List<Card>()
             }, { Suit.DIAMOND, new List<Card>()},{ Suit.CLUB, new List<Card>()},{ Suit.HEART, new List<Card>()} };
 
