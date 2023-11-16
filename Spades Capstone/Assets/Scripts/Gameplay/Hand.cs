@@ -26,7 +26,7 @@ public class Hand : MonoBehaviour
 
     // return the highest value card of a given suit
     public Card GetHighest(Suit suit){
-        Card greatest = new Card(0, suit);
+        Card greatest = cardsInHand[suit][0];
         foreach(Card c in cardsInHand[suit]){
             if(c.val >= greatest.val){
                 greatest = c;
@@ -37,7 +37,7 @@ public class Hand : MonoBehaviour
 
     // return the lowest value card of a given suit - DEPRECATED
     public Card GetLowest(Suit suit){
-        Card least = new Card(15, suit);
+        Card least = cardsInHand[suit][0];
         foreach(Card c in cardsInHand[suit]){
             if(c.val < least.val){
                 least = c;

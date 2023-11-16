@@ -6,13 +6,11 @@ public class Card : MonoBehaviour
 {
     public Suit suit;
     public int val;
+    [HideInInspector]
     public GameObject cardObj;
-    // private SpriteRenderer face;
-    // private SpriteRenderer back;
-    public Card(int v, Suit s)
-    {
-        val = v;
-        suit = s;
+
+    void Awake(){
+        cardObj = this.gameObject;
     }
 
 }

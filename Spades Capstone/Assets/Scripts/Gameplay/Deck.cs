@@ -16,25 +16,10 @@ public class Deck : MonoBehaviour
     
     void Awake()
     {
-        if(cardSOs.Length > 0)
-        {
-            cards = new List<Card>();
-            foreach(Card card in cardSOs)
-            {
-                cards.Add(card);
-            }
-            return;
-        }
-        // Populate the standard 52 Card deck using broken logic for testing - will not be used once SOs are set up
         cards = new List<Card>();
-        int c = 0;
-        for(int i  = 2; i <= 14; i++)
+        foreach(Card card in cardSOs)
         {
-            for(int j = 0; j < 4; j++)
-            {
-                cards.Add(new Card(i, intToSuit[j]));
-                c++;
-            }
+            cards.Add(card);
         }
     }
 
