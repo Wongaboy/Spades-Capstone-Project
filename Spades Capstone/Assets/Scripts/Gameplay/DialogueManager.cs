@@ -25,32 +25,38 @@ public class DialogueManager : MonoBehaviour
 
     #region "Class Variables"
     // !Work in Progress Variables!
-    TMP_Text dialogueSpeakerName;
-    TMP_Text dialogueText;
-
-    GameObject dialogueTextBox;
-    Queue<DialogueSO> currentDialogue = new Queue<DialogueSO>();
+    [SerializeField] TMP_Text dialogueSpeakerName;
+    [SerializeField] TMP_Text dialogueText;
+    [SerializeField] GameObject dialogueTextBox;
+    
+    DialogueSO currentDialogue;
     int dialogueIndex;
-    #endregion
 
-    public void HumanEnter()
+    [SerializeField] DialogueSO tempDialogue;
+    #endregion
+    private void Start()
     {
-        if (currentDialogue.Count > 0)
-        {
-            DialogueSO dialogue = currentDialogue.Peek();
-            dialogueSpeakerName.text = dialogue.dialogueName;
-            dialogueIndex = 0;
-        }
+        dialogueTextBox.SetActive(false);    
     }
 
-    public void HumanExit()
+    // Testing Function
+    public void TestDialogue()
     {
+        StartDialogue(tempDialogue);
+    }
+    public void StartDialogue(DialogueSO newDialogue)
+    {
+        dialogueTextBox.SetActive(true);
+        currentDialogue = newDialogue;
+        dialogueSpeakerName.text = currentDialogue.dialogueName;
         dialogueIndex = 0;
-        currentDialogue.Dequeue();
-        if (currentDialogue.Count > 0)
-        {
-            HumanEnter();
-        }
+        OnNextButton();
+    }
+
+    public void EndDialogue()
+    {
+        dialogueTextBox.SetActive(false);
+        dialogueIndex = 0;
     }
 
     void UpdateDialogue(string text)
@@ -60,19 +66,15 @@ public class DialogueManager : MonoBehaviour
 
     public void OnNextButton()
     {
-        if (dialogueIndex < currentDialogue.Peek().dialogueTexts.Count)
+        if (dialogueIndex < currentDialogue.dialogueTexts.Count)
         {
-            UpdateDialogue(currentDialogue.Peek().dialogueTexts[dialogueIndex]);
+            UpdateDialogue(currentDialogue.dialogueTexts[dialogueIndex]);
             dialogueIndex++;
         }
         else
         {
-            HumanExit();
+            EndDialogue();
         }
     }
 
-    public void OnDayReset()
-    {
-        currentDialogue.Clear();
-    }
 }
