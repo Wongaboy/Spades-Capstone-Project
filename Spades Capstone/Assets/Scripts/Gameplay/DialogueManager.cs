@@ -29,21 +29,27 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialogueTextBox;
     
+    // Current DialogueSO "Manager" is working with
     DialogueSO currentDialogue;
     int dialogueIndex;
 
+    // Temp Dialogue to test
     [SerializeField] DialogueSO tempDialogue;
     #endregion
+
     private void Start()
     {
+        // Disable Dialogue Box on game start
         dialogueTextBox.SetActive(false);    
     }
 
-    // Testing Function
+    // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
         StartDialogue(tempDialogue);
     }
+
+    // Called with given DialogueSO to activate DialogueBox, etc.
     public void StartDialogue(DialogueSO newDialogue)
     {
         dialogueTextBox.SetActive(true);
@@ -53,17 +59,20 @@ public class DialogueManager : MonoBehaviour
         OnNextButton();
     }
 
+    // Called at end of Dialogue to deactivate DialogueBox and reset variables
     public void EndDialogue()
     {
         dialogueTextBox.SetActive(false);
         dialogueIndex = 0;
     }
 
+    // Update Dialogue displays with given text string
     void UpdateDialogue(string text)
     {
         dialogueText.text = text;
     }
 
+    // Called on DialogueButton Press to move dialogue forward OR Exit dialogue
     public void OnNextButton()
     {
         if (dialogueIndex < currentDialogue.dialogueTexts.Count)
