@@ -26,7 +26,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] HandUI playerHandUI;
     [SerializeField] Hand playerHand;
 
-    private Character thisCharacter = Character.PLAYER;
+    //private Character thisCharacter = Character.PLAYER;
     [HideInInspector]
     public bool isLead = false;
 

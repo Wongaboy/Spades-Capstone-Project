@@ -24,7 +24,7 @@ public class AIManager : MonoBehaviour
 
     [SerializeField] Hand aiHand;
     private int currentBid;
-    private Character thisCharacter = Character.DEATH;
+    //private Character thisCharacter = Character.DEATH;
     // Tracks if Character Leads
     private bool isLead = true;
 
@@ -106,15 +106,102 @@ public class AIManager : MonoBehaviour
     // Decide Card when AI plays 1st
     private Card ChooseCardToLead()
     {
-        // !Work in Progress!
-        return aiHand.GetAllCards()[0]; // INCOMPLETE
+        // IF: spadesBroken == false -> Play highest non-spade (Prioritize Suit with Most Cards, !Don't Know if Good!)
+        if (GameManager.Instance.spadesBroken == false)
+        {
+            Suit mostOfSuit = Suit.HEART;
+            // Check Most Cards between Heart and Diamond
+            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.DIAMOND)) {
+                mostOfSuit = Suit.DIAMOND;
+            }
+            // Check Most Cards between Heart/Diamond and Club
+            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.CLUB)) {
+                mostOfSuit = Suit.CLUB;
+            }
+
+            // Check if any remaining non-Spade, IF NOT play lowest Spade
+            if (aiHand.HasSuit(mostOfSuit)) 
+            { return aiHand.GetHighest(mostOfSuit); }
+            else 
+            { return aiHand.GetLowest(Suit.SPADE); }
+        }
+        // ELSE: spadesBroken == true -> Do same ^ (Temporary Idea)
+        else
+        {
+            Suit mostOfSuit = Suit.HEART;
+            // Check Most Cards between Heart and Diamond
+            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.DIAMOND)) {
+                mostOfSuit = Suit.DIAMOND;
+            }
+            // Check Most Cards between Heart/Diamond and Club
+            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.CLUB)) {
+                mostOfSuit = Suit.CLUB;
+            }
+            // Check Most Cards between Heart/Diamond/Club and Spade
+            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.SPADE)) {
+                mostOfSuit = Suit.SPADE;
+            }
+
+            return aiHand.GetHighest(mostOfSuit);
+        }
     }
 
     // Decide Card when AI plays 2nd
     private Card ChooseCardToFollow(Card playerCard)
     {
-        // !Work in Progress!
-        return aiHand.GetAllCards()[0]; // INCOMPLETE
+        // Check if AI has same suit
+        if (aiHand.HasSuit(playerCard.suit))
+        {
+            Card possibleCard = aiHand.GetHighest(playerCard.suit);
+            // If: highest value of suit is greater play it
+            // Else: play lowest value of suit 
+            if (possibleCard.val < playerCard.val)
+            { possibleCard = aiHand.GetLowest(playerCard.suit); }
+
+            return possibleCard;
+        }
+        // If not play lowest different suit, Except Spades
+        else if (aiHand.HasSuit(Suit.HEART) || aiHand.HasSuit(Suit.DIAMOND) || aiHand.HasSuit(Suit.CLUB))
+        {
+            Card currentLowHeart;
+            Card currentLowDiamond;
+            Card currentLowClub;
+
+            // Get Lowest of Hearts, if none assign highest possible value
+            if (aiHand.HasSuit(Suit.HEART))
+            { currentLowHeart = aiHand.GetLowest(Suit.HEART); }
+            else
+            { currentLowHeart = new Card(15, Suit.HEART); }
+            
+            // Get Lowest of Diamonds, if none assign highest possible value
+            if (aiHand.HasSuit(Suit.DIAMOND))
+            { currentLowDiamond = aiHand.GetLowest(Suit.DIAMOND); }
+            else
+            { currentLowDiamond = new Card(15, Suit.DIAMOND); }
+            
+            // Get Lowest of Clubs, if none assign highest possible value
+            if (aiHand.HasSuit(Suit.CLUB))
+            { currentLowClub = aiHand.GetLowest(Suit.CLUB); }
+            else
+            { currentLowClub = new Card(15, Suit.CLUB); }
+
+            // Compare lowest of the 3 suits and return the lowest value
+            Card returnCard = currentLowHeart;
+
+            if (returnCard.val > currentLowDiamond.val)
+            { returnCard = currentLowDiamond; }
+
+            if (returnCard.val > currentLowClub.val)
+            { returnCard = currentLowClub; }
+
+            return returnCard;
+        }
+        // If only Spades left play lowest Spade
+        else
+        {
+            // Return the lowest value Spade
+            return aiHand.GetLowest(Suit.SPADE);
+        }      
     }
 
     #endregion
@@ -178,7 +265,7 @@ public class AIManager : MonoBehaviour
     // Waits 1 second after playing AI card to Switch Phases
     private IEnumerator WaitTimePlayCard()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(2);
 
         // if there is dialogue to play, might want to activate it here
         if (isLead == true)

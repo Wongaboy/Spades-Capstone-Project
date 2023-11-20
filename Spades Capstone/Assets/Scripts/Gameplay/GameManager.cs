@@ -56,8 +56,8 @@ public class GameManager : MonoBehaviour
     public void ChangePhase(Phase newPhase)
     {
         Debug.Log("Change to " + newPhase.ToString());
+        UpdatePhaseName(currentPhase);
 
-        
         switch (newPhase)
         {
             case Phase.PLAYERDRAFT:
@@ -95,11 +95,9 @@ public class GameManager : MonoBehaviour
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
         }
 
-        currentPhase = newPhase;
-        UpdatePhaseName(currentPhase);
+        currentPhase = newPhase;  
 
-        OnPhaseChanged?.Invoke(newPhase);
-
+        OnPhaseChanged?.Invoke(newPhase);       
     }
 
     #region "Public Helper Functions"
@@ -156,7 +154,7 @@ public class GameManager : MonoBehaviour
         OnTrickTaken.Invoke(DetermineTrickWinner());
         // Clear Card UI for next Trick
         TurnUI.Instance.ClearCardInfo();
-        if (numTurns >= 13)  // IF there are not more Tricks to play
+        if (numTurns >= 26)  // IF there are not more Tricks to play
         {
             // Turn Off UI and Switch to Score Phase
             TurnUI.Instance.ToggleTurnUI(false);
