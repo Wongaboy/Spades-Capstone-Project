@@ -160,8 +160,14 @@ public class AIManager : MonoBehaviour
 
             return possibleCard;
         }
-        // If not play lowest different suit, Except Spades
-        else if (aiHand.HasSuit(Suit.HEART) || aiHand.HasSuit(Suit.DIAMOND) || aiHand.HasSuit(Suit.CLUB))
+        // Else IF Has Spades, play lowest Spade
+        else if (aiHand.HasSuit(Suit.SPADE))
+        {
+            // Return the lowest value Spade
+            return aiHand.GetLowest(Suit.SPADE);
+        }
+        // Else play lowest different suit, Except Spades
+        else
         {
             Card currentLowHeart;
             Card currentLowDiamond;
@@ -172,13 +178,13 @@ public class AIManager : MonoBehaviour
             { currentLowHeart = aiHand.GetLowest(Suit.HEART); }
             else
             { currentLowHeart = new Card(15, Suit.HEART); }
-            
+
             // Get Lowest of Diamonds, if none assign highest possible value
             if (aiHand.HasSuit(Suit.DIAMOND))
             { currentLowDiamond = aiHand.GetLowest(Suit.DIAMOND); }
             else
             { currentLowDiamond = new Card(15, Suit.DIAMOND); }
-            
+
             // Get Lowest of Clubs, if none assign highest possible value
             if (aiHand.HasSuit(Suit.CLUB))
             { currentLowClub = aiHand.GetLowest(Suit.CLUB); }
@@ -195,12 +201,6 @@ public class AIManager : MonoBehaviour
             { returnCard = currentLowClub; }
 
             return returnCard;
-        }
-        // If only Spades left play lowest Spade
-        else
-        {
-            // Return the lowest value Spade
-            return aiHand.GetLowest(Suit.SPADE);
         }      
     }
 
