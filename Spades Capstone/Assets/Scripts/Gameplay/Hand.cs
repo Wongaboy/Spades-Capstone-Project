@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -35,7 +36,7 @@ public class Hand : MonoBehaviour
         return greatest;
     }
 
-    // return the lowest value card of a given suit - DEPRECATED
+    // return the lowest value card of a given suit
     public Card GetLowest(Suit suit){
         Card least = cardsInHand[suit][0];
         foreach(Card c in cardsInHand[suit]){
@@ -46,7 +47,37 @@ public class Hand : MonoBehaviour
         return least;
     }
 
-    // get the number of cards of a particular suit - DEPRECATED
+    public Card GetWorst(){
+        return GetLowest(GetFewestStillInHand());
+    }
+
+    public Suit GetFewestStillInHand(bool nonspade=true){
+        int numHearts = NumOfSuit(Suit.HEART) + (15*Convert.ToInt32(HasSuit(Suit.HEART)));
+        int numClubs = NumOfSuit(Suit.CLUB) + (15*Convert.ToInt32(HasSuit(Suit.CLUB)));
+        int numDiamonds = NumOfSuit(Suit.DIAMOND) + (15*Convert.ToInt32(HasSuit(Suit.DIAMOND)));
+        int numLeast = 15;
+        Suit toReturn = Suit.HEART;
+        if(numHearts <= numClubs && numHearts <= numDiamonds){
+            numLeast = numHearts;
+        }
+        else if(numClubs <= numDiamonds && numClubs <= numHearts){
+            numLeast = numClubs;
+            toReturn = Suit.CLUB;
+        }
+        else if(numDiamonds <= numHearts && numDiamonds <= numClubs){
+            numLeast = numDiamonds;
+            toReturn = Suit.DIAMOND;
+        }
+
+        if(!nonspade){
+            int numSpades = NumOfSuit(Suit.SPADE) + (15*Convert.ToInt32(HasSuit(Suit.SPADE)));
+            if(numSpades < numLeast){ return Suit.SPADE; }
+        }
+
+        return toReturn;
+    }
+
+    // get the number of cards of a particular suit 
     public int NumOfSuit(Suit suit){
         return cardsInHand[suit].Count;
     }

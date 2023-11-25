@@ -169,38 +169,7 @@ public class AIManager : MonoBehaviour
         // Else play lowest different suit, Except Spades
         else
         {
-            Card currentLowHeart;
-            Card currentLowDiamond;
-            Card currentLowClub;
-
-            // Get Lowest of Hearts, if none assign highest possible value
-            if (aiHand.HasSuit(Suit.HEART))
-            { currentLowHeart = aiHand.GetLowest(Suit.HEART); }
-            else
-            { currentLowHeart = new Card(15, Suit.HEART); }
-
-            // Get Lowest of Diamonds, if none assign highest possible value
-            if (aiHand.HasSuit(Suit.DIAMOND))
-            { currentLowDiamond = aiHand.GetLowest(Suit.DIAMOND); }
-            else
-            { currentLowDiamond = new Card(15, Suit.DIAMOND); }
-
-            // Get Lowest of Clubs, if none assign highest possible value
-            if (aiHand.HasSuit(Suit.CLUB))
-            { currentLowClub = aiHand.GetLowest(Suit.CLUB); }
-            else
-            { currentLowClub = new Card(15, Suit.CLUB); }
-
-            // Compare lowest of the 3 suits and return the lowest value
-            Card returnCard = currentLowHeart;
-
-            if (returnCard.val > currentLowDiamond.val)
-            { returnCard = currentLowDiamond; }
-
-            if (returnCard.val > currentLowClub.val)
-            { returnCard = currentLowClub; }
-
-            return returnCard;
+            return aiHand.GetWorst();
         }      
     }
 
