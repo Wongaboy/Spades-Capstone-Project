@@ -7,7 +7,7 @@ public class Deck : MonoBehaviour
     [SerializeField] 
     GameObject deckObj; // maybe we do it this way?
     [SerializeField]
-    Card[] cardSOs;
+    Card[] cardsInDeck;
 
     private List<Card> cards;
     public static Suit[] intToSuit = { Suit.SPADE, Suit.DIAMOND, Suit.CLUB, Suit.HEART};
@@ -17,7 +17,7 @@ public class Deck : MonoBehaviour
     void Awake()
     {
         cards = new List<Card>();
-        foreach(Card card in cardSOs)
+        foreach(Card card in cardsInDeck)
         {
             cards.Add(card);
         }
