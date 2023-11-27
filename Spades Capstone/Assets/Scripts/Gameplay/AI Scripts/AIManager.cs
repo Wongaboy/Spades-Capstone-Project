@@ -60,12 +60,14 @@ public class AIManager : MonoBehaviour
 
         if (card.suit == Suit.SPADE)
         {
-            aiHand.AddCardToHand(card);
+            // aiHand.AddCardToHand(card);
+            DraftCard(card);
             GameManager.Instance.DiscardCard();
         }
         else
         {
-            aiHand.AddCardToHand(GameManager.Instance.DrawCard());
+            // aiHand.AddCardToHand(GameManager.Instance.DrawCard());
+            DraftCard(GameManager.Instance.DrawCard());
         }
 
         return true;
@@ -181,6 +183,12 @@ public class AIManager : MonoBehaviour
     public void ChangeInternalLead(bool isCurrLead)
     {
         isLead = isCurrLead;
+    }
+
+    // Add given Card to Hand
+    public void DraftCard(Card card)
+    {
+        aiHand.AddCardToHand(card);
     }
 
     #endregion
