@@ -98,6 +98,14 @@ public class DraftUI : MonoBehaviour
         // Disable UI before Switching
         ToggleDraftUI(false);
 
-        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+        //GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+        if (GameManager.Instance.numDraftTurns >= 26)
+        {
+            GameManager.Instance.ChangePhase(Phase.AIBID);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+        }
     }
 }

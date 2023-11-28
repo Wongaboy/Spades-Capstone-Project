@@ -55,24 +55,23 @@ public class GameManager : MonoBehaviour
     // Called to move through phases of the game
     public void ChangePhase(Phase newPhase)
     {
-        Debug.Log("Change to " + newPhase.ToString());
-        UpdatePhaseName(currentPhase);
+        Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
 
         switch (newPhase)
         {
             case Phase.PLAYERDRAFT:
                 numDraftTurns++;
-                if (numDraftTurns > 26)
-                {
-                    newPhase = Phase.AIBID;
-                }
+                //if (numDraftTurns >= 26)
+                //{
+                //    newPhase = Phase.AIBID;                  
+                //}
                 break;
             case Phase.AIDRAFT:
                 numDraftTurns++;
-                if (numDraftTurns > 26)
-                {
-                    newPhase = Phase.PLAYERBID;
-                }
+                //if (numDraftTurns >= 26)
+                //{
+                //    newPhase = Phase.PLAYERBID;                   
+                //}
                 break;
             case Phase.PLAYERBID:
                 break;
@@ -95,8 +94,8 @@ public class GameManager : MonoBehaviour
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
         }
 
-        currentPhase = newPhase;  
-
+        currentPhase = newPhase;
+        UpdatePhaseName(currentPhase);
         OnPhaseChanged?.Invoke(newPhase);       
     }
 
@@ -242,5 +241,5 @@ public class GameManager : MonoBehaviour
 
     #endregion
 }
-public enum Phase { PLAYERDRAFT, AIDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING };
+public enum Phase { PLAYERDRAFT, AIDRAFT, ENDOFDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING };
 public enum Character { DEATH, PLAYER };
