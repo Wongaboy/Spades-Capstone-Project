@@ -154,7 +154,10 @@ public class AIManager : MonoBehaviour
         // Check if AI has same suit
         if (aiHand.HasSuit(playerCard.suit))
         {
-            Card possibleCard = aiHand.GetHighest(playerCard.suit);
+            // Card possibleCard = aiHand.GetHighest(playerCard.suit);
+
+            Card possibleCard = aiHand.GetNextHighest(playerCard.suit, playerCard.val);
+
             // If: highest value of suit is greater play it
             // Else: play lowest value of suit 
             if (possibleCard.val < playerCard.val)
