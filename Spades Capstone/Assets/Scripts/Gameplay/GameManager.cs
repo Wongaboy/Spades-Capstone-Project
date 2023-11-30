@@ -61,17 +61,17 @@ public class GameManager : MonoBehaviour
         {
             case Phase.PLAYERDRAFT:
                 numDraftTurns++;
-                //if (numDraftTurns >= 26)
-                //{
-                //    newPhase = Phase.AIBID;                  
-                //}
+                if (numDraftTurns > 26)
+                {
+                    newPhase = Phase.PLAYERBID;
+                }
                 break;
             case Phase.AIDRAFT:
                 numDraftTurns++;
-                //if (numDraftTurns >= 26)
-                //{
-                //    newPhase = Phase.PLAYERBID;                   
-                //}
+                if (numDraftTurns > 26)
+                {
+                    newPhase = Phase.AIBID;
+                }
                 break;
             case Phase.PLAYERBID:
                 break;
