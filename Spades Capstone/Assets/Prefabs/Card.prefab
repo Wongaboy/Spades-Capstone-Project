@@ -28,7 +28,7 @@ RectTransform:
   m_GameObject: {fileID: 4834272610506964496}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: -0.0002}
-  m_LocalScale: {x: 0.01000278, y: 0.01, z: 0.013328399}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 4834272610827294812}
@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1.864022, y: 1.902099}
+  m_SizeDelta: {x: 1.8, y: 1.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &4834272610506964500
 Canvas:
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 1
+  m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -127,7 +127,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4834272610827294811}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -1.61e-13}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -136,8 +136,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000044405, y: 0.000012517}
-  m_SizeDelta: {x: 1.864, y: 1.9021}
+  m_AnchoredPosition: {x: -0.00000019372, y: 0.0000050962}
+  m_SizeDelta: {x: 1.8, y: 1.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4834272610827294814
 CanvasRenderer:
@@ -189,6 +189,8 @@ GameObject:
   - component: {fileID: 8301167361949593632}
   - component: {fileID: 6113457214100505834}
   - component: {fileID: 5580280003092154514}
+  - component: {fileID: 6476523307674758241}
+  - component: {fileID: -3605785993759656026}
   m_Layer: 0
   m_Name: Card
   m_TagString: Untagged
@@ -205,8 +207,8 @@ Transform:
   m_GameObject: {fileID: 5753243529911280959}
   m_LocalRotation: {x: -0.5, y: -0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 50, y: 37.5, z: 50}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 25, y: 18.75, z: 25}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4834272610506964497}
   m_Father: {fileID: 0}
@@ -278,3 +280,35 @@ MonoBehaviour:
   suit: 0
   val: 0
   cardObj: {fileID: 0}
+  cardFaceCanvas: {fileID: 4834272610506964500}
+  cardBody: {fileID: 6476523307674758241}
+  cardCollider: {fileID: -3605785993759656026}
+--- !u!54 &6476523307674758241
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5753243529911280959}
+  serializedVersion: 2
+  m_Mass: 0.5
+  m_Drag: 0.01
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!65 &-3605785993759656026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5753243529911280959}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.020023778, y: 0.02006141, z: 0.00011888136}
+  m_Center: {x: -0.000011889264, y: 0.0000307057, z: -0.00005944068}
