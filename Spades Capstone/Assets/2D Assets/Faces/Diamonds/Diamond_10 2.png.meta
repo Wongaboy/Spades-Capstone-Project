@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: de354e2d7ff6349cf9c70f96b8cdeb40
+guid: e126657236eef7e49a432d06624918ab
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Club_7-9_0
+      name: Diamond_10 2_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 600
-        width: 681
-        height: 1031
+        x: 651
+        y: 555
+        width: 679
+        height: 1028
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,50 +119,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b07700986ce67f4a8b49bf65c273149
-      internalID: -469968229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Club_7-9_1
-      rect:
-        serializedVersion: 2
-        x: 814
-        y: 596
-        width: 681
-        height: 1031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3bab237bef72a654aa1ee17cbcf568e1
-      internalID: -1093643208
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Club_7-9_2
-      rect:
-        serializedVersion: 2
-        x: 1609
-        y: 587
-        width: 683
-        height: 1031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e606690bfd3f204f9c185d238d98c53
-      internalID: 162527374
+      spriteID: 49f5984b3d24ae14db307c122af9316c
+      internalID: -1931863044
       vertices: []
       indices: 
       edges: []
@@ -170,7 +128,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e2e881fddb514f7428a32d057db39a8f
+    spriteID: ae322414ba5e0b34bbd420a48f335e52
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +136,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Club_7-9_1: -1093643208
-      Club_7-9_2: 162527374
-      Club_7-9_0: -469968229
+      Diamond_10 2_0: -1931863044
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
