@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class CardInteraction : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Vector3 mousePosition;
+    
+    private Vector3 GetMousePos()
     {
-        
+        return Camera.main.WorldToScreenPoint(transform.position);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnMouseDown()
     {
-        
+        mousePosition = Input.mousePosition - GetMousePos();
+    }
+
+    private void OnMouseDrag()
+    {
+        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
     }
 }

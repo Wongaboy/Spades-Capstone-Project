@@ -12,11 +12,11 @@ public class HandUI : MonoBehaviour
     private Hand myHand;
     
 
-    private List<GameObject> cardObjs;
+    private List<Card> cardObjs;
 
     public void Start()
     {
-        cardObjs = new List<GameObject>();
+        cardObjs = new List<Card>();
     }
 
     public void AssignHand(Hand hand)
@@ -24,7 +24,7 @@ public class HandUI : MonoBehaviour
         myHand = hand;
     }
     
-    public bool ShowCard(GameObject card)
+    public bool ShowCard(Card card)
     {
         int openSlot = cardObjs.Count;
         
@@ -38,13 +38,21 @@ public class HandUI : MonoBehaviour
         return true;
     }
 
-    public bool ShowCardPlayed(GameObject card){
+    public bool ShowCardPlayed(Card card){
         if(!cardObjs.Contains(card)){return false;}
         else{
             // move card to spot on table 
             card.transform.position = tableSpot.position; // will replace this with smooth anim to later
             cardObjs.Remove(card);
             return true;
+        }
+    }
+
+    public void AlterCardInteraction(bool interactable)
+    {
+        foreach(Card c in cardObjs)
+        {
+            c.SetInteractable(interactable);
         }
     }
     

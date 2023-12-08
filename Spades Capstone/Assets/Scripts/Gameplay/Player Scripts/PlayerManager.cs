@@ -25,6 +25,7 @@ public class PlayerManager : MonoBehaviour
     
     [SerializeField] HandUI playerHandUI;
     [SerializeField] Hand playerHand;
+    [SerializeField] private Transform displaySpot;
 
     //private Character thisCharacter = Character.PLAYER;
     [HideInInspector]
@@ -38,30 +39,41 @@ public class PlayerManager : MonoBehaviour
     }
 
     private void PlayerManagerOnPhaseChanged(Phase phase){
-        // A lot of these sections get handled In the respective "name"+UI scripts
-        // I believe it is possible to allow Player Manager to handle them
         if(phase == Phase.PLAYERTURN)
         {
-            // HandlePlayerTurn();
+            HandlePlayerTurn();
         }
         else if(phase == Phase.PLAYERDRAFT)
         {
-            // DraftDecision(Card card)
+            DisplayCardToDraft();
         }
         else if(phase == Phase.PLAYERBID)
         {
-            // Like AI, this is handles rn in the ScoreManager
+            // Like AI, this is handled rn in the ScoreManager
             // SetBid(int bid)
         }
     }
+    #region "Draft Handling"
+    private void DisplayCardToDraft()
+    {
+        Card cardToDraft = GameManager.Instance.DrawCard();
+        cardToDraft.Freeze();
+        cardToDraft.gameObject.transform.position = displaySpot.position;
+        cardToDraft.gameObject.transform.rotation = displaySpot.rotation;
+        cardToDraft.SetInteractable(true);
+    }
 
     // Function to call when Player keeps the shown card
-    public void DraftCard(Card card)
+    private void DraftCard(Card card)
     {
+        card.SetInteractable(false);
         card.Freeze();
         playerHand.AddCardToHand(card);
-        playerHandUI.ShowCard(card.gameObject);
+        playerHandUI.ShowCard(card);
     }
+
+
+    #endregion
 
     // Changes Lead Boolean (bool is for Trick Lead, NOT Draft/Bid Lead)
     public void ChangeInternalLead(bool isCurrLead)
@@ -88,31 +100,14 @@ public class PlayerManager : MonoBehaviour
 
     // activate UI that lets the player play a card - maybe move this to draft ui thing
     public void HandlePlayerTurn(){
-        // !Work in Progress!
-
-        // Plays First Card that gets returned from Hand.GetAllCards()
-        Card toPlay = playerHand.GetAllCards()[0];
-        PlayCard(toPlay);
-        // Remove Card from Player's hand
-        playerHand.RemoveCardFromHand(toPlay);
-
-        // if there is dialogue to play, might want to activate it here
-        // Right Now this section below is handled in TurnUI (Can be rearranged)
-        //if (isLead)
-        //{
-        //    GameManager.Instance.ChangePhase(Phase.AITURN);
-        //}
-        //else
-        //{
-        //    GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
-        //}
+        playerHandUI.AlterCardInteraction(true);
     }
 
-    // Function to call to tell the GameManager what card was played & Update UI
+    // Function to call to tell the GameManager what card was played and move on
     private void PlayCard(Card playedCard)
     {
         GameManager.Instance.playerCard = playedCard;
-        TurnUI.Instance.UpdatePlayerCardInfo(playedCard);
+        playerHandUI.ShowCardPlayed(playedCard);
     }
 
     // Debug Function to show amount of each suits in hand

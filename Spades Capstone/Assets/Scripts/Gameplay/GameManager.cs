@@ -152,12 +152,9 @@ public class GameManager : MonoBehaviour
     private void HandleEndOfTrick()
     {
         OnTrickTaken.Invoke(DetermineTrickWinner());
-        // Clear Card UI for next Trick
-        TurnUI.Instance.ClearCardInfo();
         if (numTurns >= 26)  // IF there are not more Tricks to play
         {
-            // Turn Off UI and Switch to Score Phase
-            TurnUI.Instance.ToggleTurnUI(false);
+            // Switch to Score Phase
             ChangePhase(Phase.SCORING);
         }
         else if (DetermineTrickWinner() == Character.DEATH)  // IF Death won Trick and more Tricks to Play
