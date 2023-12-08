@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: de354e2d7ff6349cf9c70f96b8cdeb40
+guid: 42b64a6487f16064ea5b4257a6ec9b92
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,13 +105,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Club_7-9_0
+      name: Diamond_7-9 2_0
       rect:
         serializedVersion: 2
-        x: 37
+        x: 38
         y: 600
-        width: 681
-        height: 1031
+        width: 680
+        height: 1028
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -119,20 +119,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b07700986ce67f4a8b49bf65c273149
-      internalID: -469968229
+      spriteID: c482e7b14ee9659408ed1f0f3b36b2e1
+      internalID: 650235083
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_7-9_1
+      name: Diamond_7-9 2_1
       rect:
         serializedVersion: 2
         x: 814
-        y: 596
-        width: 681
-        height: 1031
+        y: 597
+        width: 680
+        height: 1028
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,20 +140,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 3bab237bef72a654aa1ee17cbcf568e1
-      internalID: -1093643208
+      spriteID: 63a244ab73f43204586332e226cc66b0
+      internalID: 561145938
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Club_7-9_2
+      name: Diamond_7-9 2_2
       rect:
         serializedVersion: 2
         x: 1609
-        y: 587
-        width: 683
-        height: 1031
+        y: 589
+        width: 680
+        height: 1028
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -161,8 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1e606690bfd3f204f9c185d238d98c53
-      internalID: 162527374
+      spriteID: 4fea8a56516ea0f4eb0249e5cd32bbea
+      internalID: 430086139
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e2e881fddb514f7428a32d057db39a8f
+    spriteID: 681868418ae09ab428ad356a14267a5d
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Club_7-9_1: -1093643208
-      Club_7-9_2: 162527374
-      Club_7-9_0: -469968229
+      Diamond_7-9 2_1: 561145938
+      Diamond_7-9 2_2: 430086139
+      Diamond_7-9 2_0: 650235083
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

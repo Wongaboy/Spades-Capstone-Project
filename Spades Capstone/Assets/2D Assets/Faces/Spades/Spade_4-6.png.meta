@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: de354e2d7ff6349cf9c70f96b8cdeb40
+guid: 5a8b93babdcaae944bb0a752299068f1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -70,7 +70,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 0
+    textureCompression: 1
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -105,11 +105,53 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Club_7-9_0
+      name: Spade_4-6_0
       rect:
         serializedVersion: 2
-        x: 37
-        y: 600
+        x: 82
+        y: 557
+        width: 679
+        height: 1029
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e70bd52756aedea4f8aa817d0ff7389d
+      internalID: 1727363832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spade_4-6_1
+      rect:
+        serializedVersion: 2
+        x: 844
+        y: 557
+        width: 680
+        height: 1029
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42cd9185641f92d4b81ce9822046e6ac
+      internalID: 27156975
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Spade_4-6_2
+      rect:
+        serializedVersion: 2
+        x: 1620
+        y: 550
         width: 681
         height: 1031
       alignment: 0
@@ -119,50 +161,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4b07700986ce67f4a8b49bf65c273149
-      internalID: -469968229
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Club_7-9_1
-      rect:
-        serializedVersion: 2
-        x: 814
-        y: 596
-        width: 681
-        height: 1031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3bab237bef72a654aa1ee17cbcf568e1
-      internalID: -1093643208
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Club_7-9_2
-      rect:
-        serializedVersion: 2
-        x: 1609
-        y: 587
-        width: 683
-        height: 1031
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 1e606690bfd3f204f9c185d238d98c53
-      internalID: 162527374
+      spriteID: 5f2e28200a7d7344dba8f34a71f21bb7
+      internalID: 1578657207
       vertices: []
       indices: 
       edges: []
@@ -170,7 +170,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: e2e881fddb514f7428a32d057db39a8f
+    spriteID: cb0f96b349bd24d4297d49276c8fa133
     internalID: 0
     vertices: []
     indices: 
@@ -178,9 +178,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Club_7-9_1: -1093643208
-      Club_7-9_2: 162527374
-      Club_7-9_0: -469968229
+      Spade_4-6_2: 1578657207
+      Spade_4-6_1: 27156975
+      Spade_4-6_0: 1727363832
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
