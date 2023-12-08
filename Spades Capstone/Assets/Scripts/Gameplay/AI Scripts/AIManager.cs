@@ -22,18 +22,28 @@ public class AIManager : MonoBehaviour
     }
     #endregion
 
+    #region "Class Variables"
     [SerializeField] Hand aiHand;
-    private int currentBid;
-    //private Character thisCharacter = Character.DEATH;
-    // Tracks if Character Leads
-    private bool isLead = true;
+    // Tells if AI is leading the Trick
+    private bool isTrickLead = true;
+
+    // private int currentBid; -- DEPRECATED
+    // private Character thisCharacter = Character.DEATH; -- DEPRECATED
+    #endregion
 
     // Start is called before the first frame update
     void Start(){
+        // Subscribe to Event(OnPhaseChanged)
         GameManager.OnPhaseChanged += AIManagerOnPhaseChanged;
     }
 
-    // React to Phase changes for turn based gameplayt
+    // OnDestroy is called when script/object is destroyed
+    void OnDestroy(){
+        // Unsubscribe from Event(OnPhaseChanged) when destroyed to prevent errors
+        GameManager.OnPhaseChanged -= AIManagerOnPhaseChanged;
+    }
+
+    // React to OnPhaseChange & Perform necessary actions based on Current Phase
     private void AIManagerOnPhaseChanged(Phase phase)
     {
         if (phase == Phase.AITURN)
@@ -49,110 +59,109 @@ public class AIManager : MonoBehaviour
     }
     #region "AI logic"
 
-    // Function to Decide if Death keeps or dumps the drawn card
-    private bool MakeDraftDecision(Card card)
+    // Function to Calculate AI Draft Decision & Draft Card
+    private void MakeDraftDecision(Card card)
     {
-        // !Work In Progress!
-
         // Temporary Formula:
-        // If SPADE -> KEEP
-        // Else -> DISCARD
-
+        // If (SPADE) -> KEEP; ELSE -> DISCARD
         if (card.suit == Suit.SPADE)
         {
-            aiHand.AddCardToHand(card);
+            DraftCard(card);
             GameManager.Instance.DiscardCard();
         }
         else
-        {
-            aiHand.AddCardToHand(GameManager.Instance.DrawCard());
+        {           
+            DraftCard(GameManager.Instance.DrawCard());
         }
 
-        return true;
+        // return true; -- DEPRECATED
     }
 
-    // Function to calculate Death's Bid amount based on Death's Hand
+    // Function to calculate AI's Bid amount based on Death's Hand
     public int GetBid()
     {
         // !Work In Progress!
         float bidEstimate = 0.0f;
         
-        // add a bid for every !! non Spades !! suit Death is low in
-        for(int i = 0; i< 4; i++){
-            Suit currSuit = Deck.intToSuit[i];
-            int numCurrSuit = aiHand.NumOfSuit(currSuit);
-            if( numCurrSuit <= 2 && i != 0){ // might want to refine this later
+        // Add a bid for every !! non Spades !! suit Death is low in
+        for(int i = 0; i < 4; i++){
+            Suit currentSuit = Deck.intToSuit[i];
+            int numCurrentSuit = aiHand.NumOfSuit(currentSuit);
+            if(numCurrentSuit <= 2 && i != 0){ // might want to refine this later
                 bidEstimate += 1.0f; 
             }
 
-            // add a bid for every ace
-            if(aiHand.HasValue(currSuit, 14)){
+            // Add a bid for every ace
+            if(aiHand.HasValue(currentSuit, 14)){
                 bidEstimate += 1.0f;
             }
 
-            // add a half bid for every King
-            if(aiHand.HasValue(currSuit, 13)){
+            // Add a half bid for every King
+            if(aiHand.HasValue(currentSuit, 13)){
                 bidEstimate += 0.5f;
             }
         }
 
         // Anthony Test Code just so Bids are not very low
         bidEstimate += aiHand.NumOfSuit(Suit.SPADE);
-        currentBid = (int)bidEstimate; // need to make sure this rounds correctly
+        // currentBid = (int)bidEstimate; -- DEPRECATED
 
-        return currentBid; 
+        return (int)bidEstimate; 
     }
 
-    // Decide Card when AI plays 1st
+    // Function to Choose AI's Card when Leading Trick
     private Card ChooseCardToLead()
     {
         // IF: spadesBroken == false -> Play highest non-spade (Prioritize Suit with Most Cards, !Don't Know if Good!)
         if (GameManager.Instance.spadesBroken == false)
         {
-            Suit mostOfSuit = Suit.HEART;
+            Suit suitWithMostCards = Suit.HEART;
             // Check Most Cards between Heart and Diamond
-            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.DIAMOND)) {
-                mostOfSuit = Suit.DIAMOND;
+            if (aiHand.NumOfSuit(suitWithMostCards) < aiHand.NumOfSuit(Suit.DIAMOND)) {
+                suitWithMostCards = Suit.DIAMOND;
             }
             // Check Most Cards between Heart/Diamond and Club
-            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.CLUB)) {
-                mostOfSuit = Suit.CLUB;
+            if (aiHand.NumOfSuit(suitWithMostCards) < aiHand.NumOfSuit(Suit.CLUB)) {
+                suitWithMostCards = Suit.CLUB;
             }
 
             // Check if any remaining non-Spade, IF NOT play lowest Spade
-            if (aiHand.HasSuit(mostOfSuit)) 
-            { return aiHand.GetHighest(mostOfSuit); }
+            if (aiHand.HasSuit(suitWithMostCards)) 
+            { return aiHand.GetHighest(suitWithMostCards); }
             else 
             { return aiHand.GetLowest(Suit.SPADE); }
         }
-        // ELSE: spadesBroken == true -> Do same ^ (Temporary Idea)
+        // ELSE: spadesBroken == true -> Same Procedure, but include Spades from the Beginning
         else
         {
-            Suit mostOfSuit = Suit.HEART;
+            Suit suitWithMostCards = Suit.HEART;
             // Check Most Cards between Heart and Diamond
-            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.DIAMOND)) {
-                mostOfSuit = Suit.DIAMOND;
+            if (aiHand.NumOfSuit(suitWithMostCards) < aiHand.NumOfSuit(Suit.DIAMOND)) {
+                suitWithMostCards = Suit.DIAMOND;
             }
             // Check Most Cards between Heart/Diamond and Club
-            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.CLUB)) {
-                mostOfSuit = Suit.CLUB;
+            if (aiHand.NumOfSuit(suitWithMostCards) < aiHand.NumOfSuit(Suit.CLUB)) {
+                suitWithMostCards = Suit.CLUB;
             }
             // Check Most Cards between Heart/Diamond/Club and Spade
-            if (aiHand.NumOfSuit(mostOfSuit) < aiHand.NumOfSuit(Suit.SPADE)) {
-                mostOfSuit = Suit.SPADE;
+            if (aiHand.NumOfSuit(suitWithMostCards) < aiHand.NumOfSuit(Suit.SPADE)) {
+                suitWithMostCards = Suit.SPADE;
             }
 
-            return aiHand.GetHighest(mostOfSuit);
+            return aiHand.GetHighest(suitWithMostCards);
         }
     }
 
-    // Decide Card when AI plays 2nd
+    // Function to Choose AI's Card when Following Player
     private Card ChooseCardToFollow(Card playerCard)
     {
-        // Check if AI has same suit
+        // IF: AI has same suit as played card
         if (aiHand.HasSuit(playerCard.suit))
         {
-            Card possibleCard = aiHand.GetHighest(playerCard.suit);
+            // Card possibleCard = aiHand.GetHighest(playerCard.suit); -- DEPRECATED
+
+            Card possibleCard = aiHand.GetNextHighest(playerCard.suit, playerCard.val);
+
             // If: highest value of suit is greater play it
             // Else: play lowest value of suit 
             if (possibleCard.val < playerCard.val)
@@ -160,93 +169,95 @@ public class AIManager : MonoBehaviour
 
             return possibleCard;
         }
-        // Else IF Has Spades, play lowest Spade
+        // Else IF: Has any Spades, play lowest Spade
         else if (aiHand.HasSuit(Suit.SPADE))
         {
-            // Return the lowest value Spade
             return aiHand.GetLowest(Suit.SPADE);
         }
-        // Else play lowest different suit, Except Spades
+        // Else: Play lowest non-Spade suit
         else
         {
             return aiHand.GetWorst();
         }      
     }
-
     #endregion
 
     #region "Public Helper Functions"
-
-    // Changes Lead Boolean (bool is for Trick Lead, NOT Draft/Bid Lead)
+    // Function to Change TrickLead Boolean (Bool is for Trick Lead, NOT Draft/Bid Lead)
     public void ChangeInternalLead(bool isCurrLead)
     {
-        isLead = isCurrLead;
+        isTrickLead = isCurrLead;
+    }
+
+    // Function to Add given Card to AI Hand
+    public void DraftCard(Card card)
+    {
+        aiHand.AddCardToHand(card);
     }
 
     #endregion
 
     #region "Private Helper Functions"
-
+    // Function to perform AI Actions on Phase.AITURN
     private void HandleAITurn()
     {
         // AI Determines what card to play and Plays It
-        // !Work in Progress!
         PlayCard();
-
-        // Wait to Switch Phases
+        // Simulate WaitTime to Switch Phases
         StartCoroutine(WaitTimePlayCard());
+    }
 
+    // Function to Calculate AI's Card to play
+    private Card DecideCard()
+    {
+        if (isTrickLead) {
+            return ChooseCardToLead();
+        }
+        else {
+            return ChooseCardToFollow(GameManager.Instance.playerCard);
+        }     
     }
 
     private void PlayCard()
     {
-        Card toPlay;
-        if (isLead)
-        {
-            // !Work in Progress!
-            toPlay = ChooseCardToLead();
-        }
-        else
-        {
-            // !Work in Progress!
-            toPlay = ChooseCardToFollow(GameManager.Instance.playerCard);
-        }
+        Card cardToPlay = DecideCard();
         // Feed GameManager Played Card
-        GameManager.Instance.aiCard = toPlay;
+        GameManager.Instance.aiCard = cardToPlay;
         // Update UI for AI's Card
-        TurnUI.Instance.UpdateAICardInfo(toPlay); // SOON TO BE DEPRECATED
+        TurnUI.Instance.UpdateAICardInfo(cardToPlay); // SOON TO BE DEPRECATED
         // Remove Card from AI's Hand
-        aiHand.RemoveCardFromHand(toPlay);
+        aiHand.RemoveCardFromHand(cardToPlay);
     }
-
     #endregion
 
     #region "IEnumerators"
-
-    // Waits 1 second after Draft to Switch Phases
+    // Function to Wait 1 second after Draft to Switch Phases
     private IEnumerator WaitTimeDraft()
     {      
         yield return new WaitForSeconds(1);
 
-        GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+        // GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+        if (GameManager.Instance.numDraftTurns >= 26) {
+            GameManager.Instance.ChangePhase(Phase.PLAYERBID);
+        }
+        else {
+            GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+        }
     }
 
-    // Waits 1 second after playing AI card to Switch Phases
+    // Function to Wait 2 seconds after playing AI card to Switch Phases
     private IEnumerator WaitTimePlayCard()
     {
         yield return new WaitForSeconds(2);
 
         // if there is dialogue to play, might want to activate it here
-        if (isLead == true)
-        {
+        if (isTrickLead == true) {
             GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
         }
-        else
-        {
+        else {
             GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
         }
     }
-
     #endregion
 
     #region "Debug Functions"
@@ -259,9 +270,4 @@ public class AIManager : MonoBehaviour
         Debug.Log(aiHand.NumOfSuit(Suit.HEART));
     }
     #endregion
-
-    // Unsubscribe from events when destroyed to prevent errors
-    void OnDestroy(){
-        GameManager.OnPhaseChanged -= AIManagerOnPhaseChanged;
-    }
 }

@@ -47,6 +47,25 @@ public class Hand : MonoBehaviour
         return least;
     }
 
+    // Given a Card, return the next Highest Value of the same Suit from current hand 
+    public Card GetNextHighest(Suit suit, int lowerVal)
+    {
+        Card nextHighestCard = GetHighest(suit);
+        List<Card> allHigherCards = new List<Card>();
+
+        foreach(Card card in cardsInHand[suit]) {
+            if (card.val > lowerVal) { allHigherCards.Add(card); }
+        }
+
+        int currentNextHighestValue = 15;
+        foreach (Card card in allHigherCards)
+        {
+            if (card.val < currentNextHighestValue) { nextHighestCard = card; }
+        }
+
+        return nextHighestCard;
+    }
+
     public Card GetWorst(){
         return GetLowest(GetFewestStillInHand());
     }
