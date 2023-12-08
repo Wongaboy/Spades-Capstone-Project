@@ -33,6 +33,7 @@ public class HandUI : MonoBehaviour
 
         cardObjs.Add(card);
         card.transform.position = cardPositions[openSlot].position;
+        card.transform.rotation = cardPositions[openSlot].rotation;
 
         return true;
     }

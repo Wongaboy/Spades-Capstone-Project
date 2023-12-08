@@ -28,17 +28,18 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Deck deck;
 
-    public Phase currentPhase;
+    [HideInInspector] public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
     public static event Action<Character> OnTrickTaken;
-    public Character lead;
 
-    public Card playerCard;
-    public Card aiCard;
-    public bool spadesBroken = false; // keeps track of if you are allowed to lead spades
+    [HideInInspector] public Character lead;
 
-    public int numDraftTurns = 0;
-    public int numTurns = 0;
+    [HideInInspector] public Card playerCard;
+    [HideInInspector] public Card aiCard;
+    [HideInInspector] public bool spadesBroken = false; // keeps track of if you are allowed to lead spades
+
+    [HideInInspector] public int numDraftTurns = 0;
+    [HideInInspector] public int numTurns = 0;
 
     [SerializeField] private TMP_Text phase_text;
     #endregion

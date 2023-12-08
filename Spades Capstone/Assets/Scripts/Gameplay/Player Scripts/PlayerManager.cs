@@ -58,7 +58,9 @@ public class PlayerManager : MonoBehaviour
     // Function to call when Player keeps the shown card
     public void DraftCard(Card card)
     {
+        card.Freeze();
         playerHand.AddCardToHand(card);
+        playerHandUI.ShowCard(card.gameObject);
     }
 
     // Changes Lead Boolean (bool is for Trick Lead, NOT Draft/Bid Lead)
