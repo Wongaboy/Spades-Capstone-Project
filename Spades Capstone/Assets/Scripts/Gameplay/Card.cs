@@ -32,7 +32,14 @@ public class Card : MonoBehaviour
 
     public void SetInteractable(bool interactable)
     {
-        cardInteraction.enabled = interactable;
+        cardInteraction.Active(interactable);
+    }
+
+    // Will eventually use this to move cards into hands and on to tables and such - for the sake of JUICE
+    public void MoveToLocation(Vector3 location, Quaternion rotation)
+    {
+        cardObj.transform.position = location;
+        cardObj.transform.rotation = rotation;
     }
 }
 

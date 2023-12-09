@@ -73,7 +73,7 @@ public class DraftUI : MonoBehaviour
         //PlayerManager.Instance.DraftCard(decision_Card);
 
         // Discard Next Card in Deck
-        GameManager.Instance.DiscardCard();
+        //GameManager.Instance.DiscardCard();
 
         // Switch to appropriate Phase
         Decide_ChangePhase();

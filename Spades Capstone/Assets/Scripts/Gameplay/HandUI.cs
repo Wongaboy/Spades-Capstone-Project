@@ -32,8 +32,7 @@ public class HandUI : MonoBehaviour
         if(openSlot == 13) { return false; }
 
         cardObjs.Add(card);
-        card.transform.position = cardPositions[openSlot].position;
-        card.transform.rotation = cardPositions[openSlot].rotation;
+        card.MoveToLocation(cardPositions[openSlot].position, cardPositions[openSlot].rotation);
 
         return true;
     }
@@ -42,7 +41,7 @@ public class HandUI : MonoBehaviour
         if(!cardObjs.Contains(card)){return false;}
         else{
             // move card to spot on table 
-            card.transform.position = tableSpot.position; // will replace this with smooth anim to later
+            card.MoveToLocation(tableSpot.position, tableSpot.rotation);
             cardObjs.Remove(card);
             return true;
         }

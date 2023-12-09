@@ -5,7 +5,13 @@ using UnityEngine;
 public class CardInteraction : MonoBehaviour
 {
     private Vector3 mousePosition;
+    private bool allowed;
     
+    public void Active(bool setAllowed)
+    {
+        allowed = setAllowed;
+    }
+
     private Vector3 GetMousePos()
     {
         return Camera.main.WorldToScreenPoint(transform.position);
@@ -13,11 +19,17 @@ public class CardInteraction : MonoBehaviour
 
     private void OnMouseDown()
     {
-        mousePosition = Input.mousePosition - GetMousePos();
+        if (allowed)
+        {
+            mousePosition = Input.mousePosition - GetMousePos();
+        }
     }
 
     private void OnMouseDrag()
     {
-        transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        if (allowed)
+        {
+            transform.position = Camera.main.ScreenToWorldPoint(Input.mousePosition - mousePosition);
+        }
     }
 }

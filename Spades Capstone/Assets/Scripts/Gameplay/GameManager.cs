@@ -105,7 +105,7 @@ public class GameManager : MonoBehaviour
     // Reset tracker variables within GameManager
     public void ResetGM()
     {
-        // Clear hands
+        // Clear hands - still need?
         spadesBroken = false;
         deck.Shuffle();
         numDraftTurns = 0;
@@ -120,10 +120,16 @@ public class GameManager : MonoBehaviour
         return deck.DrawCard();
     }
 
-    // Calls Deck.Discard
-    public void DiscardCard()
+    // move a card from the deck to the discard pile
+    public void DiscardCardFromDeck()
     {
-        deck.DiscardCard();
+        Card toDiscard = deck.DrawCard();
+    }
+
+    // Move a card from your hand to the discard pile
+    public void DiscardCardFromHand(Card toDiscard)
+    {
+
     }
 
     // End the game - ending cutscene based on winner
