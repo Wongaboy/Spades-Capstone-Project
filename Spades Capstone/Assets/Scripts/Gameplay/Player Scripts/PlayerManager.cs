@@ -85,6 +85,7 @@ public class PlayerManager : MonoBehaviour
         if (decision)
         {
             DraftCard(cardToDraft);
+            GameManager.Instance.DiscardCardFromDeck();
         }
         else
         {
