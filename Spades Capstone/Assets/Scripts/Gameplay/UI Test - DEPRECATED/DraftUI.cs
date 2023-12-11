@@ -70,10 +70,10 @@ public class DraftUI : MonoBehaviour
     public void OnKeepClick()
     {       
         // Add Card to Player's Hand
-        PlayerManager.Instance.DraftCard(decision_Card);
+        //PlayerManager.Instance.DraftCard(decision_Card);
 
         // Discard Next Card in Deck
-        GameManager.Instance.DiscardCard();
+        //GameManager.Instance.DiscardCard();
 
         // Switch to appropriate Phase
         Decide_ChangePhase();
@@ -86,7 +86,7 @@ public class DraftUI : MonoBehaviour
         decision_Card = GameManager.Instance.DrawCard();
 
         // Add Next Card to Player Hand
-        PlayerManager.Instance.DraftCard(decision_Card);
+        //PlayerManager.Instance.DraftCard(decision_Card);
 
         // Switch to appropriate Phase
         Decide_ChangePhase();

@@ -27,6 +27,7 @@ public class GameManager : MonoBehaviour
     #region "Class References/Variables"
 
     [SerializeField] private Deck deck;
+    [SerializeField] private Transform discardSpot;
 
     [HideInInspector] public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
@@ -105,7 +106,7 @@ public class GameManager : MonoBehaviour
     // Reset tracker variables within GameManager
     public void ResetGM()
     {
-        // Clear hands
+        // Clear hands - still need?
         spadesBroken = false;
         deck.Shuffle();
         numDraftTurns = 0;
@@ -120,10 +121,21 @@ public class GameManager : MonoBehaviour
         return deck.DrawCard();
     }
 
-    // Calls Deck.Discard
-    public void DiscardCard()
+    // move a card from the deck to the discard pile
+    public void DiscardCardFromDeck()
     {
-        deck.DiscardCard();
+        Card toDiscard = deck.DrawCard();
+        toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation);
+        toDiscard.SetInteractable(false);
+        toDiscard.Unfreeze();
+    }
+
+    // Move a card from your hand to the discard pile
+    public void DiscardCardFromHand(Card toDiscard)
+    {
+        toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation);
+        toDiscard.SetInteractable(false);
+        toDiscard.Unfreeze();
     }
 
     // End the game - ending cutscene based on winner
@@ -152,12 +164,9 @@ public class GameManager : MonoBehaviour
     private void HandleEndOfTrick()
     {
         OnTrickTaken.Invoke(DetermineTrickWinner());
-        // Clear Card UI for next Trick
-        TurnUI.Instance.ClearCardInfo();
         if (numTurns >= 26)  // IF there are not more Tricks to play
         {
-            // Turn Off UI and Switch to Score Phase
-            TurnUI.Instance.ToggleTurnUI(false);
+            // Switch to Score Phase
             ChangePhase(Phase.SCORING);
         }
         else if (DetermineTrickWinner() == Character.DEATH)  // IF Death won Trick and more Tricks to Play

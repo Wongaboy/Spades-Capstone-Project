@@ -13,7 +13,7 @@ public class Card : MonoBehaviour
     [SerializeField]
     private Rigidbody cardBody;
     [SerializeField]
-    private Collider cardCollider;
+    private CardInteraction cardInteraction;
 
     void Awake(){
         cardObj = this.gameObject;
@@ -23,13 +23,23 @@ public class Card : MonoBehaviour
     public void Freeze()
     {
         cardBody.useGravity = false;
-        cardCollider.enabled = false;
     }
 
     public void Unfreeze()
     {
         cardBody.useGravity = true;
-        cardCollider.enabled = true;
+    }
+
+    public void SetInteractable(bool interactable)
+    {
+        cardInteraction.Active(interactable);
+    }
+
+    // Will eventually use this to move cards into hands and on to tables and such - for the sake of JUICE
+    public void MoveToLocation(Vector3 location, Quaternion rotation)
+    {
+        cardObj.transform.position = location;
+        cardObj.transform.rotation = rotation;
     }
 }
 

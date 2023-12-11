@@ -67,7 +67,7 @@ public class AIManager : MonoBehaviour
         if (card.suit == Suit.SPADE)
         {
             DraftCard(card);
-            GameManager.Instance.DiscardCard();
+            GameManager.Instance.DiscardCardFromDeck();
         }
         else
         {           

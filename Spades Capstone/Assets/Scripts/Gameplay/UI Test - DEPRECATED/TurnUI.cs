@@ -38,13 +38,7 @@ public class TurnUI : MonoBehaviour
         TurnUIPanel.SetActive(false);
 
         GameManager.OnPhaseChanged += TurnOnPhaseChanged;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    }   
 
     // On Phase Change to Phase.PlayerTurn
     public void TurnOnPhaseChanged(Phase phase)

@@ -32,7 +32,7 @@ public class DebugTools : MonoBehaviour
     {
         foreach (Card c in fillerPlayerCards)
         {
-            PlayerManager.Instance.DraftCard(c);
+            //PlayerManager.Instance.DraftCard(c); - DEPRECATED
         }
     }
 

@@ -124,8 +124,8 @@ public class ScoreManager : MonoBehaviour
     // Make a ui element visible/ glowing to the player that allows them to choose their bid
     private void HandlePlayerBid()
     {
-        // Toggle BID UI
-        BidUI.Instance.ToggleBidUI(true);
+        // Toggle BID UI - TEMP
+        BidUI.Instance.ToggleBidUI(true); 
 
         /* use this logic when exiting player bid logic
         if(currLead == Character.PLAYER){
