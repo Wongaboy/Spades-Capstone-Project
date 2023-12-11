@@ -38,7 +38,7 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         GameManager.OnPhaseChanged += PlayerManagerOnPhaseChanged;
-        playerHandUI.AssignHand(playerHand);
+        // playerHandUI.AssignHand(playerHand);
     }
 
     private void PlayerManagerOnPhaseChanged(Phase phase){
@@ -71,7 +71,6 @@ public class PlayerManager : MonoBehaviour
     // Function to call when Player keeps the shown card
     private void DraftCard(Card card)
     {
-        card.Freeze();
         card.SetInteractable(false);
         playerHand.AddCardToHand(card);
         playerHandUI.ShowCard(card);

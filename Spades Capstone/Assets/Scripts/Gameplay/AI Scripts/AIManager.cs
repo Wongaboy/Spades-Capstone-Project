@@ -24,6 +24,8 @@ public class AIManager : MonoBehaviour
 
     #region "Class Variables"
     [SerializeField] Hand aiHand;
+    [SerializeField] HandUI aiHandUI;
+    [SerializeField] Transform displaySpot;
     // Tells if AI is leading the Trick
     private bool isTrickLead = true;
 
@@ -53,15 +55,16 @@ public class AIManager : MonoBehaviour
         else if (phase == Phase.AIDRAFT)
         {
             // Decides to Keep or Discard & then waits to switch Turn/Phase
-            MakeDraftDecision(GameManager.Instance.DrawCard());
-            StartCoroutine(WaitTimeDraft());
+            StartCoroutine(MakeDraftDecision(GameManager.Instance.DrawCard()));
         }
     }
     #region "AI logic"
 
     // Function to Calculate AI Draft Decision & Draft Card
-    private void MakeDraftDecision(Card card)
+    private IEnumerator MakeDraftDecision(Card card)
     {
+        ConsiderCard(card);
+        yield return new WaitForSeconds(1);
         // Temporary Formula:
         // If (SPADE) -> KEEP; ELSE -> DISCARD
         if (card.suit == Suit.SPADE)
@@ -70,11 +73,12 @@ public class AIManager : MonoBehaviour
             GameManager.Instance.DiscardCardFromDeck();
         }
         else
-        {           
+        { 
+            GameManager.Instance.DiscardCardFromHand(card);
             DraftCard(GameManager.Instance.DrawCard());
         }
 
-        // return true; -- DEPRECATED
+        GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
     }
 
     // Function to calculate AI's Bid amount based on Death's Hand
@@ -193,6 +197,7 @@ public class AIManager : MonoBehaviour
     public void DraftCard(Card card)
     {
         aiHand.AddCardToHand(card);
+        aiHandUI.ShowCard(card);
     }
 
     #endregion
@@ -228,22 +233,15 @@ public class AIManager : MonoBehaviour
         // Remove Card from AI's Hand
         aiHand.RemoveCardFromHand(cardToPlay);
     }
+
+    private void ConsiderCard(Card card)
+    {
+        card.Freeze();
+        card.MoveToLocation(displaySpot.position, displaySpot.rotation);
+    }
     #endregion
 
     #region "IEnumerators"
-    // Function to Wait 1 second after Draft to Switch Phases
-    private IEnumerator WaitTimeDraft()
-    {      
-        yield return new WaitForSeconds(1);
-
-        // GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
-        if (GameManager.Instance.numDraftTurns >= 26) {
-            GameManager.Instance.ChangePhase(Phase.PLAYERBID);
-        }
-        else {
-            GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
-        }
-    }
 
     // Function to Wait 2 seconds after playing AI card to Switch Phases
     private IEnumerator WaitTimePlayCard()

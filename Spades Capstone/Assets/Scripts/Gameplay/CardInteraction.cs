@@ -5,7 +5,7 @@ using UnityEngine;
 public class CardInteraction : MonoBehaviour
 {
     private Vector3 mousePosition;
-    private bool allowed;
+    private bool allowed = false;
     
     public void Active(bool setAllowed)
     {

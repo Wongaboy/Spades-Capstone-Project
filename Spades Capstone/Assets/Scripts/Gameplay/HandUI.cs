@@ -9,25 +9,17 @@ public class HandUI : MonoBehaviour
     [SerializeField]
     private Transform tableSpot;
 
-    private Hand myHand;
-    
-
     private List<Card> cardObjs;
 
     public void Start()
     {
         cardObjs = new List<Card>();
     }
-
-    public void AssignHand(Hand hand)
-    {
-        myHand = hand;
-    }
     
     public bool ShowCard(Card card)
     {
+        card.Freeze();
         int openSlot = cardObjs.Count;
-        
         // if there are already 13 cards in Hand, return false
         if(openSlot == 13) { return false; }
 
