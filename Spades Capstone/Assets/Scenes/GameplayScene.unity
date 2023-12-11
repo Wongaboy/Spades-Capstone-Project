@@ -1416,7 +1416,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 244640868}
         m_TargetAssemblyTypeName: BidUI, Assembly-CSharp
         m_MethodName: ConfirmPlayerBid
         m_Mode: 1
@@ -3038,7 +3038,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 244640868}
         m_TargetAssemblyTypeName: BidUI, Assembly-CSharp
         m_MethodName: ChangeBid
         m_Mode: 3
@@ -7655,7 +7655,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 244640868}
         m_TargetAssemblyTypeName: BidUI, Assembly-CSharp
         m_MethodName: ChangeBid
         m_Mode: 3
