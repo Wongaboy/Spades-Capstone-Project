@@ -24,55 +24,78 @@ public class DialogueManager : MonoBehaviour
     #endregion
 
     #region "Class Variables"
+
     // !Work in Progress Variables!
     [SerializeField] TMP_Text dialogueSpeakerName;
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialogueTextBox;
     
-    // Current DialogueSO "Manager" is working with
-    DialogueSO currentDialogue;
-    int dialogueIndex;
+    // Queue of DialogueSO's for DialogueManager to process on StartDialogue()
+    Queue<DialogueSO> dialogueQueue = new Queue<DialogueSO>();
 
     // Temp Dialogue to test
     [SerializeField] DialogueSO tempDialogue;
+    [SerializeField] DialogueSO tempDialogue2;
+
+    // Current DialogueSO "Manager" is working with
+    DialogueSO currentDialogue;
+    int dialogueIndex; // Index of DialogueChunk
+
     #endregion
 
     private void Start()
     {
         // Disable Dialogue Box on game start
-        dialogueTextBox.SetActive(false);    
+        dialogueTextBox.SetActive(false);
+
+        // Enqueue Some Test Dialogues
+        dialogueQueue.Enqueue(tempDialogue);
+        dialogueQueue.Enqueue(tempDialogue2);
+        dialogueQueue.Enqueue(tempDialogue);
     }
 
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
-        StartDialogue(tempDialogue);
+        if (dialogueQueue.Count <= 0) { Debug.Log("Nothing in Queue"); }
+        else {
+            StartDialogue(dialogueQueue.Dequeue());
+        }
     }
 
-    // Called with given DialogueSO to activate DialogueBox, etc.
+    // Given DialogueSO => activates DialogueUI w/ DialogueSO info
     public void StartDialogue(DialogueSO newDialogue)
     {
         dialogueTextBox.SetActive(true);
         currentDialogue = newDialogue;
         dialogueSpeakerName.text = currentDialogue.dialogueName;
         dialogueIndex = 0;
-        OnNextButton();
+ 
+        OnNextButton(); // Updates Dialogue UI to the first Dialogue Chunk
     }
 
-    // Called at end of Dialogue to deactivate DialogueBox and reset variables
+    // At End of DialogueSO => deactivate DialogueBox OR Continue to next DialogueSO in queue
     public void EndDialogue()
     {
-        dialogueTextBox.SetActive(false);
         dialogueIndex = 0;
+
+        if (dialogueQueue.Count <= 0)
+        {
+            dialogueTextBox.SetActive(false);
+        }
+        else
+        {
+            StartDialogue(dialogueQueue.Dequeue());
+        }
     }
 
-    // Update Dialogue displays with given text string
+    // Update Dialogue Textbox to display given string(Text)
     void UpdateDialogue(string text)
     {
         dialogueText.text = text;
     }
 
-    // Called on DialogueButton Press to move dialogue forward OR Exit dialogue
+    // Assigned to DialogueUI "Next Button", Moves to next DialogueChunk OR calls EndDialogue()
     public void OnNextButton()
     {
         if (dialogueIndex < currentDialogue.dialogueTexts.Count)
