@@ -4902,6 +4902,7 @@ MonoBehaviour:
   dialogueText: {fileID: 1188678892}
   dialogueTextBox: {fileID: 863784749}
   tempDialogue: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+  tempDialogue2: {fileID: 11400000, guid: 01c4a3bdcc3592d4db691c93c2ad3ba0, type: 2}
 --- !u!4 &819685599
 Transform:
   m_ObjectHideFlags: 0
