@@ -30,6 +30,11 @@ public class Card : MonoBehaviour
         cardBody.useGravity = true;
     }
 
+    override public string ToString()
+    {
+        return val.ToString() + " of " + suit.ToString() + "s";
+    }
+
     public void SetInteractable(bool interactable)
     {
         cardInteraction.Active(interactable);

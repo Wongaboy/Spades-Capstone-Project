@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AIManager : MonoBehaviour
 {
@@ -26,6 +27,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] Hand aiHand;
     [SerializeField] HandUI aiHandUI;
     [SerializeField] Transform displaySpot;
+    [SerializeField] TMP_Text cardDisplay; // for testing only, will remove once we have stuff figured out
     // Tells if AI is leading the Trick
     private bool isTrickLead = true;
 
@@ -51,12 +53,15 @@ public class AIManager : MonoBehaviour
         if (phase == Phase.AITURN)
         {
             HandleAITurn();
+            cardDisplay.gameObject.SetActive(true);
         }
         else if (phase == Phase.AIDRAFT)
         {
             // Decides to Keep or Discard & then waits to switch Turn/Phase
+            cardDisplay.gameObject.SetActive(false);
             StartCoroutine(MakeDraftDecision(GameManager.Instance.DrawCard()));
         }
+
     }
     #region "AI logic"
 
@@ -207,9 +212,7 @@ public class AIManager : MonoBehaviour
     private void HandleAITurn()
     {
         // AI Determines what card to play and Plays It
-        PlayCard();
-        // Simulate WaitTime to Switch Phases
-        StartCoroutine(WaitTimePlayCard());
+        StartCoroutine(PlayCard());
     }
 
     // Function to Calculate AI's Card to play
@@ -223,16 +226,28 @@ public class AIManager : MonoBehaviour
         }     
     }
 
-    private void PlayCard()
+    private IEnumerator PlayCard()
     {
+        yield return new WaitForSeconds(2);
         Card cardToPlay = DecideCard();
         // Feed GameManager Played Card
         GameManager.Instance.aiCard = cardToPlay;
         // Update UI for AI's Card
-        // TurnUI.Instance.UpdateAICardInfo(cardToPlay); // SOON TO BE DEPRECATED - replace with verbal announcement?
+        // use dialogue to announce card played here?
         // Remove Card from AI's Hand
         aiHand.RemoveCardFromHand(cardToPlay);
         aiHandUI.ShowCardPlayed(cardToPlay);
+        cardDisplay.text = cardToPlay.ToString();
+
+        // Move On
+        if (isTrickLead == true)
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
+        }
     }
 
     private void ConsiderCard(Card card)
@@ -247,15 +262,10 @@ public class AIManager : MonoBehaviour
     // Function to Wait 2 seconds after playing AI card to Switch Phases
     private IEnumerator WaitTimePlayCard()
     {
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(1);
 
         // if there is dialogue to play, might want to activate it here
-        if (isTrickLead == true) {
-            GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
-        }
-        else {
-            GameManager.Instance.ChangePhase(Phase.ENDOFTRICK);
-        }
+        
     }
     #endregion
 

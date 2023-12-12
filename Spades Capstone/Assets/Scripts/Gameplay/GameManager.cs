@@ -57,9 +57,10 @@ public class GameManager : MonoBehaviour
     // Called to move through phases of the game
     public void ChangePhase(Phase newPhase)
     {
+        
+        Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
         currentPhase = newPhase;
         UpdatePhaseName(currentPhase);
-        Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
 
         switch (newPhase)
         {
@@ -106,8 +107,9 @@ public class GameManager : MonoBehaviour
     // Reset tracker variables within GameManager
     public void ResetGM()
     {
-        // Clear hands - still need?
+        // Don't need to clear hands bc they clear themselves
         spadesBroken = false;
+        // StartCoroutine(MoveCardsBackToDeck()); -- was broken, removing for playtest
         deck.Shuffle();
         numDraftTurns = 0;
         numTurns = 0;
@@ -237,6 +239,7 @@ public class GameManager : MonoBehaviour
             AIManager.Instance.ChangeInternalLead(false);
         }
     }
+
     #endregion
 
     #region "Debugging"

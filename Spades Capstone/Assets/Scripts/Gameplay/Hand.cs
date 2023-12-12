@@ -70,30 +70,26 @@ public class Hand : MonoBehaviour
         return GetLowest(GetFewestStillInHand());
     }
 
-    public Suit GetFewestStillInHand(bool nonspade=true){
-        int numHearts = NumOfSuit(Suit.HEART) + (15*Convert.ToInt32(HasSuit(Suit.HEART)));
-        int numClubs = NumOfSuit(Suit.CLUB) + (15*Convert.ToInt32(HasSuit(Suit.CLUB)));
-        int numDiamonds = NumOfSuit(Suit.DIAMOND) + (15*Convert.ToInt32(HasSuit(Suit.DIAMOND)));
-        int numLeast = 15;
-        Suit toReturn = Suit.HEART;
-        if(numHearts <= numClubs && numHearts <= numDiamonds){
-            numLeast = numHearts;
-        }
-        else if(numClubs <= numDiamonds && numClubs <= numHearts){
-            numLeast = numClubs;
-            toReturn = Suit.CLUB;
-        }
-        else if(numDiamonds <= numHearts && numDiamonds <= numClubs){
-            numLeast = numDiamonds;
-            toReturn = Suit.DIAMOND;
-        }
+    // Should return the suit that has the lowest count and greater than 0
+    public Suit GetFewestStillInHand(){ // BUGGED!!
+        int numHearts = NumOfSuit(Suit.HEART);
+        int numClubs = NumOfSuit(Suit.CLUB);
+        int numDiamonds = NumOfSuit(Suit.DIAMOND);
 
-        if(!nonspade){
-            int numSpades = NumOfSuit(Suit.SPADE) + (15*Convert.ToInt32(HasSuit(Suit.SPADE)));
-            if(numSpades < numLeast){ return Suit.SPADE; }
+        
+        
+        if (numHearts != 0 && numHearts <= numClubs && numHearts <= numDiamonds) { return Suit.HEART; }
+        else if (numClubs != 0 && numClubs <= numHearts && numClubs <= numDiamonds) { return Suit.CLUB; }
+        else if (numDiamonds != 0)
+        {
+            return Suit.DIAMOND;
         }
+        else if(numClubs != 0)
+        {
+            return Suit.CLUB;
+        }
+        return Suit.HEART;
 
-        return toReturn;
     }
 
     // get the number of cards of a particular suit 
