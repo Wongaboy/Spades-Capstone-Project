@@ -29,14 +29,11 @@ public class HandUI : MonoBehaviour
         return true;
     }
 
-    public bool ShowCardPlayed(Card card){
-        if(!cardObjs.Contains(card)){return false;}
-        else{
-            // move card to spot on table 
-            card.MoveToLocation(tableSpot.position, tableSpot.rotation);
-            cardObjs.Remove(card);
-            return true;
-        }
+    public void ShowCardPlayed(Card card){
+        card.MoveToLocation(tableSpot.position, tableSpot.rotation);
+        card.Unfreeze();
+        card.SetInteractable(false);
+        cardObjs.Remove(card);
     }
 
     public void AlterCardInteraction(bool interactable)

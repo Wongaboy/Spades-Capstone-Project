@@ -27,6 +27,7 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] Hand playerHand;
     [SerializeField] private Transform displaySpot;
     [SerializeField] private GameObject[] DraftZones;
+    [SerializeField] private GameObject PlayZone;
     private Card cardToDraft;
 
     //private Character thisCharacter = Character.PLAYER;
@@ -44,6 +45,7 @@ public class PlayerManager : MonoBehaviour
     private void PlayerManagerOnPhaseChanged(Phase phase){
         if(phase == Phase.PLAYERTURN)
         {
+            PlayZone.SetActive(true);
             HandlePlayerTurn();
         }
         else if(phase == Phase.PLAYERDRAFT)
@@ -68,7 +70,7 @@ public class PlayerManager : MonoBehaviour
         Debug.Log(cardToDraft);
     }
 
-    // Function to call when Player keeps the shown card
+    // Function call to add a card to hand
     private void DraftCard(Card card)
     {
         card.SetInteractable(false);
@@ -116,18 +118,38 @@ public class PlayerManager : MonoBehaviour
         }
         return true;
     }
-
-    // activate UI that lets the player play a card - maybe move this to draft ui thing
+    #region "Turn Handling"
+    // allow cards to be moveable again
     public void HandlePlayerTurn(){
         playerHandUI.AlterCardInteraction(true);
     }
 
-    // Function to call to tell the GameManager what card was played and move on
-    private void PlayCard(Card playedCard)
+    // Function to call to attempt to play a card
+    public void PlayCard(Card playedCard)
     {
-        GameManager.Instance.playerCard = playedCard;
-        playerHandUI.ShowCardPlayed(playedCard);
+        if(CheckValidMove(playedCard)){
+            GameManager.Instance.playerCard = playedCard;
+            playerHand.RemoveCardFromHand(playedCard);
+            playerHandUI.ShowCardPlayed(playedCard);
+            EndTurn();
+        }
+        else
+        {
+            // tell player this card could not be played, move it back into their hand -- WIP
+            // also here is place for easter egg
+        }
     }
+
+    private void EndTurn()
+    {
+        PlayZone.SetActive(false);
+        if(isLead)
+        {
+            GameManager.Instance.ChangePhase(Phase.AITURN);
+        }
+        else { GameManager.Instance.ChangePhase(Phase.ENDOFTRICK); }
+    }
+    #endregion
 
     // Debug Function to show amount of each suits in hand
     public void Debug_ShowHand()

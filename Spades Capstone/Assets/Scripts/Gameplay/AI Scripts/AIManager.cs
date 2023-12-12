@@ -229,9 +229,10 @@ public class AIManager : MonoBehaviour
         // Feed GameManager Played Card
         GameManager.Instance.aiCard = cardToPlay;
         // Update UI for AI's Card
-        TurnUI.Instance.UpdateAICardInfo(cardToPlay); // SOON TO BE DEPRECATED
+        // TurnUI.Instance.UpdateAICardInfo(cardToPlay); // SOON TO BE DEPRECATED - replace with verbal announcement?
         // Remove Card from AI's Hand
         aiHand.RemoveCardFromHand(cardToPlay);
+        aiHandUI.ShowCardPlayed(cardToPlay);
     }
 
     private void ConsiderCard(Card card)
