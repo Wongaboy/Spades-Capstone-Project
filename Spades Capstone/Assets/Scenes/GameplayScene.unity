@@ -423,6 +423,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 79303208}
+  - component: {fileID: 79303209}
   m_Layer: 0
   m_Name: BidManager
   m_TagString: Untagged
@@ -445,6 +446,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &79303209
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 79303207}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbf959250d3618a448c7b42211902e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BidUIPanel: {fileID: 244640864}
+  CurrentBid_Text: {fileID: 303042935}
 --- !u!1 &83759771
 GameObject:
   m_ObjectHideFlags: 0
@@ -1141,14 +1156,13 @@ GameObject:
   - component: {fileID: 244640865}
   - component: {fileID: 244640867}
   - component: {fileID: 244640866}
-  - component: {fileID: 244640868}
   m_Layer: 5
   m_Name: Bid Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &244640865
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1211,20 +1225,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 244640864}
   m_CullTransparentMesh: 1
---- !u!114 &244640868
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244640864}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bbf959250d3618a448c7b42211902e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  BidUIPanel: {fileID: 244640864}
-  CurrentBid_Text: {fileID: 303042935}
 --- !u!1 &255448499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1341,7 +1341,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244640868}
+      - m_Target: {fileID: 79303209}
         m_TargetAssemblyTypeName: BidUI, Assembly-CSharp
         m_MethodName: ConfirmPlayerBid
         m_Mode: 1
@@ -2670,7 +2670,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244640868}
+      - m_Target: {fileID: 79303209}
         m_TargetAssemblyTypeName: BidUI, Assembly-CSharp
         m_MethodName: ChangeBid
         m_Mode: 3
@@ -7067,7 +7067,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 244640868}
+      - m_Target: {fileID: 79303209}
         m_TargetAssemblyTypeName: BidUI, Assembly-CSharp
         m_MethodName: ChangeBid
         m_Mode: 3

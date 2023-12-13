@@ -85,7 +85,7 @@ public class DialogueManager : MonoBehaviour
         }
         else
         {
-            StartDialogue(dialogueQueue.Dequeue());
+            StartDialogue();
         }
     }
 
