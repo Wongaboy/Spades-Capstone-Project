@@ -59,18 +59,18 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueQueue.Count <= 0) { Debug.Log("Nothing in Queue"); }
         else {
-            StartDialogue(dialogueQueue.Dequeue());
+            StartDialogue();
         }
     }
 
-    // Given DialogueSO => activates DialogueUI w/ DialogueSO info
-    public void StartDialogue(DialogueSO newDialogue)
+    // Starts Going through Queue of DialogueSO's
+    public void StartDialogue()
     {
         dialogueTextBox.SetActive(true);
-        currentDialogue = newDialogue;
+        currentDialogue = dialogueQueue.Dequeue();
         dialogueSpeakerName.text = currentDialogue.dialogueName;
         dialogueIndex = 0;
- 
+
         OnNextButton(); // Updates Dialogue UI to the first Dialogue Chunk
     }
 
