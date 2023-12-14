@@ -48,10 +48,10 @@ public class DialogueManager : MonoBehaviour
         // Disable Dialogue Box on game start
         dialogueTextBox.SetActive(false);
 
-        // Enqueue Some Test Dialogues
-        dialogueQueue.Enqueue(tempDialogue);
-        dialogueQueue.Enqueue(tempDialogue2);
-        dialogueQueue.Enqueue(tempDialogue);
+        // Enqueue Some Test Dialogues     
+        AddToDialogueQueue(tempDialogue);
+        AddToDialogueQueue(tempDialogue2);
+        AddToDialogueQueue(tempDialogue);
     }
 
     // Testing Function to trigger StartDialogue()
@@ -61,6 +61,11 @@ public class DialogueManager : MonoBehaviour
         else {
             StartDialogue();
         }
+    }
+
+    public void AddToDialogueQueue(DialogueSO dialogue)
+    {
+        dialogueQueue.Enqueue(dialogue);
     }
 
     // Starts Going through Queue of DialogueSO's
