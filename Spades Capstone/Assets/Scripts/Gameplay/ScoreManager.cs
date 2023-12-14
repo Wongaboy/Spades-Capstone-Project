@@ -35,6 +35,7 @@ public class ScoreManager : MonoBehaviour
     Character currLead;
     Character winningChar;
     [SerializeField] TallyBoard tallyBoard;
+    [SerializeField] int scoreToWin;
     #endregion
 
     // start listening to the game manager 
@@ -192,8 +193,7 @@ public class ScoreManager : MonoBehaviour
     // if either score is above 500, the game is over
     private bool _CheckWin()
     {
-        // Temp 100 just for testing
-        return (playerScore > 100 || aiScore > 100);
+        return (playerScore > scoreToWin || aiScore > scoreToWin);
     }
 
     // helper func to calculate a score based on bid and tricks taken
@@ -201,8 +201,13 @@ public class ScoreManager : MonoBehaviour
         if(bid > tricks){
             return (-10 * (bid - tricks), 0); // lose ten points for every trick failed to take, get no bags
         }
+        else if(bid == 0) // succesful nil bid gains you 100 points, unsuccesful nil bid loses you 100 
+        {
+            if(tricks == 0) { return (100, 0); }
+            return (-100, tricks);
+        }
         else{
-            return ((10 * bid), tricks - bid); // gain ten points for every trick bid, and gain a bad for every extra trick
+            return (10 * bid, tricks - bid); // gain ten points for every trick bid, and gain a bad for every extra trick
         }
     }
 

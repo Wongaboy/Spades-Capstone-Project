@@ -71,8 +71,8 @@ public class AIManager : MonoBehaviour
         ConsiderCard(card);
         yield return new WaitForSeconds(1);
         // Temporary Formula:
-        // If (SPADE) -> KEEP; ELSE -> DISCARD
-        if (card.suit == Suit.SPADE)
+        // If SPADE or a (f)ace card -> KEEP; ELSE -> DISCARD
+        if (card.suit == Suit.SPADE || card.val > 10)
         {
             DraftCard(card);
             GameManager.Instance.DiscardCardFromDeck();
