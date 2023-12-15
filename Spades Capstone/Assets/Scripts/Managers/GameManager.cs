@@ -209,7 +209,7 @@ public class GameManager : MonoBehaviour
             spadesBroken = true;   
             return Character.DEATH;
         }
-        else if(lead == Character.PLAYER) // if lead suit was not followed and a spade was not played, lead wins
+        else if(PlayerManager.Instance.isLead) // if lead suit was not followed and a spade was not played, lead wins
         {
             return Character.PLAYER;
         }
