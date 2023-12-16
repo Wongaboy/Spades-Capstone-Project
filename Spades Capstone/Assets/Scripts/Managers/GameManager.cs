@@ -127,7 +127,6 @@ public class GameManager : MonoBehaviour
     public void DiscardCardFromDeck()
     {
         Card toDiscard = deck.DrawCard();
-        toDiscard.Freeze();
         toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation, true);
         toDiscard.SetInteractable(false);
         // toDiscard.Unfreeze();

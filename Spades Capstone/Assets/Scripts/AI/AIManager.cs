@@ -252,7 +252,6 @@ public class AIManager : MonoBehaviour
 
     private void ConsiderCard(Card card)
     {
-        card.Freeze();
         card.MoveToLocation(displaySpot.position, displaySpot.rotation);
     }
     #endregion

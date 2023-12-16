@@ -18,7 +18,6 @@ public class HandUI : MonoBehaviour
     
     public bool ShowCard(Card card)
     {
-        card.Freeze();
         int openSlot = cardObjs.Count;
         // if there are already 13 cards in Hand, return false
         if(openSlot == 13) { return false; }

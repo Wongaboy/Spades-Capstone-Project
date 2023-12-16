@@ -64,7 +64,6 @@ public class PlayerManager : MonoBehaviour
     private void DisplayCardToDraft()
     {
         cardToDraft = GameManager.Instance.DrawCard();
-        cardToDraft.Freeze(); // prevent card from falling in space
         cardToDraft.MoveToLocation(displaySpot.position, displaySpot.rotation);
         cardToDraft.SetInteractable(true);
         Debug.Log(cardToDraft);

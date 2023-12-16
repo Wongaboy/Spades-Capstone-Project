@@ -22,16 +22,6 @@ public class Card : MonoBehaviour
         cardFaceCanvas.worldCamera = Camera.main;
     }
 
-    public void Freeze()
-    {
-        cardBody.useGravity = false;
-    }
-
-    public void Unfreeze()
-    {
-        cardBody.useGravity = true;
-    }
-
     override public string ToString()
     {
         return val.ToString() + " of " + suit.ToString() + "s";
@@ -48,9 +38,10 @@ public class Card : MonoBehaviour
         StartCoroutine(TravelTo(location, rotation, UseGravityOnEnd));
     }
 
-    // Frick linalg smh
-    private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd)
+    // Frick linalg smh - rn there is an issue with not waiting enough time after a card is played to discard - probably want to add a wait for seconds into handle end of trick
+    private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd=false)
     {
+        cardBody.useGravity = false;
         cardBody.detectCollisions = false;
         Vector3 locInc = (location - gameObject.transform.position)/cardSpeed;
         Quaternion rotQ = Quaternion.Inverse(gameObject.transform.rotation) * rotation;
@@ -64,10 +55,7 @@ public class Card : MonoBehaviour
         }
         
         cardBody.detectCollisions = true;
-        if (UseGravOnEnd)
-        {
-            cardBody.useGravity = true;
-        }
+        cardBody.useGravity = UseGravOnEnd;
     }
 }
 
