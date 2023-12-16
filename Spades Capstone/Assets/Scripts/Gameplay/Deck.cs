@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    [SerializeField] 
-    GameObject deckObj; // maybe we do it this way?
     [SerializeField]
     public Card[] cardsInDeck;
 

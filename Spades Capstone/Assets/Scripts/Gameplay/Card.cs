@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class Card : MonoBehaviour
 {
+    [Header("Data")]
     public Suit suit;
     public int val;
-    [HideInInspector]
-    public GameObject cardObj;
+
+    [Header("Components")]
     [SerializeField]
     private Canvas cardFaceCanvas;
     [SerializeField]
@@ -16,7 +17,6 @@ public class Card : MonoBehaviour
     private CardInteraction cardInteraction;
 
     void Awake(){
-        cardObj = this.gameObject;
         cardFaceCanvas.worldCamera = Camera.main;
     }
 
@@ -43,8 +43,8 @@ public class Card : MonoBehaviour
     // Will eventually use this to move cards into hands and on to tables and such - for the sake of JUICE
     public void MoveToLocation(Vector3 location, Quaternion rotation)
     {
-        cardObj.transform.position = location;
-        cardObj.transform.rotation = rotation;
+        gameObject.transform.position = location;
+        gameObject.transform.rotation = rotation;
     }
 }
 
