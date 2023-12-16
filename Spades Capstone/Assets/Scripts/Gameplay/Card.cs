@@ -43,14 +43,13 @@ public class Card : MonoBehaviour
     }
 
     // Will eventually use this to move cards into hands and on to tables and such - for the sake of JUICE
-    public void MoveToLocation(Vector3 location, Quaternion rotation)
+    public void MoveToLocation(Vector3 location, Quaternion rotation, bool UseGravityOnEnd=false)
     {
-        //gameObject.transform.position = location;
-        //gameObject.transform.rotation = rotation;
-        StartCoroutine(TravelTo(location, rotation));
+        StartCoroutine(TravelTo(location, rotation, UseGravityOnEnd));
     }
 
-    private IEnumerator TravelTo(Vector3 location, Quaternion rotation)
+    // Frick linalg smh
+    private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd)
     {
         cardBody.detectCollisions = false;
         Vector3 locInc = (location - gameObject.transform.position)/cardSpeed;
@@ -65,6 +64,10 @@ public class Card : MonoBehaviour
         }
         
         cardBody.detectCollisions = true;
+        if (UseGravOnEnd)
+        {
+            cardBody.useGravity = true;
+        }
     }
 }
 

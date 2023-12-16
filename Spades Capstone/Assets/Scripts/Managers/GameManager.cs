@@ -127,17 +127,18 @@ public class GameManager : MonoBehaviour
     public void DiscardCardFromDeck()
     {
         Card toDiscard = deck.DrawCard();
-        toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation);
+        toDiscard.Freeze();
+        toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation, true);
         toDiscard.SetInteractable(false);
-        toDiscard.Unfreeze();
+        // toDiscard.Unfreeze();
     }
 
     // Move a card from your hand to the discard pile
     public void DiscardCardFromHand(Card toDiscard)
     {
-        toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation);
+        toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation, true);
         toDiscard.SetInteractable(false);
-        toDiscard.Unfreeze();
+        // toDiscard.Unfreeze(); -- this is now handled in MoveToLocation
     }
 
     // End the game - ending cutscene based on winner

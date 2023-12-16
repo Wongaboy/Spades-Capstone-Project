@@ -30,8 +30,7 @@ public class HandUI : MonoBehaviour
     }
 
     public void ShowCardPlayed(Card card){
-        card.MoveToLocation(tableSpot.position, tableSpot.rotation);
-        card.Unfreeze();
+        card.MoveToLocation(tableSpot.position, tableSpot.rotation, true);
         card.SetInteractable(false);
         cardObjs.Remove(card);
     }
