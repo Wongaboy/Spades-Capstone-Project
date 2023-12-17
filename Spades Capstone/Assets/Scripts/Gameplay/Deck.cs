@@ -6,10 +6,11 @@ public class Deck : MonoBehaviour
 {
     [SerializeField]
     public Card[] cardsInDeck;
+    [SerializeField]
+    private Transform deckSpot;
 
     private List<Card> cards;
     public static Suit[] intToSuit = { Suit.SPADE, Suit.DIAMOND, Suit.CLUB, Suit.HEART};
-    private const int numCards = 52;
     
     
     void Awake()
@@ -22,7 +23,7 @@ public class Deck : MonoBehaviour
     }
 
     // Randomize the order of cards in the deck
-    public void Shuffle()
+    public IEnumerator Shuffle()
     {
         System.Random shuffler = new System.Random();
         int currCard = cards.Count;
@@ -32,6 +33,11 @@ public class Deck : MonoBehaviour
             Card temp = cards[currCard];
             cards[currCard] = cards[nextCard];
             cards[nextCard] = temp;
+        }
+        for(int c = 51; c >= 0; c--)
+        {
+            cards[c].MoveToLocation(deckSpot.transform.position, deckSpot.transform.rotation, true);
+            yield return new WaitForSeconds(.1f);
         }
     }
 

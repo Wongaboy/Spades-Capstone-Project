@@ -415,7 +415,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   suit: 0
   val: 0
-  moveSpeed: 10
+  cardSpeed: 10
   cardFaceCanvas: {fileID: 4834272610506964500}
   cardBody: {fileID: 6476523307674758241}
   cardInteraction: {fileID: 4087108490610812287}

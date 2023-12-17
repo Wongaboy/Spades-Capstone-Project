@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
         // Initialize game components
         lead = Character.DEATH; // Death always goes first for tutorial
 
-        deck.Shuffle();
+        StartCoroutine(deck.Shuffle());
     }
 
     // Called to move through phases of the game
@@ -89,7 +89,7 @@ public class GameManager : MonoBehaviour
                 numTurns++;
                 break;
             case Phase.ENDOFTRICK:
-                HandleEndOfTrick();
+                StartCoroutine(HandleEndOfTrick());
                 break;
             case Phase.SCORING:
                 break;
@@ -105,12 +105,13 @@ public class GameManager : MonoBehaviour
     #region "Public Helper Functions"
 
     // Reset tracker variables within GameManager
-    public void ResetGM()
+    public IEnumerator ResetGM()
     {
         // Don't need to clear hands bc they clear themselves
         spadesBroken = false;
         // StartCoroutine(MoveCardsBackToDeck()); -- was broken, removing for playtest
-        deck.Shuffle();
+        StartCoroutine(deck.Shuffle());
+        yield return new WaitForSeconds(5.3f);
         numDraftTurns = 0;
         numTurns = 0;
         playerCard = null;
@@ -163,10 +164,12 @@ public class GameManager : MonoBehaviour
 
     #region "Private Helper Functions"
     // Figure out who won the trick, log it, and move on NOTE: Refactor to work with better encapsulated turn counting system
-    private void HandleEndOfTrick()
+    private IEnumerator HandleEndOfTrick()
     {
+        yield return new WaitForSeconds(1f);
         OnTrickTaken.Invoke(DetermineTrickWinner());
         DiscardCardFromHand(playerCard);
+        yield return new WaitForSeconds(1f);
         DiscardCardFromHand(aiCard);
 
         if (numTurns >= 26)  // IF there are not more Tricks to play

@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
     {
         currLead = GameManager.Instance.lead;
         if(phase == Phase.SCORING){
-            HandleScoring(); // do everything that is required for scoring
+            StartCoroutine(HandleScoring()); // do everything that is required for scoring
         }
         else if(phase == Phase.PLAYERBID){
             HandlePlayerBid(); // let the player use UI to make a bid
@@ -62,7 +62,7 @@ public class ScoreManager : MonoBehaviour
 
     // tally up the points for the round, add them to total, then subtract bags if applicable
     // if a player has won, end the game
-    private void HandleScoring(){
+    private IEnumerator HandleScoring(){
         int roundScore;
         int roundBags;
         (roundScore, roundBags) = _CalcScore(playerBid, playerTricks);
@@ -109,7 +109,8 @@ public class ScoreManager : MonoBehaviour
         // Else: Reset GameManager counters, Swap Lead, and change phase to approriate Character
         else
         {
-            GameManager.Instance.ResetGM();
+            StartCoroutine(GameManager.Instance.ResetGM());
+            yield return new WaitForSeconds(5.3f);
             GameManager.Instance.SwapLead();
             if (GameManager.Instance.lead == Character.DEATH)
             {            
