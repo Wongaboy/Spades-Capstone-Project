@@ -22,10 +22,10 @@ public class Deck : MonoBehaviour
         }
     }
 
-    // Randomize the order of cards in the deck
+    // Randomize the order of cards in the deck, now with a cool animation
     public IEnumerator Shuffle()
     {
-        System.Random shuffler = new System.Random();
+        System.Random shuffler = new();
         int currCard = cards.Count;
         while (currCard > 1)
         {

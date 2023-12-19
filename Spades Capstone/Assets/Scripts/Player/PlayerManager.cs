@@ -59,6 +59,7 @@ public class PlayerManager : MonoBehaviour
             // Like AI, this is handled rn in the ScoreManager
             // SetBid(int bid)
         }
+        
     }
     #region "Draft Handling"
     private void DisplayCardToDraft()

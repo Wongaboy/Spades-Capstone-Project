@@ -8,7 +8,8 @@ public class Card : MonoBehaviour
     [Header("Data")]
     public Suit suit;
     public int val;
-    [SerializeField] float cardSpeed = 10f;
+    [SerializeField] 
+    private float cardSpeed = 10f;
 
     [Header("Components")]
     [SerializeField]
@@ -27,19 +28,20 @@ public class Card : MonoBehaviour
         return val.ToString() + " of " + suit.ToString() + "s";
     }
 
+    // method to prevent card movement at inappropriate intervals
     public void SetInteractable(bool interactable)
     {
         cardInteraction.Active(interactable);
     }
 
-    // Will eventually use this to move cards into hands and on to tables and such - for the sake of JUICE
+    // call this to move a card anywhere in space - will happen in .05*cardSpeed number of frames
     public void MoveToLocation(Vector3 location, Quaternion rotation, bool UseGravityOnEnd=false)
     {
         StartCoroutine(TravelTo(location, rotation, UseGravityOnEnd));
     }
 
-    // Frick linalg smh - rn there is an issue with not waiting enough time after a card is played to discard - probably want to add a wait for seconds into handle end of trick
-    private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd=false)
+    // this is kept private so that ppl don't have to remember to use StartCoroutine() whenever they want to move a card
+    private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd)
     {
         cardBody.useGravity = false;
         cardBody.detectCollisions = false;

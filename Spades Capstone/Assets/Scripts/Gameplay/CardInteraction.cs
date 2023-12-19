@@ -10,16 +10,19 @@ public class CardInteraction : MonoBehaviour
     public static event Action<Phase> OnCardMove;
     public static event Action<Phase> OnCardFinMove;
     
+    // toggle whether cards are draggable
     public void Active(bool setAllowed)
     {
         allowed = setAllowed;
     }
 
+    // get the world position of the mouse
     private Vector3 GetMousePos()
     {
         return Camera.main.WorldToScreenPoint(transform.position);
     }
 
+    // if cards are draggable, update the mouse position
     private void OnMouseDown()
     {
         if (allowed)
@@ -29,6 +32,7 @@ public class CardInteraction : MonoBehaviour
         }
     }
 
+    // if cards are draggable, drag them
     private void OnMouseDrag()
     {
         if (allowed)
@@ -37,6 +41,7 @@ public class CardInteraction : MonoBehaviour
         }
     }
 
+    // Tell the game that the card has finished being dragged
     private void OnMouseUp() 
     { 
         if (allowed) 

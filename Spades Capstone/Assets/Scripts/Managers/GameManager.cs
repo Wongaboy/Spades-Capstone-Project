@@ -105,13 +105,12 @@ public class GameManager : MonoBehaviour
     #region "Public Helper Functions"
 
     // Reset tracker variables within GameManager
-    public IEnumerator ResetGM()
+    public void ResetGM()
     {
         // Don't need to clear hands bc they clear themselves
         spadesBroken = false;
         // StartCoroutine(MoveCardsBackToDeck()); -- was broken, removing for playtest
         StartCoroutine(deck.Shuffle());
-        yield return new WaitForSeconds(5.3f);
         numDraftTurns = 0;
         numTurns = 0;
         playerCard = null;

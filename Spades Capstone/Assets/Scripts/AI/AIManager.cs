@@ -52,7 +52,7 @@ public class AIManager : MonoBehaviour
     {
         if (phase == Phase.AITURN)
         {
-            HandleAITurn();
+            StartCoroutine(HandleAITurn());
             cardDisplay.gameObject.SetActive(true);
         }
         else if (phase == Phase.AIDRAFT)
@@ -209,10 +209,11 @@ public class AIManager : MonoBehaviour
 
     #region "Private Helper Functions"
     // Function to perform AI Actions on Phase.AITURN
-    private void HandleAITurn()
+    private IEnumerator HandleAITurn()
     {
+        yield return new WaitForSeconds(2); // wait to preserve game flow
         // AI Determines what card to play and Plays It
-        StartCoroutine(PlayCard());
+        PlayCard();
     }
 
     // Function to Calculate AI's Card to play
@@ -226,9 +227,9 @@ public class AIManager : MonoBehaviour
         }     
     }
 
-    private IEnumerator PlayCard()
+    // playcard handles the mechanics of the AI's turn
+    private void PlayCard()
     {
-        yield return new WaitForSeconds(2);
         Card cardToPlay = DecideCard();
         // Feed GameManager Played Card
         GameManager.Instance.aiCard = cardToPlay;
@@ -250,21 +251,10 @@ public class AIManager : MonoBehaviour
         }
     }
 
+    // call this during draft to show the card move in front of the opponent's face "for consideration"
     private void ConsiderCard(Card card)
     {
         card.MoveToLocation(displaySpot.position, displaySpot.rotation);
-    }
-    #endregion
-
-    #region "IEnumerators"
-
-    // Function to Wait 2 seconds after playing AI card to Switch Phases
-    private IEnumerator WaitTimePlayCard()
-    {
-        yield return new WaitForSeconds(1);
-
-        // if there is dialogue to play, might want to activate it here
-        
     }
     #endregion
 

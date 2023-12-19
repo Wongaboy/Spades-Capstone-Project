@@ -102,15 +102,15 @@ public class ScoreManager : MonoBehaviour
             winningChar = Character.DEATH;
         }
         
-        // If there is a Winner Endgame
-        if(_CheckWin()){
+        // If there is a Winner - End the game
+        if(CheckWin()){
             GameManager.Instance.EndGame(winningChar);
         }
         // Else: Reset GameManager counters, Swap Lead, and change phase to approriate Character
         else
         {
-            StartCoroutine(GameManager.Instance.ResetGM());
-            yield return new WaitForSeconds(5.3f);
+            GameManager.Instance.ResetGM();
+            yield return new WaitForSeconds(6.2f); // wait long enough for the game manager to fully reset before moving to draft phase
             GameManager.Instance.SwapLead();
             if (GameManager.Instance.lead == Character.DEATH)
             {            
@@ -192,7 +192,7 @@ public class ScoreManager : MonoBehaviour
     }
 
     // if either score is above 500, the game is over
-    private bool _CheckWin()
+    private bool CheckWin()
     {
         return (playerScore > scoreToWin || aiScore > scoreToWin);
     }
