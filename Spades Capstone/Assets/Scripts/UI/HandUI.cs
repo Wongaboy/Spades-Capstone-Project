@@ -35,6 +35,8 @@ public class HandUI : MonoBehaviour
         card.MoveToLocation(tableSpot.position, tableSpot.rotation, true);
         card.SetInteractable(false);
         cardObjs.Remove(card);
+        // yield return new WaitForSeconds(1); - this might work later, but causes too many issues rn to figure out
+        // SnapToPosition();
     }
 
     // alters the card interaction for EVERY card in hand
