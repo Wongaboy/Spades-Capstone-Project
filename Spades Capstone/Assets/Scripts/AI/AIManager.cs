@@ -31,6 +31,12 @@ public class AIManager : MonoBehaviour
     // Tells if AI is leading the Trick
     private bool isTrickLead = true;
 
+    // Booleans to check is AI can use Cheats
+    private bool canCheatPhase1 = false;
+    private bool HasEnteredPhase1 = false;
+    private bool canCheatPhase2 = false;
+    private bool HasEnteredPhase2 = false;
+
     // private int currentBid; -- DEPRECATED
     // private Character thisCharacter = Character.DEATH; -- DEPRECATED
     #endregion
@@ -205,6 +211,51 @@ public class AIManager : MonoBehaviour
         aiHandUI.ShowCard(card);
     }
 
+    // Call with Cheat Phase to enable AI Cheats
+    public void ToggleCheatSet(int cheatPhaseNumber, bool canCheat)
+    {
+        switch (cheatPhaseNumber)
+        {
+            case 1:
+                canCheatPhase1 = canCheat;
+                HasEnteredPhase1 = true;
+                break;
+            case 2:
+                canCheatPhase2 = canCheat;
+                HasEnteredPhase2 = true;
+                break;
+        }
+    }
+
+    // Call to GET if AI can use cheats or not
+    public bool GetCanCheat(int cheatPhaseNumber)
+    {
+        switch (cheatPhaseNumber)
+        {
+            case 1:
+                return canCheatPhase1;              
+            case 2:
+                return canCheatPhase2;
+            default:
+                Debug.Log("Invalid integer");
+                return false;
+        }
+    }
+
+    // Call to GET if AI already changed cheat phases
+    public bool GetHasEnteredCheatPhase(int cheatPhaseNumber)
+    {
+        switch (cheatPhaseNumber)
+        {
+            case 1:
+                return HasEnteredPhase1;
+            case 2:
+                return HasEnteredPhase2;
+            default:
+                Debug.Log("Invalid integer");
+                return false;
+        }
+    }
     #endregion
 
     #region "Private Helper Functions"

@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
     public void ChangePhase(Phase newPhase)
     {
         
-        Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
+        // Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
         currentPhase = newPhase;
         UpdatePhaseName(currentPhase);
 
@@ -197,7 +197,21 @@ public class GameManager : MonoBehaviour
         {
             if(playerCard.val > aiCard.val)
             {
-                return Character.PLAYER;
+                // Anthony Personal Note
+                // If AI is in Cheat Mode Override outcome and Randomize playerCard.val then recalculate results
+                if (AIManager.Instance.GetCanCheat(2))
+                {
+                    int newPlayerCardValue = UnityEngine.Random.Range(2, 14);
+                    AIManager.Instance.ToggleCheatSet(2, false);
+                    Debug.Log("Randomize Player Card Value Cheat has been activated");
+                    if (newPlayerCardValue > aiCard.val) { return Character.PLAYER; }
+                    else { return Character.DEATH; }
+                }
+                else
+                {
+                    return Character.PLAYER;
+                }
+                // return Character.PLAYER;
             }
             return Character.DEATH;
         }

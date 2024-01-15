@@ -65,7 +65,21 @@ public class ScoreManager : MonoBehaviour
     private IEnumerator HandleScoring(){
         int roundScore;
         int roundBags;
-        (roundScore, roundBags) = _CalcScore(playerBid, playerTricks);
+
+        // Anthony Personal Note
+        // If AI is in Cheat Mode Override "playerBid" -> "playerBid - 1" on EXACT MATCH
+        if (playerBid == playerTricks && AIManager.Instance.GetCanCheat(1))
+        {
+            (roundScore, roundBags) = _CalcScore(playerBid - 1, playerTricks);
+            AIManager.Instance.ToggleCheatSet(1, false);
+            Debug.Log("PlayerBid Cheat has been activated");
+        }
+        else
+        {
+            (roundScore, roundBags) = _CalcScore(playerBid, playerTricks);
+        }
+        // (roundScore, roundBags) = _CalcScore(playerBid, playerTricks);
+
         playerScore += roundScore;
         playerBags += roundBags;
         if(playerBags >= 10){
@@ -75,9 +89,30 @@ public class ScoreManager : MonoBehaviour
 
         (roundScore, roundBags) = _CalcScore(aiBid, aiTricks);
         aiScore += roundScore;
+
+        // Anthony Personal Note
+        // If AI is in Cheat Mode Override "roundBags" -> "0" when Bag penalty
+        if (roundBags > 0 && AIManager.Instance.GetCanCheat(1))
+        {
+            roundBags = 0;
+            AIManager.Instance.ToggleCheatSet(1, false);
+            Debug.Log("Override Bag Gain Cheat has been activated");
+        }
+
         aiBags += roundBags;
         if(aiBags >= 10){
-            aiScore -= 100;
+            // Anthony Personal Note
+            // If AI is in Cheat Mode Override aiScore to NOT lose 100 points
+            if (AIManager.Instance.GetCanCheat(1))
+            {     
+                AIManager.Instance.ToggleCheatSet(1, false);
+                Debug.Log("Override Bag penalty Cheat has been activated");
+            }
+            else
+            {
+                aiScore -= 100;
+            }
+            // aiScore -= 100;
             aiBags -= 10;
         }
 
@@ -101,9 +136,22 @@ public class ScoreManager : MonoBehaviour
         else{
             winningChar = Character.DEATH;
         }
-        
+
+        // Anthony Personal Note
+        // Check if Score checkpoints have been reached to activate AI Cheat Set if they have not already entered cheat phase
+        if (playerScore > 200 && !AIManager.Instance.GetHasEnteredCheatPhase(2))
+        {
+            AIManager.Instance.ToggleCheatSet(2, true);
+            Debug.Log("AI has entered Cheat Phase 2");
+        }
+        else if (playerScore > 100 && !AIManager.Instance.GetHasEnteredCheatPhase(1))
+        {
+            AIManager.Instance.ToggleCheatSet(1, true);
+            Debug.Log("AI has entered Cheat Phase 1");
+        }
+
         // If there is a Winner - End the game
-        if(CheckWin()){
+        if (CheckWin()){
             GameManager.Instance.EndGame(winningChar);
         }
         // Else: Reset GameManager counters, Swap Lead, and change phase to approriate Character

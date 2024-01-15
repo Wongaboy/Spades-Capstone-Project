@@ -67,7 +67,7 @@ public class PlayerManager : MonoBehaviour
         cardToDraft = GameManager.Instance.DrawCard();
         cardToDraft.MoveToLocation(displaySpot.position, displaySpot.rotation);
         cardToDraft.SetInteractable(true);
-        Debug.Log(cardToDraft);
+        // Debug.Log(cardToDraft);
     }
 
     // Function call to add a card to hand
@@ -118,6 +118,7 @@ public class PlayerManager : MonoBehaviour
         }
         return true;
     }
+
     #region "Turn Handling"
     // allow cards to be moveable again
     public void HandlePlayerTurn(){
