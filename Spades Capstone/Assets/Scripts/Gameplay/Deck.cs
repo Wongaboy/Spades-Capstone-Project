@@ -4,14 +4,13 @@ using UnityEngine;
 
 public class Deck : MonoBehaviour
 {
-    [SerializeField] 
-    GameObject deckObj; // maybe we do it this way?
     [SerializeField]
     public Card[] cardsInDeck;
+    [SerializeField]
+    private Transform deckSpot;
 
     private List<Card> cards;
     public static Suit[] intToSuit = { Suit.SPADE, Suit.DIAMOND, Suit.CLUB, Suit.HEART};
-    private const int numCards = 52;
     
     
     void Awake()
@@ -23,10 +22,10 @@ public class Deck : MonoBehaviour
         }
     }
 
-    // Randomize the order of cards in the deck
-    public void Shuffle()
+    // Randomize the order of cards in the deck, now with a cool animation
+    public IEnumerator Shuffle()
     {
-        System.Random shuffler = new System.Random();
+        System.Random shuffler = new();
         int currCard = cards.Count;
         while (currCard > 1)
         {
@@ -34,6 +33,11 @@ public class Deck : MonoBehaviour
             Card temp = cards[currCard];
             cards[currCard] = cards[nextCard];
             cards[nextCard] = temp;
+        }
+        for(int c = 51; c >= 0; c--)
+        {
+            cards[c].MoveToLocation(deckSpot.transform.position, deckSpot.transform.rotation, true);
+            yield return new WaitForSeconds(.1f);
         }
     }
 
