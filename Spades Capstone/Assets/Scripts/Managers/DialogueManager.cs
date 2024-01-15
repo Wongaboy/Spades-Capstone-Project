@@ -49,9 +49,9 @@ public class DialogueManager : MonoBehaviour
         dialogueTextBox.SetActive(false);
 
         // Enqueue Some Test Dialogues     
-        AddToDialogueQueue(tempDialogue);
-        AddToDialogueQueue(tempDialogue2);
-        AddToDialogueQueue(tempDialogue);
+        //AddToDialogueQueue(tempDialogue);
+        //AddToDialogueQueue(tempDialogue2);
+        //AddToDialogueQueue(tempDialogue);
     }
 
     // Testing Function to trigger StartDialogue()

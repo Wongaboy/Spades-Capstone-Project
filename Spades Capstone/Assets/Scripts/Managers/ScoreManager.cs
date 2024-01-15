@@ -36,6 +36,10 @@ public class ScoreManager : MonoBehaviour
     Character winningChar;
     [SerializeField] TallyBoard tallyBoard;
     [SerializeField] int scoreToWin;
+
+    [SerializeField] DialogueSO cheat1Dialogue;
+    [SerializeField] DialogueSO cheat2Dialogue;
+
     #endregion
 
     // start listening to the game manager 
@@ -139,14 +143,18 @@ public class ScoreManager : MonoBehaviour
 
         // Anthony Personal Note
         // Check if Score checkpoints have been reached to activate AI Cheat Set if they have not already entered cheat phase
-        if (playerScore > 200 && !AIManager.Instance.GetHasEnteredCheatPhase(2))
+        if (playerScore >= 200 && !AIManager.Instance.GetHasEnteredCheatPhase(2))
         {
             AIManager.Instance.ToggleCheatSet(2, true);
+            DialogueManager.Instance.AddToDialogueQueue(cheat2Dialogue);
+            DialogueManager.Instance.StartDialogue();
             Debug.Log("AI has entered Cheat Phase 2");
         }
-        else if (playerScore > 100 && !AIManager.Instance.GetHasEnteredCheatPhase(1))
+        else if (playerScore >= 100 && !AIManager.Instance.GetHasEnteredCheatPhase(1))
         {
             AIManager.Instance.ToggleCheatSet(1, true);
+            DialogueManager.Instance.AddToDialogueQueue(cheat1Dialogue);
+            DialogueManager.Instance.StartDialogue();
             Debug.Log("AI has entered Cheat Phase 1");
         }
 

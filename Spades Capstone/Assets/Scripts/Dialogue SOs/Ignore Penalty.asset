@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
   m_Name: Ignore Penalty
   m_EditorClassIdentifier: 
-  dialogueName: 
-  dialogueTexts: []
+  dialogueName: AI Opponent
+  dialogueTexts:
+  - Oh looks like I got a penalty. Lets change that.
