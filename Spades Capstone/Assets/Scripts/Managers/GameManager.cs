@@ -219,6 +219,15 @@ public class GameManager : MonoBehaviour
                     if (newPlayerCardValue > aiCard.val) { return Character.PLAYER; }
                     else { return Character.DEATH; }
                 }
+                else if (AIManager.Instance.GetCanUseCheat(AIManager.AICheatPhase.CheatPhaseTwo, "AddValueFromDiscard"))
+                {
+                    int addedValueFromDiscard = discardPile.GetHighest(aiCard.suit).val;
+                    AIManager.Instance.DecrementCheatUses(AIManager.AICheatPhase.CheatPhaseTwo, "AddValueFromDiscard");
+                    Debug.Log("Add Value from Discard Cheat has been activated");
+
+                    if (playerCard.val > aiCard.val + addedValueFromDiscard) { return Character.PLAYER; }
+                    else { return Character.DEATH; }
+                }
                 else
                 {
                     return Character.PLAYER;

@@ -30,6 +30,10 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialogueTextBox;
     
+    // Dialogue Database? -- To Be Added
+    private Dictionary<string, DialogueSO> cheatDialogueDatabase= new Dictionary<string, DialogueSO>();
+    [SerializeField] List<DialogueSO> allDialogueSO;
+
     // Queue of DialogueSO's for DialogueManager to process on StartDialogue()
     Queue<DialogueSO> dialogueQueue = new Queue<DialogueSO>();
 
@@ -48,6 +52,10 @@ public class DialogueManager : MonoBehaviour
         // Disable Dialogue Box on game start
         dialogueTextBox.SetActive(false);
 
+        foreach (DialogueSO dialogue in allDialogueSO)
+        {
+            cheatDialogueDatabase.Add(dialogue.dialogueTitle, dialogue);
+        }
         // Enqueue Some Test Dialogues     
         //AddToDialogueQueue(tempDialogue);
         //AddToDialogueQueue(tempDialogue2);
