@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private Deck deck;
     [SerializeField] private Transform discardSpot;
+    // private List<Card> discardPile = new List<Card>();
+    [SerializeField] private DiscardPile discardPile;
 
     [HideInInspector] public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
@@ -115,6 +117,9 @@ public class GameManager : MonoBehaviour
         numTurns = 0;
         playerCard = null;
         aiCard = null;
+
+        // discardPile.Clear();
+        discardPile.ClearDiscardPile();
     }
 
     // Calls Deck.DrawCard
@@ -130,6 +135,9 @@ public class GameManager : MonoBehaviour
         toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation, true);
         toDiscard.SetInteractable(false);
         // toDiscard.Unfreeze();
+
+        // discardPile.Add(toDiscard);
+        discardPile.AddCardToDiscardPile(toDiscard);
     }
 
     // Move a card from your hand to the discard pile
@@ -138,6 +146,9 @@ public class GameManager : MonoBehaviour
         toDiscard.MoveToLocation(discardSpot.position, discardSpot.rotation, true);
         toDiscard.SetInteractable(false);
         // toDiscard.Unfreeze(); -- this is now handled in MoveToLocation
+
+        // discardPile.Add(toDiscard);
+        discardPile.AddCardToDiscardPile(toDiscard);
     }
 
     // End the game - ending cutscene based on winner
@@ -199,11 +210,12 @@ public class GameManager : MonoBehaviour
             {
                 // Anthony Personal Note
                 // If AI is in Cheat Mode Override outcome and Randomize playerCard.val then recalculate results
-                if (AIManager.Instance.GetCanCheat(2))
+                if (AIManager.Instance.GetCanUseCheat(AIManager.AICheatPhase.CheatPhaseTwo, "RandomizePlayerCardValue"))
                 {
                     int newPlayerCardValue = UnityEngine.Random.Range(2, 14);
-                    AIManager.Instance.ToggleCheatSet(2, false);
+                    AIManager.Instance.DecrementCheatUses(AIManager.AICheatPhase.CheatPhaseTwo, "RandomizePlayerCardValue");
                     Debug.Log("Randomize Player Card Value Cheat has been activated");
+
                     if (newPlayerCardValue > aiCard.val) { return Character.PLAYER; }
                     else { return Character.DEATH; }
                 }

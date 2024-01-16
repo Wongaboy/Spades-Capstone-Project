@@ -1580,7 +1580,7 @@ Transform:
   - {fileID: 1377464760}
   - {fileID: 932626891}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &272770968
 MonoBehaviour:
@@ -5878,7 +5878,9 @@ MonoBehaviour:
   aiBid: 0
   tallyBoard: {fileID: 1947212006}
   scoreToWin: 300
+  cheatPhaseOnePointThreshold: 50
   cheat1Dialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
+  cheatPhaseTwoPointThreshold: 100
   cheat2Dialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
 --- !u!4 &967901203
 Transform:
@@ -7462,6 +7464,50 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4943949836771491717, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
   m_PrefabInstance: {fileID: 1205460914}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1209516722
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1209516724}
+  - component: {fileID: 1209516723}
+  m_Layer: 0
+  m_Name: DiscardPile
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1209516723
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209516722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cd362e77903ac443a8b220ce007f567, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1209516724
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1209516722}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.07154548, y: 0.7648269, z: -4.748842}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1260425791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8275,7 +8321,7 @@ Transform:
   - {fileID: 255448500}
   - {fileID: 722945933}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1418155876
 MonoBehaviour:
@@ -9751,6 +9797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deck: {fileID: 1409819721}
   discardSpot: {fileID: 1461858283}
+  discardPile: {fileID: 1209516723}
   currentPhase: 1
   lead: 0
   playerCard: {fileID: 0}
@@ -10311,7 +10358,7 @@ RectTransform:
   - {fileID: 863784750}
   - {fileID: 1592901205}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -11915,7 +11962,7 @@ Transform:
   - {fileID: 371693308}
   - {fileID: 244114954}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1964669279
 GameObject:

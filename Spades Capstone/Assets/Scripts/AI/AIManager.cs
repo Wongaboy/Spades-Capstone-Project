@@ -31,11 +31,30 @@ public class AIManager : MonoBehaviour
     // Tells if AI is leading the Trick
     private bool isTrickLead = true;
 
-    // Booleans to check is AI can use Cheats
+    // Booleans & Ints to check is AI can use Cheats -- To Be Changed
     private bool canCheatPhase1 = false;
     private bool HasEnteredPhase1 = false;
     private bool canCheatPhase2 = false;
     private bool HasEnteredPhase2 = false;
+    private int cheatsLeftPhaseOne = 1;
+    private int cheatsLeftPhaseTwo = 2;
+
+    public enum AICheatPhase { NoCheats, CheatPhaseOne, CheatPhaseTwo }
+    private AICheatPhase currentCheatPhase = AICheatPhase.NoCheats;
+
+    // AI Cheat Database
+    private Dictionary<string, bool> cheatSetOneDatabase = new Dictionary<string, bool>()
+    {
+        { "IgnorePenalty", true },
+        { "ChangeBid", true }
+    };
+
+    private Dictionary<string, bool> cheatSetTwoDatabase = new Dictionary<string, bool>()
+    {
+        { "RandomizePlayerCardValue", true },
+        { "ChoosePlayerCard", true },
+        { "AddValueFromDiscard", true }
+    };
 
     // private int currentBid; -- DEPRECATED
     // private Character thisCharacter = Character.DEATH; -- DEPRECATED
@@ -212,49 +231,55 @@ public class AIManager : MonoBehaviour
     }
 
     // Call with Cheat Phase to enable AI Cheats
-    public void ToggleCheatSet(int cheatPhaseNumber, bool canCheat)
+    public void ChangeCheatPhase(AICheatPhase cheatPhase)
     {
-        switch (cheatPhaseNumber)
+        currentCheatPhase = cheatPhase;
+    }
+
+    public void DecrementCheatUses(AICheatPhase cheatPhase, string cheatName)
+    {
+        switch (cheatPhase)
         {
-            case 1:
-                canCheatPhase1 = canCheat;
-                HasEnteredPhase1 = true;
+            case AICheatPhase.CheatPhaseOne:
+                cheatSetOneDatabase[cheatName] = false;
+                cheatsLeftPhaseOne--;
                 break;
-            case 2:
-                canCheatPhase2 = canCheat;
-                HasEnteredPhase2 = true;
+            // return canCheatPhase1;              
+            case AICheatPhase.CheatPhaseTwo:
+                cheatSetTwoDatabase[cheatName] = false;
+                cheatsLeftPhaseTwo--;
                 break;
+            // return canCheatPhase2;
+            default:
+                Debug.Log("Invalid Cheat Phase");
+                break;
+                
         }
     }
 
-    // Call to GET if AI can use cheats or not
-    public bool GetCanCheat(int cheatPhaseNumber)
+    // Call to GET if AI can use a given cheat or not
+    public bool GetCanUseCheat(AICheatPhase cheatPhase, string cheatName)
     {
-        switch (cheatPhaseNumber)
+        switch (cheatPhase)
         {
-            case 1:
-                return canCheatPhase1;              
-            case 2:
-                return canCheatPhase2;
+            case AICheatPhase.CheatPhaseOne:
+                if (currentCheatPhase != AICheatPhase.CheatPhaseOne || cheatsLeftPhaseOne <= 0) { return false; }
+                else { return cheatSetOneDatabase[cheatName]; }
+                // return canCheatPhase1;              
+            case AICheatPhase.CheatPhaseTwo:
+                if (currentCheatPhase != AICheatPhase.CheatPhaseTwo || cheatsLeftPhaseTwo <= 0) { return false; }
+                else { return cheatSetTwoDatabase[cheatName]; }
+            // return canCheatPhase2;
             default:
-                Debug.Log("Invalid integer");
+                Debug.Log("Invalid Cheat Phase");
                 return false;
         }
     }
 
-    // Call to GET if AI already changed cheat phases
-    public bool GetHasEnteredCheatPhase(int cheatPhaseNumber)
+    // Call to GET what Cheat Phase AI is currently at
+    public AICheatPhase GetCheatPhase()
     {
-        switch (cheatPhaseNumber)
-        {
-            case 1:
-                return HasEnteredPhase1;
-            case 2:
-                return HasEnteredPhase2;
-            default:
-                Debug.Log("Invalid integer");
-                return false;
-        }
+        return currentCheatPhase;
     }
     #endregion
 
