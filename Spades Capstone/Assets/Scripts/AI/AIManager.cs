@@ -32,10 +32,10 @@ public class AIManager : MonoBehaviour
     private bool isTrickLead = true;
 
     // Booleans & Ints to check is AI can use Cheats -- To Be Changed
-    private bool canCheatPhase1 = false;
-    private bool HasEnteredPhase1 = false;
-    private bool canCheatPhase2 = false;
-    private bool HasEnteredPhase2 = false;
+    //private bool canCheatPhase1 = false;
+    //private bool HasEnteredPhase1 = false;
+    //private bool canCheatPhase2 = false;
+    //private bool HasEnteredPhase2 = false;
     private int cheatsLeftPhaseOne = 1;
     private int cheatsLeftPhaseTwo = 2;
 

@@ -76,6 +76,11 @@ public class DialogueManager : MonoBehaviour
         dialogueQueue.Enqueue(dialogue);
     }
 
+    public void AddCheatDialogueToQueue(string dialogue)
+    {
+        dialogueQueue.Enqueue(cheatDialogueDatabase[dialogue]);
+    }
+
     // Starts Going through Queue of DialogueSO's
     public void StartDialogue()
     {

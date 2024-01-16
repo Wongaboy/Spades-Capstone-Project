@@ -4899,6 +4899,13 @@ MonoBehaviour:
   dialogueSpeakerName: {fileID: 1097922618}
   dialogueText: {fileID: 1188678892}
   dialogueTextBox: {fileID: 863784749}
+  allDialogueSO:
+  - {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
+  - {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
+  - {fileID: 11400000, guid: 557c9a2621e6ea646bad20f5324bc10c, type: 2}
+  - {fileID: 11400000, guid: 8cd7183e1adf95547b412db0090c59f6, type: 2}
+  - {fileID: 11400000, guid: 72ff5e6c131a03d408c2fa450f11b3a2, type: 2}
+  - {fileID: 11400000, guid: 3aa3400acaf6e0942beeabc91902b559, type: 2}
   tempDialogue: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
   tempDialogue2: {fileID: 11400000, guid: 01c4a3bdcc3592d4db691c93c2ad3ba0, type: 2}
 --- !u!4 &819685599
