@@ -214,7 +214,7 @@ public class GameManager : MonoBehaviour
                 {
                     int newPlayerCardValue = UnityEngine.Random.Range(2, 14);
                     AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, CheatName.RandomizePlayerCardValue);
-                    DialogueManager.Instance.AddCheatDialogueToQueue("RandomizeValue");
+                    DialogueManager.Instance.AddCheatDialogueToQueue("RandomizePlayerCardValue");
                     DialogueManager.Instance.StartDialogue();
                     Debug.Log("Randomize Player Card Value Cheat has been activated");
 
