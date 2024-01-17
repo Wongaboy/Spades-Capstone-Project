@@ -41,6 +41,17 @@ public class DiscardPile : MonoBehaviour
         return greatest;
     }
 
+    // Return true/false if AI can be a card in discard? -- NOT FINISHED
+    public bool CanBeatDiscard()
+    {
+        return false;
+    }
+    // Return card in Discard that can be beat by given card -- NOT FINISHED
+    public Card GetBeatableCard(Card card)
+    {
+        return card;
+    }
+
     public void ClearDiscardPile()
     {
         cardsInDiscardPile[Suit.CLUB].Clear();
