@@ -210,10 +210,10 @@ public class GameManager : MonoBehaviour
             {
                 // Anthony Personal Note
                 // If AI is in Cheat Mode Override outcome and Randomize playerCard.val then recalculate results
-                if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseTwo, "RandomizePlayerCardValue"))
+                if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseTwo, CheatName.RandomizePlayerCardValue))
                 {
                     int newPlayerCardValue = UnityEngine.Random.Range(2, 14);
-                    AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, "RandomizePlayerCardValue");
+                    AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, CheatName.RandomizePlayerCardValue);
                     DialogueManager.Instance.AddCheatDialogueToQueue("RandomizeValue");
                     DialogueManager.Instance.StartDialogue();
                     Debug.Log("Randomize Player Card Value Cheat has been activated");
@@ -221,10 +221,10 @@ public class GameManager : MonoBehaviour
                     if (newPlayerCardValue > aiCard.val) { return Character.PLAYER; }
                     else { return Character.DEATH; }
                 }
-                else if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseTwo, "AddValueFromDiscard"))
+                else if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseTwo, CheatName.AddValueFromDiscard))
                 {
                     int addedValueFromDiscard = discardPile.GetHighest(aiCard.suit).val;
-                    AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, "AddValueFromDiscard");
+                    AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, CheatName.AddValueFromDiscard);
                     DialogueManager.Instance.AddCheatDialogueToQueue("AddValueFromDiscard");
                     DialogueManager.Instance.StartDialogue();
                     Debug.Log("Add Value from Discard Cheat has been activated");

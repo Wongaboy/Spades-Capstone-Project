@@ -5,8 +5,7 @@ using TMPro;
 
 // Enums for Cheats
 public enum AICheatPhase { NoCheats, CheatPhaseOne, CheatPhaseTwo }
-public enum CheatNameSetOne { IgnorePenalty, ChangeBid }
-public enum CheatNameSetTwo { RandomizePlayerCardValue, ChoosePlayerCard, AddValueFromDiscard }
+public enum CheatName { IgnorePenalty, ChangeBid, RandomizePlayerCardValue, ChoosePlayerCard, AddValueFromDiscard }
 
 public class AIManager : MonoBehaviour
 {
@@ -43,17 +42,17 @@ public class AIManager : MonoBehaviour
     private AICheatPhase currentCheatPhase = AICheatPhase.NoCheats;
 
     // AI Cheat Database
-    private Dictionary<string, bool> cheatSetOneDatabase = new Dictionary<string, bool>()
+    private Dictionary<CheatName, bool> cheatSetOneDatabase = new Dictionary<CheatName, bool>()
     {
-        { "IgnorePenalty", true },
-        { "ChangeBid", true }
+        { CheatName.IgnorePenalty, true },
+        { CheatName.ChangeBid, true }
     };
 
-    private Dictionary<string, bool> cheatSetTwoDatabase = new Dictionary<string, bool>()
+    private Dictionary<CheatName, bool> cheatSetTwoDatabase = new Dictionary<CheatName, bool>()
     {
-        { "RandomizePlayerCardValue", true },
-        { "ChoosePlayerCard", true },
-        { "AddValueFromDiscard", true }
+        { CheatName.RandomizePlayerCardValue, true },
+        { CheatName.ChoosePlayerCard, true },
+        { CheatName.AddValueFromDiscard, true }
     };
 
     // private int currentBid; -- DEPRECATED
@@ -236,7 +235,7 @@ public class AIManager : MonoBehaviour
         currentCheatPhase = cheatPhase;
     }
 
-    public void DecrementCheatUses(AICheatPhase cheatPhase, string cheatName)
+    public void DecrementCheatUses(AICheatPhase cheatPhase, CheatName cheatName)
     {
         switch (cheatPhase)
         {
@@ -258,7 +257,7 @@ public class AIManager : MonoBehaviour
     }
 
     // Call to GET if AI can use a given cheat or not
-    public bool GetCanUseCheat(AICheatPhase cheatPhase, string cheatName)
+    public bool GetCanUseCheat(AICheatPhase cheatPhase, CheatName cheatName)
     {
         switch (cheatPhase)
         {

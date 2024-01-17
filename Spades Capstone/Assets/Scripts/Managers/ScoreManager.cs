@@ -74,10 +74,10 @@ public class ScoreManager : MonoBehaviour
 
         // Anthony Personal Note
         // If AI is in Cheat Mode Override "playerBid" -> "playerBid - 1" on EXACT MATCH
-        if (playerBid == playerTricks && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, "ChangeBid"))
+        if (playerBid == playerTricks && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, CheatName.ChangeBid))
         {
             (roundScore, roundBags) = _CalcScore(playerBid - 1, playerTricks);
-            AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, "ChangeBid");
+            AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, CheatName.ChangeBid);
             DialogueManager.Instance.AddCheatDialogueToQueue("ChangeBid");
             DialogueManager.Instance.StartDialogue();
             Debug.Log("PlayerBid Cheat has been activated");
@@ -100,10 +100,10 @@ public class ScoreManager : MonoBehaviour
 
         // Anthony Personal Note
         // If AI is in Cheat Mode Override "roundBags" -> "0" when Bag penalty
-        if (roundBags > 0 && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, "IgnorePenalty"))
+        if (roundBags > 0 && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty))
         {
             roundBags = 0;
-            AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, "IgnorePenalty");
+            AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty);
             DialogueManager.Instance.AddCheatDialogueToQueue("IgnorePenalty");
             DialogueManager.Instance.StartDialogue();
             Debug.Log("Override Bag Gain Cheat has been activated");
@@ -113,9 +113,9 @@ public class ScoreManager : MonoBehaviour
         if(aiBags >= 10){
             // Anthony Personal Note
             // If AI is in Cheat Mode Override aiScore to NOT lose 100 points
-            if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, "IgnorePenalty"))
+            if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty))
             {
-                AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, "IgnorePenalty");
+                AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty);
                 DialogueManager.Instance.AddCheatDialogueToQueue("IgnorePenalty");
                 DialogueManager.Instance.StartDialogue();
                 Debug.Log("Override Bag penalty Cheat has been activated");
