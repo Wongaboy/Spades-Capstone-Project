@@ -74,10 +74,10 @@ public class ScoreManager : MonoBehaviour
 
         // Anthony Personal Note
         // If AI is in Cheat Mode Override "playerBid" -> "playerBid - 1" on EXACT MATCH
-        if (playerBid == playerTricks && AIManager.Instance.GetCanUseCheat(AIManager.AICheatPhase.CheatPhaseOne, "ChangeBid"))
+        if (playerBid == playerTricks && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, "ChangeBid"))
         {
             (roundScore, roundBags) = _CalcScore(playerBid - 1, playerTricks);
-            AIManager.Instance.DecrementCheatUses(AIManager.AICheatPhase.CheatPhaseOne, "ChangeBid");
+            AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, "ChangeBid");
             DialogueManager.Instance.AddCheatDialogueToQueue("ChangeBid");
             DialogueManager.Instance.StartDialogue();
             Debug.Log("PlayerBid Cheat has been activated");
@@ -100,10 +100,10 @@ public class ScoreManager : MonoBehaviour
 
         // Anthony Personal Note
         // If AI is in Cheat Mode Override "roundBags" -> "0" when Bag penalty
-        if (roundBags > 0 && AIManager.Instance.GetCanUseCheat(AIManager.AICheatPhase.CheatPhaseOne, "IgnorePenalty"))
+        if (roundBags > 0 && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, "IgnorePenalty"))
         {
             roundBags = 0;
-            AIManager.Instance.DecrementCheatUses(AIManager.AICheatPhase.CheatPhaseOne, "IgnorePenalty");
+            AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, "IgnorePenalty");
             DialogueManager.Instance.AddCheatDialogueToQueue("IgnorePenalty");
             DialogueManager.Instance.StartDialogue();
             Debug.Log("Override Bag Gain Cheat has been activated");
@@ -113,9 +113,9 @@ public class ScoreManager : MonoBehaviour
         if(aiBags >= 10){
             // Anthony Personal Note
             // If AI is in Cheat Mode Override aiScore to NOT lose 100 points
-            if (AIManager.Instance.GetCanUseCheat(AIManager.AICheatPhase.CheatPhaseOne, "IgnorePenalty"))
+            if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, "IgnorePenalty"))
             {
-                AIManager.Instance.DecrementCheatUses(AIManager.AICheatPhase.CheatPhaseOne, "IgnorePenalty");
+                AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, "IgnorePenalty");
                 DialogueManager.Instance.AddCheatDialogueToQueue("IgnorePenalty");
                 DialogueManager.Instance.StartDialogue();
                 Debug.Log("Override Bag penalty Cheat has been activated");
@@ -153,9 +153,9 @@ public class ScoreManager : MonoBehaviour
         // Check if Score checkpoints have been reached to activate AI Cheat Set if they have not already entered cheat phase
         if (playerScore >= cheatPhaseTwoPointThreshold)
         {
-            if (AIManager.Instance.GetCheatPhase() != AIManager.AICheatPhase.CheatPhaseTwo) 
+            if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseTwo) 
             {
-                AIManager.Instance.ChangeCheatPhase(AIManager.AICheatPhase.CheatPhaseTwo);
+                AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseTwo);
                 // DialogueManager.Instance.AddToDialogueQueue(cheat2Dialogue);
                 DialogueManager.Instance.AddCheatDialogueToQueue("CheatPhaseTwo");
                 DialogueManager.Instance.StartDialogue();
@@ -165,9 +165,9 @@ public class ScoreManager : MonoBehaviour
         }
         else if (playerScore >= cheatPhaseOnePointThreshold)
         {
-            if (AIManager.Instance.GetCheatPhase() != AIManager.AICheatPhase.CheatPhaseOne)
+            if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseOne)
             {
-                AIManager.Instance.ChangeCheatPhase(AIManager.AICheatPhase.CheatPhaseOne);
+                AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseOne);
                 // DialogueManager.Instance.AddToDialogueQueue(cheat1Dialogue);
                 DialogueManager.Instance.AddCheatDialogueToQueue("CheatPhaseOne");
                 DialogueManager.Instance.StartDialogue();

@@ -3,6 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
+// Enums for Cheats
+public enum AICheatPhase { NoCheats, CheatPhaseOne, CheatPhaseTwo }
+public enum CheatNameSetOne { IgnorePenalty, ChangeBid }
+public enum CheatNameSetTwo { RandomizePlayerCardValue, ChoosePlayerCard, AddValueFromDiscard }
+
 public class AIManager : MonoBehaviour
 {
     #region "Singleton"
@@ -31,15 +36,10 @@ public class AIManager : MonoBehaviour
     // Tells if AI is leading the Trick
     private bool isTrickLead = true;
 
-    // Booleans & Ints to check is AI can use Cheats -- To Be Changed
-    //private bool canCheatPhase1 = false;
-    //private bool HasEnteredPhase1 = false;
-    //private bool canCheatPhase2 = false;
-    //private bool HasEnteredPhase2 = false;
+    // Cheat Tracker Variables
     private int cheatsLeftPhaseOne = 1;
     private int cheatsLeftPhaseTwo = 2;
 
-    public enum AICheatPhase { NoCheats, CheatPhaseOne, CheatPhaseTwo }
     private AICheatPhase currentCheatPhase = AICheatPhase.NoCheats;
 
     // AI Cheat Database
