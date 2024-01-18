@@ -57,7 +57,7 @@ public class DialogueManager : MonoBehaviour
             cheatDialogueDatabase.Add(dialogue.dialogueTitle, dialogue);
         }
         // Enqueue Some Test Dialogues     
-        //AddToDialogueQueue(tempDialogue);
+        AddToDialogueQueue(tempDialogue);
         //AddToDialogueQueue(tempDialogue2);
         //AddToDialogueQueue(tempDialogue);
     }
