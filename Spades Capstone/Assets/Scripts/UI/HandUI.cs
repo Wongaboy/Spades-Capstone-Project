@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,14 +10,17 @@ public class HandUI : MonoBehaviour
     private Transform[] cardPositions;
     [SerializeField]
     private Transform tableSpot;
-
+    [SerializeField]
+    private Character handOwner;
     private List<Card> cardObjs;
     private static int[] draftIndexOrder = { 6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 11, 0, 12 };
 
     public void Start()
     {
         cardObjs = new List<Card>();
-        CardInteraction.OnCardFinMove += SortHand;
+        if(handOwner != Character.DEATH){
+            CardInteraction.OnCardFinMove += SortHand;
+        }
     }
 
 
