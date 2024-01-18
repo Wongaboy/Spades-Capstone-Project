@@ -58,7 +58,7 @@ public class DialogueManager : MonoBehaviour
         }
         // Enqueue Some Test Dialogues     
         AddToDialogueQueue(tempDialogue);
-        //AddToDialogueQueue(tempDialogue2);
+        AddToDialogueQueue(tempDialogue2);
         //AddToDialogueQueue(tempDialogue);
     }
 
