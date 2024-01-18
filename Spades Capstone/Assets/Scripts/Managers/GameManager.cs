@@ -44,7 +44,6 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int numDraftTurns = 0;
     [HideInInspector] public int numTurns = 0;
 
-    [SerializeField] private TMP_Text phase_text;
     #endregion
 
     // Start is called before the first frame update
@@ -62,7 +61,8 @@ public class GameManager : MonoBehaviour
         
         // Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
         currentPhase = newPhase;
-        UpdatePhaseName(currentPhase);
+        // UpdatePhaseName(currentPhase); - no longer necessary
+        Debug.Log(newPhase);
 
         switch (newPhase)
         {
@@ -290,12 +290,6 @@ public class GameManager : MonoBehaviour
         }
         */ 
         return trickWinner;
-    }
-
-    // Update UI with new Phase Name
-    private void UpdatePhaseName(Phase newPhase)
-    {
-        phase_text.text = newPhase.ToString();
     }
 
     // Changes Internal Player/AI Manager Lead variable (Is used to check who leads a Trick, NOT the Draft or Bid)
