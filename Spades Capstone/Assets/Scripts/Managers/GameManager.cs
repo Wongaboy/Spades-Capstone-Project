@@ -280,6 +280,15 @@ public class GameManager : MonoBehaviour
             // return Character.DEATH; // same as above
         }
 
+        // If the trickWinner == Character.PLAYER then AI uses the replace Player Card Cheat
+        /*
+        if (trickWinner == Character.PLAYER)
+        {
+            // Check if AI can beat its own card
+            // Get AI's lowest card beatable card in hand (Not sure of the heuristics to pick card; What suit? Does it matter?)
+            // Give AI another card from discard
+        }
+        */ 
         return trickWinner;
     }
 
