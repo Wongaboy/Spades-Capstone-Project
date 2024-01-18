@@ -49,6 +49,8 @@ public class DiscardPile : MonoBehaviour
     // Return card in Discard that can be beat by given card -- NOT FINISHED
     public Card GetBeatableCard(Card card)
     {
+        // If card to beat is a SPADE
+        // Else if there is a higher
         return card;
     }
 

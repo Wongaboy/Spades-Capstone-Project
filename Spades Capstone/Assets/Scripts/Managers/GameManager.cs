@@ -204,9 +204,14 @@ public class GameManager : MonoBehaviour
     // Implement the rules of trick taking
     private Character DetermineTrickWinner()
     {
+        Character trickWinner;
         if(playerCard.suit == aiCard.suit) // if lead was followed, the higher value card wins
         {
-            if(playerCard.val > aiCard.val)
+            if (playerCard.val < aiCard.val) {
+                trickWinner = Character.DEATH;
+            }
+            //if(playerCard.val > aiCard.val)
+            else
             {
                 // Anthony Personal Note
                 // If AI is in Cheat Mode Override outcome and Randomize playerCard.val then recalculate results
@@ -218,8 +223,14 @@ public class GameManager : MonoBehaviour
                     DialogueManager.Instance.StartDialogue();
                     Debug.Log("Randomize Player Card Value Cheat has been activated");
 
-                    if (newPlayerCardValue > aiCard.val) { return Character.PLAYER; }
-                    else { return Character.DEATH; }
+                    if (newPlayerCardValue > aiCard.val) {
+                        trickWinner = Character.PLAYER;
+                        // return Character.PLAYER; 
+                    }
+                    else {
+                        trickWinner = Character.DEATH;
+                        // return Character.DEATH; 
+                    }
                 }
                 else if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseTwo, CheatName.AddValueFromDiscard))
                 {
@@ -229,35 +240,47 @@ public class GameManager : MonoBehaviour
                     DialogueManager.Instance.StartDialogue();
                     Debug.Log("Add Value from Discard Cheat has been activated");
 
-                    if (playerCard.val > aiCard.val + addedValueFromDiscard) { return Character.PLAYER; }
-                    else { return Character.DEATH; }
+                    if (playerCard.val > aiCard.val + addedValueFromDiscard) {
+                        trickWinner = Character.PLAYER;
+                        // return Character.PLAYER; 
+                    }
+                    else {
+                        trickWinner = Character.DEATH;
+                        // return Character.DEATH;
+                    }
                 }
                 else
                 {
-                    return Character.PLAYER;
+                    trickWinner = Character.PLAYER;
+                    // return Character.PLAYER;
                 }
-                // return Character.PLAYER;
             }
-            return Character.DEATH;
+            // return Character.DEATH;
         }
         else if(playerCard.suit == Suit.SPADE) // if lead suit was not followed, spades always wins
         {
             spadesBroken = true;
-            return Character.PLAYER;
+            trickWinner = Character.PLAYER;
+            // return Character.PLAYER;
         }
         else if(aiCard.suit == Suit.SPADE) // same as above
         {
-            spadesBroken = true;   
-            return Character.DEATH;
+            spadesBroken = true;
+            trickWinner = Character.DEATH;
+            // return Character.DEATH;
         }
         else if(PlayerManager.Instance.isLead) // if lead suit was not followed and a spade was not played, lead wins
         {
-            return Character.PLAYER;
+            trickWinner = Character.PLAYER;
+            // return Character.PLAYER;
         }
         else
         {
-            return Character.DEATH; // same as above
+            trickWinner = Character.DEATH;
+            // return Character.DEATH; // same as above
         }
+
+        return trickWinner;
     }
 
     // Update UI with new Phase Name
