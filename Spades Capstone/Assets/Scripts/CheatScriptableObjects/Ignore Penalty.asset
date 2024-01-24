@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Ignore Penalty
   m_EditorClassIdentifier: 
   cheatName: IgnorePenalty
+  cheatEnumName: 0
   canUse: 1
-  cheatDialogue: {fileID: 0}
+  cheatDialogue: {fileID: 11400000, guid: 557c9a2621e6ea646bad20f5324bc10c, type: 2}

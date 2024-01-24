@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: Randomize Value
+  m_Script: {fileID: 11500000, guid: 65be3e69e17ab56468d9139003f5bfa9, type: 3}
+  m_Name: AddValueFromDiscard
   m_EditorClassIdentifier: 
-  dialogueTitle: RandomizePlayerCardValue
-  dialogueName: AI Opponent
-  dialogueTexts:
-  - I think you have the wrong number there. Lets fix that.
+  cheatName: AddValueFromDiscard
+  cheatEnumName: 4
+  canUse: 1
+  cheatDialogue: {fileID: 11400000, guid: 3aa3400acaf6e0942beeabc91902b559, type: 2}

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65be3e69e17ab56468d9139003f5bfa9, type: 3}
   m_Name: Change Bid
   m_EditorClassIdentifier: 
-  cheatName: IgnorePenalty
+  cheatName: ChangeBid
+  cheatEnumName: 1
   canUse: 1
-  cheatDialogue: {fileID: 0}
+  cheatDialogue: {fileID: 11400000, guid: 8cd7183e1adf95547b412db0090c59f6, type: 2}
