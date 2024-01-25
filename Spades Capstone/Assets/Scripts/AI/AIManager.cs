@@ -54,9 +54,6 @@ public class AIManager : MonoBehaviour
         { CheatName.ChoosePlayerCard, true },
         { CheatName.AddValueFromDiscard, true }
     };
-
-    // private int currentBid; -- DEPRECATED
-    // private Character thisCharacter = Character.DEATH; -- DEPRECATED
     #endregion
 
     // Start is called before the first frame update

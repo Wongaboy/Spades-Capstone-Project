@@ -15,4 +15,4 @@ MonoBehaviour:
   dialogueTitle: RandomizePlayerCardValue
   dialogueName: AI Opponent
   dialogueTexts:
-  - I think you have the wrong number there. Lets fix that.
+  - "We can\u2019t have you winning that easily. We\u2019ll let fate decide."

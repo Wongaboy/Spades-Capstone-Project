@@ -210,87 +210,63 @@ public class GameManager : MonoBehaviour
             if (playerCard.val < aiCard.val) {
                 trickWinner = Character.DEATH;
             }
-            //if(playerCard.val > aiCard.val)
             else
             {
-                // Anthony Personal Note
                 // If AI is in Cheat Mode Override outcome and Randomize playerCard.val then recalculate results
                 if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseTwo, CheatName.RandomizePlayerCardValue))
                 {
                     int newPlayerCardValue = UnityEngine.Random.Range(2, 14);
                     AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, CheatName.RandomizePlayerCardValue);
                     DialogueManager.Instance.AddCheatDialogue(CheatName.IgnorePenalty, true);
-                    //DialogueManager.Instance.AddCheatDialogueToQueue("RandomizePlayerCardValue");
-                    //DialogueManager.Instance.StartDialogue();
                     Debug.Log("Randomize Player Card Value Cheat has been activated");
 
                     if (newPlayerCardValue > aiCard.val) {
                         trickWinner = Character.PLAYER;
-                        // return Character.PLAYER; 
                     }
                     else {
                         trickWinner = Character.DEATH;
-                        // return Character.DEATH; 
                     }
                 }
+                // If can use Add Value From Discard Cheat, do procedures and recalculate
                 else if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseTwo, CheatName.AddValueFromDiscard))
                 {
                     int addedValueFromDiscard = discardPile.GetHighest(aiCard.suit).val;
                     AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, CheatName.AddValueFromDiscard);
                     DialogueManager.Instance.AddCheatDialogue(CheatName.AddValueFromDiscard, true);
-                    // DialogueManager.Instance.AddCheatDialogueToQueue("AddValueFromDiscard");
-                    // DialogueManager.Instance.StartDialogue();
                     Debug.Log("Add Value from Discard Cheat has been activated");
 
                     if (playerCard.val > aiCard.val + addedValueFromDiscard) {
                         trickWinner = Character.PLAYER;
-                        // return Character.PLAYER; 
                     }
                     else {
                         trickWinner = Character.DEATH;
-                        // return Character.DEATH;
                     }
                 }
                 else
                 {
                     trickWinner = Character.PLAYER;
-                    // return Character.PLAYER;
                 }
             }
-            // return Character.DEATH;
         }
         else if(playerCard.suit == Suit.SPADE) // if lead suit was not followed, spades always wins
         {
             spadesBroken = true;
             trickWinner = Character.PLAYER;
-            // return Character.PLAYER;
         }
         else if(aiCard.suit == Suit.SPADE) // same as above
         {
             spadesBroken = true;
             trickWinner = Character.DEATH;
-            // return Character.DEATH;
         }
         else if(PlayerManager.Instance.isLead) // if lead suit was not followed and a spade was not played, lead wins
         {
             trickWinner = Character.PLAYER;
-            // return Character.PLAYER;
         }
         else
         {
-            trickWinner = Character.DEATH;
-            // return Character.DEATH; // same as above
+            trickWinner = Character.DEATH; // same as above
         }
 
-        // If the trickWinner == Character.PLAYER then AI uses the replace Player Card Cheat
-        /*
-        if (trickWinner == Character.PLAYER)
-        {
-            // Check if AI can beat its own card
-            // Get AI's lowest card beatable card in hand (Not sure of the heuristics to pick card; What suit? Does it matter?)
-            // Give AI another card from discard
-        }
-        */ 
         return trickWinner;
     }
 

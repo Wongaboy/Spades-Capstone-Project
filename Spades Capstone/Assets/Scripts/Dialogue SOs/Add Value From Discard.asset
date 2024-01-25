@@ -15,5 +15,5 @@ MonoBehaviour:
   dialogueTitle: AddValueFromDiscard
   dialogueName: AI Opponent
   dialogueTexts:
-  - Oh looks like my card is a lower value.
+  - "I won\u2019t let this end."
   - Well, let us see if our friends from the discard pile have anything to say.
