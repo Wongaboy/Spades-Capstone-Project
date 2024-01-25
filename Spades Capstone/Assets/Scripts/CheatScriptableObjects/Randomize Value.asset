@@ -9,10 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: Ignore Penalty
+  m_Script: {fileID: 11500000, guid: 65be3e69e17ab56468d9139003f5bfa9, type: 3}
+  m_Name: Randomize Value
   m_EditorClassIdentifier: 
-  dialogueTitle: IgnorePenalty
-  dialogueName: AI Opponent
-  dialogueTexts:
-  - "You\u2019ll forgive this old soul\u2019s mistakes, won\u2019t you?"
+  cheatName: RandomizePlayerCardValue
+  cheatEnumName: 2
+  canUse: 1
+  cheatDialogue: {fileID: 11400000, guid: 72ff5e6c131a03d408c2fa450f11b3a2, type: 2}

@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: Add Discard Value
+  m_Name: RandomPlayerWin
   m_EditorClassIdentifier: 
-  dialogueTitle: AddValueFromDiscard
-  dialogueName: AI Opponent
+  dialogueTitle: RandomPlayerWin
+  dialogueName: AI
   dialogueTexts:
-  - Oh looks like my card is a lower value.
-  - Well, let us see if our friends from the discard pile have anything to say.
+  - Seems like Lady Luck has taken a shine to you.

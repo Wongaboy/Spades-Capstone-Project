@@ -37,10 +37,10 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] TallyBoard tallyBoard;
     [SerializeField] int scoreToWin;
 
-    [SerializeField] int cheatPhaseOnePointThreshold;
-    [SerializeField] DialogueSO cheat1Dialogue;
-    [SerializeField] int cheatPhaseTwoPointThreshold;
-    [SerializeField] DialogueSO cheat2Dialogue;
+    [SerializeField] int phaseOnePointThreshold;
+    [SerializeField] DialogueSO phaseOneDialogue;
+    [SerializeField] int phaseTwoPointThreshold;
+    [SerializeField] DialogueSO phaseTwoDialogue;
 
     #endregion
 
@@ -72,21 +72,18 @@ public class ScoreManager : MonoBehaviour
         int roundScore;
         int roundBags;
 
-        // Anthony Personal Note
         // If AI is in Cheat Mode Override "playerBid" -> "playerBid - 1" on EXACT MATCH
         if (playerBid == playerTricks && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, CheatName.ChangeBid))
         {
             (roundScore, roundBags) = _CalcScore(playerBid - 1, playerTricks);
             AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, CheatName.ChangeBid);
-            DialogueManager.Instance.AddCheatDialogueToQueue("ChangeBid");
-            DialogueManager.Instance.StartDialogue();
-            Debug.Log("PlayerBid Cheat has been activated");
+            DialogueManager.Instance.AddCheatDialogue(CheatName.ChangeBid, true);
+            Debug.Log("ChangeBid Cheat has been activated");
         }
         else
         {
             (roundScore, roundBags) = _CalcScore(playerBid, playerTricks);
         }
-        // (roundScore, roundBags) = _CalcScore(playerBid, playerTricks);
 
         playerScore += roundScore;
         playerBags += roundBags;
@@ -98,33 +95,25 @@ public class ScoreManager : MonoBehaviour
         (roundScore, roundBags) = _CalcScore(aiBid, aiTricks);
         aiScore += roundScore;
 
-        // Anthony Personal Note
         // If AI is in Cheat Mode Override "roundBags" -> "0" when Bag penalty
         if (roundBags > 0 && AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty))
         {
             roundBags = 0;
             AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty);
-            DialogueManager.Instance.AddCheatDialogueToQueue("IgnorePenalty");
-            DialogueManager.Instance.StartDialogue();
+            DialogueManager.Instance.AddCheatDialogue(CheatName.IgnorePenalty, true);
             Debug.Log("Override Bag Gain Cheat has been activated");
         }
 
         aiBags += roundBags;
         if(aiBags >= 10){
-            // Anthony Personal Note
             // If AI is in Cheat Mode Override aiScore to NOT lose 100 points
             if (AIManager.Instance.GetCanUseCheat(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty))
             {
                 AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseOne, CheatName.IgnorePenalty);
-                DialogueManager.Instance.AddCheatDialogueToQueue("IgnorePenalty");
-                DialogueManager.Instance.StartDialogue();
+                DialogueManager.Instance.AddCheatDialogue(CheatName.IgnorePenalty, true);
                 Debug.Log("Override Bag penalty Cheat has been activated");
             }
-            else
-            {
-                aiScore -= 100;
-            }
-            // aiScore -= 100;
+            else { aiScore -= 100; }
             aiBags -= 10;
         }
 
@@ -149,27 +138,24 @@ public class ScoreManager : MonoBehaviour
             winningChar = Character.DEATH;
         }
 
-        // Anthony Personal Note
-        // Check if Score checkpoints have been reached to activate AI Cheat Set if they have not already entered cheat phase
-        if (playerScore >= cheatPhaseTwoPointThreshold)
+        // Check if Score checkpoints have been reached to activate AI Cheats & Check if already in said phase
+        if (playerScore >= phaseTwoPointThreshold)
         {
             if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseTwo) 
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseTwo);
-                // DialogueManager.Instance.AddToDialogueQueue(cheat2Dialogue);
-                DialogueManager.Instance.AddCheatDialogueToQueue("CheatPhaseTwo");
+                DialogueManager.Instance.EnqueueDialogueSO(phaseTwoDialogue);
                 DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 2");
             }
             
         }
-        else if (playerScore >= cheatPhaseOnePointThreshold)
+        else if (playerScore >= phaseOnePointThreshold)
         {
             if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseOne)
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseOne);
-                // DialogueManager.Instance.AddToDialogueQueue(cheat1Dialogue);
-                DialogueManager.Instance.AddCheatDialogueToQueue("CheatPhaseOne");
+                DialogueManager.Instance.EnqueueDialogueSO(phaseOneDialogue);
                 DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 1");
             }

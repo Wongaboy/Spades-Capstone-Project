@@ -4476,15 +4476,13 @@ MonoBehaviour:
   dialogueSpeakerName: {fileID: 1066918783}
   dialogueText: {fileID: 1849219193}
   dialogueTextBox: {fileID: 711308208}
-  allDialogueSO:
-  - {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
-  - {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
-  - {fileID: 11400000, guid: 557c9a2621e6ea646bad20f5324bc10c, type: 2}
-  - {fileID: 11400000, guid: 8cd7183e1adf95547b412db0090c59f6, type: 2}
-  - {fileID: 11400000, guid: 72ff5e6c131a03d408c2fa450f11b3a2, type: 2}
-  - {fileID: 11400000, guid: 3aa3400acaf6e0942beeabc91902b559, type: 2}
-  tempDialogue: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
-  tempDialogue2: {fileID: 11400000, guid: 01c4a3bdcc3592d4db691c93c2ad3ba0, type: 2}
+  phaseOneDialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
+  phaseTwoDialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
+  allCheatSO:
+  - {fileID: 11400000, guid: 85fcbfeda86c1e4428c0550778d8fda8, type: 2}
+  - {fileID: 11400000, guid: 6abc69a390e7a6e43a5c415e3f3f22d4, type: 2}
+  - {fileID: 11400000, guid: ca4c7ecc9aaaccf42ad8a0dd231d459e, type: 2}
+  - {fileID: 11400000, guid: 4030da85056bf4b4b9e06d44a3d0d33e, type: 2}
 --- !u!4 &819685599
 Transform:
   m_ObjectHideFlags: 0
@@ -5462,10 +5460,10 @@ MonoBehaviour:
   aiBid: 0
   tallyBoard: {fileID: 1947212006}
   scoreToWin: 300
-  cheatPhaseOnePointThreshold: 50
-  cheat1Dialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
-  cheatPhaseTwoPointThreshold: 100
-  cheat2Dialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
+  phaseOnePointThreshold: 50
+  phaseOneDialogue: {fileID: 0}
+  phaseTwoPointThreshold: 100
+  phaseTwoDialogue: {fileID: 0}
 --- !u!4 &967901203
 Transform:
   m_ObjectHideFlags: 0

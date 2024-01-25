@@ -15,4 +15,5 @@ MonoBehaviour:
   dialogueTitle: ChangeBid
   dialogueName: AI Opponent
   dialogueTexts:
-  - What was your bid? Oh right its this now.
+  - "Oh, did I misunderstand? My mind isn\u2019t as sharp as it used to be. Let's
+    just continue with the game. *Chuckles*"

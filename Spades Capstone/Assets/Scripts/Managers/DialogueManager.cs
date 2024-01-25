@@ -29,17 +29,18 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TMP_Text dialogueSpeakerName;
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialogueTextBox;
-    
+
     // Dialogue Database? -- To Be Added
-    private Dictionary<string, DialogueSO> cheatDialogueDatabase= new Dictionary<string, DialogueSO>();
-    [SerializeField] List<DialogueSO> allDialogueSO;
+    [SerializeField] DialogueSO phaseOneDialogue;
+    [SerializeField] DialogueSO phaseTwoDialogue;
+
+    //private Dictionary<string, DialogueSO> dialogueDatabase= new Dictionary<string, DialogueSO>();
+    //[SerializeField] List<DialogueSO> allDialogueSO;
+    private Dictionary<CheatName, DialogueSO> cheatDialogueDatabase = new Dictionary<CheatName, DialogueSO>();
+    [SerializeField] List<CheatSO> allCheatSO;
 
     // Queue of DialogueSO's for DialogueManager to process on StartDialogue()
     Queue<DialogueSO> dialogueQueue = new Queue<DialogueSO>();
-
-    // Temp Dialogue to test
-    [SerializeField] DialogueSO tempDialogue;
-    [SerializeField] DialogueSO tempDialogue2;
 
     // Current DialogueSO "Manager" is working with
     DialogueSO currentDialogue;
@@ -52,33 +53,40 @@ public class DialogueManager : MonoBehaviour
         // Disable Dialogue Box on game start
         dialogueTextBox.SetActive(false);
 
-        foreach (DialogueSO dialogue in allDialogueSO)
+        foreach (CheatSO cheat in allCheatSO)
         {
-            cheatDialogueDatabase.Add(dialogue.dialogueTitle, dialogue);
+            cheatDialogueDatabase.Add(cheat.cheatEnumName, cheat.cheatDialogue);
         }
-        // Enqueue Some Test Dialogues     
-        AddToDialogueQueue(tempDialogue);
-        AddToDialogueQueue(tempDialogue2);
-        //AddToDialogueQueue(tempDialogue);
     }
 
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
-        if (dialogueQueue.Count <= 0) { Debug.Log("Nothing in Queue"); }
-        else {
-            StartDialogue();
+        EnqueueDialogueSO(phaseOneDialogue);
+        EnqueueDialogueSO(phaseTwoDialogue);
+
+        if (dialogueQueue.Count <= 0) { Debug.Log("nothing in queue"); }
+        else
+        {
+            AddCheatDialogue(CheatName.ChangeBid, false);
+            AddCheatDialogue(CheatName.IgnorePenalty, false);
+            AddCheatDialogue(CheatName.RandomizePlayerCardValue, false);
+            AddCheatDialogue(CheatName.AddValueFromDiscard, true);
         }
+        // StartDialogue();
     }
 
-    public void AddToDialogueQueue(DialogueSO dialogue)
+    // Given Cheatname will add Dialogue to queue & can be told to trigger dialogue immedietly
+    public void AddCheatDialogue(CheatName cheatname, bool triggerNow)
+    {
+        dialogueQueue.Enqueue(cheatDialogueDatabase[cheatname]);
+        if (triggerNow == true) { StartDialogue(); }
+    }
+
+    // Enqueue any DialogueSO into queue
+    public void EnqueueDialogueSO(DialogueSO dialogue)
     {
         dialogueQueue.Enqueue(dialogue);
-    }
-
-    public void AddCheatDialogueToQueue(string dialogue)
-    {
-        dialogueQueue.Enqueue(cheatDialogueDatabase[dialogue]);
     }
 
     // Starts Going through Queue of DialogueSO's

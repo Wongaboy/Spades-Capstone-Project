@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: Randomize Value
+  m_Name: Add Value From Discard
   m_EditorClassIdentifier: 
-  dialogueTitle: RandomizePlayerCardValue
+  dialogueTitle: AddValueFromDiscard
   dialogueName: AI Opponent
   dialogueTexts:
-  - I think you have the wrong number there. Lets fix that.
+  - "I won\u2019t let this end."
+  - Well, let us see if our friends from the discard pile have anything to say.
