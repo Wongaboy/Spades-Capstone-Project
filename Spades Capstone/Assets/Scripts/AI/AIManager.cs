@@ -136,7 +136,7 @@ public class AIManager : MonoBehaviour
         }
 
         // Anthony Test Code just so Bids are not very low
-        bidEstimate += aiHand.NumOfSuit(Suit.SPADE);
+        bidEstimate += aiHand.NumOfSuit(Suit.SPADE)/2;
         // currentBid = (int)bidEstimate; -- DEPRECATED
 
         return (int)bidEstimate; 
