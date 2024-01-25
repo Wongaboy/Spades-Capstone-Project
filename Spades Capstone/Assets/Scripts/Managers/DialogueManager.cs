@@ -76,12 +76,14 @@ public class DialogueManager : MonoBehaviour
         // StartDialogue();
     }
 
+    // Given Cheatname will add Dialogue to queue & can be told to trigger dialogue immedietly
     public void AddCheatDialogue(CheatName cheatname, bool triggerNow)
     {
         dialogueQueue.Enqueue(cheatDialogueDatabase[cheatname]);
         if (triggerNow == true) { StartDialogue(); }
     }
 
+    // Enqueue any DialogueSO into queue
     public void EnqueueDialogueSO(DialogueSO dialogue)
     {
         dialogueQueue.Enqueue(dialogue);
