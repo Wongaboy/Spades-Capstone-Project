@@ -35,7 +35,7 @@ public class Deck : MonoBehaviour
             cards[nextCard] = temp;
         }
         // Solution? to card falling through table
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         for(int c = 51; c >= 0; c--)
         {
             cards[c].MoveToLocation(deckSpot.transform.position, deckSpot.transform.rotation, true);

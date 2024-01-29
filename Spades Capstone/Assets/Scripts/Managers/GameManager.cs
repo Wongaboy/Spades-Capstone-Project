@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int numDraftTurns = 0;
     [HideInInspector] public int numTurns = 0;
 
+    // [SerializeReference] private GameObject startGameButton;
     #endregion
 
     // Start is called before the first frame update
@@ -52,13 +53,13 @@ public class GameManager : MonoBehaviour
         // Initialize game components
         lead = Character.DEATH; // Death always goes first for tutorial
 
-        StartCoroutine(deck.Shuffle());
+        // StartCoroutine(deck.Shuffle());
+        StartCoroutine(AltStartGame());
     }
 
     // Called to move through phases of the game
     public void ChangePhase(Phase newPhase)
     {
-        
         // Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
         currentPhase = newPhase;
         // UpdatePhaseName(currentPhase); - no longer necessary
@@ -287,19 +288,20 @@ public class GameManager : MonoBehaviour
 
     #endregion
 
-    #region "Debugging"
-
-    //Testing Functions (Switch to PlayerDraft or AIDraft)
-    public void TestPDraft()
+    #region "Temporary Functions"
+    public void StartGame()
     {
-        ChangePhase(Phase.PLAYERDRAFT);
-    }
-
-    public void TestD_Draft()
-    {
+        // startGameButton.SetActive(false);
         ChangePhase(Phase.AIDRAFT);
     }
 
+    public IEnumerator AltStartGame()
+    {
+        // startGameButton.SetActive(false);
+        StartCoroutine(deck.Shuffle());
+        yield return new WaitForSeconds(10f);
+        ChangePhase(Phase.AIDRAFT);
+    }
     #endregion
 }
 public enum Phase { PLAYERDRAFT, AIDRAFT, ENDOFDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING };
