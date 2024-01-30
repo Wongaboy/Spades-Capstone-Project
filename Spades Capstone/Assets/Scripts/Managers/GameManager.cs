@@ -98,6 +98,8 @@ public class GameManager : MonoBehaviour
                 break;
             case Phase.ENDING:
                 break;
+            case Phase.DIALOGUERESOLVE:
+                break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
         }
@@ -304,5 +306,5 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 }
-public enum Phase { PLAYERDRAFT, AIDRAFT, ENDOFDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING };
+public enum Phase { PLAYERDRAFT, AIDRAFT, ENDOFDRAFT, PLAYERBID, AIBID, ENDOFTRICK, PLAYERTURN, AITURN, SCORING, ENDING, DIALOGUERESOLVE };
 public enum Character { DEATH, PLAYER };

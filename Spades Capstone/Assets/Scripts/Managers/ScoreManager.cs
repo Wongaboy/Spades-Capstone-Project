@@ -170,7 +170,7 @@ public class ScoreManager : MonoBehaviour
         {
             yield return new WaitForSeconds(1);
             GameManager.Instance.ResetGM();
-            yield return new WaitForSeconds(6.2f); // wait long enough for the game manager to fully reset before moving to draft phase
+            yield return new WaitForSeconds(8.2f); // wait long enough for the game manager to fully reset before moving to draft phase
             GameManager.Instance.SwapLead();
             if (GameManager.Instance.lead == Character.DEATH)
             {            
