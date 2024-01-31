@@ -820,6 +820,10 @@ PrefabInstance:
       value: King of Diamonds
       objectReference: {fileID: 0}
     - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1656315445, guid: bbe06b8b6e130c24785bee36a2cf58cc, type: 3}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
@@ -4339,6 +4343,10 @@ PrefabInstance:
       value: King of Hearts
       objectReference: {fileID: 0}
     - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1940970821, guid: 9d8b119a2dc5da844b9e00fda9681d59, type: 3}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
@@ -5422,6 +5430,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Queen of Diamonds
       objectReference: {fileID: 0}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1656315445, guid: bbe06b8b6e130c24785bee36a2cf58cc, type: 3}
     - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -6875,6 +6887,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Jack of Spades
       objectReference: {fileID: 0}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 902368789, guid: 8826ff8048013e941a9e2527c3f9993d, type: 3}
     - target: {fileID: 4943949836771491717, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -8666,6 +8682,10 @@ PrefabInstance:
       value: Queen of Hearts
       objectReference: {fileID: 0}
     - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1940970821, guid: 9d8b119a2dc5da844b9e00fda9681d59, type: 3}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
@@ -9534,6 +9554,10 @@ PrefabInstance:
       propertyPath: m_text
       value: King of Spades
       objectReference: {fileID: 0}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 902368789, guid: 8826ff8048013e941a9e2527c3f9993d, type: 3}
     - target: {fileID: 4943949836771491717, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -9874,6 +9898,10 @@ PrefabInstance:
       value: Jack of Hearts
       objectReference: {fileID: 0}
     - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1940970821, guid: 9d8b119a2dc5da844b9e00fda9681d59, type: 3}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Color.b
       value: 0
       objectReference: {fileID: 0}
@@ -10032,6 +10060,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Jack of Diamonds
       objectReference: {fileID: 0}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1656315445, guid: bbe06b8b6e130c24785bee36a2cf58cc, type: 3}
     - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -10611,6 +10643,10 @@ PrefabInstance:
       propertyPath: m_text
       value: Queen of Spades
       objectReference: {fileID: 0}
+    - target: {fileID: 4834272610827294813, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 902368789, guid: 8826ff8048013e941a9e2527c3f9993d, type: 3}
     - target: {fileID: 4943949836771491717, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_RootOrder
       value: 10
