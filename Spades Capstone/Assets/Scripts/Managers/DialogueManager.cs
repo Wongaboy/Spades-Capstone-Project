@@ -63,8 +63,8 @@ public class DialogueManager : MonoBehaviour
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
-        EnqueueDialogueSO(phaseOneDialogue);
-        EnqueueDialogueSO(phaseTwoDialogue);
+        EnqueueDialogueSO(phaseOneDialogue, false);
+        EnqueueDialogueSO(phaseTwoDialogue, false);
 
         if (dialogueQueue.Count <= 0) { Debug.Log("nothing in queue"); }
         else
