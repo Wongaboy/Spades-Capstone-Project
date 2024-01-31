@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0037152108, g: 0.010948347, b: 0.01847047, a: 1}
+  m_IndirectSpecularColor: {r: 0.0036998605, g: 0.010915399, b: 0.018429376, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5362,9 +5362,9 @@ MonoBehaviour:
   tallyBoard: {fileID: 1947212006}
   scoreToWin: 300
   phaseOnePointThreshold: 50
-  phaseOneDialogue: {fileID: 0}
+  phaseOneDialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
   phaseTwoPointThreshold: 100
-  phaseTwoDialogue: {fileID: 0}
+  phaseTwoDialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
 --- !u!4 &967901203
 Transform:
   m_ObjectHideFlags: 0
