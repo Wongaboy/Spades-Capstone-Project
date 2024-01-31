@@ -5361,9 +5361,9 @@ MonoBehaviour:
   aiBid: 0
   tallyBoard: {fileID: 1947212006}
   scoreToWin: 300
-  phaseOnePointThreshold: 50
+  phaseOnePointThreshold: 100
   phaseOneDialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
-  phaseTwoPointThreshold: 100
+  phaseTwoPointThreshold: 200
   phaseTwoDialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
 --- !u!4 &967901203
 Transform:

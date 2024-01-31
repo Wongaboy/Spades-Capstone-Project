@@ -145,7 +145,7 @@ public class ScoreManager : MonoBehaviour
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseTwo);
                 DialogueManager.Instance.EnqueueDialogueSO(phaseTwoDialogue, false);
-                DialogueManager.Instance.StartDialogue();
+                // DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 2");
             }
             
@@ -156,7 +156,7 @@ public class ScoreManager : MonoBehaviour
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseOne);
                 DialogueManager.Instance.EnqueueDialogueSO(phaseOneDialogue, false);
-                DialogueManager.Instance.StartDialogue();
+                // DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 1");
             }
         }
@@ -172,14 +172,18 @@ public class ScoreManager : MonoBehaviour
             GameManager.Instance.ResetGM();
             yield return new WaitForSeconds(8.2f); // wait long enough for the game manager to fully reset before moving to draft phase
             GameManager.Instance.SwapLead();
-            if (GameManager.Instance.lead == Character.DEATH)
-            {            
-                GameManager.Instance.ChangePhase(Phase.AIDRAFT);
-            }
-            else
-            {              
-                GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
-            }
+
+            // *Anthony Note* This is where we switch it to change to resolve phase
+            GameManager.Instance.ChangePhase(Phase.DIALOGUERESOLVE);
+
+            //if (GameManager.Instance.lead == Character.DEATH)
+            //{            
+            //    GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+            //}
+            //else
+            //{              
+            //    GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+            //}
         }
     }
 

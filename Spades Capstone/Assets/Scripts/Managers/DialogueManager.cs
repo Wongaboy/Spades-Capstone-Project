@@ -72,8 +72,9 @@ public class DialogueManager : MonoBehaviour
             AddCheatDialogue(CheatName.ChangeBid, false);
             AddCheatDialogue(CheatName.IgnorePenalty, false);
             AddCheatDialogue(CheatName.RandomizePlayerCardValue, false);
-            AddCheatDialogue(CheatName.AddValueFromDiscard, true);
+            AddCheatDialogue(CheatName.AddValueFromDiscard, false);
         }
+        StartCoroutine(ResolveDialogue());
         // StartDialogue();
     }
 
@@ -91,10 +92,23 @@ public class DialogueManager : MonoBehaviour
         if (triggerNow == true) { StartDialogue(); }
     }
 
-    public IEnumerator ResolveDiaglogue()
+    public IEnumerator ResolveDialogue()
     {
-        StartDialogue();
-        yield return new WaitUntil( () => (isDialogueSequenceDone == true) );
+        if (dialogueQueue.Count > 0)
+        {
+            StartDialogue();
+            yield return new WaitUntil(() => (isDialogueSequenceDone == true));
+            Debug.Log("We are past yield");
+        }
+
+        if (GameManager.Instance.lead == Character.DEATH)
+        {
+            GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+        }
+        else
+        {
+            GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+        }
     }
     // Starts Going through Queue of DialogueSO's
     public void StartDialogue()

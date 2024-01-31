@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
             case Phase.ENDING:
                 break;
             case Phase.DIALOGUERESOLVE:
+                StartCoroutine(DialogueManager.Instance.ResolveDialogue());
                 break;
             default:
                 throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
