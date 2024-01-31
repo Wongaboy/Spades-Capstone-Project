@@ -10785,7 +10785,7 @@ MonoBehaviour:
   m_margin: {x: -1.4671936, y: 1.7608337, z: -0.25256348, w: -1.3903961}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1849219194
