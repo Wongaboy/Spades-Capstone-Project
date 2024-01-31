@@ -144,7 +144,7 @@ public class ScoreManager : MonoBehaviour
             if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseTwo) 
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseTwo);
-                DialogueManager.Instance.EnqueueDialogueSO(phaseTwoDialogue);
+                DialogueManager.Instance.EnqueueDialogueSO(phaseTwoDialogue, false);
                 DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 2");
             }
@@ -155,7 +155,7 @@ public class ScoreManager : MonoBehaviour
             if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseOne)
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseOne);
-                DialogueManager.Instance.EnqueueDialogueSO(phaseOneDialogue);
+                DialogueManager.Instance.EnqueueDialogueSO(phaseOneDialogue, false);
                 DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 1");
             }

@@ -45,6 +45,7 @@ public class DialogueManager : MonoBehaviour
     // Current DialogueSO "Manager" is working with
     DialogueSO currentDialogue;
     int dialogueIndex; // Index of DialogueChunk
+    bool isDialogueSequenceDone = true;
 
     #endregion
 
@@ -84,14 +85,22 @@ public class DialogueManager : MonoBehaviour
     }
 
     // Enqueue any DialogueSO into queue
-    public void EnqueueDialogueSO(DialogueSO dialogue)
+    public void EnqueueDialogueSO(DialogueSO dialogue, bool triggerNow)
     {
         dialogueQueue.Enqueue(dialogue);
+        if (triggerNow == true) { StartDialogue(); }
     }
 
+    public IEnumerator ResolveDiaglogue()
+    {
+        StartDialogue();
+        yield return new WaitUntil( () => (isDialogueSequenceDone == true) );
+    }
     // Starts Going through Queue of DialogueSO's
     public void StartDialogue()
     {
+        isDialogueSequenceDone = false;
+
         dialogueTextBox.SetActive(true);
         currentDialogue = dialogueQueue.Dequeue();
         dialogueSpeakerName.text = currentDialogue.dialogueName;
@@ -108,6 +117,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueQueue.Count <= 0)
         {
             dialogueTextBox.SetActive(false);
+            isDialogueSequenceDone = true;
         }
         else
         {
