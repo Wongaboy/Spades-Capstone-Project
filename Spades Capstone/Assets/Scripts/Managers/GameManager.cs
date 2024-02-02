@@ -69,15 +69,13 @@ public class GameManager : MonoBehaviour
         {
             case Phase.PLAYERDRAFT:
                 numDraftTurns++;
-                if (numDraftTurns > 26)
-                {
+                if (numDraftTurns > 26) { 
                     newPhase = Phase.PLAYERBID;
                 }
                 break;
             case Phase.AIDRAFT:
                 numDraftTurns++;
-                if (numDraftTurns > 26)
-                {
+                if (numDraftTurns > 26) {
                     newPhase = Phase.AIBID;
                 }
                 break;
@@ -157,6 +155,11 @@ public class GameManager : MonoBehaviour
 
     // End the game - ending cutscene based on winner
     public void EndGame(Character winner){
+        /*
+        IF: Player wins play the GOOD ending cutscene(timeline) 
+        ELSE: Play BAD ENDING cutscene(timeline)
+        */
+        // ChangePhase(Phase.Ending);
         Debug.Log("Winner is " + winner.ToString());
     }
 

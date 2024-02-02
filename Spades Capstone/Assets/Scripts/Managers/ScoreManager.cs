@@ -145,7 +145,6 @@ public class ScoreManager : MonoBehaviour
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseTwo);
                 DialogueManager.Instance.EnqueueDialogueSO(phaseTwoDialogue, false);
-                // DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 2");
             }
             
@@ -156,7 +155,6 @@ public class ScoreManager : MonoBehaviour
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseOne);
                 DialogueManager.Instance.EnqueueDialogueSO(phaseOneDialogue, false);
-                // DialogueManager.Instance.StartDialogue();
                 Debug.Log("AI has entered Cheat Phase 1");
             }
         }
@@ -175,15 +173,6 @@ public class ScoreManager : MonoBehaviour
 
             // *Anthony Note* This is where we switch it to change to resolve phase
             GameManager.Instance.ChangePhase(Phase.DIALOGUERESOLVE);
-
-            //if (GameManager.Instance.lead == Character.DEATH)
-            //{            
-            //    GameManager.Instance.ChangePhase(Phase.AIDRAFT);
-            //}
-            //else
-            //{              
-            //    GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
-            //}
         }
     }
 
@@ -218,13 +207,6 @@ public class ScoreManager : MonoBehaviour
         tallyBoard.updateBidText(Character.DEATH, aiBid);
 
         StartCoroutine(WaitTimeBid());
-        // If player has already bid, they begin play. Otherwhise let them bid.
-        //if (currLead == Character.DEATH){
-        //    GameManager.Instance.ChangePhase(Phase.PLAYERBID);
-        //} 
-        //else{
-        //    GameManager.Instance.ChangePhase(Phase.PLAYERTURN);
-        //}
     }
 
     private IEnumerator WaitTimeBid()
