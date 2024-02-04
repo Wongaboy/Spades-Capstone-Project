@@ -53,8 +53,7 @@ public class GameManager : MonoBehaviour
         // Initialize game components
         lead = Character.DEATH; // Death always goes first for tutorial
 
-        // StartCoroutine(deck.Shuffle());
-        StartCoroutine(AltStartGame());
+        StartCoroutine(StartGame());
 
         FadeScript.Instance.FadeInBlack();
     }
@@ -185,6 +184,13 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region "Private Helper Functions"
+    public IEnumerator StartGame()
+    {
+        StartCoroutine(deck.Shuffle());
+        yield return new WaitForSeconds(10f);
+        ChangePhase(Phase.AIDRAFT);
+    }
+
     // Figure out who won the trick, log it, and move on NOTE: Refactor to work with better encapsulated turn counting system
     private IEnumerator HandleEndOfTrick()
     {
@@ -300,20 +306,6 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region "Temporary Functions"
-    public void StartGame()
-    {
-        // startGameButton.SetActive(false);
-        ChangePhase(Phase.AIDRAFT);
-    }
-
-    public IEnumerator AltStartGame()
-    {
-        // startGameButton.SetActive(false);
-        StartCoroutine(deck.Shuffle());
-        yield return new WaitForSeconds(10f);
-        ChangePhase(Phase.AIDRAFT);
-    }
-
     public void AltEndGame()
     {
         EndGame(Character.DEATH);
