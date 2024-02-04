@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0036998605, g: 0.010915399, b: 0.018429376, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037152108, g: 0.010948347, b: 0.01847047, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7998,7 +7998,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1409819721
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11222,7 +11222,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1947212003
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12396,6 +12396,10 @@ PrefabInstance:
     - target: {fileID: 7674283182530333203, guid: 51f6a6e7777b4b0418d1732080b78abb, type: 3}
       propertyPath: m_Name
       value: paperscroll
+      objectReference: {fileID: 0}
+    - target: {fileID: 7674283182530333203, guid: 51f6a6e7777b4b0418d1732080b78abb, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f6a6e7777b4b0418d1732080b78abb, type: 3}

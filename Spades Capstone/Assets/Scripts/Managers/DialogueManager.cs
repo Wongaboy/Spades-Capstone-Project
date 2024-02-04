@@ -159,4 +159,9 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    public bool IsDialogueActive()
+    {
+        return dialogueTextBox.activeSelf;
+    }
+
 }

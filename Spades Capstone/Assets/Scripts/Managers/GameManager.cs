@@ -55,6 +55,8 @@ public class GameManager : MonoBehaviour
 
         // StartCoroutine(deck.Shuffle());
         StartCoroutine(AltStartGame());
+
+        FadeScript.Instance.FadeInBlack();
     }
 
     // Called to move through phases of the game
@@ -155,11 +157,14 @@ public class GameManager : MonoBehaviour
 
     // End the game - ending cutscene based on winner
     public void EndGame(Character winner){
-        /*
-        IF: Player wins play the GOOD ending cutscene(timeline) 
-        ELSE: Play BAD ENDING cutscene(timeline)
-        */
-        // ChangePhase(Phase.Ending);
+        if (winner == Character.PLAYER)
+        {
+            StartCoroutine(EndingManager.Instance.TriggerEndCutscene(winner));
+        }
+        else
+        {
+            StartCoroutine(EndingManager.Instance.TriggerEndCutscene(winner));
+        }
         Debug.Log("Winner is " + winner.ToString());
     }
 
@@ -307,6 +312,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(deck.Shuffle());
         yield return new WaitForSeconds(10f);
         ChangePhase(Phase.AIDRAFT);
+    }
+
+    public void AltEndGame()
+    {
+        EndGame(Character.DEATH);
     }
     #endregion
 }
