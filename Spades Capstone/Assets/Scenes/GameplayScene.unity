@@ -8236,7 +8236,7 @@ GameObject:
   - component: {fileID: 1184760010}
   - component: {fileID: 1184760011}
   m_Layer: 0
-  m_Name: ScriptHolder
+  m_Name: EndingScript
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

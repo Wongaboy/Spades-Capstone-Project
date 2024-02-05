@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
         StartCoroutine(StartGame());
 
-        FadeScript.Instance.FadeInBlack();
+        // FadeScript.Instance.FadeInBlack();
     }
 
     // Called to move through phases of the game
