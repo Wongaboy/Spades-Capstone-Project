@@ -53,6 +53,9 @@ public class GameManager : MonoBehaviour
         // Initialize game components
         lead = Character.DEATH; // Death always goes first for tutorial
 
+        // Ask/Prompt for Tutorial          
+        // StartCoroutine(StartTutorialPrompt());
+
         StartCoroutine(StartGame());
 
         // FadeScript.Instance.FadeInBlack();
@@ -309,6 +312,28 @@ public class GameManager : MonoBehaviour
     public void AltEndGame()
     {
         EndGame(Character.DEATH);
+    }
+
+    public IEnumerator StartTutorialPrompt()
+    {
+        // Play Dialogue
+        // Wait Until Dialogue Over
+        StartCoroutine(TutorialManager.Instance.TriggerTutorialPrompt());
+        yield return new WaitUntil(() => (TutorialManager.Instance.IsTutorialPromptActive() == false && DialogueManager.Instance.IsDialogueActive() == false));
+
+        if (TutorialManager.Instance.IsTutorialWanted())
+        {
+            // Do Tutorial
+            // StartCoroutine(StartTutorial());
+            Debug.Log("They said YES to tutorial");
+            StartCoroutine(StartGame());
+        }
+        else
+        {
+            // Do Normal Gameplay
+            Debug.Log("They said NO to tutorial");
+            StartCoroutine(StartGame());
+        }
     }
     #endregion
 }

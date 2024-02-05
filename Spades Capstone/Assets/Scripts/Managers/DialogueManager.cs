@@ -34,8 +34,6 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] DialogueSO phaseOneDialogue;
     [SerializeField] DialogueSO phaseTwoDialogue;
 
-    //private Dictionary<string, DialogueSO> dialogueDatabase= new Dictionary<string, DialogueSO>();
-    //[SerializeField] List<DialogueSO> allDialogueSO;
     private Dictionary<CheatName, DialogueSO> cheatDialogueDatabase = new Dictionary<CheatName, DialogueSO>();
     [SerializeField] List<CheatSO> allCheatSO;
 
