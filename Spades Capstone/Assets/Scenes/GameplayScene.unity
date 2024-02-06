@@ -8585,8 +8585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e0cd4c42d91cf147b95b01a2d3c1aed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goodEndingDialogue: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
-  badEndingDialogue: {fileID: 11400000, guid: 01c4a3bdcc3592d4db691c93c2ad3ba0, type: 2}
+  goodEndingDialogue: {fileID: 11400000, guid: 77042ffb650fd7c4bacd833d58cf8592, type: 2}
+  badEndingDialogue: {fileID: 11400000, guid: 7110027e70a72eb4c9ec4ff572b58a5c, type: 2}
   goodEndingCamera: {fileID: 28703868}
   badEndingCamera: {fileID: 1260080397}
   mainCamera: {fileID: 963194225}

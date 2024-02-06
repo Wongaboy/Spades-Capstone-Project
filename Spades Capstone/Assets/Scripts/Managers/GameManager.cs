@@ -54,9 +54,9 @@ public class GameManager : MonoBehaviour
         lead = Character.DEATH; // Death always goes first for tutorial
 
         // Ask/Prompt for Tutorial          
-        // StartCoroutine(StartTutorialPrompt());
+        StartCoroutine(StartTutorialPrompt());
 
-        StartCoroutine(StartGame());
+        // StartCoroutine(StartGame());
 
         // FadeScript.Instance.FadeInBlack();
     }
@@ -311,7 +311,7 @@ public class GameManager : MonoBehaviour
     #region "Temporary Functions"
     public void AltEndGame()
     {
-        EndGame(Character.DEATH);
+        EndGame(Character.PLAYER);
     }
 
     public IEnumerator StartTutorialPrompt()
