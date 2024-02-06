@@ -2733,7 +2733,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1621724426}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
         m_MethodName: AltEndGame
         m_Mode: 1
@@ -3880,7 +3880,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!1 &561046569
 GameObject:
@@ -6030,7 +6030,6 @@ MonoBehaviour:
   dialogueTextBox: {fileID: 711308208}
   phaseOneDialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
   phaseTwoDialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
-  tutorialDialogue: {fileID: 0}
   allCheatSO:
   - {fileID: 11400000, guid: 85fcbfeda86c1e4428c0550778d8fda8, type: 2}
   - {fileID: 11400000, guid: 6abc69a390e7a6e43a5c415e3f3f22d4, type: 2}
