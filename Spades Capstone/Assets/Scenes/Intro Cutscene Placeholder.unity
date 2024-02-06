@@ -1979,6 +1979,7 @@ GameObject:
   - component: {fileID: 330936971}
   - component: {fileID: 330936970}
   - component: {fileID: 330936969}
+  - component: {fileID: 330936972}
   m_Layer: 0
   m_Name: FadeController
   m_TagString: Untagged
@@ -2037,6 +2038,36 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &330936972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 330936967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e52de21a22b6dd44c9cc19f810c65059, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Events:
+    m_Signals:
+    - {fileID: 11400000, guid: b4d60867ce8a7234083377cf169b66f9, type: 2}
+    m_Events:
+    - m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 330936969}
+          m_TargetAssemblyTypeName: FadeScript, Assembly-CSharp
+          m_MethodName: FadeInBlack
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!1 &336400685
 GameObject:
   m_ObjectHideFlags: 0
@@ -3803,7 +3834,7 @@ PlayableDirector:
   - key: {fileID: 2956747284398252005, guid: 7107cbfebd2d8574bbc68f7a48eab607, type: 2}
     value: {fileID: 66601506}
   - key: {fileID: -6678087146235023173, guid: 7107cbfebd2d8574bbc68f7a48eab607, type: 2}
-    value: {fileID: 0}
+    value: {fileID: 330936972}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &670914774
@@ -4711,7 +4742,6 @@ MonoBehaviour:
   dialogueTextBox: {fileID: 711308208}
   phaseOneDialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
   phaseTwoDialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
-  tutorialDialogue: {fileID: 0}
   allCheatSO:
   - {fileID: 11400000, guid: 85fcbfeda86c1e4428c0550778d8fda8, type: 2}
   - {fileID: 11400000, guid: 6abc69a390e7a6e43a5c415e3f3f22d4, type: 2}
