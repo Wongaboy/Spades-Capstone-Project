@@ -56,9 +56,6 @@ public class GameManager : MonoBehaviour
         // Ask/Prompt for Tutorial          
         StartCoroutine(StartTutorialPrompt());
 
-        // StartCoroutine(StartGame());
-
-        // FadeScript.Instance.FadeInBlack();
     }
 
     // Called to move through phases of the game

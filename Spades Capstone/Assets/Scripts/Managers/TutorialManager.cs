@@ -63,4 +63,9 @@ public class TutorialManager : MonoBehaviour
         triggerTutorial = wantTutorial;
         tutorialPanel.SetActive(false);
     }
+
+    public void StartTutorial()
+    {
+
+    }
 }
