@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int numDraftTurns = 0;
     [HideInInspector] public int numTurns = 0;
 
-    // [SerializeReference] private GameObject startGameButton;
+    private bool isInTutorial = false;
     #endregion
 
     // Start is called before the first frame update
@@ -321,13 +321,15 @@ public class GameManager : MonoBehaviour
         if (TutorialManager.Instance.IsTutorialWanted())
         {
             // Do Tutorial
-            // StartCoroutine(StartTutorial());
+            isInTutorial = true;
             Debug.Log("They said YES to tutorial");
+            // StartCoroutine(StartTutorial());
             StartCoroutine(StartGame());
         }
         else
         {
             // Do Normal Gameplay
+            isInTutorial = false;
             Debug.Log("They said NO to tutorial");
             StartCoroutine(StartGame());
         }

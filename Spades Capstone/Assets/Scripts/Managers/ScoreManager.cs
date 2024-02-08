@@ -258,6 +258,19 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    // Reset tallyboard to all zeroes (used for Tutorial purposes)
+    public void ResetTallyBoardScores()
+    {
+        tallyBoard.updateScoreText(0, 0);
+        tallyBoard.updateBagText(0, 0);
+
+        tallyBoard.updateTrickText(Character.PLAYER, 0);
+        tallyBoard.updateTrickText(Character.DEATH, 0);
+
+        tallyBoard.updateBidText(Character.PLAYER, 0);
+        tallyBoard.updateBidText(Character.DEATH, 0);
+    }
+
     // unsubscribe from events when destroyed to prevent errors
     void OnDestroy(){
         GameManager.OnPhaseChanged -= ScoreManagerOnPhaseChanged;
