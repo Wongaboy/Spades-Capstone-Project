@@ -78,18 +78,29 @@ public class TutorialManager : MonoBehaviour
         {
             case Phase.AIDRAFT:
                 // Play Draft Advice
+                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
+                // tutorialDialogueIndex++;
                 break;
             case Phase.AIBID:
                 // Play Bid Advice
+                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
+                // tutorialDialogueIndex++;
                 break;
             case Phase.AITURN:
                 // Play Turn Advice
+                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
+                // tutorialDialogueIndex++;
                 break;
             case Phase.ENDOFTRICK:
                 // Explain end of trick & game loop
+                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
+                // tutorialDialogueIndex++;
                 break;
             case Phase.SCORING:
                 // Explain scoring (bags, penalties, etc)
+                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
+                // tutorialDialogueIndex++;
+
                 // Then end tutorial and resume normal game
                 break;
             case Phase.DIALOGUERESOLVE:

@@ -56,6 +56,7 @@ public class GameManager : MonoBehaviour
         // Ask/Prompt for Tutorial          
         StartCoroutine(StartTutorialPrompt());
 
+        // StartCoroutine(StartGame());
     }
 
     // Called to move through phases of the game
