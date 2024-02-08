@@ -108,6 +108,19 @@ public class DialogueManager : MonoBehaviour
             GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
         }
     }
+
+    public IEnumerator ResolveDialogue(Phase phase)
+    {
+        if (dialogueQueue.Count > 0)
+        {
+            StartDialogue();
+            yield return new WaitUntil(() => (isDialogueSequenceDone == true));
+            Debug.Log("We are past yield");
+        }
+
+        GameManager.Instance.ChangePhase(phase);
+    }
+
     // Starts Going through Queue of DialogueSO's
     public void StartDialogue()
     {

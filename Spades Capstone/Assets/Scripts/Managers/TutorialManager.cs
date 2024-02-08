@@ -24,7 +24,7 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeReference] GameObject tutorialPanel;
     [SerializeField] DialogueSO tutorialDialogue;
-    private bool triggerTutorial = false;
+    public bool triggerTutorial = false;
 
     private int tutorialDialogueIndex = 0;
     [SerializeField] DialogueSO[] tutorialPrompts;
@@ -32,7 +32,7 @@ public class TutorialManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GameManager.OnPhaseChanged += TutorialManagerOnPhaseChange;
+        // GameManager.OnPhaseChanged += TutorialManagerOnPhaseChange;
     }
 
     // Update is called once per frame
@@ -64,12 +64,16 @@ public class TutorialManager : MonoBehaviour
     public void SetTriggerTutorial(bool wantTutorial)
     {
         triggerTutorial = wantTutorial;
+        if (wantTutorial) { GameManager.OnPhaseChanged += TutorialManagerOnPhaseChange; }
         tutorialPanel.SetActive(false);
     }
 
-    public void StartTutorial()
+    public void TriggerNextDialogue()
     {
-
+        Debug.Log("Enqueued tutorial dialogue");
+        //DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
+        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
+        tutorialDialogueIndex++;
     }
 
     public void TutorialManagerOnPhaseChange(Phase phase)
@@ -78,35 +82,47 @@ public class TutorialManager : MonoBehaviour
         {
             case Phase.AIDRAFT:
                 // Play Draft Advice
-                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
-                // tutorialDialogueIndex++;
+                if (tutorialDialogueIndex == 1) { TriggerNextDialogue(); }
                 break;
             case Phase.AIBID:
                 // Play Bid Advice
-                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
-                // tutorialDialogueIndex++;
+                if (tutorialDialogueIndex == 2) { TriggerNextDialogue(); }
                 break;
             case Phase.AITURN:
                 // Play Turn Advice
-                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
-                // tutorialDialogueIndex++;
+                if (tutorialDialogueIndex == 3) { TriggerNextDialogue(); }
                 break;
             case Phase.ENDOFTRICK:
                 // Explain end of trick & game loop
-                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
-                // tutorialDialogueIndex++;
+                if (tutorialDialogueIndex == 4) { TriggerNextDialogue(); }
                 break;
             case Phase.SCORING:
                 // Explain scoring (bags, penalties, etc)
-                // DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
-                // tutorialDialogueIndex++;
-
-                // Then end tutorial and resume normal game
+                if (tutorialDialogueIndex == 5) { TriggerNextDialogue(); }
                 break;
             case Phase.DIALOGUERESOLVE:
                 break;
             default:
-                throw new System.ArgumentOutOfRangeException(nameof(phase), phase, null);
+                break;
         }
+    }
+
+    public IEnumerator EndTutorial()
+    {
+        yield return new WaitUntil(() => (DialogueManager.Instance.IsDialogueActive() == false));
+        GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
+        triggerTutorial = false;
+        GameManager.Instance.isInTutorial = false;
+
+        ScoreManager.Instance.ResetTallyBoardScores();
+        GameManager.Instance.ResetGM();
+        yield return new WaitForSeconds(8.2f);
+
+        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+    }
+
+    public void UnsubscribeTutorialListeners()
+    {
+        GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
     }
 }

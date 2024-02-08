@@ -166,13 +166,20 @@ public class ScoreManager : MonoBehaviour
         // Else: Reset GameManager counters, Swap Lead, and change phase to approriate Character
         else
         {
-            yield return new WaitForSeconds(1);
-            GameManager.Instance.ResetGM();
-            yield return new WaitForSeconds(8.2f); // wait long enough for the game manager to fully reset before moving to draft phase
-            GameManager.Instance.SwapLead();
+            if (GameManager.Instance.isInTutorial)
+            {
+                StartCoroutine(TutorialManager.Instance.EndTutorial());
+            }
+            else
+            {
+                yield return new WaitForSeconds(1);
+                GameManager.Instance.ResetGM();
+                yield return new WaitForSeconds(8.2f); // wait long enough for the game manager to fully reset before moving to draft phase
+                GameManager.Instance.SwapLead();
 
-            // *Anthony Note* This is where we switch it to change to resolve phase
-            GameManager.Instance.ChangePhase(Phase.DIALOGUERESOLVE);
+                // *Anthony Note* This is where we switch it to change to resolve phase
+                GameManager.Instance.ChangePhase(Phase.DIALOGUERESOLVE);
+            }
         }
     }
 

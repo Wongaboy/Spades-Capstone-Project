@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int numDraftTurns = 0;
     [HideInInspector] public int numTurns = 0;
 
-    private bool isInTutorial = false;
+    public bool isInTutorial = false;
     #endregion
 
     // Start is called before the first frame update
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
         // Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
         currentPhase = newPhase;
         // UpdatePhaseName(currentPhase); - no longer necessary
-        Debug.Log(newPhase);
+        // Debug.Log(newPhase);
 
         switch (newPhase)
         {
@@ -324,7 +324,7 @@ public class GameManager : MonoBehaviour
             // Do Tutorial
             isInTutorial = true;
             Debug.Log("They said YES to tutorial");
-            // StartCoroutine(StartTutorial());
+            TutorialManager.Instance.TriggerNextDialogue();
             StartCoroutine(StartGame());
         }
         else
