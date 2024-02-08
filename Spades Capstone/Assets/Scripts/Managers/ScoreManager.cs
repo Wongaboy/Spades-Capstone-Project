@@ -178,6 +178,7 @@ public class ScoreManager : MonoBehaviour
                 GameManager.Instance.SwapLead();
 
                 // *Anthony Note* This is where we switch it to change to resolve phase
+                // Need to keep track of phase after Dialogue resolve
                 GameManager.Instance.ChangePhase(Phase.DIALOGUERESOLVE);
             }
         }

@@ -29,18 +29,7 @@ public class TutorialManager : MonoBehaviour
     private int tutorialDialogueIndex = 0;
     [SerializeField] DialogueSO[] tutorialPrompts;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        // GameManager.OnPhaseChanged += TutorialManagerOnPhaseChange;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    #region Don't Touch
     public IEnumerator TriggerTutorialPrompt()
     {
         // Play Dialogue
@@ -64,15 +53,17 @@ public class TutorialManager : MonoBehaviour
     public void SetTriggerTutorial(bool wantTutorial)
     {
         triggerTutorial = wantTutorial;
-        if (wantTutorial) { GameManager.OnPhaseChanged += TutorialManagerOnPhaseChange; }
+        if (wantTutorial == true) { GameManager.OnPhaseChanged += TutorialManagerOnPhaseChange; }
         tutorialPanel.SetActive(false);
     }
+
+    #endregion
 
     public void TriggerNextDialogue()
     {
         Debug.Log("Enqueued tutorial dialogue");
-        //DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
-        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
+        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
+        //DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
         tutorialDialogueIndex++;
     }
 
@@ -100,8 +91,6 @@ public class TutorialManager : MonoBehaviour
                 // Explain scoring (bags, penalties, etc)
                 if (tutorialDialogueIndex == 5) { TriggerNextDialogue(); }
                 break;
-            case Phase.DIALOGUERESOLVE:
-                break;
             default:
                 break;
         }
@@ -110,8 +99,8 @@ public class TutorialManager : MonoBehaviour
     public IEnumerator EndTutorial()
     {
         yield return new WaitUntil(() => (DialogueManager.Instance.IsDialogueActive() == false));
+
         GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
-        triggerTutorial = false;
         GameManager.Instance.isInTutorial = false;
 
         ScoreManager.Instance.ResetTallyBoardScores();
