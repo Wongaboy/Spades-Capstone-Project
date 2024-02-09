@@ -44,7 +44,9 @@ public class GameManager : MonoBehaviour
     [HideInInspector] public int numDraftTurns = 0;
     [HideInInspector] public int numTurns = 0;
 
-    // [SerializeReference] private GameObject startGameButton;
+    public bool isInTutorial = false;
+
+    public Phase phaseAfterDialogue;
     #endregion
 
     // Start is called before the first frame update
@@ -56,28 +58,35 @@ public class GameManager : MonoBehaviour
         // Ask/Prompt for Tutorial          
         StartCoroutine(StartTutorialPrompt());
 
+        // StartCoroutine(StartGame());
     }
 
     // Called to move through phases of the game
     public void ChangePhase(Phase newPhase)
     {
         // Debug.Log("Change from " + currentPhase.ToString() + " to " + newPhase.ToString());
+        // Debug.Log(newPhase);
         currentPhase = newPhase;
-        // UpdatePhaseName(currentPhase); - no longer necessary
-        Debug.Log(newPhase);
 
-        switch (newPhase)
+        // IF there is Dialogue Enqueued, Then Override ChangePhase to ResolveDialogue while Saving the Phase to change to After Dialogue
+        if (DialogueManager.Instance.HasDialogueEnqueued() == true)
+        {
+            phaseAfterDialogue = newPhase;
+            currentPhase = Phase.DIALOGUERESOLVE;
+        }
+
+        switch (currentPhase)
         {
             case Phase.PLAYERDRAFT:
                 numDraftTurns++;
-                if (numDraftTurns > 26) { 
-                    newPhase = Phase.PLAYERBID;
+                if (numDraftTurns > 26) {
+                    currentPhase = Phase.PLAYERBID;
                 }
                 break;
             case Phase.AIDRAFT:
                 numDraftTurns++;
                 if (numDraftTurns > 26) {
-                    newPhase = Phase.AIBID;
+                    currentPhase = Phase.AIBID;
                 }
                 break;
             case Phase.PLAYERBID:
@@ -98,13 +107,13 @@ public class GameManager : MonoBehaviour
             case Phase.ENDING:
                 break;
             case Phase.DIALOGUERESOLVE:
-                StartCoroutine(DialogueManager.Instance.ResolveDialogue());
+                StartCoroutine(DialogueManager.Instance.ResolveDialogue(phaseAfterDialogue));
                 break;
             default:
-                throw new System.ArgumentOutOfRangeException(nameof(newPhase), newPhase, null);
+                throw new System.ArgumentOutOfRangeException(nameof(currentPhase), currentPhase, null);
         }
 
-        OnPhaseChanged?.Invoke(newPhase);       
+        OnPhaseChanged?.Invoke(currentPhase);       
     }
 
     #region "Public Helper Functions"
@@ -302,7 +311,6 @@ public class GameManager : MonoBehaviour
             AIManager.Instance.ChangeInternalLead(false);
         }
     }
-
     #endregion
 
     #region "Temporary Functions"
@@ -321,13 +329,15 @@ public class GameManager : MonoBehaviour
         if (TutorialManager.Instance.IsTutorialWanted())
         {
             // Do Tutorial
-            // StartCoroutine(StartTutorial());
+            isInTutorial = true;
             Debug.Log("They said YES to tutorial");
+            TutorialManager.Instance.EnqueueNextDialogue();
             StartCoroutine(StartGame());
         }
         else
         {
             // Do Normal Gameplay
+            isInTutorial = false;
             Debug.Log("They said NO to tutorial");
             StartCoroutine(StartGame());
         }

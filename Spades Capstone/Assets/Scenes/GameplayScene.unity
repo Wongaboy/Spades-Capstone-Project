@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0037152108, g: 0.010948347, b: 0.01847047, a: 1}
+  m_IndirectSpecularColor: {r: 0.0036998605, g: 0.010915399, b: 0.018429376, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6021,6 +6021,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialPanel: {fileID: 1846299566}
   tutorialDialogue: {fileID: 11400000, guid: b70aa84a32845c24e980db9c76092353, type: 2}
+  tutorialPrompts:
+  - {fileID: 11400000, guid: 1e3e1fc0021b7fa42874133ec4bea545, type: 2}
+  - {fileID: 11400000, guid: fca53759581923b4a951674ad336b718, type: 2}
+  - {fileID: 11400000, guid: fc5055885a56d3f4aac6c220987f1fc3, type: 2}
+  - {fileID: 11400000, guid: 340843bd0b31cdc4e9d4d0a8a4970537, type: 2}
+  - {fileID: 11400000, guid: 84a3662b297e1434f9f2eb2543e20176, type: 2}
+  - {fileID: 11400000, guid: 22667a06ad69d6446b2a8c5412410efa, type: 2}
 --- !u!1001 &764750080
 PrefabInstance:
   m_ObjectHideFlags: 0

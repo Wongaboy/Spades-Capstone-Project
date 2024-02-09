@@ -24,19 +24,10 @@ public class TutorialManager : MonoBehaviour
 
     [SerializeReference] GameObject tutorialPanel;
     [SerializeField] DialogueSO tutorialDialogue;
-    private bool triggerTutorial = false; 
+    public bool triggerTutorial = false;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    private int tutorialDialogueIndex = 0;
+    [SerializeField] DialogueSO[] tutorialPrompts;
 
     public IEnumerator TriggerTutorialPrompt()
     {
@@ -61,11 +52,63 @@ public class TutorialManager : MonoBehaviour
     public void SetTriggerTutorial(bool wantTutorial)
     {
         triggerTutorial = wantTutorial;
+        if (wantTutorial == true) { GameManager.OnPhaseChanged += TutorialManagerOnPhaseChange; }
         tutorialPanel.SetActive(false);
     }
 
-    public void StartTutorial()
+    public void EnqueueNextDialogue()
     {
+        Debug.Log("Enqueued tutorial dialogue");       
+        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
+        tutorialDialogueIndex++;
+    }
 
+    public void TutorialManagerOnPhaseChange(Phase phase)
+    {
+        switch (phase)
+        {
+            // These Dialogues Play after the Case Phase
+            case Phase.AIDRAFT:
+                // Play Draft Advice               
+                if (tutorialDialogueIndex == 1) { EnqueueNextDialogue(); }
+                break;
+            case Phase.AIBID:
+                // Play Bid Advice
+                if (tutorialDialogueIndex == 2) { EnqueueNextDialogue(); }
+                break;
+            case Phase.AITURN:
+                // Play Turn Advice
+                if (tutorialDialogueIndex == 3) { EnqueueNextDialogue(); }
+                break;
+            case Phase.ENDOFTRICK:
+                // Explain end of trick & game loop
+                if (tutorialDialogueIndex == 4) { EnqueueNextDialogue(); }
+                break;
+            case Phase.SCORING:
+                // Explain scoring (bags, penalties, etc)
+                if (tutorialDialogueIndex == 5) { EnqueueNextDialogue(); }
+                break;
+            default:
+                break;
+        }
+    }
+
+    public IEnumerator EndTutorial()
+    {
+        yield return new WaitUntil(() => (DialogueManager.Instance.IsDialogueActive() == false));
+
+        GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
+        GameManager.Instance.isInTutorial = false;
+
+        ScoreManager.Instance.ResetTallyBoardScores();
+        GameManager.Instance.ResetGM();
+        yield return new WaitForSeconds(8.2f);
+
+        GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+    }
+
+    public void UnsubscribeTutorialListeners()
+    {
+        GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
     }
 }

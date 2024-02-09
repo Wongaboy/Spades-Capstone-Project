@@ -44,7 +44,6 @@ public class DialogueManager : MonoBehaviour
     DialogueSO currentDialogue;
     int dialogueIndex; // Index of DialogueChunk
     bool isDialogueSequenceDone = true;
-
     #endregion
 
     private void Start()
@@ -95,6 +94,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueQueue.Count > 0)
         {
             StartDialogue();
+
             yield return new WaitUntil(() => (isDialogueSequenceDone == true));
             Debug.Log("We are past yield");
         }
@@ -108,6 +108,19 @@ public class DialogueManager : MonoBehaviour
             GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
         }
     }
+
+    public IEnumerator ResolveDialogue(Phase phase)
+    {
+        if (dialogueQueue.Count > 0)
+        {
+            StartDialogue();
+            yield return new WaitUntil(() => (isDialogueSequenceDone == true));
+            Debug.Log("We are past yield");
+        }
+
+        GameManager.Instance.ChangePhase(phase);
+    }
+
     // Starts Going through Queue of DialogueSO's
     public void StartDialogue()
     {
@@ -160,6 +173,12 @@ public class DialogueManager : MonoBehaviour
     public bool IsDialogueActive()
     {
         return dialogueTextBox.activeSelf;
+    }
+
+    public bool HasDialogueEnqueued()
+    {
+        if (dialogueQueue.Count > 0) { return true; }
+        else { return false; }
     }
 
 }
