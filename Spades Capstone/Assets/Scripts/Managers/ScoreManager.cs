@@ -176,10 +176,15 @@ public class ScoreManager : MonoBehaviour
                 GameManager.Instance.ResetGM();
                 yield return new WaitForSeconds(8.2f); // wait long enough for the game manager to fully reset before moving to draft phase
                 GameManager.Instance.SwapLead();
-
-                // *Anthony Note* This is where we switch it to change to resolve phase
-                // Need to keep track of phase after Dialogue resolve
-                GameManager.Instance.ChangePhase(Phase.DIALOGUERESOLVE);
+             
+                if (GameManager.Instance.lead == Character.DEATH)
+                {
+                    GameManager.Instance.ChangePhase(Phase.AIDRAFT);
+                }
+                else
+                {
+                    GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
+                }
             }
         }
     }

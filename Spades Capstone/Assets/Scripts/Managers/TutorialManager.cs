@@ -29,7 +29,6 @@ public class TutorialManager : MonoBehaviour
     private int tutorialDialogueIndex = 0;
     [SerializeField] DialogueSO[] tutorialPrompts;
 
-    #region Don't Touch
     public IEnumerator TriggerTutorialPrompt()
     {
         // Play Dialogue
@@ -57,13 +56,10 @@ public class TutorialManager : MonoBehaviour
         tutorialPanel.SetActive(false);
     }
 
-    #endregion
-
-    public void TriggerNextDialogue()
+    public void EnqueueNextDialogue()
     {
-        Debug.Log("Enqueued tutorial dialogue");
-        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], true);
-        //DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
+        Debug.Log("Enqueued tutorial dialogue");       
+        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
         tutorialDialogueIndex++;
     }
 
@@ -71,25 +67,26 @@ public class TutorialManager : MonoBehaviour
     {
         switch (phase)
         {
+            // These Dialogues Play after the Case Phase
             case Phase.AIDRAFT:
-                // Play Draft Advice
-                if (tutorialDialogueIndex == 1) { TriggerNextDialogue(); }
+                // Play Draft Advice               
+                if (tutorialDialogueIndex == 1) { EnqueueNextDialogue(); }
                 break;
             case Phase.AIBID:
                 // Play Bid Advice
-                if (tutorialDialogueIndex == 2) { TriggerNextDialogue(); }
+                if (tutorialDialogueIndex == 2) { EnqueueNextDialogue(); }
                 break;
             case Phase.AITURN:
                 // Play Turn Advice
-                if (tutorialDialogueIndex == 3) { TriggerNextDialogue(); }
+                if (tutorialDialogueIndex == 3) { EnqueueNextDialogue(); }
                 break;
             case Phase.ENDOFTRICK:
                 // Explain end of trick & game loop
-                if (tutorialDialogueIndex == 4) { TriggerNextDialogue(); }
+                if (tutorialDialogueIndex == 4) { EnqueueNextDialogue(); }
                 break;
             case Phase.SCORING:
                 // Explain scoring (bags, penalties, etc)
-                if (tutorialDialogueIndex == 5) { TriggerNextDialogue(); }
+                if (tutorialDialogueIndex == 5) { EnqueueNextDialogue(); }
                 break;
             default:
                 break;
