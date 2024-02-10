@@ -10,6 +10,7 @@ public class Card : MonoBehaviour
     public int val;
     [SerializeField] 
     private float cardSpeed = 10f;
+    [SerializeField] private DialogueSO dialogueOnPlay = null;
 
     [Header("Components")]
     [SerializeField]
@@ -59,6 +60,19 @@ public class Card : MonoBehaviour
         cardBody.detectCollisions = true;
         cardBody.useGravity = UseGravOnEnd;
     }
+
+    public bool HasDialogueAttached()
+    {
+        if (dialogueOnPlay != null) { return true; }
+        else { return false; }
+    }
+
+    public DialogueSO GetDialogueSO()
+    {
+        return dialogueOnPlay;
+    }
+
+
 }
 
 public enum Suit { SPADE, HEART, CLUB, DIAMOND}

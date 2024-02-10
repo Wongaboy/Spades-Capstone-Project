@@ -37,6 +37,9 @@ public class DialogueManager : MonoBehaviour
     private Dictionary<CheatName, DialogueSO> cheatDialogueDatabase = new Dictionary<CheatName, DialogueSO>();
     [SerializeField] List<CheatSO> allCheatSO;
 
+    // Card with DialogueSO on Play Database
+    private Dictionary<(int, Suit), DialogueSO> cardDialogueDatabase = new Dictionary<(int, Suit), DialogueSO>();
+
     // Queue of DialogueSO's for DialogueManager to process on StartDialogue()
     Queue<DialogueSO> dialogueQueue = new Queue<DialogueSO>();
 
@@ -179,6 +182,15 @@ public class DialogueManager : MonoBehaviour
     {
         if (dialogueQueue.Count > 0) { return true; }
         else { return false; }
+    }
+
+    public bool DoesCardHaveDialogue(Card card)
+    {
+        (int, Suit) cardValues = (card.val, card.suit);
+
+        List<(int, Suit)> allCardsWithDialogue = new List<(int, Suit)>(cardDialogueDatabase.Keys);
+
+        return allCardsWithDialogue.Contains(cardValues);
     }
 
 }

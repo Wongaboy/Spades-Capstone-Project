@@ -305,6 +305,13 @@ public class AIManager : MonoBehaviour
         Card cardToPlay = DecideCard();
         // Feed GameManager Played Card
         GameManager.Instance.aiCard = cardToPlay;
+
+        // If card has Dialogue attached Enqueue it
+        if (cardToPlay.HasDialogueAttached())
+        {
+            DialogueManager.Instance.EnqueueDialogueSO(cardToPlay.GetDialogueSO(), false);
+        }
+
         // Update UI for AI's Card
         // use dialogue to announce card played here?
         // Remove Card from AI's Hand

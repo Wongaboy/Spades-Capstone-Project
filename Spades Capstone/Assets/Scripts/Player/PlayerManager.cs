@@ -130,6 +130,11 @@ public class PlayerManager : MonoBehaviour
     {
         if(CheckValidMove(playedCard)){
             GameManager.Instance.playerCard = playedCard;
+            // If card has Dialogue attached Enqueue it
+            if (playedCard.HasDialogueAttached())
+            {
+                DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
+            }
             playerHand.RemoveCardFromHand(playedCard);
             playerHandUI.ShowCardPlayed(playedCard);
             EndTurn();
