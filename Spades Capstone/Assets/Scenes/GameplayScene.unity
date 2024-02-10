@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.0036998605, g: 0.010915399, b: 0.018429376, a: 1}
+  m_IndirectSpecularColor: {r: 0.0037152108, g: 0.010948347, b: 0.01847047, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1783,6 +1783,10 @@ PrefabInstance:
       propertyPath: val
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (2)
@@ -3618,6 +3622,10 @@ PrefabInstance:
       propertyPath: val
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (10)
@@ -4911,6 +4919,10 @@ PrefabInstance:
       propertyPath: val
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (7)
@@ -6021,6 +6033,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tutorialPanel: {fileID: 1846299566}
   tutorialDialogue: {fileID: 11400000, guid: b70aa84a32845c24e980db9c76092353, type: 2}
+  triggerTutorial: 0
   tutorialPrompts:
   - {fileID: 11400000, guid: 1e3e1fc0021b7fa42874133ec4bea545, type: 2}
   - {fileID: 11400000, guid: fca53759581923b4a951674ad336b718, type: 2}
@@ -6087,6 +6100,10 @@ PrefabInstance:
       propertyPath: val
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (8)
@@ -6821,6 +6838,10 @@ PrefabInstance:
       propertyPath: val
       value: 14
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (14)
@@ -7918,6 +7939,10 @@ PrefabInstance:
       propertyPath: val
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (9)
@@ -8127,6 +8152,10 @@ PrefabInstance:
       propertyPath: val
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (3)
@@ -9589,6 +9618,10 @@ PrefabInstance:
       propertyPath: val
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (11)
@@ -11475,6 +11508,10 @@ PrefabInstance:
       propertyPath: val
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (4)
@@ -11618,6 +11655,10 @@ PrefabInstance:
       propertyPath: val
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (6)
@@ -12094,6 +12135,10 @@ PrefabInstance:
       propertyPath: val
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (5)
@@ -12794,6 +12839,8 @@ MonoBehaviour:
   spadesBroken: 0
   numDraftTurns: 0
   numTurns: 0
+  isInTutorial: 0
+  phaseAfterDialogue: 0
 --- !u!4 &1621724427
 Transform:
   m_ObjectHideFlags: 0
@@ -13373,6 +13420,10 @@ PrefabInstance:
       propertyPath: val
       value: 13
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (13)
@@ -14698,6 +14749,10 @@ PrefabInstance:
       propertyPath: val
       value: 12
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (12)
