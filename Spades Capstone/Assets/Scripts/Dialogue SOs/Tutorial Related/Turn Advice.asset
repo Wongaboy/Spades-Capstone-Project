@@ -15,4 +15,4 @@ MonoBehaviour:
   dialogueTitle: Turn Advice
   dialogueName: AI Opponent
   dialogueTexts:
-  - << To be filled >>
+  - << Insert turn advice >>

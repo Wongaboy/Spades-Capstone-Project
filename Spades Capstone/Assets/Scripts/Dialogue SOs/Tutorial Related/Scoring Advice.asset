@@ -15,4 +15,4 @@ MonoBehaviour:
   dialogueTitle: Scoring Advice
   dialogueName: AI Opponent
   dialogueTexts:
-  - << To be filled >>
+  - << Insert Score advice >>
