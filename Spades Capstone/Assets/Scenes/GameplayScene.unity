@@ -8158,6 +8158,10 @@ PrefabInstance:
       propertyPath: suit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 23c0ca5311ff1a04780fb12f86aa7e6c, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Heart (14)

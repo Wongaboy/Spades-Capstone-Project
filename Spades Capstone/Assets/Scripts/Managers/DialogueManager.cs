@@ -47,6 +47,7 @@ public class DialogueManager : MonoBehaviour
     DialogueSO currentDialogue;
     int dialogueIndex; // Index of DialogueChunk
     bool isDialogueSequenceDone = true;
+    private string knownCharacterName = "???";
     #endregion
 
     private void Start()
@@ -128,10 +129,14 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue()
     {
         isDialogueSequenceDone = false;
+        if(currentDialogue.dialogueName != "???")
+        {
+            knownCharacterName = currentDialogue.dialogueName;
+        }
 
         dialogueTextBox.SetActive(true);
         currentDialogue = dialogueQueue.Dequeue();
-        dialogueSpeakerName.text = currentDialogue.dialogueName;
+        dialogueSpeakerName.text = knownCharacterName;
         dialogueIndex = 0;
 
         OnNextButton(); // Updates Dialogue UI to the first Dialogue Chunk
