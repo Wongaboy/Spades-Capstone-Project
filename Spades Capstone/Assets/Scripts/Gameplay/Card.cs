@@ -11,6 +11,7 @@ public class Card : MonoBehaviour
     [SerializeField] 
     private float cardSpeed = 10f;
     [SerializeField] private DialogueSO dialogueOnPlay = null;
+    private bool dialogueTriggered = false;
 
     [Header("Components")]
     [SerializeField]
@@ -63,12 +64,13 @@ public class Card : MonoBehaviour
 
     public bool HasDialogueAttached()
     {
-        if (dialogueOnPlay != null) { return true; }
+        if (dialogueOnPlay != null && dialogueTriggered == false) { return true; }
         else { return false; }
     }
 
     public DialogueSO GetDialogueSO()
     {
+        dialogueTriggered = true;
         return dialogueOnPlay;
     }
 
