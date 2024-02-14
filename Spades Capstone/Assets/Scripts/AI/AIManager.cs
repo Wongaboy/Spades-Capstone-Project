@@ -74,12 +74,12 @@ public class AIManager : MonoBehaviour
         if (phase == Phase.AITURN)
         {
             StartCoroutine(HandleAITurn());
-            cardDisplay.gameObject.SetActive(true);
+            // cardDisplay.gameObject.SetActive(true); deprecated
         }
         else if (phase == Phase.AIDRAFT)
         {
             // Decides to Keep or Discard & then waits to switch Turn/Phase
-            cardDisplay.gameObject.SetActive(false);
+            // cardDisplay.gameObject.SetActive(false); deprecated
             StartCoroutine(MakeDraftDecision(GameManager.Instance.DrawCard()));
         }
 
@@ -317,7 +317,7 @@ public class AIManager : MonoBehaviour
         // Remove Card from AI's Hand
         aiHand.RemoveCardFromHand(cardToPlay);
         aiHandUI.ShowCardPlayed(cardToPlay);
-        cardDisplay.text = cardToPlay.ToString();
+        // cardDisplay.text = cardToPlay.ToString(); deprecated - do need to update this to show card in new way
 
         // Move On
         if (isTrickLead == true)
