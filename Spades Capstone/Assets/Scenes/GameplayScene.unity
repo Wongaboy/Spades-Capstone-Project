@@ -3440,121 +3440,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 571538370}
   m_CullTransparentMesh: 1
---- !u!1 &598131516
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 598131519}
-  - component: {fileID: 598131518}
-  - component: {fileID: 598131517}
-  m_Layer: 0
-  m_Name: Directional Light (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &598131517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598131516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Version: 1
-  m_UsePipelineSettings: 1
-  m_AdditionalLightsShadowResolutionTier: 2
-  m_LightLayerMask: 1
-  m_CustomShadowLayers: 0
-  m_ShadowLayerMask: 1
-  m_LightCookieSize: {x: 1, y: 1}
-  m_LightCookieOffset: {x: 0, y: 0}
---- !u!108 &598131518
-Light:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598131516}
-  m_Enabled: 1
-  serializedVersion: 10
-  m_Type: 1
-  m_Shape: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.05
-  m_Range: 10
-  m_SpotAngle: 30
-  m_InnerSpotAngle: 21.80208
-  m_CookieSize: 10
-  m_Shadows:
-    m_Type: 2
-    m_Resolution: -1
-    m_CustomResolution: -1
-    m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
-    m_NearPlane: 0.2
-    m_CullingMatrixOverride:
-      e00: 1
-      e01: 0
-      e02: 0
-      e03: 0
-      e10: 0
-      e11: 1
-      e12: 0
-      e13: 0
-      e20: 0
-      e21: 0
-      e22: 1
-      e23: 0
-      e30: 0
-      e31: 0
-      e32: 0
-      e33: 1
-    m_UseCullingMatrixOverride: 0
-  m_Cookie: {fileID: 0}
-  m_DrawHalo: 0
-  m_Flare: {fileID: 0}
-  m_RenderMode: 0
-  m_CullingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_RenderingLayerMask: 1
-  m_Lightmapping: 1
-  m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
-  m_ColorTemperature: 6570
-  m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
-  m_UseBoundingSphereOverride: 0
-  m_UseViewFrustumForShadowCasterCull: 1
-  m_ShadowRadius: 0
-  m_ShadowAngle: 0
---- !u!4 &598131519
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 598131516}
-  m_LocalRotation: {x: 0.19669962, y: 0.17600659, z: 0.16798775, w: 0.9497953}
-  m_LocalPosition: {x: -2.0122828, y: 4.1853, z: 6.9719715}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1237651038}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 18.332, y: 24.95, z: 24.149}
 --- !u!1001 &602259184
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4259,7 +4144,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1237651038}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 18.332, y: 24.95, z: 24.149}
 --- !u!114 &705507996
 MonoBehaviour:
@@ -8088,7 +7973,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 598131519}
   - {fileID: 705507995}
   - {fileID: 1826980912}
   m_Father: {fileID: 0}
@@ -12227,12 +12111,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1826980911}
   m_LocalRotation: {x: 0.702277, y: -0, z: -0, w: 0.71190387}
-  m_LocalPosition: {x: -1.18, y: 6.94, z: 1.8}
+  m_LocalPosition: {x: -1.18, y: 6.67, z: 1.81}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1237651038}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 89.22, y: 0, z: 0}
 --- !u!114 &1826980913
 MonoBehaviour:
@@ -12265,11 +12149,11 @@ Light:
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
-  m_Color: {r: 1, g: 0.6441743, b: 0.18396229, a: 1}
-  m_Intensity: 8.38
-  m_Range: 10.41
-  m_SpotAngle: 54.362946
-  m_InnerSpotAngle: 42.104538
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 10.7
+  m_Range: 13.8
+  m_SpotAngle: 81.81709
+  m_InnerSpotAngle: 60.125862
   m_CookieSize: 10
   m_Shadows:
     m_Type: 0
@@ -12308,7 +12192,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 0
+  m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -14065,6 +13949,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6695334904022743517, guid: 51f6a6e7777b4b0418d1732080b78abb, type: 3}
+      propertyPath: m_text
+      value: "Phase One: Draft\n\neach player will draw a card and either keep it
+        or discard it and draw a new one in turn until the deck is out of cards\n\nat
+        this point, each player will bid the amount of tricks they believe they can
+        take\n\nPhase Two: Play\n\nthe lead will play a card, and their opponent
+        will follow. You must follow suit if able, and if unable you may choose freely.
+        You may not lead a spade until one has been played. \n\nThe highest spade
+        OR card of the lead suit wins, and that player takes the trick\n\nPhase Three:
+        Scoring\n\nEach player who took at least as many tricks as they bid shall
+        be awarded points equal to 10 times their bid. Bids taken in excess award
+        a bag, and ten bags deduct 100 points A player who took fewer than their
+        bid shall be deducted ten points for each trick they failed to take.\n"
+      objectReference: {fileID: 0}
     - target: {fileID: 7046822010357928105, guid: 51f6a6e7777b4b0418d1732080b78abb, type: 3}
       propertyPath: m_RootOrder
       value: 11
