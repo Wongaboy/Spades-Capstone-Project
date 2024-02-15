@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Test
   m_EditorClassIdentifier: 
   dialogueTitle: Test1
-  dialogueName: Hi Im Test
+  dialogueName: ???
   dialogueTexts:
   - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tristique
     dolor sed ex placerat commodo. Sed rutrum leo sit amet tellus rutrum pulvinar.

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Draft Advice
   m_EditorClassIdentifier: 
   dialogueTitle: Draft advice
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - << Insert draft advice >>

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: End of Trick Advice
   m_EditorClassIdentifier: 
   dialogueTitle: End of Trick Advice
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - << Insert Winning Trick advice >>

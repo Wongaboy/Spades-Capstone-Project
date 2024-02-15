@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RandomPlayerWin
   m_EditorClassIdentifier: 
   dialogueTitle: RandomPlayerWin
-  dialogueName: AI
+  dialogueName: ???
   dialogueTexts:
   - Seems like Lady Luck has taken a shine to you.

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Start of Tutorial
   m_EditorClassIdentifier: 
   dialogueTitle: Start of Tutorial
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - Okay lets give a refresher on the rules.
   - The first part of the game is the Draft Phase.

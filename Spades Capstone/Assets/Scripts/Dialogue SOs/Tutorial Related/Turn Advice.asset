@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Turn Advice
   m_EditorClassIdentifier: 
   dialogueTitle: Turn Advice
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - << Insert turn advice >>

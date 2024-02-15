@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bad Ending
   m_EditorClassIdentifier: 
   dialogueTitle: Bad Ending
-  dialogueName: AI Opponent
+  dialogueName: Psychopomp
   dialogueTexts:
   - Oh looks like you lost
   - Goodbye!

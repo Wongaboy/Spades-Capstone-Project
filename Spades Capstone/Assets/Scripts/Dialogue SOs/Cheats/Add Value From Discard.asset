@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Add Value From Discard
   m_EditorClassIdentifier: 
   dialogueTitle: AddValueFromDiscard
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - "I won\u2019t let this end."
   - Well, let us see if our friends from the discard pile have anything to say.
