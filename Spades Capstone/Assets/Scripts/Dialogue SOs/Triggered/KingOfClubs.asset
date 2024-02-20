@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
   m_Name: KingOfClubs
   m_EditorClassIdentifier: 
-  dialogueTitle: 
-  dialogueName: 
-  dialogueTexts: []
+  dialogueTitle: KingOfClubs
+  dialogueName: ???
+  dialogueTexts:
+  - 'At the peak of your craft, you were strong as a King. '
+  - Strong enough to make others fear you.
+  - 'Unfortunately for you, fear is a powerful motivator. '
+  - One that ultimately led to your demise.

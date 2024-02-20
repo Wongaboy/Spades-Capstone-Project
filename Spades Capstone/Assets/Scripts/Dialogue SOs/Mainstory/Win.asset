@@ -13,5 +13,11 @@ MonoBehaviour:
   m_Name: Win
   m_EditorClassIdentifier: 
   dialogueTitle: 'Win '
-  dialogueName: 
-  dialogueTexts: []
+  dialogueName: Psychopomp
+  dialogueTexts:
+  - Ahh, well played, well played indeed.
+  - "I\u2019m glad that I got to play this game with you, but it's time for me to
+    finally move on."
+  - Try to enjoy your duties while you have them.
+  - I shall be waiting peacefully for their conclusion.
+  - 'And then, perhaps, we can play another round. '

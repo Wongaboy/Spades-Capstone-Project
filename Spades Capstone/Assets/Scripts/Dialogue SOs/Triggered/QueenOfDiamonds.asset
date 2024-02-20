@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
   m_Name: QueenOfDiamonds
   m_EditorClassIdentifier: 
-  dialogueTitle: 
-  dialogueName: 
-  dialogueTexts: []
+  dialogueTitle: QueenOfDiamonds
+  dialogueName: ???
+  dialogueTexts:
+  - You even claimed the life of a Queen in your prime.
+  - Her life vanished without even the slightest hint that anyone was there to take
+    it.
+  - 'How impressive. '

@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
   m_Name: FourOfSpades
   m_EditorClassIdentifier: 
-  dialogueTitle: 
-  dialogueName: 
-  dialogueTexts: []
+  dialogueTitle: FourOfSpades
+  dialogueName: ???
+  dialogueTexts:
+  - You buried four of your closest friends.
+  - "Your youth wasn\u2019t kind to you, the famine was even harsher."
+  - Can you recall the way your heart hardened?

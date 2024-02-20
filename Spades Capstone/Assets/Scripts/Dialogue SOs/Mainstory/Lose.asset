@@ -12,6 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
   m_Name: Lose
   m_EditorClassIdentifier: 
-  dialogueTitle: 
-  dialogueName: 
-  dialogueTexts: []
+  dialogueTitle: Lose
+  dialogueName: Psychopomp
+  dialogueTexts:
+  - 'Another unworthy soul. '
+  - 'I was hoping that you would be the one, but alas. '
+  - 'It seems nothing but suffering awaits you at the end of your journey.
+
+'
+  - "I pray that you don\u2019t meet those who fell at your hands, for they will
+    not be as kind to you as I was. \n"
+  - ' I suppose I must wait for another worthy soul to relieve me of my duties.
+
+'

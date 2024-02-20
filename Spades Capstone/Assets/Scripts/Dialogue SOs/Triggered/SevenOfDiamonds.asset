@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
   m_Name: SevenOfDiamonds
   m_EditorClassIdentifier: 
-  dialogueTitle: 
-  dialogueName: 
-  dialogueTexts: []
+  dialogueTitle: SevenOfDiamonds
+  dialogueName: ???
+  dialogueTexts:
+  - Seven.
+  - Your age when you first stole.
+  - Do you remember how quick your heartbeat was when you thought you were noticed?

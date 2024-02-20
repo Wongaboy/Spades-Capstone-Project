@@ -12,6 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
   m_Name: NineOfHearts
   m_EditorClassIdentifier: 
-  dialogueTitle: 
-  dialogueName: 
-  dialogueTexts: []
+  dialogueTitle: NineOfHearts
+  dialogueName: ???
+  dialogueTexts:
+  - You were only nine when your parents died.
+  - Every plea for help was met with scorn as you watched them fade away.
+  - With a sibling to take care of, you did anything to survive.

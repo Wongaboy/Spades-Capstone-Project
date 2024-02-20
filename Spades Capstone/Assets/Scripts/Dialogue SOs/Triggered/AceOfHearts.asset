@@ -15,6 +15,7 @@ MonoBehaviour:
   dialogueTitle: AceOfHearts
   dialogueName: ???
   dialogueTexts:
-  - "Is that not what they used to call you back in the day? The Ace of Hearts. Efficient
-    and lethal. The stories they would tell\u2026 you truly struck fear into the
-    hearts of your victims."
+  - Is that not what they used to call you back in the day?
+  - The Ace of Hearts... efficient and lethal.
+  - "The stories they would tell\u2026 you truly struck fear into the hearts of your
+    victims."
