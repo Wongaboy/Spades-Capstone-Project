@@ -10,11 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: IntroDialouge
+  m_Name: Lose
   m_EditorClassIdentifier: 
-  dialogueTitle: Intro
-  dialogueName: ???
-  dialogueTexts:
-  - Now that you know how to play, shall we begin?
-  - "I may be old, but I\u2019ve still got some tricks up my sleeve..."
-  - 'you would do well not to underestimate me. '
+  dialogueTitle: 
+  dialogueName: 
+  dialogueTexts: []
