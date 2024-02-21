@@ -61,6 +61,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && IsDialogueActive())
+        {
+            OnNextButton();
+        }  
+    }
+
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
