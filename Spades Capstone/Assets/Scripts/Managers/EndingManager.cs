@@ -32,18 +32,6 @@ public class EndingManager : MonoBehaviour
     }
     #endregion
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public IEnumerator TriggerEndCutscene(Character winner)
     {
         switch (winner)
