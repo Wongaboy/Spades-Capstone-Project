@@ -50,6 +50,9 @@ public class DialogueManager : MonoBehaviour
     private string knownCharacterName = "???";
 
     [SerializeReference] TMP_Text tallyBoardOpponentName;
+
+    [SerializeReference] GameObject pressSpaceText;
+
     #endregion
 
     private void Start()
@@ -205,6 +208,11 @@ public class DialogueManager : MonoBehaviour
         List<(int, Suit)> allCardsWithDialogue = new List<(int, Suit)>(cardDialogueDatabase.Keys);
 
         return allCardsWithDialogue.Contains(cardValues);
+    }
+
+    public void TurnOffPressSpace(bool state)
+    {
+        pressSpaceText.SetActive(state);
     }
 
 }

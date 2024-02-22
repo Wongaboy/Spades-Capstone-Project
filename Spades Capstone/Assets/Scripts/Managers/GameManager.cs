@@ -340,6 +340,7 @@ public class GameManager : MonoBehaviour
         {
             // Do Normal Gameplay
             isInTutorial = false;
+            DialogueManager.Instance.TurnOffPressSpace(false);
             Debug.Log("They said NO to tutorial");
             StartCoroutine(StartGame());
         }
