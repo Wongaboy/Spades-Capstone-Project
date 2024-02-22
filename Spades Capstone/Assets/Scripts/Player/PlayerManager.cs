@@ -146,7 +146,7 @@ public class PlayerManager : MonoBehaviour
         if(CheckValidMove(playedCard)){
             GameManager.Instance.playerCard = playedCard;
             // If card has Dialogue attached Enqueue it
-            if (playedCard.HasDialogueAttached())
+            if (playedCard.HasDialogueAttached() && GameManager.Instance.isInTutorial == false)
             {
                 DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
             }
