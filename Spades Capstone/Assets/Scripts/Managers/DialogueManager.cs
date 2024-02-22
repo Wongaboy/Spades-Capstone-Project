@@ -48,6 +48,8 @@ public class DialogueManager : MonoBehaviour
     int dialogueIndex; // Index of DialogueChunk
     bool isDialogueSequenceDone = true;
     private string knownCharacterName = "???";
+
+    [SerializeReference] TMP_Text tallyBoardOpponentName;
     #endregion
 
     private void Start()
@@ -142,6 +144,7 @@ public class DialogueManager : MonoBehaviour
         if (currentDialogue.dialogueName != "???")
         {
             knownCharacterName = currentDialogue.dialogueName;
+            tallyBoardOpponentName.text = knownCharacterName;
         }
         dialogueSpeakerName.text = knownCharacterName;
         dialogueIndex = 0;
