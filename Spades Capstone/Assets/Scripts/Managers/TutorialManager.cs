@@ -29,6 +29,9 @@ public class TutorialManager : MonoBehaviour
     private int tutorialDialogueIndex = 0;
     [SerializeField] DialogueSO[] tutorialPrompts;
 
+    [SerializeReference] GameObject pressSpaceText;
+
+
     public IEnumerator TriggerTutorialPrompt()
     {
         // Play Dialogue
@@ -98,6 +101,7 @@ public class TutorialManager : MonoBehaviour
 
         GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
         GameManager.Instance.isInTutorial = false;
+        pressSpaceText.SetActive(false);
 
         ScoreManager.Instance.ResetTallyBoardScores();
         GameManager.Instance.ResetGM();

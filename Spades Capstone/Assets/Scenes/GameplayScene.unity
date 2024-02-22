@@ -6115,6 +6115,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 340843bd0b31cdc4e9d4d0a8a4970537, type: 2}
   - {fileID: 11400000, guid: 84a3662b297e1434f9f2eb2543e20176, type: 2}
   - {fileID: 11400000, guid: 22667a06ad69d6446b2a8c5412410efa, type: 2}
+  pressSpaceText: {fileID: 1992116873}
 --- !u!1001 &764750080
 PrefabInstance:
   m_ObjectHideFlags: 0
