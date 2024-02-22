@@ -129,7 +129,6 @@ public class DialogueManager : MonoBehaviour
         {
             StartDialogue();
             yield return new WaitUntil(() => (isDialogueSequenceDone == true));
-            Debug.Log("We are past yield");
         }
 
         GameManager.Instance.ChangePhase(phase);

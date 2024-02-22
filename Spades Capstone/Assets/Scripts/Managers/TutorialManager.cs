@@ -58,7 +58,6 @@ public class TutorialManager : MonoBehaviour
 
     public void EnqueueNextDialogue()
     {
-        Debug.Log("Enqueued tutorial dialogue");       
         DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
         tutorialDialogueIndex++;
     }
