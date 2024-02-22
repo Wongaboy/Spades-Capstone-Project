@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -29,7 +30,8 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private GameObject[] DraftZones;
     [SerializeField] private GameObject PlayZone;
     private Card cardToDraft;
-
+    [SerializeReference] private GameObject cardAmountDisplay;
+    [SerializeReference] private TMP_Text cardAmountText;
     //private Character thisCharacter = Character.PLAYER;
     [HideInInspector]
     public bool isLead = false;
@@ -75,6 +77,7 @@ public class PlayerManager : MonoBehaviour
     {
         card.SetInteractable(false);
         playerHand.AddCardToHand(card);
+        UpdateCardAmountText();
         playerHandUI.ShowCard(card);
         GameManager.Instance.ChangePhase(Phase.AIDRAFT);
     }
@@ -119,6 +122,18 @@ public class PlayerManager : MonoBehaviour
         return true;
     }
 
+    // Change Card Amount Display
+    public void UpdateCardAmountText()
+    {
+        cardAmountText.text = playerHand.NumberofCards() + "/13";
+    }
+
+    // Toggle Card Amount Display
+    public void ToggleCardAmountDisplay(bool activeState)
+    {
+        cardAmountDisplay.SetActive(activeState);
+    }
+
     #region "Turn Handling"
     // allow cards to be moveable again
     public void HandlePlayerTurn(){
@@ -136,6 +151,7 @@ public class PlayerManager : MonoBehaviour
                 DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
             }
             playerHand.RemoveCardFromHand(playedCard);
+            UpdateCardAmountText();
             playerHandUI.ShowCardPlayed(playedCard);
             EndTurn();
         }

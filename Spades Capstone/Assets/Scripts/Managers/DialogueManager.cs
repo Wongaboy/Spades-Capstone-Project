@@ -61,6 +61,14 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && IsDialogueActive())
+        {
+            OnNextButton();
+        }  
+    }
+
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
@@ -129,13 +137,12 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue()
     {
         isDialogueSequenceDone = false;
-        if(currentDialogue.dialogueName != "???")
+        dialogueTextBox.SetActive(true);
+        currentDialogue = dialogueQueue.Dequeue();
+        if (currentDialogue.dialogueName != "???")
         {
             knownCharacterName = currentDialogue.dialogueName;
         }
-
-        dialogueTextBox.SetActive(true);
-        currentDialogue = dialogueQueue.Dequeue();
         dialogueSpeakerName.text = knownCharacterName;
         dialogueIndex = 0;
 

@@ -173,6 +173,7 @@ public class GameManager : MonoBehaviour
         {
             StartCoroutine(EndingManager.Instance.TriggerEndCutscene(winner));
         }
+        PlayerManager.Instance.ToggleCardAmountDisplay(false);
         Debug.Log("Winner is " + winner.ToString());
     }
 
@@ -197,6 +198,7 @@ public class GameManager : MonoBehaviour
     {
         StartCoroutine(deck.Shuffle());
         yield return new WaitForSeconds(10f);
+        PlayerManager.Instance.ToggleCardAmountDisplay(true);
         ChangePhase(Phase.AIDRAFT);
     }
 

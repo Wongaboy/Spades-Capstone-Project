@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Good Ending
   m_EditorClassIdentifier: 
   dialogueTitle: Good Ending
-  dialogueName: AI Opponent
+  dialogueName: Psychopomp
   dialogueTexts:
   - Good Job!
   - You Won!!!!!!!!

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Cheat Phase One
   m_EditorClassIdentifier: 
   dialogueTitle: CheatPhaseOne
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - Okay so you are winning a bit.
   - Well, do I have some tricks up my sleeve.

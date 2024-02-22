@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Change Bid
   m_EditorClassIdentifier: 
   dialogueTitle: ChangeBid
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - "Oh, did I misunderstand? My mind isn\u2019t as sharp as it used to be. Let's
     just continue with the game. *Chuckles*"

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bid Advice
   m_EditorClassIdentifier: 
   dialogueTitle: Bid Advice
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - << Insert bid advice >>

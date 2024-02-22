@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: RandomAIWin
   m_EditorClassIdentifier: 
   dialogueTitle: RandomAIWin
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - "Looks like luck\u2019s still on my side."

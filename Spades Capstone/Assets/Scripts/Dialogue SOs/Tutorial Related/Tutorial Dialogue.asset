@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Tutorial Dialogue
   m_EditorClassIdentifier: 
   dialogueTitle: Tutorial Dialogue
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - Is this your first time around these parts?

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Randomize Player Card Value
   m_EditorClassIdentifier: 
   dialogueTitle: RandomizePlayerCardValue
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - "We can\u2019t have you winning that easily. We\u2019ll let fate decide."

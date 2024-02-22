@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Scoring Advice
   m_EditorClassIdentifier: 
   dialogueTitle: Scoring Advice
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - << Insert Score advice >>

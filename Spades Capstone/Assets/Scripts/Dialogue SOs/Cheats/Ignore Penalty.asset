@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ignore Penalty
   m_EditorClassIdentifier: 
   dialogueTitle: IgnorePenalty
-  dialogueName: AI Opponent
+  dialogueName: ???
   dialogueTexts:
   - "You\u2019ll forgive this old soul\u2019s mistakes, won\u2019t you?"
