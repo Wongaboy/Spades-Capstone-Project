@@ -307,7 +307,7 @@ public class AIManager : MonoBehaviour
         GameManager.Instance.aiCard = cardToPlay;
 
         // If card has Dialogue attached Enqueue it
-        if (cardToPlay.HasDialogueAttached() && GameManager.Instance.isInTutorial == false)
+        if (cardToPlay.HasDialogueAttached() && GameManager.Instance.isInTutorial == false && GetCheatPhase() != AICheatPhase.NoCheats)
         {
             DialogueManager.Instance.EnqueueDialogueSO(cardToPlay.GetDialogueSO(), false);
         }
