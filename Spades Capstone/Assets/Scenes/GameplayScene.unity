@@ -6106,10 +6106,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialPanel: {fileID: 1846299566}
-  tutorialDialogue: {fileID: 11400000, guid: b70aa84a32845c24e980db9c76092353, type: 2}
+  tutorialDialogue: {fileID: 11400000, guid: a2489fa514a2843458b43d1cedbd3594, type: 2}
   triggerTutorial: 0
   tutorialPrompts:
-  - {fileID: 11400000, guid: 1e3e1fc0021b7fa42874133ec4bea545, type: 2}
+  - {fileID: 11400000, guid: a2489fa514a2843458b43d1cedbd3594, type: 2}
   - {fileID: 11400000, guid: fca53759581923b4a951674ad336b718, type: 2}
   - {fileID: 11400000, guid: fc5055885a56d3f4aac6c220987f1fc3, type: 2}
   - {fileID: 11400000, guid: 340843bd0b31cdc4e9d4d0a8a4970537, type: 2}
