@@ -6115,7 +6115,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 340843bd0b31cdc4e9d4d0a8a4970537, type: 2}
   - {fileID: 11400000, guid: 84a3662b297e1434f9f2eb2543e20176, type: 2}
   - {fileID: 11400000, guid: 22667a06ad69d6446b2a8c5412410efa, type: 2}
-  pressSpaceText: {fileID: 1992116873}
 --- !u!1001 &764750080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6741,6 +6740,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ca4c7ecc9aaaccf42ad8a0dd231d459e, type: 2}
   - {fileID: 11400000, guid: 4030da85056bf4b4b9e06d44a3d0d33e, type: 2}
   tallyBoardOpponentName: {fileID: 897941955116486597}
+  pressSpaceText: {fileID: 0}
 --- !u!4 &819685599
 Transform:
   m_ObjectHideFlags: 0
@@ -6767,7 +6767,6 @@ GameObject:
   - component: {fileID: 825068069}
   - component: {fileID: 825068072}
   - component: {fileID: 825068071}
-  - component: {fileID: 825068070}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -6796,23 +6795,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &825068070
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 825068068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &825068071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14961,7 +14943,6 @@ GameObject:
   - component: {fileID: 1808415220}
   - component: {fileID: 1808415223}
   - component: {fileID: 1808415222}
-  - component: {fileID: 1808415221}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -14990,23 +14971,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1808415221
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1808415219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!114 &1808415222
 MonoBehaviour:
   m_ObjectHideFlags: 0
