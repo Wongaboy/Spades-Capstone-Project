@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: AceOfHearts
+  m_Name: FourOfSpades
   m_EditorClassIdentifier: 
-  dialogueTitle: AceOfHearts
+  dialogueTitle: FourOfSpades
   dialogueName: ???
   dialogueTexts:
-  - Is that not what they used to call you back in the day?
-  - The Ace of Hearts... efficient and lethal.
-  - "The stories they would tell\u2026 you truly struck fear into the hearts of your
-    victims."
+  - You buried four of your closest friends.
+  - "Your youth wasn\u2019t kind to you, the famine was even harsher."
+  - Can you recall the way your heart hardened?

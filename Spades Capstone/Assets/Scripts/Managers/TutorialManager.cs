@@ -58,7 +58,6 @@ public class TutorialManager : MonoBehaviour
 
     public void EnqueueNextDialogue()
     {
-        Debug.Log("Enqueued tutorial dialogue");       
         DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
         tutorialDialogueIndex++;
     }
@@ -99,6 +98,8 @@ public class TutorialManager : MonoBehaviour
 
         GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
         GameManager.Instance.isInTutorial = false;
+        // pressSpaceText.SetActive(false);
+        DialogueManager.Instance.TurnOffPressSpace(false);
 
         ScoreManager.Instance.ResetTallyBoardScores();
         GameManager.Instance.ResetGM();

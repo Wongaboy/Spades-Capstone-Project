@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: AceOfHearts
+  m_Name: NineOfHearts
   m_EditorClassIdentifier: 
-  dialogueTitle: AceOfHearts
+  dialogueTitle: NineOfHearts
   dialogueName: ???
   dialogueTexts:
-  - Is that not what they used to call you back in the day?
-  - The Ace of Hearts... efficient and lethal.
-  - "The stories they would tell\u2026 you truly struck fear into the hearts of your
-    victims."
+  - You were only nine when your parents died.
+  - Every plea for help was met with scorn as you watched them fade away.
+  - With a sibling to take care of, you did anything to survive.

@@ -48,6 +48,11 @@ public class DialogueManager : MonoBehaviour
     int dialogueIndex; // Index of DialogueChunk
     bool isDialogueSequenceDone = true;
     private string knownCharacterName = "???";
+
+    [SerializeReference] TMP_Text tallyBoardOpponentName;
+
+    [SerializeReference] GameObject pressSpaceText;
+
     #endregion
 
     private void Start()
@@ -127,7 +132,6 @@ public class DialogueManager : MonoBehaviour
         {
             StartDialogue();
             yield return new WaitUntil(() => (isDialogueSequenceDone == true));
-            Debug.Log("We are past yield");
         }
 
         GameManager.Instance.ChangePhase(phase);
@@ -142,6 +146,7 @@ public class DialogueManager : MonoBehaviour
         if (currentDialogue.dialogueName != "???")
         {
             knownCharacterName = currentDialogue.dialogueName;
+            tallyBoardOpponentName.text = knownCharacterName;
         }
         dialogueSpeakerName.text = knownCharacterName;
         dialogueIndex = 0;
@@ -203,6 +208,11 @@ public class DialogueManager : MonoBehaviour
         List<(int, Suit)> allCardsWithDialogue = new List<(int, Suit)>(cardDialogueDatabase.Keys);
 
         return allCardsWithDialogue.Contains(cardValues);
+    }
+
+    public void TurnOffPressSpace(bool state)
+    {
+        pressSpaceText.SetActive(state);
     }
 
 }

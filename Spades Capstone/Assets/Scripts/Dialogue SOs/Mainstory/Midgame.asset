@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
+  m_Name: Midgame
+  m_EditorClassIdentifier: 
+  dialogueTitle: Midgame
+  dialogueName: ???
+  dialogueTexts:
+  - 'It seems as though you understand Spades, I am not surprised considering your
+    past. '
+  - "That\u2019s right\u2026 your past."
+  - You might be wondering how I know so much about you.
+  - More than that, you might be wondering where you are.
+  - 'I shall start with the latter. Let us say that this is the Precipice of Eternal
+    Peace or for you perhaps... '
+  - Eternal Suffering.
+  - And I am the one who shall decide which path you fall upon.
+  - Someone with as much blood on their hands as you should be lucky to count peace
+    as an option.
+  - 'But it would be far too easy if I just told you everything outright.
+
+'
+  - However, I will say one last thing.
+  - I am rooting for you.

@@ -15,7 +15,6 @@ public class Deck : MonoBehaviour
     
     void Awake()
     {
-        Debug.Log("This is supposed to play on Awake for DeckScript attached to GameObject");
         cards = new List<Card>();
         foreach(Card card in cardsInDeck)
         {

@@ -6106,15 +6106,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialPanel: {fileID: 1846299566}
-  tutorialDialogue: {fileID: 11400000, guid: b70aa84a32845c24e980db9c76092353, type: 2}
+  tutorialDialogue: {fileID: 11400000, guid: a2489fa514a2843458b43d1cedbd3594, type: 2}
   triggerTutorial: 0
   tutorialPrompts:
-  - {fileID: 11400000, guid: 1e3e1fc0021b7fa42874133ec4bea545, type: 2}
+  - {fileID: 11400000, guid: a2489fa514a2843458b43d1cedbd3594, type: 2}
   - {fileID: 11400000, guid: fca53759581923b4a951674ad336b718, type: 2}
   - {fileID: 11400000, guid: fc5055885a56d3f4aac6c220987f1fc3, type: 2}
   - {fileID: 11400000, guid: 340843bd0b31cdc4e9d4d0a8a4970537, type: 2}
   - {fileID: 11400000, guid: 84a3662b297e1434f9f2eb2543e20176, type: 2}
   - {fileID: 11400000, guid: 22667a06ad69d6446b2a8c5412410efa, type: 2}
+  pressSpaceText: {fileID: 1992116873}
 --- !u!1001 &764750080
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6739,6 +6740,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6abc69a390e7a6e43a5c415e3f3f22d4, type: 2}
   - {fileID: 11400000, guid: ca4c7ecc9aaaccf42ad8a0dd231d459e, type: 2}
   - {fileID: 11400000, guid: 4030da85056bf4b4b9e06d44a3d0d33e, type: 2}
+  tallyBoardOpponentName: {fileID: 897941955116486597}
 --- !u!4 &819685599
 Transform:
   m_ObjectHideFlags: 0
@@ -18005,6 +18007,10 @@ PrefabInstance:
       propertyPath: m_InnerSpotAngle
       value: 69.646965
       objectReference: {fileID: 0}
+    - target: {fileID: 9214324352930032418, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
+      propertyPath: m_text
+      value: ???
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
 --- !u!1 &897941955116486596 stripped
@@ -18012,6 +18018,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 911297225358172406, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
   m_PrefabInstance: {fileID: 897941955116486595}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &897941955116486597 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9214324352930032418, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
+  m_PrefabInstance: {fileID: 897941955116486595}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &4339140953191873067 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1317377990214669226, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}

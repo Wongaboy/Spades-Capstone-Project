@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
+  m_Name: Endgame (Postreveal)
+  m_EditorClassIdentifier: 
+  dialogueTitle: Endgame Postreveal
+  dialogueName: Psychopomp
+  dialogueTexts:
+  - 'You have sent me many souls to guide.
+
+'
+  - "The Space Between is treacherous and impossible for the uninitiated to navigate\r.\n"
+  - As a reward for this sacred duty, I have been guaranteed admission to Eternal
+    Peace
+  - Before I can pass on, however, I must choose a successor.
+  - 'A soul with much to lose, but worthy of redemption.
+
+'
+  - 'One such as yourself.
+
+'
+  - You faced death at every turn of your life, famine, illness, murder, culminating
+    with your own death.
+  - You truly understand death.
+  - We are afforded certain freedoms in the choosing process, and so I have elected
+    to play a favorite game of mine.
+  - If you can best me, the job is yours. If not, maybe eternal peace was never in
+    the cards for you.
+  - "It is quite a responsibility, you must understand. I cannot afford to go easy
+    on you\r.\n"

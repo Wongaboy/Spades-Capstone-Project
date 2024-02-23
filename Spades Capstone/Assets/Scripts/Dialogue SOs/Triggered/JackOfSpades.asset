@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 05c1ae99ef766e540a56cae3087c6795, type: 3}
-  m_Name: AceOfHearts
+  m_Name: JackOfSpades
   m_EditorClassIdentifier: 
-  dialogueTitle: AceOfHearts
+  dialogueTitle: JackOfSpades
   dialogueName: ???
   dialogueTexts:
-  - Is that not what they used to call you back in the day?
-  - The Ace of Hearts... efficient and lethal.
-  - "The stories they would tell\u2026 you truly struck fear into the hearts of your
-    victims."
+  - You were molded into something you never wished to be.
+  - 'A cog in the machine, a Jack in the court of murder. '
+  - "And yet you pushed further\u2026"
