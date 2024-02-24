@@ -282,6 +282,7 @@ MonoBehaviour:
   cardSpeed: 10
   dialogueOnPlay: {fileID: 0}
   cardFaceCanvas: {fileID: 4834272610506964500}
+  cardImage: {fileID: 4834272610827294813}
   cardBody: {fileID: 6476523307674758241}
   cardInteraction: {fileID: 4087108490610812287}
 --- !u!54 &6476523307674758241

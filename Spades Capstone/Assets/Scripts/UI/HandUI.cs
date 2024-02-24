@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class HandUI : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class HandUI : MonoBehaviour
     private Character handOwner;
     private List<Card> cardObjs;
     private static int[] draftIndexOrder = { 6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 11, 0, 12 };
+    public static event Action<Character, Card> cardPlayed;
 
     public void Start()
     {
@@ -39,6 +41,7 @@ public class HandUI : MonoBehaviour
         card.MoveToLocation(tableSpot.position, tableSpot.rotation, true);
         card.SetInteractable(false);
         cardObjs.Remove(card);
+        cardPlayed.Invoke(handOwner, card);
         // yield return new WaitForSeconds(1); - this might work later, but causes too many issues rn to figure out
         // SnapToPosition();
     }
