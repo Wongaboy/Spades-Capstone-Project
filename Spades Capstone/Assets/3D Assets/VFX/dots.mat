@@ -71,8 +71,8 @@ Material:
     - _maskpower: 8
     - _noisescale: 10
     m_Colors:
-    - _bordercolor: {r: 4, g: 0, b: 0, a: 1}
-    - _dotscolor: {r: 0.90588236, g: 0, b: 0.003921569, a: 1}
+    - _bordercolor: {r: 5.3403134, g: 0, b: 0, a: 1}
+    - _dotscolor: {r: 1, g: 0, b: 0.003921509, a: 1}
     - _dotstiling: {r: 15, g: 20, b: 0, a: 0}
     - _noisespeed: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []
