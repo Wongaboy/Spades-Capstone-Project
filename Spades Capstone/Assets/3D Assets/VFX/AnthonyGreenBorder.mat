@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: dots
+  m_Name: AnthonyGreenBorder
   m_Shader: {fileID: -6465566751694194690, guid: 1a18cae8c9ce7f943a547851dd12944e, type: 3}
   m_ValidKeywords:
   - _SURFACE_TYPE_TRANSPARENT
@@ -28,7 +28,7 @@ Material:
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
-  m_CustomRenderQueue: 3000
+  m_CustomRenderQueue: -1
   stringTagMap:
     RenderType: Transparent
   disabledShaderPasses:
@@ -71,8 +71,8 @@ Material:
     - _maskpower: 8
     - _noisescale: 10
     m_Colors:
-    - _bordercolor: {r: 4, g: 0, b: 0, a: 1}
-    - _dotscolor: {r: 0.90588236, g: 0, b: 0.003921569, a: 1}
+    - _bordercolor: {r: 0.006512091, g: 0.90466136, b: 0, a: 1}
+    - _dotscolor: {r: 0.0066972985, g: 0.90588236, b: 0, a: 1}
     - _dotstiling: {r: 15, g: 20, b: 0, a: 0}
     - _noisespeed: {r: 0, g: 0.2, b: 0, a: 0}
   m_BuildTextureStacks: []

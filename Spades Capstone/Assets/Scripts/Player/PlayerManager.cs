@@ -137,6 +137,12 @@ public class PlayerManager : MonoBehaviour
     #region "Turn Handling"
     // allow cards to be moveable again
     public void HandlePlayerTurn(){
+        // Toggle On all the Card Border VFX
+        foreach(Card card in playerHand.GetAllCards())
+        {
+            card.ToggleOnVFXBorder(true, CheckValidMove(card));
+        }
+
         playerHandUI.AlterCardInteraction(true);
     }
 
@@ -151,6 +157,7 @@ public class PlayerManager : MonoBehaviour
                 DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
             }
             playerHand.RemoveCardFromHand(playedCard);
+            playedCard.ToggleOnVFXBorder(false, false);
             UpdateCardAmountText();
             playerHandUI.ShowCardPlayed(playedCard);
             EndTurn();
@@ -164,6 +171,12 @@ public class PlayerManager : MonoBehaviour
 
     private void EndTurn()
     {
+        // Turn Off Glow on Cards
+        foreach (Card card in playerHand.GetAllCards())
+        {
+            card.ToggleOnVFXBorder(false, false);
+        }
+
         PlayZone.SetActive(false);
         if(isLead)
         {
