@@ -38,9 +38,9 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] int scoreToWin;
 
     [SerializeField] int phaseOnePointThreshold;
-    [SerializeField] DialogueSO phaseOneDialogue;
+    //[SerializeField] DialogueSO phaseOneDialogue;
     [SerializeField] int phaseTwoPointThreshold;
-    [SerializeField] DialogueSO phaseTwoDialogue;
+    //[SerializeField] DialogueSO phaseTwoDialogue;
 
     #endregion
 
@@ -144,7 +144,8 @@ public class ScoreManager : MonoBehaviour
             if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseTwo) 
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseTwo);
-                DialogueManager.Instance.EnqueueDialogueSO(phaseTwoDialogue, false);
+                // DialogueManager.Instance.EnqueueDialogueSO(phaseTwoDialogue, false);
+                DialogueManager.Instance.AddCheatPhaseDialogue(2, false);
                 Debug.Log("AI has entered Cheat Phase 2");
             }
             
@@ -154,7 +155,8 @@ public class ScoreManager : MonoBehaviour
             if (AIManager.Instance.GetCheatPhase() != AICheatPhase.CheatPhaseOne)
             {
                 AIManager.Instance.ChangeCheatPhase(AICheatPhase.CheatPhaseOne);
-                DialogueManager.Instance.EnqueueDialogueSO(phaseOneDialogue, false);
+                // DialogueManager.Instance.EnqueueDialogueSO(phaseOneDialogue, false);
+                DialogueManager.Instance.AddCheatPhaseDialogue(1, false);
                 Debug.Log("AI has entered Cheat Phase 1");
             }
         }

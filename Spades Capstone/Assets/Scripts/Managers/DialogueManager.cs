@@ -24,15 +24,16 @@ public class DialogueManager : MonoBehaviour
     #endregion
 
     #region "Class Variables"
-
-    // !Work in Progress Variables!
     [SerializeField] TMP_Text dialogueSpeakerName;
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialogueTextBox;
 
-    // Dialogue Database? -- To Be Added
-    [SerializeField] DialogueSO phaseOneDialogue;
-    [SerializeField] DialogueSO phaseTwoDialogue;
+    [SerializeReference] TMP_Text tallyBoardOpponentName;
+
+    [SerializeReference] GameObject pressSpaceText;
+
+    // Dialogue Databases
+    [SerializeField] DialogueSO[] phaseDialogues;
 
     private Dictionary<CheatName, DialogueSO> cheatDialogueDatabase = new Dictionary<CheatName, DialogueSO>();
     [SerializeField] List<CheatSO> allCheatSO;
@@ -44,14 +45,10 @@ public class DialogueManager : MonoBehaviour
     Queue<DialogueSO> dialogueQueue = new Queue<DialogueSO>();
 
     // Current DialogueSO "Manager" is working with
-    DialogueSO currentDialogue;
-    int dialogueIndex; // Index of DialogueChunk
-    bool isDialogueSequenceDone = true;
+    private DialogueSO currentDialogue;
+    private int dialogueIndex; // Index of DialogueChunk
+    private bool isDialogueSequenceDone = true;
     private string knownCharacterName = "???";
-
-    [SerializeReference] TMP_Text tallyBoardOpponentName;
-
-    [SerializeReference] GameObject pressSpaceText;
 
     #endregion
 
@@ -77,8 +74,8 @@ public class DialogueManager : MonoBehaviour
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
-        EnqueueDialogueSO(phaseOneDialogue, false);
-        EnqueueDialogueSO(phaseTwoDialogue, false);
+        AddCheatPhaseDialogue(1, false);
+        AddCheatPhaseDialogue(2, false);
 
         if (dialogueQueue.Count <= 0) { Debug.Log("nothing in queue"); }
         else
@@ -103,6 +100,13 @@ public class DialogueManager : MonoBehaviour
     public void EnqueueDialogueSO(DialogueSO dialogue, bool triggerNow)
     {
         dialogueQueue.Enqueue(dialogue);
+        if (triggerNow == true) { StartDialogue(); }
+    }
+
+    // Enqueue CheatPhase Transition Dialogue
+    public void AddCheatPhaseDialogue(int phaseNumber, bool triggerNow)
+    {
+        dialogueQueue.Enqueue(phaseDialogues[phaseNumber - 1]);
         if (triggerNow == true) { StartDialogue(); }
     }
 

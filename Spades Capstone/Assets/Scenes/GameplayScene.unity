@@ -8212,6 +8212,9 @@ MonoBehaviour:
   dialogueTextBox: {fileID: 711308208}
   phaseOneDialogue: {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
   phaseTwoDialogue: {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
+  phaseDialogues:
+  - {fileID: 11400000, guid: 8a5d6934847959845af44dc408cd58ca, type: 2}
+  - {fileID: 11400000, guid: 60ae7f8bc3a4cb74baec9cb8d249bd4c, type: 2}
   allCheatSO:
   - {fileID: 11400000, guid: 85fcbfeda86c1e4428c0550778d8fda8, type: 2}
   - {fileID: 11400000, guid: 6abc69a390e7a6e43a5c415e3f3f22d4, type: 2}
