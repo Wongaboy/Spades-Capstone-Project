@@ -103,6 +103,10 @@ public class TutorialManager : MonoBehaviour
 
         ScoreManager.Instance.ResetTallyBoardScores();
         GameManager.Instance.ResetGM();
+
+        // Reset Trick Lead
+        GameManager.Instance.ResetInternalTrickLead(Character.DEATH);
+
         yield return new WaitForSeconds(8.2f);
 
         GameManager.Instance.ChangePhase(Phase.AIDRAFT);

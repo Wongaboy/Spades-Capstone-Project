@@ -134,6 +134,19 @@ public class GameManager : MonoBehaviour
         discardPile.ClearDiscardPile();
     }
 
+    public void ResetInternalTrickLead(Character newlead)
+    {
+        if (newlead == Character.DEATH)
+        {
+            AIManager.Instance.ChangeInternalLead(true);
+            PlayerManager.Instance.ChangeInternalLead(false);
+        }
+        else
+        {
+            AIManager.Instance.ChangeInternalLead(false);
+            PlayerManager.Instance.ChangeInternalLead(true);
+        }
+    }
     // Calls Deck.DrawCard
     public Card DrawCard()
     {
