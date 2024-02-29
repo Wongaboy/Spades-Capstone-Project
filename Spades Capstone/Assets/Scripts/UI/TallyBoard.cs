@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class TallyBoard : MonoBehaviour
 {
@@ -35,12 +36,21 @@ public class TallyBoard : MonoBehaviour
     [SerializeField] private TMP_Text AITrickText;
     [SerializeField] private TMP_Text PlayerBidText;
     [SerializeField] private TMP_Text AIBidText;
+    [SerializeField] private CardDisplay PlayerCard;
+    [SerializeField] private CardDisplay AICard;
 
     void Start()
     {
         PlayerScoreText.text = "0";
         AIScoreText.text = "0";
+        HandUI.cardPlayed += updatePlayedCard;
     }
+
+    void OnDestroy()
+    {
+        HandUI.cardPlayed -= updatePlayedCard;
+    }
+
 
     // Feed in new player and ai SCORES during of Phase.SCORING
     // WIP: will want more ceremony, ie a sound and anim to play
@@ -75,5 +85,22 @@ public class TallyBoard : MonoBehaviour
         { AIBidText.text = newBid.ToString(); }
         else
         { PlayerBidText.text = newBid.ToString(); }
+    }
+
+    public void updatePlayedCard(Character character, Card card)
+    {
+        if (character == Character.DEATH) {
+            AICard.show(card);
+        }
+        else
+        {
+            PlayerCard.show(card);
+        }
+    }
+
+    public void clearPlayedCard()
+    {
+        AICard.hide();
+        PlayerCard.hide();
     }
 }

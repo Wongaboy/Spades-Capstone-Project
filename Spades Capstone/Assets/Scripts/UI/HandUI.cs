@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class HandUI : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class HandUI : MonoBehaviour
     private Character handOwner;
     private List<Card> cardObjs;
     private static int[] draftIndexOrder = { 6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 11, 0, 12 };
+    public static event Action<Character, Card> cardPlayed;
 
     public void Start()
     {
@@ -39,6 +41,7 @@ public class HandUI : MonoBehaviour
         card.MoveToLocation(tableSpot.position, tableSpot.rotation, true);
         card.SetInteractable(false);
         cardObjs.Remove(card);
+        cardPlayed.Invoke(handOwner, card);
         // yield return new WaitForSeconds(1); - this might work later, but causes too many issues rn to figure out
         // SnapToPosition();
     }
@@ -69,7 +72,20 @@ public class HandUI : MonoBehaviour
         int index = 6 - (cardObjs.Count / 2);
         for (int c = 0; c < cardObjs.Count; c++) 
         {
-            if (cardObjs[c].gameObject.transform.position != cardPositions[index + c].position && (cardObjs[c].gameObject.transform.position.y < 1.65))
+            // should optimize this by storing a reference on the card whether or not its valid when checking for vfx activation
+            if ((cardObjs[c].gameObject.transform.position != cardPositions[index + c].position && cardObjs[c].gameObject.transform.position.y < 1.65))
+            {
+                cardObjs[c].MoveToLocation(cardPositions[index + c].position, cardPositions[index + c].rotation);
+            }
+        }
+    }
+
+    public void ReturnCardToHand(Card card)
+    {
+        int index = 6 - (cardObjs.Count / 2);
+        for (int c=0; c < cardObjs.Count; c++)
+        {
+            if (cardObjs[c] == card)
             {
                 cardObjs[c].MoveToLocation(cardPositions[index + c].position, cardPositions[index + c].rotation);
             }
@@ -88,41 +104,4 @@ public class HandUI : MonoBehaviour
             return 0;
         }
     }
-
-    /*
-    public void SwitchOrder(Phase currPhase)
-    {
-        Transform[] newOrder = new Transform[cardPositions.Length];
-        if(currPhase == Phase.PLAYERBID) // sort the transforms from left to right
-        {
-            newOrder[0] = cardPositions[11];
-            newOrder[1] = cardPositions[9];
-            newOrder[2] = cardPositions[7];
-            newOrder[3] = cardPositions[5];
-            newOrder[4] = cardPositions[3];
-            newOrder[5] = cardPositions[1];
-            newOrder[6] = cardPositions[0];
-            newOrder[7] = cardPositions[2];
-            newOrder[8] = cardPositions[4];
-            newOrder[9] = cardPositions[6];
-            newOrder[10] = cardPositions[8];
-            newOrder[11] = cardPositions[10];
-        }
-        else { // sort the transforms from center out (default)
-            newOrder[0] = cardPositions[6];
-            newOrder[1] = cardPositions[5];
-            newOrder[2] = cardPositions[7];
-            newOrder[3] = cardPositions[4];
-            newOrder[4] = cardPositions[8];
-            newOrder[5] = cardPositions[3];
-            newOrder[6] = cardPositions[9];
-            newOrder[7] = cardPositions[2];
-            newOrder[8] = cardPositions[10];
-            newOrder[9] = cardPositions[1];
-            newOrder[10] = cardPositions[11];
-            newOrder[11] = cardPositions[0];
-        }
-        cardPositions = newOrder;
-    }
-    */
 }

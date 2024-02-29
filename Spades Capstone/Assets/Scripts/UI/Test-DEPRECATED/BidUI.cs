@@ -24,24 +24,21 @@ public class BidUI : MonoBehaviour
     #endregion
     // UI Panel Object
     [SerializeField] GameObject BidUIPanel;
-    [SerializeField] TMP_Text CurrentBid_Text;
     private int current_bid;
-
-
 
     // Start is called before the first frame update
     void Start()
     {
         BidUIPanel.SetActive(false);
+        BidButton.setBid += getBid;
 
         // !!Previous Version Code!!
         // GameManager.OnPhaseChanged += BidOnPhaseChanged;
     }
 
-    // Update is called once per frame
-    void Update()
+    void getBid(int bid)
     {
-        
+        current_bid = bid;
     }
 
     // !!Previous Version Code!!
@@ -61,24 +58,6 @@ public class BidUI : MonoBehaviour
 
         // Initialize Selector UI
         current_bid = 0;
-        CurrentBid_Text.text = current_bid.ToString();
-    }
-
-    // Function for UI buttons to increment/decrement BID selector
-    public void ChangeBid(int change)
-    {
-        current_bid += change;
-        // Limit Bid to 0-13
-        LimitBid();
-        CurrentBid_Text.text = current_bid.ToString();
-    }
-
-    // Limits selector Bid to 0-13
-    private void LimitBid()
-    {
-        // If currentbid is Out of Bounds, set it to the boundary value
-        if (current_bid > 13) { current_bid = 13; }
-        else if (current_bid < 0) { current_bid = 0; }
     }
 
     // Confirm Players Bid and Switch to Appropriate Phase

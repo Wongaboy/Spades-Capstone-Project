@@ -29,12 +29,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform displaySpot;
     [SerializeField] private GameObject[] DraftZones;
     [SerializeField] private GameObject PlayZone;
+    [SerializeField] private DialogueSO easteregg;
     private Card cardToDraft;
     [SerializeReference] private GameObject cardAmountDisplay;
     [SerializeReference] private TMP_Text cardAmountText;
     //private Character thisCharacter = Character.PLAYER;
     [HideInInspector]
     public bool isLead = false;
+    private int numRulebreakAttempts = 0;
 
 
     // Start is called before the first frame update
@@ -137,6 +139,12 @@ public class PlayerManager : MonoBehaviour
     #region "Turn Handling"
     // allow cards to be moveable again
     public void HandlePlayerTurn(){
+        // Toggle On all the Card Border VFX
+        foreach(Card card in playerHand.GetAllCards())
+        {
+            card.ToggleOnVFXBorder(true, CheckValidMove(card));
+        }
+
         playerHandUI.AlterCardInteraction(true);
     }
 
@@ -145,25 +153,36 @@ public class PlayerManager : MonoBehaviour
     {
         if(CheckValidMove(playedCard)){
             GameManager.Instance.playerCard = playedCard;
-            // If card has Dialogue attached Enqueue it
-            if (playedCard.HasDialogueAttached())
+            // If card has Dialogue attached Enqueue it if the timing is appropriate
+            if (playedCard.HasDialogueAttached() && GameManager.Instance.isInTutorial == false && AIManager.Instance.GetCheatPhase() != AICheatPhase.NoCheats)
             {
                 DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
             }
             playerHand.RemoveCardFromHand(playedCard);
+            playedCard.ToggleOnVFXBorder(false, false);
             UpdateCardAmountText();
             playerHandUI.ShowCardPlayed(playedCard);
             EndTurn();
         }
         else
         {
-            // tell player this card could not be played, move it back into their hand -- WIP
-            // also here is place for easter egg
+            // RETURN CARD BACK TO HAND HERE
+            playerHandUI.ReturnCardToHand(playedCard);
+            numRulebreakAttempts++;
+            if (numRulebreakAttempts > 5) {
+                DialogueManager.Instance.EnqueueDialogueSO(easteregg, true);
+            }
         }
     }
 
     private void EndTurn()
     {
+        // Turn Off Glow on Cards
+        foreach (Card card in playerHand.GetAllCards())
+        {
+            card.ToggleOnVFXBorder(false, false);
+        }
+
         PlayZone.SetActive(false);
         if(isLead)
         {

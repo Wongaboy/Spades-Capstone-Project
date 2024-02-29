@@ -8,7 +8,7 @@ public class Card : MonoBehaviour
     [Header("Data")]
     public Suit suit;
     public int val;
-    [SerializeField] 
+    [SerializeField]
     private float cardSpeed = 10f;
     [SerializeField] private DialogueSO dialogueOnPlay = null;
     private bool dialogueTriggered = false;
@@ -20,9 +20,18 @@ public class Card : MonoBehaviour
     private Rigidbody cardBody;
     [SerializeField]
     private CardInteraction cardInteraction;
+  
+    private Transform cardBorderVFX;
+    private MeshRenderer cardBorderVFXRenderer;
+
+    [SerializeField] private Material[] greenMaterials;
+    [SerializeField] private Material[] redMaterials;
 
     void Awake(){
         cardFaceCanvas.worldCamera = Camera.main;
+
+        cardBorderVFX = this.gameObject.transform.GetChild(1);
+        cardBorderVFXRenderer = cardBorderVFX.gameObject.GetComponent<MeshRenderer>();
     }
 
     override public string ToString()
@@ -45,6 +54,7 @@ public class Card : MonoBehaviour
     // this is kept private so that ppl don't have to remember to use StartCoroutine() whenever they want to move a card
     private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd)
     {
+        cardInteraction.Active(false);
         cardBody.useGravity = false;
         cardBody.detectCollisions = false;
         Vector3 locInc = (location - gameObject.transform.position)/cardSpeed;
@@ -59,6 +69,7 @@ public class Card : MonoBehaviour
         }
         
         cardBody.detectCollisions = true;
+        cardInteraction.Active(true);
         cardBody.useGravity = UseGravOnEnd;
     }
 
@@ -74,7 +85,17 @@ public class Card : MonoBehaviour
         return dialogueOnPlay;
     }
 
+    public void ToggleOnVFXBorder(bool isActive, bool isValidMove)
+    {
+        if (isValidMove) { 
+            cardBorderVFXRenderer.materials = greenMaterials; 
+        }
+        else { 
+            cardBorderVFXRenderer.materials = redMaterials; 
+        }
 
+        cardBorderVFX.gameObject.SetActive(isActive);
+    }
 }
 
 public enum Suit { SPADE, HEART, CLUB, DIAMOND}
