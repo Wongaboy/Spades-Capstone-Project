@@ -54,6 +54,7 @@ public class Card : MonoBehaviour
     // this is kept private so that ppl don't have to remember to use StartCoroutine() whenever they want to move a card
     private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd)
     {
+        cardInteraction.Active(false);
         cardBody.useGravity = false;
         cardBody.detectCollisions = false;
         Vector3 locInc = (location - gameObject.transform.position)/cardSpeed;
@@ -68,6 +69,7 @@ public class Card : MonoBehaviour
         }
         
         cardBody.detectCollisions = true;
+        cardInteraction.Active(true);
         cardBody.useGravity = UseGravOnEnd;
     }
 

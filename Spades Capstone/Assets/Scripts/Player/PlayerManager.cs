@@ -29,12 +29,14 @@ public class PlayerManager : MonoBehaviour
     [SerializeField] private Transform displaySpot;
     [SerializeField] private GameObject[] DraftZones;
     [SerializeField] private GameObject PlayZone;
+    [SerializeField] private DialogueSO easteregg;
     private Card cardToDraft;
     [SerializeReference] private GameObject cardAmountDisplay;
     [SerializeReference] private TMP_Text cardAmountText;
     //private Character thisCharacter = Character.PLAYER;
     [HideInInspector]
     public bool isLead = false;
+    private int numRulebreakAttempts = 0;
 
 
     // Start is called before the first frame update
@@ -151,7 +153,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(CheckValidMove(playedCard)){
             GameManager.Instance.playerCard = playedCard;
-            // If card has Dialogue attached Enqueue it
+            // If card has Dialogue attached Enqueue it if the timing is appropriate
             if (playedCard.HasDialogueAttached() && GameManager.Instance.isInTutorial == false && AIManager.Instance.GetCheatPhase() != AICheatPhase.NoCheats)
             {
                 DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
@@ -164,8 +166,12 @@ public class PlayerManager : MonoBehaviour
         }
         else
         {
-            // tell player this card could not be played, move it back into their hand -- WIP
-            // also here is place for easter egg
+            // RETURN CARD BACK TO HAND HERE
+            playerHandUI.ReturnCardToHand(playedCard);
+            numRulebreakAttempts++;
+            if (numRulebreakAttempts > 5) {
+                DialogueManager.Instance.EnqueueDialogueSO(easteregg, true);
+            }
         }
     }
 
