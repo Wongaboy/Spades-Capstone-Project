@@ -15,4 +15,12 @@ MonoBehaviour:
   dialogueTitle: Turn Advice
   dialogueName: ???
   dialogueTexts:
-  - << Insert turn advice >>
+  - We take turns playing from our hands. Move your chosen card to the table to be
+    played. One player leads, the other follows.
+  - You must follow suit. Once out of the suit, then any card can be played.
+  - "You cannot lead a spade until spades have been \u201Cbroken\u201D, or played
+    off suit."
+  - 'The highest card wins the trick, unless a Spade is played. Spades trumps all.
+
+'
+  - Organize the cards in your hand however you would like.

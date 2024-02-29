@@ -15,4 +15,5 @@ MonoBehaviour:
   dialogueTitle: Bid Advice
   dialogueName: ???
   dialogueTexts:
-  - << Insert bid advice >>
+  - Now, we each bid. Bid the number of tricks you believe you can take.
+  - We bid in turn, use that to your advantage.
