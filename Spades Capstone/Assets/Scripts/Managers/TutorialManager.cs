@@ -98,11 +98,14 @@ public class TutorialManager : MonoBehaviour
 
         GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
         GameManager.Instance.isInTutorial = false;
-        // pressSpaceText.SetActive(false);
         DialogueManager.Instance.TurnOffPressSpace(false);
 
         ScoreManager.Instance.ResetTallyBoardScores();
         GameManager.Instance.ResetGM();
+
+        // Reset Trick Lead
+        GameManager.Instance.ResetInternalTrickLead(Character.DEATH);
+
         yield return new WaitForSeconds(8.2f);
 
         GameManager.Instance.ChangePhase(Phase.AIDRAFT);
