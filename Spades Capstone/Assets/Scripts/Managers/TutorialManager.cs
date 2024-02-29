@@ -98,7 +98,6 @@ public class TutorialManager : MonoBehaviour
 
         GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;
         GameManager.Instance.isInTutorial = false;
-        // pressSpaceText.SetActive(false);
         DialogueManager.Instance.TurnOffPressSpace(false);
 
         ScoreManager.Instance.ResetTallyBoardScores();

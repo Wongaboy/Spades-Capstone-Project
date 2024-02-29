@@ -276,6 +276,8 @@ public class ScoreManager : MonoBehaviour
     // Reset tallyboard to all zeroes (used for Tutorial purposes)
     public void ResetTallyBoardScores()
     {
+        ResetInternalScoreVariables();
+
         tallyBoard.updateScoreText(0, 0);
         tallyBoard.updateBagText(0, 0);
 
@@ -284,6 +286,18 @@ public class ScoreManager : MonoBehaviour
 
         tallyBoard.updateBidText(Character.PLAYER, 0);
         tallyBoard.updateBidText(Character.DEATH, 0);
+    }
+
+    public void ResetInternalScoreVariables()
+    {
+        playerBid = 0;
+        aiBid = 0;
+        playerScore = 0;
+        playerBags = 0;
+        aiScore = 0;
+        aiBags = 0;
+        playerTricks = 0;
+        aiTricks = 0;
     }
 
     // unsubscribe from events when destroyed to prevent errors
