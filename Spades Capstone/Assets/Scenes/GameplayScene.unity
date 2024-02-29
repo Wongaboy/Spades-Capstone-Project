@@ -3034,6 +3034,7 @@ MonoBehaviour:
   - {fileID: 1620454648}
   - {fileID: 1377464759}
   PlayZone: {fileID: 932626890}
+  easteregg: {fileID: 11400000, guid: c84827113439d90448d69ffb20eb9e29, type: 2}
   cardAmountDisplay: {fileID: 1730790305}
   cardAmountText: {fileID: 657388861}
   isLead: 0
