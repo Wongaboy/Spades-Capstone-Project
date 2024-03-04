@@ -23,16 +23,16 @@ public class TutorialManager : MonoBehaviour
     #endregion
 
     [SerializeReference] GameObject tutorialPanel;
-    [SerializeField] DialogueSO tutorialDialogue;
+    [SerializeField] DialogueSO tutorialPrompt;
     public bool triggerTutorial = false;
 
     private int tutorialDialogueIndex = 0;
-    [SerializeField] DialogueSO[] tutorialPrompts;
+    [SerializeField] DialogueSO[] tutorialPhaseDialogues;
 
     public IEnumerator TriggerTutorialPrompt()
     {
         // Play Dialogue
-        DialogueManager.Instance.EnqueueDialogueSO(tutorialDialogue, true);
+        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompt, true);
         // Wait to activate panel until Dialogue is over
         yield return new WaitUntil(() => (DialogueManager.Instance.IsDialogueActive() == false));
 
@@ -56,9 +56,9 @@ public class TutorialManager : MonoBehaviour
         tutorialPanel.SetActive(false);
     }
 
-    public void EnqueueNextDialogue()
+    public void EnqueueNextDialogue(bool triggerNow)
     {
-        DialogueManager.Instance.EnqueueDialogueSO(tutorialPrompts[tutorialDialogueIndex], false);
+        DialogueManager.Instance.EnqueueDialogueSO(tutorialPhaseDialogues[tutorialDialogueIndex], triggerNow);
         tutorialDialogueIndex++;
     }
 
@@ -69,23 +69,23 @@ public class TutorialManager : MonoBehaviour
             // These Dialogues Play after the Case Phase
             case Phase.AIDRAFT:
                 // Play Draft Advice               
-                if (tutorialDialogueIndex == 1) { EnqueueNextDialogue(); }
+                if (tutorialDialogueIndex == 0) { EnqueueNextDialogue(false); }
                 break;
             case Phase.AIBID:
                 // Play Bid Advice
-                if (tutorialDialogueIndex == 2) { EnqueueNextDialogue(); }
+                if (tutorialDialogueIndex == 1) { EnqueueNextDialogue(false); }
                 break;
             case Phase.AITURN:
                 // Play Turn Advice
-                if (tutorialDialogueIndex == 3) { EnqueueNextDialogue(); }
+                if (tutorialDialogueIndex == 2) { EnqueueNextDialogue(false); }
                 break;
             case Phase.ENDOFTRICK:
                 // Explain end of trick & game loop
-                if (tutorialDialogueIndex == 4) { EnqueueNextDialogue(); }
+                if (tutorialDialogueIndex == 3) { EnqueueNextDialogue(false); }
                 break;
             case Phase.SCORING:
                 // Explain scoring (bags, penalties, etc)
-                if (tutorialDialogueIndex == 5) { EnqueueNextDialogue(); }
+                if (tutorialDialogueIndex == 4) { EnqueueNextDialogue(false); }
                 break;
             default:
                 break;
@@ -94,6 +94,7 @@ public class TutorialManager : MonoBehaviour
 
     public IEnumerator EndTutorial()
     {
+        EnqueueNextDialogue(true);
         yield return new WaitUntil(() => (DialogueManager.Instance.IsDialogueActive() == false));
 
         GameManager.OnPhaseChanged -= TutorialManagerOnPhaseChange;

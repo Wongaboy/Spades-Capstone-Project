@@ -215,6 +215,29 @@ public class GameManager : MonoBehaviour
         ChangePhase(Phase.AIDRAFT);
     }
 
+    public IEnumerator StartTutorialPrompt()
+    {
+        // Play Dialogue
+        // Wait Until Dialogue Over
+        StartCoroutine(TutorialManager.Instance.TriggerTutorialPrompt());
+        yield return new WaitUntil(() => (TutorialManager.Instance.IsTutorialPromptActive() == false && DialogueManager.Instance.IsDialogueActive() == false));
+
+        if (TutorialManager.Instance.IsTutorialWanted())
+        {
+            // Do Tutorial
+            isInTutorial = true;
+            Debug.Log("They said YES to tutorial");
+            StartCoroutine(StartGame());
+        }
+        else
+        {
+            // Do Normal Gameplay
+            isInTutorial = false;
+            DialogueManager.Instance.TurnOffPressSpace(false);
+            Debug.Log("They said NO to tutorial");
+            StartCoroutine(StartGame());
+        }
+    }
     // Figure out who won the trick, log it, and move on NOTE: Refactor to work with better encapsulated turn counting system
     private IEnumerator HandleEndOfTrick()
     {
@@ -333,31 +356,6 @@ public class GameManager : MonoBehaviour
     public void AltEndGame()
     {
         EndGame(Character.PLAYER);
-    }
-
-    public IEnumerator StartTutorialPrompt()
-    {
-        // Play Dialogue
-        // Wait Until Dialogue Over
-        StartCoroutine(TutorialManager.Instance.TriggerTutorialPrompt());
-        yield return new WaitUntil(() => (TutorialManager.Instance.IsTutorialPromptActive() == false && DialogueManager.Instance.IsDialogueActive() == false));
-
-        if (TutorialManager.Instance.IsTutorialWanted())
-        {
-            // Do Tutorial
-            isInTutorial = true;
-            Debug.Log("They said YES to tutorial");
-            TutorialManager.Instance.EnqueueNextDialogue();
-            StartCoroutine(StartGame());
-        }
-        else
-        {
-            // Do Normal Gameplay
-            isInTutorial = false;
-            DialogueManager.Instance.TurnOffPressSpace(false);
-            Debug.Log("They said NO to tutorial");
-            StartCoroutine(StartGame());
-        }
     }
     #endregion
 }

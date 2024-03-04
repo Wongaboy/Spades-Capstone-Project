@@ -115,18 +115,7 @@ public class DialogueManager : MonoBehaviour
         if (dialogueQueue.Count > 0)
         {
             StartDialogue();
-
             yield return new WaitUntil(() => (isDialogueSequenceDone == true));
-            Debug.Log("We are past yield");
-        }
-
-        if (GameManager.Instance.lead == Character.DEATH)
-        {
-            GameManager.Instance.ChangePhase(Phase.AIDRAFT);
-        }
-        else
-        {
-            GameManager.Instance.ChangePhase(Phase.PLAYERDRAFT);
         }
     }
 

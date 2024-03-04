@@ -15,13 +15,15 @@ MonoBehaviour:
   dialogueTitle: Pretutorial_1
   dialogueName: ???
   dialogueTexts:
-  - "You seem quite lost, have your memories not begun to return? How curious\u2026"
-  - "That is uncommon, but not unheard of for souls who led lives such as yours.
-    It must have been a long journey through purgatory\u2026"
-  - "I shall help you to recollect\u2026"
+  - You seem quite lost, have your memories not begun to return? How curious...
+  - That is uncommon, but not unheard of for souls who led lives such as yours. It
+    must have been a long journey through purgatory...
+  - I shall help you to recollect...
   - Survival was always your greatest struggle. In life, you faced death at every
     turn. I have been waiting for the moment that it finally caught up to you.
-  - "I do not wish to tell you everything at once. It would be overwhelming\u2026
-    and much less fun for me. How about this:\r\n"
+  - 'I do not wish to tell you everything at once. It would be overwhelming... and
+    much less fun for me. How about this:
+
+'
   - You sit and play a game of Spades with me, and I remind you of your past. Now,
     do you know the rules?

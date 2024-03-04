@@ -6799,7 +6799,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 10, y: -275}
+  m_AnchoredPosition: {x: 0, y: -275}
   m_SizeDelta: {x: 1920, y: 540}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &711308210
@@ -6809,20 +6809,20 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 711308208}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.92156863}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: faa4d738bd3c98144813924370ffd254, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -7699,10 +7699,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialPanel: {fileID: 1846299566}
-  tutorialDialogue: {fileID: 11400000, guid: a2489fa514a2843458b43d1cedbd3594, type: 2}
+  tutorialPrompt: {fileID: 11400000, guid: a2489fa514a2843458b43d1cedbd3594, type: 2}
   triggerTutorial: 0
-  tutorialPrompts:
-  - {fileID: 11400000, guid: a2489fa514a2843458b43d1cedbd3594, type: 2}
+  tutorialPhaseDialogues:
   - {fileID: 11400000, guid: fca53759581923b4a951674ad336b718, type: 2}
   - {fileID: 11400000, guid: fc5055885a56d3f4aac6c220987f1fc3, type: 2}
   - {fileID: 11400000, guid: 340843bd0b31cdc4e9d4d0a8a4970537, type: 2}
@@ -10708,7 +10707,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -740.24, y: 149}
+  m_AnchoredPosition: {x: -740.24, y: 207}
   m_SizeDelta: {x: 350, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1075518289
@@ -18822,7 +18821,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '"Insert Dialogue"'
+  m_text: You sit and play a game of Spades with me, and I remind you of your past.
+    Now, do you know the rules?
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c558913d6cad85542bf21bf036056253, type: 2}
   m_sharedMaterial: {fileID: 7228647798054678505, guid: c558913d6cad85542bf21bf036056253, type: 2}
@@ -18849,19 +18849,19 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 74.37
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
   m_fontSizeMin: 18
-  m_fontSizeMax: 72
+  m_fontSizeMax: 74.37
   m_fontStyle: 0
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 15
   m_wordSpacing: 0
-  m_lineSpacing: 5
+  m_lineSpacing: 15.2
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -18916,8 +18916,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -105, y: -40.9497}
-  m_SizeDelta: {x: 1620.5, y: 285.4047}
+  m_AnchoredPosition: {x: -90.75665, y: -15.6282}
+  m_SizeDelta: {x: 1648.9868, y: 336.0477}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1853801886
 PrefabInstance:
