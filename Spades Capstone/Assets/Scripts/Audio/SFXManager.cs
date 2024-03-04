@@ -19,7 +19,13 @@ public class SFXManager : MonoBehaviour
         {
             _instance = this;
         }
+
+
     }
+    #endregion
+
+    #region "Class Variables"
+
     #endregion
 
     // Start is called before the first frame update

@@ -22,6 +22,10 @@ public class MusicManager : MonoBehaviour
     }
     #endregion
 
+    #region "Class Variables"
+
+    #endregion
+
     // Start is called before the first frame update
     void Start()
     {

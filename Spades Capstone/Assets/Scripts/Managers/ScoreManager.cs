@@ -122,6 +122,11 @@ public class ScoreManager : MonoBehaviour
         aiTricks = 0;
 
         // Update tallyboard with correct info & Reset Tricks and Bid UI for next round
+        /*
+
+            This is the area to Add the Chalk VFX for Tallyboard Changes
+
+        */
         tallyBoard.updateScoreText(playerScore, aiScore);
         tallyBoard.updateBagText(playerBags, aiBags);     
 

@@ -24,6 +24,11 @@ public class IntroManager : MonoBehaviour
         introTimeline.SetActive(false);
         foreach(GameObject prop in propsToActivate)
         {
+            /*
+
+             This is the area to Add the Chalk VFX for Tallyboard Changes
+
+            */
             prop.SetActive(true);
         }
     }
