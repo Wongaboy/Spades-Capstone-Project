@@ -17,11 +17,14 @@ public class HandUI : MonoBehaviour
     private static int[] draftIndexOrder = { 6, 5, 7, 4, 8, 3, 9, 2, 10, 1, 11, 0, 12 };
     public static event Action<Character, Card> cardPlayed;
 
+    private bool allowInteraction = false;
+
     public void Start()
     {
         cardObjs = new List<Card>();
         if(handOwner != Character.DEATH){
             CardInteraction.OnCardFinMove += SortHand;
+            allowInteraction = true;
         }
     }
 
@@ -33,13 +36,13 @@ public class HandUI : MonoBehaviour
         int openSlot = draftIndexOrder[cardObjs.Count];
 
         cardObjs.Add(card);
-        card.MoveToLocation(cardPositions[openSlot].position, cardPositions[openSlot].rotation);
+        card.MoveToLocation(cardPositions[openSlot].position, cardPositions[openSlot].rotation, false, allowInteraction);
     }
 
     // moves the card onto the table and locks it out of being interacted with
     public void ShowCardPlayed(Card card){
-        card.MoveToLocation(tableSpot.position, tableSpot.rotation, true);
-        card.SetInteractable(false);
+        card.MoveToLocation(tableSpot.position, tableSpot.rotation, true, false);
+        //card.SetInteractable(false); - now redundant
         cardObjs.Remove(card);
         cardPlayed.Invoke(handOwner, card);
         // yield return new WaitForSeconds(1); - this might work later, but causes too many issues rn to figure out
@@ -57,7 +60,7 @@ public class HandUI : MonoBehaviour
 
     public void SortHand(Phase currPhase)
     {
-        if(currPhase == Phase.PLAYERDRAFT || currPhase == Phase.PLAYERTURN)
+        if(currPhase == Phase.PLAYERDRAFT || currPhase == Phase.PLAYERTURN || currPhase == Phase.PLAYERBID)
         {
             SnapToPosition();
         }
@@ -75,7 +78,7 @@ public class HandUI : MonoBehaviour
             // should optimize this by storing a reference on the card whether or not its valid when checking for vfx activation
             if ((cardObjs[c].gameObject.transform.position != cardPositions[index + c].position && cardObjs[c].gameObject.transform.position.y < 1.65))
             {
-                cardObjs[c].MoveToLocation(cardPositions[index + c].position, cardPositions[index + c].rotation);
+                cardObjs[c].MoveToLocation(cardPositions[index + c].position, cardPositions[index + c].rotation, false, allowInteraction);
             }
         }
     }
@@ -87,7 +90,7 @@ public class HandUI : MonoBehaviour
         {
             if (cardObjs[c] == card)
             {
-                cardObjs[c].MoveToLocation(cardPositions[index + c].position, cardPositions[index + c].rotation);
+                cardObjs[c].MoveToLocation(cardPositions[index + c].position, cardPositions[index + c].rotation, false, allowInteraction);
             }
         }
     }
