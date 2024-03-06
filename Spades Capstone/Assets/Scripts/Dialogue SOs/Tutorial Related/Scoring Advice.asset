@@ -16,8 +16,8 @@ MonoBehaviour:
   dialogueName: ???
   dialogueTexts:
   - This board will keep track of the score.
-  - If you reached the number of tricks bid, you will earn ten points for each trick
-    you bid for.
-  - Excess tricks will become bags. Upon reaching 10 bags you will lose 100 points.
-    Cowardly play will not be rewarded.
-  - The first to 300 will be the victor. May the best player win.
+  - If you reach the number of tricks bid, you will earn ten points for each trick
+    you bid.
+  - Excess tricks will become bags. Upon reaching ten bags you will lose one hundred
+    points. Cowardly play is not rewarded.
+  - The first to three hundred will be the victor. May the best player win.

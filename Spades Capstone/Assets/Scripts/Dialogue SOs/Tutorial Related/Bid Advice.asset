@@ -15,5 +15,8 @@ MonoBehaviour:
   dialogueTitle: Bid Advice
   dialogueName: ???
   dialogueTexts:
-  - Now, we each bid. Bid the number of tricks you believe you can take.
+  - Now, we each bid. Use the tally board to bid the number of tricks you believe
+    you can take.
+  - If you do not think you can take any tricks, you may bid zero for a chance to
+    win one hundred points.
   - We bid in turn, use that to your advantage.

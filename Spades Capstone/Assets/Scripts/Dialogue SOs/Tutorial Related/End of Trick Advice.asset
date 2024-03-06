@@ -15,5 +15,4 @@ MonoBehaviour:
   dialogueTitle: End of Trick Advice
   dialogueName: ???
   dialogueTexts:
-  - When you win, the trick is yours.
-  - The victor leads next.
+  - When you win, the trick is yours. It then becomes your turn to lead.
