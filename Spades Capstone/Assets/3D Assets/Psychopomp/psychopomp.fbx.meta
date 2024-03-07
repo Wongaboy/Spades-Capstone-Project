@@ -3,7 +3,37 @@ guid: 20c8a6230cadd4ea2bb864f69b744e1b
 ModelImporter:
   serializedVersion: 21300
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bone+teeth
+    second: {fileID: 2100000, guid: 51791d6e3f9554710b197cf0991a6c12, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hair+etc
+    second: {fileID: 2100000, guid: af9218f86a94442a3acefd434dff1b50, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: scalp+nose+mouth
+    second: {fileID: 2100000, guid: 3099fe8d10d854b34adbf90d627e6cde, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: skin
+    second: {fileID: 2100000, guid: cd2ed104f4b7843fea8d3113f23bf165, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sleeves+pants+shoes
+    second: {fileID: 2100000, guid: 4c8bda9594cac45f1961e1895278c2c1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: torso
+    second: {fileID: 2100000, guid: e51e4bcadeadd4dd2a3be17f5d5b3b6b, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -42,8 +72,8 @@ ModelImporter:
     sortHierarchyByName: 1
     importVisibility: 1
     importBlendShapes: 1
-    importCameras: 1
-    importLights: 1
+    importCameras: 0
+    importLights: 0
     nodeNameCollisionStrategy: 1
     fileIdsGeneration: 2
     swapUVChannels: 0
