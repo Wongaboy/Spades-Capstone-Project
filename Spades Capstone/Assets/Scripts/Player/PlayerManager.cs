@@ -69,10 +69,7 @@ public class PlayerManager : MonoBehaviour
     private void DisplayCardToDraft()
     {
         cardToDraft = GameManager.Instance.DrawCard();
-        /*
-         * Place to play SFX
-         */
-        cardToDraft.MoveToLocation(displaySpot.position, displaySpot.rotation);
+        cardToDraft.MoveToLocation(displaySpot.position, displaySpot.rotation, false, true);
         cardToDraft.SetInteractable(true);
         // Debug.Log(cardToDraft);
     }
@@ -124,7 +121,7 @@ public class PlayerManager : MonoBehaviour
     {
         if(isLead && selected.suit == Suit.SPADE && !GameManager.Instance.spadesBroken)
         { 
-            return false; // cannot lead a Spade if spades haven't been played yet
+            return playerHand.HasNonSpades(); // cannot lead a Spade if spades haven't been played yet OR you have non spades
         }
         else if(!isLead && selected.suit != GameManager.Instance.aiCard.suit)
         {

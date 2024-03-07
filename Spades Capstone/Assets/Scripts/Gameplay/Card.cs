@@ -30,7 +30,7 @@ public class Card : MonoBehaviour
     void Awake(){
         cardFaceCanvas.worldCamera = Camera.main;
 
-        cardBorderVFX = this.gameObject.transform.GetChild(1);
+        cardBorderVFX = this.gameObject.transform.GetChild(1); // *eyebrow raise* not very Object Oriented of you
         cardBorderVFXRenderer = cardBorderVFX.gameObject.GetComponent<MeshRenderer>();
     }
 
@@ -46,13 +46,13 @@ public class Card : MonoBehaviour
     }
 
     // call this to move a card anywhere in space - will happen in .05*cardSpeed number of frames
-    public void MoveToLocation(Vector3 location, Quaternion rotation, bool UseGravityOnEnd=false)
+    public void MoveToLocation(Vector3 location, Quaternion rotation, bool UseGravityOnEnd=false, bool InteractOnEnd=false)
     {
-        StartCoroutine(TravelTo(location, rotation, UseGravityOnEnd));
+        StartCoroutine(TravelTo(location, rotation, UseGravityOnEnd, InteractOnEnd));
     }
 
     // this is kept private so that ppl don't have to remember to use StartCoroutine() whenever they want to move a card
-    private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd)
+    private IEnumerator TravelTo(Vector3 location, Quaternion rotation, bool UseGravOnEnd, bool ActiveOnEnd)
     {
         cardInteraction.Active(false);
         cardBody.useGravity = false;
@@ -69,7 +69,7 @@ public class Card : MonoBehaviour
         }
         
         cardBody.detectCollisions = true;
-        cardInteraction.Active(true);
+        cardInteraction.Active(ActiveOnEnd);
         cardBody.useGravity = UseGravOnEnd;
     }
 

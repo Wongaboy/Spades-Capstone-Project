@@ -19,4 +19,4 @@ MonoBehaviour:
   - To keep a card, move it toward yourself. To discard it, move it away.
   - When you discard a card, you are forced to keep the top card of the deck.
   - Higher cards are more valuable. Ace is the highest. Spades are the best, all
-    others are equal.
+    other suits are equal.
