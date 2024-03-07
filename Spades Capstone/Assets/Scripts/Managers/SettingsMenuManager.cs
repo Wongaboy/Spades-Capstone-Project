@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SettingsMenuManager : MonoBehaviour
 {
@@ -29,6 +30,8 @@ public class SettingsMenuManager : MonoBehaviour
     [SerializeField] GameObject settingsMenuPanel;
 
     private bool isSettingMenuActive = false;
+
+    [SerializeField] private string introSceneName;
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -49,5 +52,10 @@ public class SettingsMenuManager : MonoBehaviour
     {
         settingsMenuPanel.SetActive(newState);
         isSettingMenuActive = newState;
+    }
+
+    public void MenuRestartGame()
+    {
+        SceneManager.LoadScene(introSceneName);
     }
 }

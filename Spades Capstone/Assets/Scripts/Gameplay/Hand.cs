@@ -117,6 +117,11 @@ public class Hand : MonoBehaviour
         return false;
     }
 
+    public bool HasNonSpades()
+    {
+        return (NumOfSuit(Suit.DIAMOND) + NumOfSuit(Suit.CLUB) + NumOfSuit(Suit.HEART)) == 0;
+    }
+
     // Returns number of cards in hand
     public int NumberofCards()
     {
