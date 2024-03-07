@@ -2185,7 +2185,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (2)
@@ -4549,7 +4549,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (10)
@@ -6457,7 +6457,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (7)
@@ -8452,7 +8452,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (8)
@@ -9629,7 +9629,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (14)
@@ -11135,7 +11135,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (9)
@@ -11488,7 +11488,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (3)
@@ -13763,7 +13763,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (11)
@@ -16635,7 +16635,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (4)
@@ -16782,7 +16782,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (6)
@@ -17564,7 +17564,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (5)
@@ -18914,7 +18914,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (13)
@@ -20449,7 +20449,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 11400000, guid: 9b3ed46f4a8e9d544a5d0aecaab3e534, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (12)

@@ -118,7 +118,7 @@ public class AIManager : MonoBehaviour
             Suit currentSuit = Deck.intToSuit[i];
             int numCurrentSuit = aiHand.NumOfSuit(currentSuit);
             if(numCurrentSuit <= 2 && i != 0){ // might want to refine this later
-                bidEstimate += 1.0f; 
+                bidEstimate += 3 - numCurrentSuit; 
             }
 
             // Add a bid for every ace
