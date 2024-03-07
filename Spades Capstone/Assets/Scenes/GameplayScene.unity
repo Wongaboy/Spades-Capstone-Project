@@ -23428,7 +23428,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1395512655}
         m_TargetAssemblyTypeName: SettingsMenuManager, Assembly-CSharp
-        m_MethodName: MenuRestartGame
+        m_MethodName: MenuQuitGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

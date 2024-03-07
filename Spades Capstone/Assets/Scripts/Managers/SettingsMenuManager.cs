@@ -58,4 +58,9 @@ public class SettingsMenuManager : MonoBehaviour
     {
         SceneManager.LoadScene(introSceneName);
     }
+
+    public void MenuQuitGame()
+    {
+        Application.Quit();
+    }
 }
