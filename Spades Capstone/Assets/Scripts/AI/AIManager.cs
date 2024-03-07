@@ -97,10 +97,16 @@ public class AIManager : MonoBehaviour
         {
             DraftCard(card);
             GameManager.Instance.DiscardCardFromDeck();
+            /*
+             * Place to play SFX
+             */
         }
         else
         { 
             GameManager.Instance.DiscardCardFromHand(card);
+            /*
+             * Place to play SFX
+             */
             DraftCard(GameManager.Instance.DrawCard());
         }
 
@@ -224,6 +230,9 @@ public class AIManager : MonoBehaviour
     {
         aiHand.AddCardToHand(card);
         aiHandUI.ShowCard(card);
+        /*
+         * Place to play SFX
+         */
     }
 
     // Call with Cheat Phase to enable AI Cheats
@@ -305,7 +314,9 @@ public class AIManager : MonoBehaviour
         Card cardToPlay = DecideCard();
         // Feed GameManager Played Card
         GameManager.Instance.aiCard = cardToPlay;
-
+        /*
+         * Place to play SFX
+         */
         // If card has Dialogue attached Enqueue it
         if (cardToPlay.HasDialogueAttached() && GameManager.Instance.isInTutorial == false && GetCheatPhase() != AICheatPhase.NoCheats)
         {

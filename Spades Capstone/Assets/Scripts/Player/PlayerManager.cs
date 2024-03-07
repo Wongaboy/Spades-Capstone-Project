@@ -69,6 +69,9 @@ public class PlayerManager : MonoBehaviour
     private void DisplayCardToDraft()
     {
         cardToDraft = GameManager.Instance.DrawCard();
+        /*
+         * Place to play SFX
+         */
         cardToDraft.MoveToLocation(displaySpot.position, displaySpot.rotation);
         cardToDraft.SetInteractable(true);
         // Debug.Log(cardToDraft);
@@ -79,6 +82,9 @@ public class PlayerManager : MonoBehaviour
     {
         card.SetInteractable(false);
         playerHand.AddCardToHand(card);
+        /*
+         * Place to play SFX
+         */
         UpdateCardAmountText();
         playerHandUI.ShowCard(card);
         GameManager.Instance.ChangePhase(Phase.AIDRAFT);
@@ -92,10 +98,16 @@ public class PlayerManager : MonoBehaviour
         {
             DraftCard(cardToDraft);
             GameManager.Instance.DiscardCardFromDeck();
+            /*
+             * Place to play SFX
+             */
         }
         else
         {
             GameManager.Instance.DiscardCardFromHand(cardToDraft);
+            /*
+             * Place to play SFX
+             */
             DraftCard(GameManager.Instance.DrawCard());
         }
     }
@@ -159,6 +171,9 @@ public class PlayerManager : MonoBehaviour
                 DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
             }
             playerHand.RemoveCardFromHand(playedCard);
+            /*
+             * Place to play SFX
+             */
             playedCard.ToggleOnVFXBorder(false, false);
             UpdateCardAmountText();
             playerHandUI.ShowCardPlayed(playedCard);
@@ -168,6 +183,9 @@ public class PlayerManager : MonoBehaviour
         {
             // RETURN CARD BACK TO HAND HERE
             playerHandUI.ReturnCardToHand(playedCard);
+            /*
+             * Place to play SFX
+             */
             numRulebreakAttempts++;
             if (numRulebreakAttempts > 5) {
                 DialogueManager.Instance.EnqueueDialogueSO(easteregg, true);

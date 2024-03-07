@@ -29,6 +29,7 @@ public class SoundFXManager : MonoBehaviour
     [SerializeField] private AudioSource soundFXObject;
     #endregion
 
+    // One Time SFX clips, (Do not use for SFX that persist, OR are meant to stop when condition met)
     public void PlaySoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)
     {
         //Spawn in GameObject
