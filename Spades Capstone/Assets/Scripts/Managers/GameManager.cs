@@ -242,7 +242,9 @@ public class GameManager : MonoBehaviour
     private IEnumerator HandleEndOfTrick()
     {
         yield return new WaitForSeconds(1f);
-        OnTrickTaken.Invoke(DetermineTrickWinner());
+        Character newTrickWinner = DetermineTrickWinner();
+        // OnTrickTaken.Invoke(DetermineTrickWinner());
+        OnTrickTaken.Invoke(newTrickWinner);
         DiscardCardFromHand(playerCard);
         yield return new WaitForSeconds(1f);
         DiscardCardFromHand(aiCard);
@@ -253,7 +255,8 @@ public class GameManager : MonoBehaviour
             // Switch to Score Phase
             ChangePhase(Phase.SCORING);
         }
-        else if (DetermineTrickWinner() == Character.DEATH)  // IF Death won Trick and more Tricks to Play
+        //else if (DetermineTrickWinner() == Character.DEATH)  // IF Death won Trick and more Tricks to Play
+        else if (newTrickWinner == Character.DEATH)  // IF Death won Trick and more Tricks to Play
         {
             // Ensure Death Leads next Trick and Change Phase
             SwapTurnLead(Character.DEATH);
@@ -267,7 +270,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    // Implement the rules of trick taking
+    // Implement the rules of trick taking (ONLY should be called to compute the logic, NOT to get value)
     private Character DetermineTrickWinner()
     {
         Character trickWinner;
