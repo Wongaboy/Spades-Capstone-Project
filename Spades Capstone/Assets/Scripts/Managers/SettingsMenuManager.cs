@@ -52,8 +52,15 @@ public class SettingsMenuManager : MonoBehaviour
     {
         settingsMenuPanel.SetActive(newState);
         isSettingMenuActive = newState;
+      
+        DialogueManager.Instance.SetDialogueInteractable(!newState);
+        PlayerManager.Instance.SetPlayerCardInteractable(!newState);       
     }
 
+    public bool GetMenuActiveState()
+    {
+        return isSettingMenuActive;
+    }
     public void MenuRestartGame()
     {
         SceneManager.LoadScene(introSceneName);

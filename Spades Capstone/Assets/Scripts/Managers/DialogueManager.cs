@@ -50,6 +50,8 @@ public class DialogueManager : MonoBehaviour
     private bool isDialogueSequenceDone = true;
     private string knownCharacterName = "???";
 
+    private bool isInteractable = true;
+
     [SerializeField] DialogueSO testDialogue;
     #endregion
 
@@ -67,7 +69,7 @@ public class DialogueManager : MonoBehaviour
     private void Update()
     {
         // if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && IsDialogueActive())
-        if (Input.GetMouseButtonDown(0) && IsDialogueActive())
+        if (Input.GetMouseButtonDown(0) && IsDialogueActive() && isInteractable)
         {
             OnNextButton();
         }  
@@ -207,6 +209,10 @@ public class DialogueManager : MonoBehaviour
         return allCardsWithDialogue.Contains(cardValues);
     }
 
+    public void SetDialogueInteractable(bool canInteract)
+    {
+        isInteractable = canInteract;
+    }
     public void TurnOffPressSpace(bool state)
     {
         pressSpaceText.SetActive(state);

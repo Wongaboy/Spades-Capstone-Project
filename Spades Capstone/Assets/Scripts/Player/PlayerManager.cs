@@ -145,6 +145,11 @@ public class PlayerManager : MonoBehaviour
         cardAmountDisplay.SetActive(activeState);
     }
 
+    public void SetPlayerCardInteractable(bool canInteract)
+    {
+        playerHandUI.AlterCardInteraction(canInteract);
+    }
+
     #region "Turn Handling"
     // allow cards to be moveable again
     public void HandlePlayerTurn(){
