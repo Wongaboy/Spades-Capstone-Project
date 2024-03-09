@@ -59,4 +59,16 @@ public class Deck : MonoBehaviour
         cards.RemoveAt(0);
         cards.Add(toDiscard);
     }
+
+    public List<Card> GetInteractableCards()
+    {
+        List<Card> allInteractableCards = new List<Card>();
+
+        foreach(Card card in cards)
+        {
+            if (card.IsInteractable()) { allInteractableCards.Add(card); }
+        }
+
+        return allInteractableCards;
+    }
 }

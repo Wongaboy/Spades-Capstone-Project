@@ -56,7 +56,7 @@ public class GameManager : MonoBehaviour
         lead = Character.DEATH; // Death always goes first for tutorial
 
         // Ask/Prompt for Tutorial          
-        StartCoroutine(StartTutorialPrompt());
+        // StartCoroutine(StartTutorialPrompt());
 
         // StartCoroutine(StartGame());
     }
@@ -204,6 +204,12 @@ public class GameManager : MonoBehaviour
             SwapTurnLead(Character.DEATH);
         }
     }
+
+    public List<Card> GetInteractableCards()
+    {
+        if (deck.isActiveAndEnabled) { return deck.GetInteractableCards(); }
+        else { return new List<Card>(); }
+    }
     #endregion
 
     #region "Private Helper Functions"
@@ -213,6 +219,12 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(10f);
         PlayerManager.Instance.ToggleCardAmountDisplay(true);
         ChangePhase(Phase.AIDRAFT);
+    }
+
+    public void StartGameAfterIntro()
+    {
+        // Ask/Prompt for Tutorial          
+        StartCoroutine(StartTutorialPrompt());
     }
 
     public IEnumerator StartTutorialPrompt()

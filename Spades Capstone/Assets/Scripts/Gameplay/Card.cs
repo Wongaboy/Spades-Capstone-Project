@@ -96,6 +96,11 @@ public class Card : MonoBehaviour
 
         cardBorderVFX.gameObject.SetActive(isActive);
     }
+
+    public bool IsInteractable()
+    {
+        return cardInteraction.isActiveAndEnabled;
+    }
 }
 
 public enum Suit { SPADE, HEART, CLUB, DIAMOND}

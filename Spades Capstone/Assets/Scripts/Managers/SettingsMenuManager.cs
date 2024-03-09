@@ -32,6 +32,8 @@ public class SettingsMenuManager : MonoBehaviour
     private bool isSettingMenuActive = false;
 
     [SerializeField] private string introSceneName;
+
+    private List<Card> cardsToToggle = new List<Card>();
     #endregion
     // Start is called before the first frame update
     void Start()
@@ -54,7 +56,18 @@ public class SettingsMenuManager : MonoBehaviour
         isSettingMenuActive = newState;
       
         DialogueManager.Instance.SetDialogueInteractable(!newState);
-        PlayerManager.Instance.SetPlayerCardInteractable(!newState);       
+
+        if (newState == true)
+        {
+            cardsToToggle = GameManager.Instance.GetInteractableCards();
+            foreach (Card card in cardsToToggle) { card.SetInteractable(false); }
+        }
+        else
+        {
+            foreach (Card card in cardsToToggle) { card.SetInteractable(true); }
+            cardsToToggle.Clear();
+        }
+
     }
 
     public bool GetMenuActiveState()
