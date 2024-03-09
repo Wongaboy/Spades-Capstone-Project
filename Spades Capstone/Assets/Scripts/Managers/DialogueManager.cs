@@ -50,6 +50,7 @@ public class DialogueManager : MonoBehaviour
     private bool isDialogueSequenceDone = true;
     private string knownCharacterName = "???";
 
+    [SerializeField] DialogueSO testDialogue;
     #endregion
 
     private void Start()
@@ -65,7 +66,8 @@ public class DialogueManager : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && IsDialogueActive())
+        // if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && IsDialogueActive())
+        if (Input.GetMouseButtonDown(0) && IsDialogueActive())
         {
             OnNextButton();
         }  
@@ -74,17 +76,19 @@ public class DialogueManager : MonoBehaviour
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
-        AddCheatPhaseDialogue(1, false);
-        AddCheatPhaseDialogue(2, false);
+        //AddCheatPhaseDialogue(1, false);
+        //AddCheatPhaseDialogue(2, false);
 
-        if (dialogueQueue.Count <= 0) { Debug.Log("nothing in queue"); }
-        else
-        {
-            AddCheatDialogue(CheatName.ChangeBid, false);
-            AddCheatDialogue(CheatName.IgnorePenalty, false);
-            AddCheatDialogue(CheatName.RandomizePlayerCardValue, false);
-            AddCheatDialogue(CheatName.AddValueFromDiscard, false);
-        }
+        //if (dialogueQueue.Count <= 0) { Debug.Log("nothing in queue"); }
+        //else
+        //{
+        //    AddCheatDialogue(CheatName.ChangeBid, false);
+        //    AddCheatDialogue(CheatName.IgnorePenalty, false);
+        //    AddCheatDialogue(CheatName.RandomizePlayerCardValue, false);
+        //    AddCheatDialogue(CheatName.AddValueFromDiscard, false);
+        //}
+
+        EnqueueDialogueSO(testDialogue, false);
         StartCoroutine(ResolveDialogue());
         // StartDialogue();
     }

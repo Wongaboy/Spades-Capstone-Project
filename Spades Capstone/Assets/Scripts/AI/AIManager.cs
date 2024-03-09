@@ -39,6 +39,9 @@ public class AIManager : MonoBehaviour
     private int cheatsLeftPhaseOne = 1;
     private int cheatsLeftPhaseTwo = 2;
 
+    private bool hasEnteredPhaseOne = false;
+    private bool hasEnteredPhaseTwo = false;
+
     private AICheatPhase currentCheatPhase = AICheatPhase.NoCheats;
 
     // AI Cheat Database
@@ -239,6 +242,8 @@ public class AIManager : MonoBehaviour
     public void ChangeCheatPhase(AICheatPhase cheatPhase)
     {
         currentCheatPhase = cheatPhase;
+        if (cheatPhase == AICheatPhase.CheatPhaseOne && !hasEnteredPhaseOne) { hasEnteredPhaseOne = true; }
+        else if (cheatPhase == AICheatPhase.CheatPhaseTwo && !hasEnteredPhaseTwo) { hasEnteredPhaseTwo = true; }
     }
 
     public void DecrementCheatUses(AICheatPhase cheatPhase, CheatName cheatName)
@@ -285,6 +290,20 @@ public class AIManager : MonoBehaviour
     public AICheatPhase GetCheatPhase()
     {
         return currentCheatPhase;
+    }
+
+    public bool HasEnteredCheatPhaseBefore(AICheatPhase phase)
+    {
+        switch (phase)
+        {
+            case AICheatPhase.CheatPhaseOne:
+                return hasEnteredPhaseOne;
+            case AICheatPhase.CheatPhaseTwo:
+                return hasEnteredPhaseTwo;
+            default:
+                Debug.Log("Invalid Phase Argument");
+                return false;
+        }
     }
     #endregion
 

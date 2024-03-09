@@ -283,7 +283,7 @@ public class GameManager : MonoBehaviour
                 {
                     int newPlayerCardValue = UnityEngine.Random.Range(2, 14);
                     AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, CheatName.RandomizePlayerCardValue);
-                    DialogueManager.Instance.AddCheatDialogue(CheatName.IgnorePenalty, true);
+                    DialogueManager.Instance.AddCheatDialogue(CheatName.IgnorePenalty, false);
                     Debug.Log("Randomize Player Card Value Cheat has been activated");
 
                     if (newPlayerCardValue > aiCard.val) {
@@ -298,7 +298,7 @@ public class GameManager : MonoBehaviour
                 {
                     int addedValueFromDiscard = discardPile.GetHighest(aiCard.suit).val;
                     AIManager.Instance.DecrementCheatUses(AICheatPhase.CheatPhaseTwo, CheatName.AddValueFromDiscard);
-                    DialogueManager.Instance.AddCheatDialogue(CheatName.AddValueFromDiscard, true);
+                    DialogueManager.Instance.AddCheatDialogue(CheatName.AddValueFromDiscard, false);
                     Debug.Log("Add Value from Discard Cheat has been activated");
 
                     if (playerCard.val > aiCard.val + addedValueFromDiscard) {
