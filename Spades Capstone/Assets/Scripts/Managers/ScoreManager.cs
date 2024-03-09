@@ -303,6 +303,12 @@ public class ScoreManager : MonoBehaviour
         aiTricks = 0;
     }
 
+    #region "Debug Functions"
+    public void AlterScore(int newScore)
+    {
+        playerScore = newScore;
+    }
+    #endregion
     // unsubscribe from events when destroyed to prevent errors
     void OnDestroy(){
         GameManager.OnPhaseChanged -= ScoreManagerOnPhaseChanged;
