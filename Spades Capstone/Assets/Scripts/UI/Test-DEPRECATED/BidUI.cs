@@ -57,12 +57,15 @@ public class BidUI : MonoBehaviour
         BidUIPanel.SetActive(ui_state);
 
         // Initialize Selector UI
-        current_bid = 0;
+        current_bid = -1;
     }
 
     // Confirm Players Bid and Switch to Appropriate Phase
     public void ConfirmPlayerBid()
     {
+        // Way to prevent no ConfirmBid when the Player has not selected a peg yet
+        if (current_bid == -1) { return; }
+
         // Change Player bid to current_bid
         ScoreManager.Instance.SetPlayerBid(current_bid);
         // Disable UI before Switching
