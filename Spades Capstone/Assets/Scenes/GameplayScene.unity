@@ -9237,6 +9237,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6abc69a390e7a6e43a5c415e3f3f22d4, type: 2}
   - {fileID: 11400000, guid: ca4c7ecc9aaaccf42ad8a0dd231d459e, type: 2}
   - {fileID: 11400000, guid: 4030da85056bf4b4b9e06d44a3d0d33e, type: 2}
+  typeSpeed: 5
   testDialogue: {fileID: 11400000, guid: 77042ffb650fd7c4bacd833d58cf8592, type: 2}
 --- !u!4 &819685599
 Transform:

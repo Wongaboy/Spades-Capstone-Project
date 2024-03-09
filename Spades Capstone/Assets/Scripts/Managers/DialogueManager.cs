@@ -46,12 +46,22 @@ public class DialogueManager : MonoBehaviour
 
     // Current DialogueSO "Manager" is working with
     private DialogueSO currentDialogue;
-    private int dialogueIndex; // Index of DialogueChunk
+    private Queue<string> paragraphQueue = new Queue<string>();
+    private string currentParagraph = "";
     private bool isDialogueSequenceDone = true;
     private string knownCharacterName = "???";
 
     private bool isInteractable = true;
 
+    // Letter by Letter Vars & Things
+    [SerializeField] private float typeSpeed = 10;
+    private bool isTyping = false;
+    private Coroutine typeDialogueRoutine;
+
+    private const string HTML_ALPHA = "<color=#00000000>";
+    private const float MAX_TYPE_TIME = 0.1f;
+
+    // Test Dialogue Variable
     [SerializeField] DialogueSO testDialogue;
     #endregion
 
@@ -71,7 +81,7 @@ public class DialogueManager : MonoBehaviour
         // if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && IsDialogueActive())
         if (Input.GetMouseButtonDown(0) && IsDialogueActive() && isInteractable)
         {
-            OnNextButton();
+            DisplayNextChunk();
         }  
     }
 
@@ -142,22 +152,26 @@ public class DialogueManager : MonoBehaviour
         isDialogueSequenceDone = false;
         dialogueTextBox.SetActive(true);
         currentDialogue = dialogueQueue.Dequeue();
+
+        foreach(string p in currentDialogue.dialogueTexts)
+        {
+            paragraphQueue.Enqueue(p);
+        }
+
         if (currentDialogue.dialogueName != "???")
         {
             knownCharacterName = currentDialogue.dialogueName;
             tallyBoardOpponentName.text = knownCharacterName;
         }
-        dialogueSpeakerName.text = knownCharacterName;
-        dialogueIndex = 0;
 
-        OnNextButton(); // Updates Dialogue UI to the first Dialogue Chunk
+        dialogueSpeakerName.text = knownCharacterName;
+
+        DisplayNextChunk(); // Updates Dialogue UI to the first Dialogue Chunk
     }
 
     // At End of DialogueSO => deactivate DialogueBox OR Continue to next DialogueSO in queue
     public void EndDialogue()
     {
-        dialogueIndex = 0;
-
         if (dialogueQueue.Count <= 0)
         {
             dialogueTextBox.SetActive(false);
@@ -169,23 +183,58 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    // Update Dialogue Textbox to display given string(Text)
-    void UpdateDialogue(string text)
+    private IEnumerator TypeDialogueText(string p)
     {
-        dialogueText.text = text;
+        isTyping = true;
+
+        dialogueText.text = "";
+
+        string originalText = p;
+        string displayedText = "";
+        int alphaIndex = 0;
+
+        foreach(char c in p.ToCharArray())
+        {
+            alphaIndex++;
+            dialogueText.text = originalText;
+
+            displayedText = dialogueText.text.Insert(alphaIndex, HTML_ALPHA);
+            dialogueText.text = displayedText;
+
+            yield return new WaitForSeconds(MAX_TYPE_TIME / typeSpeed);
+        }
+
+        isTyping = false;
+    }
+
+    private void FinishParagraphEarly()
+    {
+        StopCoroutine(typeDialogueRoutine);
+
+        dialogueText.text = currentParagraph;
+
+        isTyping = false;
     }
 
     // Assigned to DialogueUI "Next Button", Moves to next DialogueChunk OR calls EndDialogue()
-    public void OnNextButton()
+    public void DisplayNextChunk()
     {
-        if (dialogueIndex < currentDialogue.dialogueTexts.Count)
+        if (paragraphQueue.Count != 0)
         {
-            UpdateDialogue(currentDialogue.dialogueTexts[dialogueIndex]);
-            dialogueIndex++;
+            if (!isTyping)
+            {
+                currentParagraph = paragraphQueue.Dequeue();
+                typeDialogueRoutine = StartCoroutine(TypeDialogueText(currentParagraph));
+            }
+            else
+            {
+                FinishParagraphEarly();
+            }
         }
         else
         {
-            EndDialogue();
+            if (isTyping) { FinishParagraphEarly(); }
+            else { EndDialogue(); }
         }
     }
 
@@ -213,6 +262,7 @@ public class DialogueManager : MonoBehaviour
     {
         isInteractable = canInteract;
     }
+
     public void TurnOffPressSpace(bool state)
     {
         pressSpaceText.SetActive(state);
