@@ -333,9 +333,6 @@ public class AIManager : MonoBehaviour
         Card cardToPlay = DecideCard();
         // Feed GameManager Played Card
         GameManager.Instance.aiCard = cardToPlay;
-        /*
-         * Place to play SFX
-         */
         // If card has Dialogue attached Enqueue it
         if (cardToPlay.HasDialogueAttached() && GameManager.Instance.isInTutorial == false && GetCheatPhase() != AICheatPhase.NoCheats)
         {
@@ -347,6 +344,9 @@ public class AIManager : MonoBehaviour
         // Remove Card from AI's Hand
         aiHand.RemoveCardFromHand(cardToPlay);
         aiHandUI.ShowCardPlayed(cardToPlay);
+        //
+        SoundFXManager.Instance.PlayCardSFX(gameObject.transform, 1f);
+        //
         // cardDisplay.text = cardToPlay.ToString(); deprecated - do need to update this to show card in new way
 
         // Move On

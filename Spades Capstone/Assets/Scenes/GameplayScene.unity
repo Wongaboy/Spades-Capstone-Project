@@ -2836,6 +2836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundFXObject: {fileID: 3805852764826823313, guid: baec6b64dcd93e14cb4e0a8387a9b5c9, type: 3}
+  cardPlayDrawClip: {fileID: 8300000, guid: 632585b27dc83f84e9c6b13c6062b1ce, type: 3}
 --- !u!4 &244114954
 Transform:
   m_ObjectHideFlags: 0
@@ -16146,6 +16147,8 @@ MonoBehaviour:
   - {fileID: 129682603}
   - {fileID: 1863275544}
   deckSpot: {fileID: 1137913618}
+  cardAudioClip: {fileID: 8300000, guid: 632585b27dc83f84e9c6b13c6062b1ce, type: 3}
+  shuffleAudioClip: {fileID: 8300000, guid: c527ffbfec41799429a03486b44068c9, type: 3}
 --- !u!4 &1409819722
 Transform:
   m_ObjectHideFlags: 0

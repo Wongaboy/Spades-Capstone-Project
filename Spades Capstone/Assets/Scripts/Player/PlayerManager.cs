@@ -173,9 +173,9 @@ public class PlayerManager : MonoBehaviour
                 DialogueManager.Instance.EnqueueDialogueSO(playedCard.GetDialogueSO(), false);
             }
             playerHand.RemoveCardFromHand(playedCard);
-            /*
-             * Place to play SFX
-             */
+            //
+            SoundFXManager.Instance.PlayCardSFX(gameObject.transform, 1f);
+            //
             playedCard.ToggleOnVFXBorder(false, false);
             UpdateCardAmountText();
             playerHandUI.ShowCardPlayed(playedCard);
