@@ -11,6 +11,8 @@ public class Deck : MonoBehaviour
     [SerializeField]
     private AudioClip shuffleAudioClip;
 
+    public bool isShuffling { get; set; } = false;
+
     private List<Card> cards;
     public static Suit[] intToSuit = { Suit.SPADE, Suit.DIAMOND, Suit.CLUB, Suit.HEART};
     
@@ -22,11 +24,13 @@ public class Deck : MonoBehaviour
         {
             cards.Add(card);
         }
+        isShuffling = false;
     }
 
     // Randomize the order of cards in the deck, now with a cool animation
     public IEnumerator Shuffle()
     {
+        isShuffling = true;
         System.Random shuffler = new();
         int currCard = cards.Count;
         while (currCard > 1)
@@ -45,10 +49,12 @@ public class Deck : MonoBehaviour
         {
             cards[c].MoveToLocation(deckSpot.transform.position, deckSpot.transform.rotation, true);
             //yield return new WaitForSeconds(.1f);
-            yield return new WaitForSeconds(.05f);
+            yield return new WaitForSeconds(.08f);
         }
 
+        yield return new WaitForSeconds(1f);
         Destroy(shuffleSFXObject);
+        isShuffling = false;
     }
 
     // return the "top" card of the deck, and "discard" it (put at the Bottom of Deck, end of list)

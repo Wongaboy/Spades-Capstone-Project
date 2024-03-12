@@ -93,7 +93,7 @@ public class TallyBoard : MonoBehaviour
 
     public void updatePlayedCard(Character character, Card card)
     {
-        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
+        // SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         if (character == Character.DEATH) {
             AICard.show(card);
         }

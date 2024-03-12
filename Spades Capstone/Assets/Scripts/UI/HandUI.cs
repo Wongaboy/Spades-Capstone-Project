@@ -62,6 +62,7 @@ public class HandUI : MonoBehaviour
     {
         if(currPhase == Phase.PLAYERDRAFT || currPhase == Phase.PLAYERTURN || currPhase == Phase.PLAYERBID)
         {
+            if (currPhase != Phase.PLAYERDRAFT) { SoundFXManager.Instance.PlayCardSFX(gameObject.transform, .1f); }
             SnapToPosition();
         }
     }
@@ -85,6 +86,7 @@ public class HandUI : MonoBehaviour
 
     public void ReturnCardToHand(Card card)
     {
+        SoundFXManager.Instance.PlayCardSFX(gameObject.transform, .1f);
         int index = 6 - (cardObjs.Count / 2);
         for (int c=0; c < cardObjs.Count; c++)
         {

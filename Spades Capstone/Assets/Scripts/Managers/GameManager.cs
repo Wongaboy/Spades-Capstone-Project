@@ -216,7 +216,8 @@ public class GameManager : MonoBehaviour
     public IEnumerator StartGame()
     {
         StartCoroutine(deck.Shuffle());
-        yield return new WaitForSeconds(10f);
+        yield return new WaitUntil(() => !deck.isShuffling);
+        //yield return new WaitForSeconds(7f);
         PlayerManager.Instance.ToggleCardAmountDisplay(true);
         ChangePhase(Phase.AIDRAFT);
     }
