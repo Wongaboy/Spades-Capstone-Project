@@ -255,7 +255,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
-    // if either score is above 500, the game is over
+    // if either score is above scoreToWin, the game is over
     private bool CheckWin()
     {
         return (playerScore >= scoreToWin || aiScore >= scoreToWin);

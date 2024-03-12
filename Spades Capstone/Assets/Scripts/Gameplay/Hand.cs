@@ -111,7 +111,7 @@ public class Hand : MonoBehaviour
     public bool HasValue(Suit s, int v){
         foreach(Card c in cardsInHand[s]){
             if(c.val == v){
-                return false;
+                return true;
             }
         }
         return false;

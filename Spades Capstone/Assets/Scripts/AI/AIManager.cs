@@ -31,7 +31,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] Hand aiHand;
     [SerializeField] HandUI aiHandUI;
     [SerializeField] Transform displaySpot;
-    [SerializeField] TMP_Text cardDisplay; // for testing only, will remove once we have stuff figured out
+    // [SerializeField] TMP_Text cardDisplay; // for testing only, will remove once we have stuff figured out
     // Tells if AI is leading the Trick
     private bool isTrickLead = true;
 
@@ -119,31 +119,41 @@ public class AIManager : MonoBehaviour
     // Function to calculate AI's Bid amount based on Death's Hand
     public int GetBid()
     {
-        // !Work In Progress!
         float bidEstimate = 0.0f;
-        
-        // Add a bid for every !! non Spades !! suit Death is low in
-        for(int i = 0; i < 4; i++){
+        int numSpadesToBid = aiHand.NumOfSuit(Suit.SPADE);
+
+        // Add a bid for every Ace and Half for every King
+        for (int i = 0; i < 4; i++){
             Suit currentSuit = Deck.intToSuit[i];
-            int numCurrentSuit = aiHand.NumOfSuit(currentSuit);
-            if(numCurrentSuit <= 2 && i != 0){ // might want to refine this later
-                bidEstimate += 3 - numCurrentSuit; 
-            }
+            int numOfCurrSuit = aiHand.NumOfSuit(currentSuit);
+            if (currentSuit != Suit.SPADE)
+            {
+                // add a bid for every ace
+                if (aiHand.HasValue(currentSuit, 14))
+                {
+                    bidEstimate += 1.0f;
+                    Debug.Log("Ace of "+ currentSuit);
+                }
 
-            // Add a bid for every ace
-            if(aiHand.HasValue(currentSuit, 14)){
-                bidEstimate += 1.0f;
-            }
+                // Add a half bid for every King
+                if (aiHand.HasValue(currentSuit, 13))
+                {
+                    bidEstimate += 0.5f;
+                    Debug.Log("King of " + currentSuit);
+                }
 
-            // Add a half bid for every King
-            if(aiHand.HasValue(currentSuit, 13)){
-                bidEstimate += 0.5f;
+                if (numOfCurrSuit < numSpadesToBid)
+                {
+                    int diff = numSpadesToBid - numOfCurrSuit;
+                    bidEstimate += diff;
+                    numSpadesToBid -= diff;
+                    Debug.Log("Low in " + currentSuit + ", bid " + diff);
+                }
             }
+            
         }
 
-        // Anthony Test Code just so Bids are not very low
-        bidEstimate += aiHand.NumOfSuit(Suit.SPADE)/2;
-        // currentBid = (int)bidEstimate; -- DEPRECATED
+        Debug.Log("BidEstimate: " +  bidEstimate);
 
         return (int)bidEstimate; 
     }

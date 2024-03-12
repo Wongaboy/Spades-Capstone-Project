@@ -10765,8 +10765,8 @@ MonoBehaviour:
   aiBid: 0
   tallyBoard: {fileID: 4339140953191873067}
   scoreToWin: 300
-  phaseOnePointThreshold: 100
-  phaseTwoPointThreshold: 200
+  phaseOnePointThreshold: 50
+  phaseTwoPointThreshold: 180
 --- !u!4 &967901203
 Transform:
   m_ObjectHideFlags: 0
@@ -16410,7 +16410,6 @@ MonoBehaviour:
   aiHand: {fileID: 1418155876}
   aiHandUI: {fileID: 1882761155}
   displaySpot: {fileID: 722945933}
-  cardDisplay: {fileID: 0}
 --- !u!4 &1418155875
 Transform:
   m_ObjectHideFlags: 0
