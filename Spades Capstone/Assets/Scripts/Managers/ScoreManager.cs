@@ -258,7 +258,7 @@ public class ScoreManager : MonoBehaviour
     // if either score is above 500, the game is over
     private bool CheckWin()
     {
-        return (playerScore > scoreToWin || aiScore > scoreToWin);
+        return (playerScore >= scoreToWin || aiScore >= scoreToWin);
     }
 
     // helper func to calculate a score based on bid and tricks taken
