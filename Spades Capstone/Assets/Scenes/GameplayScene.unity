@@ -16076,7 +16076,7 @@ GameObject:
   - component: {fileID: 1409819721}
   m_Layer: 0
   m_Name: Deck Object
-  m_TagString: Untagged
+  m_TagString: deck
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -24141,6 +24141,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7674283182530333203, guid: 51f6a6e7777b4b0418d1732080b78abb, type: 3}
+      propertyPath: m_TagString
+      value: scroll
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51f6a6e7777b4b0418d1732080b78abb, type: 3}
 --- !u!1 &730966718949927536 stripped
@@ -24214,6 +24218,10 @@ PrefabInstance:
     - target: {fileID: 911297225358172406, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 911297225358172406, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
+      propertyPath: m_TagString
+      value: tallyboard
       objectReference: {fileID: 0}
     - target: {fileID: 944273268787994471, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
       propertyPath: m_IsActive
