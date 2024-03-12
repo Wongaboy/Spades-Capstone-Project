@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class IntroManager : MonoBehaviour
@@ -27,15 +28,33 @@ public class IntroManager : MonoBehaviour
              This is the area to Add the Chalk VFX for Tallyboard Changes
 
             */
-            prop.SetActive(true);
+            if(prop.tag != "deck")
+            {
+                StartCoroutine(ShowProp(prop));
+            }
+            else
+            {
+                prop.SetActive(true);
+            }
+            
         }
         // Call to Start Gameloop
         GameManager.Instance.StartGameAfterIntro();
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator ShowProp(GameObject prop)
     {
+        Vector3 finalPos = prop.transform.position;
+        float decrement = 4;
+        prop.transform.position = new Vector3(finalPos.x, finalPos.y + decrement, finalPos.z);
+        prop.SetActive(true);
+        
+        while(prop.transform.position != finalPos)
+        {
+            decrement -= .05f;
+            yield return new WaitForSeconds(.05f);
+            prop.transform.position = new Vector3(finalPos.x, finalPos.y + decrement, finalPos.z);
+        }
         
     }
 }
