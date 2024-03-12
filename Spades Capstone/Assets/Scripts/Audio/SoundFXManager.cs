@@ -30,6 +30,8 @@ public class SoundFXManager : MonoBehaviour
 
     // Card Play/Draw SFX clip
     [SerializeField] private AudioClip cardPlayDrawClip;
+    // Chalk Tallyboard SFX clip
+    [SerializeField] private AudioClip chalkClip;
     #endregion
 
     // One Time SFX clips, (Do not use for SFX that persist, OR are meant to stop when condition met)
@@ -57,23 +59,13 @@ public class SoundFXManager : MonoBehaviour
     // Plays Specifically the CardSFX only
     public void PlayCardSFX(Transform spawnTransform, float volume)
     {
-        //Spawn in GameObject
-        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        PlaySoundFXClip(cardPlayDrawClip, spawnTransform, volume);
+    }
 
-        //Assign Audioclip
-        audioSource.clip = cardPlayDrawClip;
-
-        //Assign Volume
-        audioSource.volume = volume;
-
-        //Play Sound
-        audioSource.Play();
-
-        //Get Clip Length
-        float clipLength = audioSource.clip.length;
-
-        //Destroy Clip object after done playing
-        Destroy(audioSource.gameObject, clipLength);
+    // Plays Specifically the CardSFX only
+    public void PlayChalkSFX(Transform spawnTransform, float volume)
+    {
+        PlaySoundFXClip(chalkClip, spawnTransform, volume);
     }
 
     public AudioSource PlayLoopingSoundFXClip(AudioClip audioClip, Transform spawnTransform, float volume)

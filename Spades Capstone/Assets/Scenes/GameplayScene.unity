@@ -2837,6 +2837,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundFXObject: {fileID: 3805852764826823313, guid: baec6b64dcd93e14cb4e0a8387a9b5c9, type: 3}
   cardPlayDrawClip: {fileID: 8300000, guid: 632585b27dc83f84e9c6b13c6062b1ce, type: 3}
+  chalkClip: {fileID: 8300000, guid: 0174746a5f295554196e36e16f20d7f0, type: 3}
 --- !u!4 &244114954
 Transform:
   m_ObjectHideFlags: 0
@@ -4015,7 +4016,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: -872437860148656455, guid: f8e94bc1ee3b52b4cb1031839ba1f34d, type: 2}
   m_audioClip: {fileID: 8300000, guid: 67406ba009a082f4d943e203f538b758, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.05
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -16147,7 +16148,7 @@ MonoBehaviour:
   - {fileID: 129682603}
   - {fileID: 1863275544}
   deckSpot: {fileID: 1137913618}
-  shuffleAudioClip: {fileID: 8300000, guid: c527ffbfec41799429a03486b44068c9, type: 3}
+  shuffleAudioClip: {fileID: 8300000, guid: 04dffe8af2f46974fac2a1eec79dd156, type: 3}
 --- !u!4 &1409819722
 Transform:
   m_ObjectHideFlags: 0
@@ -22130,6 +22131,107 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+--- !u!1 &1902271045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: e25485043df71c2469c343ee55b0f889, type: 3}
+  m_PrefabInstance: {fileID: 1048854796}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &1902271048
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1902271045}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -8964666403774941983, guid: f8e94bc1ee3b52b4cb1031839ba1f34d, type: 2}
+  m_audioClip: {fileID: 8300000, guid: 3a655229695782642a65bff3e1e56e96, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.01
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 40
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0.5
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1001 &1918565585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24227,6 +24329,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1317377990214669226, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
+      propertyPath: chalkSFXCLip
+      value: 
+      objectReference: {fileID: 8300000, guid: 0174746a5f295554196e36e16f20d7f0, type: 3}
     - target: {fileID: 1380453863649774142, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
       propertyPath: m_LocalPosition.z
       value: 0.007

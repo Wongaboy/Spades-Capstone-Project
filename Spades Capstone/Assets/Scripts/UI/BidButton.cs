@@ -12,6 +12,7 @@ public class BidButton : MonoBehaviour
 
     public void OnClick()
     {
+        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         Debug.Log("Clicked");
         setBid.Invoke(bidVal);
     }

@@ -174,7 +174,7 @@ public class PlayerManager : MonoBehaviour
             }
             playerHand.RemoveCardFromHand(playedCard);
             //
-            SoundFXManager.Instance.PlayCardSFX(gameObject.transform, 1f);
+            SoundFXManager.Instance.PlayCardSFX(gameObject.transform, .2f);
             //
             playedCard.ToggleOnVFXBorder(false, false);
             UpdateCardAmountText();

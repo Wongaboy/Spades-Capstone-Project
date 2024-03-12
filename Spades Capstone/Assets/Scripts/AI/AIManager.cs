@@ -345,7 +345,7 @@ public class AIManager : MonoBehaviour
         aiHand.RemoveCardFromHand(cardToPlay);
         aiHandUI.ShowCardPlayed(cardToPlay);
         //
-        SoundFXManager.Instance.PlayCardSFX(gameObject.transform, 1f);
+        SoundFXManager.Instance.PlayCardSFX(gameObject.transform, .2f);
         //
         // cardDisplay.text = cardToPlay.ToString(); deprecated - do need to update this to show card in new way
 

@@ -55,6 +55,7 @@ public class TallyBoard : MonoBehaviour
     // Feed in new player and ai SCORES during of Phase.SCORING
     // WIP: will want more ceremony, ie a sound and anim to play
     public void updateScoreText(int playerScore, int aiScore){
+        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         PlayerScoreText.text = playerScore.ToString();
         AIScoreText.text = aiScore.ToString();
     }
@@ -63,6 +64,7 @@ public class TallyBoard : MonoBehaviour
     // WIP: will want more ceremony, ie a sound and anim to play
     public void updateBagText(int playerBag, int aiBag)
     {
+        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         PlayerBagText.text = playerBag.ToString();
         AIBagText.text = aiBag.ToString();
     }
@@ -71,6 +73,7 @@ public class TallyBoard : MonoBehaviour
     // WIP: will want more ceremony, ie a sound and anim to play
     public void updateTrickText(Character character, int newTrick)
     {
+        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         if (character == Character.DEATH)
         { AITrickText.text = newTrick.ToString(); }
         else 
@@ -81,6 +84,7 @@ public class TallyBoard : MonoBehaviour
     // WIP: will want more ceremony, ie a sound and anim to play
     public void updateBidText(Character character, int newBid)
     {
+        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         if (character == Character.DEATH)
         { AIBidText.text = newBid.ToString(); }
         else
@@ -89,6 +93,7 @@ public class TallyBoard : MonoBehaviour
 
     public void updatePlayedCard(Character character, Card card)
     {
+        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         if (character == Character.DEATH) {
             AICard.show(card);
         }
