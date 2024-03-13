@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform discardSpot;
     // private List<Card> discardPile = new List<Card>();
     [SerializeField] private DiscardPile discardPile;
+    [SerializeField] private VFXPlayer slashFX;
 
     [HideInInspector] public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
@@ -256,7 +257,26 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Character newTrickWinner = DetermineTrickWinner();
-        // OnTrickTaken.Invoke(DetermineTrickWinner());
+
+        // VFX handling - this took way too long and was so stupid but I think it looks alright
+        Vector3 fxpos;
+        Quaternion fxrot;
+        if(newTrickWinner == Character.DEATH)
+        {
+            fxpos = aiCard.gameObject.transform.position;
+            fxrot = new Quaternion(0, 0.42261827f, 0, 0.906307876f);
+        }
+        else { 
+            fxpos = playerCard.gameObject.transform.position;
+            fxrot = new Quaternion(0, -0.766044497f, 0, 0.642787635f);
+        }
+
+        slashFX.gameObject.transform.position = fxpos;
+        slashFX.gameObject.transform.rotation = fxrot;
+        // slashFX.transform.Rotate(new Vector3(90, 0, 90));
+        slashFX.TriggerFX(slashFX.transform);
+
+
         OnTrickTaken.Invoke(newTrickWinner);
         DiscardCardFromHand(playerCard);
         yield return new WaitForSeconds(1f);

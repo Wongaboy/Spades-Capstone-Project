@@ -126,6 +126,7 @@ public class AIManager : MonoBehaviour
         for (int i = 0; i < 4; i++){
             Suit currentSuit = Deck.intToSuit[i];
             int numOfCurrSuit = aiHand.NumOfSuit(currentSuit);
+            // bid calc for non spades
             if (currentSuit != Suit.SPADE)
             {
                 // add a bid for every ace
@@ -142,12 +143,26 @@ public class AIManager : MonoBehaviour
                     Debug.Log("King of " + currentSuit);
                 }
 
+                // add bids for suits you are low in and have spades to trump with
                 if (numOfCurrSuit < numSpadesToBid)
                 {
                     int diff = numSpadesToBid - numOfCurrSuit;
                     bidEstimate += diff;
                     numSpadesToBid -= diff;
                     Debug.Log("Low in " + currentSuit + ", bid " + diff);
+                }
+            }
+
+            // bid calc for spades - only if we have not already expended our trumping budget
+            else if(numSpadesToBid > 0)
+            {
+                for(int v = 14; v > 1; v--)
+                {
+                    if(aiHand.HasValue(currentSuit, v))
+                    {
+                        bidEstimate += 1.0f;
+                    }
+                    else { break; }
                 }
             }
             

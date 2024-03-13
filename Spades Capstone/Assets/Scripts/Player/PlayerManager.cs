@@ -189,8 +189,9 @@ public class PlayerManager : MonoBehaviour
              * Place to play SFX
              */
             numRulebreakAttempts++;
-            if (numRulebreakAttempts > 5) {
+            if (numRulebreakAttempts == 5) {
                 DialogueManager.Instance.EnqueueDialogueSO(easteregg, true);
+                numRulebreakAttempts = 0;
             }
         }
     }

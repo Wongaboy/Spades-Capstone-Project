@@ -38,6 +38,7 @@ public class TallyBoard : MonoBehaviour
     [SerializeField] private TMP_Text AIBidText;
     [SerializeField] private CardDisplay PlayerCard;
     [SerializeField] private CardDisplay AICard;
+    [SerializeField] private VFXPlayer puffFX;
 
     void Start()
     {
@@ -56,7 +57,9 @@ public class TallyBoard : MonoBehaviour
     // WIP: will want more ceremony, ie a sound and anim to play
     public void updateScoreText(int playerScore, int aiScore){
         SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
+        puffFX.TriggerFX(PlayerScoreText.gameObject.transform);
         PlayerScoreText.text = playerScore.ToString();
+        puffFX.TriggerFX(AIScoreText.gameObject.transform);
         AIScoreText.text = aiScore.ToString();
     }
 
@@ -65,7 +68,9 @@ public class TallyBoard : MonoBehaviour
     public void updateBagText(int playerBag, int aiBag)
     {
         SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
+        puffFX.TriggerFX(PlayerBagText.gameObject.transform);
         PlayerBagText.text = playerBag.ToString();
+        puffFX.TriggerFX(AIBagText.gameObject.transform);
         AIBagText.text = aiBag.ToString();
     }
 
@@ -75,9 +80,15 @@ public class TallyBoard : MonoBehaviour
     {
         SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         if (character == Character.DEATH)
-        { AITrickText.text = newTrick.ToString(); }
+        {
+            puffFX.TriggerFX(AITrickText.gameObject.transform);
+            AITrickText.text = newTrick.ToString();
+        }
         else 
-        { PlayerTrickText.text = newTrick.ToString(); }        
+        {
+            puffFX.TriggerFX(PlayerTrickText.gameObject.transform);
+            PlayerTrickText.text = newTrick.ToString(); 
+        }        
     }
 
     // Feed in new player OR ai BIDS at the end of a Phase.BID
@@ -86,11 +97,18 @@ public class TallyBoard : MonoBehaviour
     {
         SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
         if (character == Character.DEATH)
-        { AIBidText.text = newBid.ToString(); }
+        { 
+            AIBidText.text = newBid.ToString();
+            puffFX.TriggerFX(AIBidText.gameObject.transform);
+        }
         else
-        { PlayerBidText.text = newBid.ToString(); }
+        { 
+            PlayerBidText.text = newBid.ToString();
+            puffFX.TriggerFX(PlayerBidText.gameObject.transform);
+        }
     }
 
+    // might want tp have the chalk vfx here, but since sfx aren't we should be consistent for now
     public void updatePlayedCard(Character character, Card card)
     {
         // SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);

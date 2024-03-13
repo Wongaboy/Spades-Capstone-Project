@@ -222,14 +222,13 @@ public class ScoreManager : MonoBehaviour
     private void HandleAIBid()
     {
         aiBid = AIManager.Instance.GetBid();
-        tallyBoard.updateBidText(Character.DEATH, aiBid);
-
-        StartCoroutine(WaitTimeBid());
+        StartCoroutine(WaitTimeBid(aiBid));
     }
 
-    private IEnumerator WaitTimeBid()
+    private IEnumerator WaitTimeBid(int bid)
     {
         yield return new WaitForSeconds(1);
+        tallyBoard.updateBidText(Character.DEATH, bid);
 
         if (currLead == Character.DEATH)
         {

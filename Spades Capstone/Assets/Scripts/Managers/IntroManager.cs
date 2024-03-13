@@ -45,7 +45,7 @@ public class IntroManager : MonoBehaviour
     IEnumerator ShowProp(GameObject prop)
     {
         Vector3 finalPos = prop.transform.position;
-        float decrement = 4;
+        float decrement = 2.5f;
         prop.transform.position = new Vector3(finalPos.x, finalPos.y + decrement, finalPos.z);
         prop.SetActive(true);
         
