@@ -258,13 +258,23 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
         Character newTrickWinner = DetermineTrickWinner();
 
-        // VFX handling
+        // VFX handling - this took way too long and was so stupid but I think it looks alright
+        Vector3 fxpos;
+        Quaternion fxrot;
         if(newTrickWinner == Character.DEATH)
         {
-            slashFX.TriggerFX(aiCard.gameObject.transform);
+            fxpos = aiCard.gameObject.transform.position;
+            fxrot = new Quaternion(0, 0.42261827f, 0, 0.906307876f);
         }
-        else { slashFX.TriggerFX(playerCard.gameObject.transform); }
+        else { 
+            fxpos = playerCard.gameObject.transform.position;
+            fxrot = new Quaternion(0, -0.766044497f, 0, 0.642787635f);
+        }
 
+        slashFX.gameObject.transform.position = fxpos;
+        slashFX.gameObject.transform.rotation = fxrot;
+        // slashFX.transform.Rotate(new Vector3(90, 0, 90));
+        slashFX.TriggerFX(slashFX.transform);
 
 
         OnTrickTaken.Invoke(newTrickWinner);
