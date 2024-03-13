@@ -4391,6 +4391,10 @@ PrefabInstance:
       propertyPath: suit
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 7e6cbc4982388fb4ea3a58375e6258d3, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Diamond (7)
@@ -11073,6 +11077,10 @@ PrefabInstance:
       propertyPath: suit
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: e1d7acc6e4e60e647a3e3a4b979e57d0, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Diamond (12)
@@ -13956,7 +13964,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: af62a1bac7389464ca6db5f55ea3c002, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (11)
@@ -17096,7 +17104,7 @@ PrefabInstance:
     - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: dialogueOnPlay
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 11400000, guid: 9fd245692507d824faa641edb2b7cb42, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Spade (4)
@@ -20394,6 +20402,10 @@ PrefabInstance:
       propertyPath: suit
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 1096ee962430068478cefcc373a3d5f8, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Club (13)
@@ -23525,6 +23537,10 @@ PrefabInstance:
       propertyPath: suit
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5580280003092154514, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
+      propertyPath: dialogueOnPlay
+      value: 
+      objectReference: {fileID: 11400000, guid: 3f45518c320a72d448f20be2052b7030, type: 2}
     - target: {fileID: 5753243529911280959, guid: 0fef53062a140467ba3cc25629c005e0, type: 3}
       propertyPath: m_Name
       value: Heart (3)
