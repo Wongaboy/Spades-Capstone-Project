@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EndingManager : MonoBehaviour
 {
+    #region "Class Variables"
     [SerializeField] DialogueSO goodEndingDialogue;
     [SerializeField] DialogueSO badEndingDialogue;
 
@@ -13,6 +14,7 @@ public class EndingManager : MonoBehaviour
 
     [SerializeReference] GameObject goodTimeline;
     [SerializeReference] GameObject badTimeline;
+    #endregion
 
     #region "Singleton"
     private static EndingManager _instance;
@@ -32,6 +34,7 @@ public class EndingManager : MonoBehaviour
     }
     #endregion
 
+    // Trigger Ending based on winner (AI -> Bad; Player -> Good)
     public IEnumerator TriggerEndCutscene(Character winner)
     {
         switch (winner)

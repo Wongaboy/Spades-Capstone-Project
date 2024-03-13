@@ -35,6 +35,7 @@ public class SettingsMenuManager : MonoBehaviour
 
     private List<Card> cardsToToggle = new List<Card>();
     #endregion
+
     // Update is called once per frame
     void Update()
     {
@@ -44,6 +45,8 @@ public class SettingsMenuManager : MonoBehaviour
         }
     }
 
+    // Turn On/Off Settings Menu UI Overlay; Changes to opposite of current state
+    // Prevents Card interact by turning off interaction, but turn on after menu closes
     void ToggleSettingsMenu(bool newState)
     {
         settingsMenuPanel.SetActive(newState);
@@ -64,15 +67,19 @@ public class SettingsMenuManager : MonoBehaviour
 
     }
 
+    // Get bool -> active state of Setting Menu UI Overlay
     public bool GetMenuActiveState()
     {
         return isSettingMenuActive;
     }
+
+    // Restart Game Scene; Called by UI Button
     public void MenuRestartGame()
     {
         SceneManager.LoadScene(introSceneName);
     }
 
+    // Close Game Application; Called by UI Button
     public void MenuQuitGame()
     {
         Application.Quit();

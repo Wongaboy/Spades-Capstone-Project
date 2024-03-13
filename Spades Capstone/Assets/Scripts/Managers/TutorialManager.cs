@@ -22,13 +22,16 @@ public class TutorialManager : MonoBehaviour
     }
     #endregion
 
+    #region "Class Variables"
     [SerializeReference] GameObject tutorialPanel;
     [SerializeField] DialogueSO tutorialPrompt;
     public bool triggerTutorial = false;
 
     private int tutorialDialogueIndex = 0;
     [SerializeField] DialogueSO[] tutorialPhaseDialogues;
+    #endregion
 
+    // Prompt UI Overlay with Tutorial Yes/No
     public IEnumerator TriggerTutorialPrompt()
     {
         // Play Dialogue
@@ -39,16 +42,19 @@ public class TutorialManager : MonoBehaviour
         tutorialPanel.SetActive(true);
     }
 
+    // Get bool -> Tutorial Yes/No Overlay active state
     public bool IsTutorialPromptActive()
     {
         return tutorialPanel.activeSelf;
     }
 
+    // Get bool -> is Tutorial wanted
     public bool IsTutorialWanted()
     {
         return triggerTutorial;
     }
 
+    // Set "triggerTutorial" bool; Called by UI Button
     public void SetTriggerTutorial(bool wantTutorial)
     {
         triggerTutorial = wantTutorial;
@@ -56,12 +62,14 @@ public class TutorialManager : MonoBehaviour
         tutorialPanel.SetActive(false);
     }
 
+    // Enqueue next DialogueSO for phase Tutorial text
     public void EnqueueNextDialogue(bool triggerNow)
     {
         DialogueManager.Instance.EnqueueDialogueSO(tutorialPhaseDialogues[tutorialDialogueIndex], triggerNow);
         tutorialDialogueIndex++;
     }
 
+    // Based on the phase enqueue DialogueSO for the phase after. (ie. if phase == AIDraft -> enqueue(Bid_DialogueSO))
     public void TutorialManagerOnPhaseChange(Phase phase)
     {
         switch (phase)
@@ -92,6 +100,7 @@ public class TutorialManager : MonoBehaviour
         }
     }
 
+    // Call at the end of Tutorial Round; Reset Game variables/trackers and transition to normal game
     public IEnumerator EndTutorial()
     {
         EnqueueNextDialogue(true);

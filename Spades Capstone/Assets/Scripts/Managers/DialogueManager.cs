@@ -88,21 +88,8 @@ public class DialogueManager : MonoBehaviour
     // Testing Function to trigger StartDialogue()
     public void TestDialogue()
     {
-        //AddCheatPhaseDialogue(1, false);
-        //AddCheatPhaseDialogue(2, false);
-
-        //if (dialogueQueue.Count <= 0) { Debug.Log("nothing in queue"); }
-        //else
-        //{
-        //    AddCheatDialogue(CheatName.ChangeBid, false);
-        //    AddCheatDialogue(CheatName.IgnorePenalty, false);
-        //    AddCheatDialogue(CheatName.RandomizePlayerCardValue, false);
-        //    AddCheatDialogue(CheatName.AddValueFromDiscard, false);
-        //}
-
         EnqueueDialogueSO(testDialogue, false);
         StartCoroutine(ResolveDialogue());
-        // StartDialogue();
     }
 
     // Given Cheatname will add Dialogue to queue & can be told to trigger dialogue immedietly
@@ -126,6 +113,7 @@ public class DialogueManager : MonoBehaviour
         if (triggerNow == true) { StartDialogue(); }
     }
 
+    // DEPRECATED -- Resolves DialogueSO in queue, but no phase change
     public IEnumerator ResolveDialogue()
     {
         if (dialogueQueue.Count > 0)
@@ -135,6 +123,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Resolve Dialogues until the queue is empty, then change to given Phase
     public IEnumerator ResolveDialogue(Phase phase)
     {
         if (dialogueQueue.Count > 0)
@@ -183,6 +172,7 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Coroutine to type dialogue character by character
     private IEnumerator TypeDialogueText(string p)
     {
         isTyping = true;
@@ -207,6 +197,7 @@ public class DialogueManager : MonoBehaviour
         isTyping = false;
     }
 
+    // Skips scrolling & immediately shows text chunk
     private void FinishParagraphEarly()
     {
         StopCoroutine(typeDialogueRoutine);
@@ -238,11 +229,13 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
+    // Return bool -> active state of Dialogue UI Overlay
     public bool IsDialogueActive()
     {
         return dialogueTextBox.activeSelf;
     }
 
+    // Return bool -> is the Dialogue queue empty
     public bool HasDialogueEnqueued()
     {
         if (dialogueQueue.Count > 0) { return true; }
@@ -258,11 +251,13 @@ public class DialogueManager : MonoBehaviour
         return allCardsWithDialogue.Contains(cardValues);
     }
 
+    // Set if the Dialogue UI recieves input
     public void SetDialogueInteractable(bool canInteract)
     {
         isInteractable = canInteract;
     }
 
+    // DEPRECATED -- ???
     public void TurnOffPressSpace(bool state)
     {
         pressSpaceText.SetActive(state);

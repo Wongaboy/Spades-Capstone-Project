@@ -135,6 +135,7 @@ public class GameManager : MonoBehaviour
         discardPile.ClearDiscardPile();
     }
 
+    // Reset Internal Trick Lead variables of the AI & player Manager
     public void ResetInternalTrickLead(Character newlead)
     {
         if (newlead == Character.DEATH)
@@ -206,6 +207,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Returns list of cards that are currently interactable
     public List<Card> GetInteractableCards()
     {
         if (deck.isActiveAndEnabled) { return deck.GetInteractableCards(); }
@@ -214,6 +216,7 @@ public class GameManager : MonoBehaviour
     #endregion
 
     #region "Private Helper Functions"
+    // Called to start gameloop
     public IEnumerator StartGame()
     {
         StartCoroutine(deck.Shuffle());
@@ -223,12 +226,14 @@ public class GameManager : MonoBehaviour
         ChangePhase(Phase.AIDRAFT);
     }
 
+    // Seperate function to start game with Tutorial Prompt
     public void StartGameAfterIntro()
     {
         // Ask/Prompt for Tutorial          
         StartCoroutine(StartTutorialPrompt());
     }
 
+    // Trigger Tutorial Prompt
     public IEnumerator StartTutorialPrompt()
     {
         // Play Dialogue

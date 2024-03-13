@@ -225,6 +225,7 @@ public class ScoreManager : MonoBehaviour
         StartCoroutine(WaitTimeBid(aiBid));
     }
 
+    // Emulate some wait time for AI Bid, then change to appropriate phase
     private IEnumerator WaitTimeBid(int bid)
     {
         yield return new WaitForSeconds(1);
@@ -240,6 +241,7 @@ public class ScoreManager : MonoBehaviour
         }
     }
 
+    // Given either Player/Death increment their Trick counter by 1
     private void takeTrick(Character trickWinner)
     {
         if(trickWinner == Character.PLAYER)
@@ -290,6 +292,7 @@ public class ScoreManager : MonoBehaviour
         tallyBoard.updateBidText(Character.DEATH, 0);
     }
 
+    // Reset ScoreManager tracker variables
     public void ResetInternalScoreVariables()
     {
         playerBid = 0;
