@@ -15,6 +15,7 @@ MonoBehaviour:
   dialogueTitle: Intro
   dialogueName: ???
   dialogueTexts:
-  - Now that you know how to play, shall we begin?
+  - Now that you know how to play, shall we begin? If you forget the rules at any
+    time, just read the scroll to my left.
   - I may be old, but I still have some tricks up my sleeve...
   - 'You would do well not to underestimate me. '

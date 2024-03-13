@@ -28,7 +28,7 @@ public class IntroManager : MonoBehaviour
              This is the area to Add the Chalk VFX for Tallyboard Changes
 
             */
-            if(prop.tag != "deck")
+            if(prop.tag == "tallyboard")
             {
                 StartCoroutine(ShowProp(prop));
             }

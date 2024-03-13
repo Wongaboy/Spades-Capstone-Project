@@ -32,6 +32,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1154518682878033266}
+  - {fileID: 5180056166317018311}
   m_Father: {fileID: 7046822010357928105}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -167,17 +168,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Phase One: Draft\n\neach player will draw a card and either keep it or
-    discard it and draw a new one in turn until the deck is out of cards\n\nat this
-    point, each player will bid the amount of tricks they believe they can take\n\nPhase
-    Two: Play\n\nthe lead (   ) will play a card, and their opponent will follow.
-    You must follow suit if able, and if unable you may choose freely. You may not
-    lead a spade until one has been played. \n\nThe highest spade OR card of the
-    lead suit wins, and that player takes the trick\n\nPhase Three: Scoring\n\nEach
-    player who took at least as many tricks as they bid shall be awarded points equal
-    to 10 times their bid. Bids taken in excess award a bag, and ten bags deduct
-    100 points A player who took fewer than their bid shall be deducted ten points
-    for each trick they failed to take.\n"
+  m_text: "\nPhase One: Draft\n\neach player will draw a card and either keep it
+    or discard it and draw a new one in turn until the deck is out of cards\n\nat
+    this point, each player will bid the amount of tricks they believe they can take\n\nPhase
+    Two: Play\n\nthe lead will play a card, and their opponent will follow. You must
+    follow suit if able, and if unable you may choose freely. You may not lead a
+    spade until one has been played. \n\nThe highest spade OR card of the led suit
+    wins, and that player takes the trick.\n\nPhase Three: Scoring\n\nEach player
+    who took at least as many tricks as they bid shall be awarded points equal to
+    10 times their bid. Bids taken in excess award a bag, and ten bags deduct 100
+    points A player who took fewer than their bid shall be deducted ten points for
+    each trick they failed to take.\n\nFeel Free to Set Me Back On The Table\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c558913d6cad85542bf21bf036056253, type: 2}
   m_sharedMaterial: {fileID: 7228647798054678505, guid: c558913d6cad85542bf21bf036056253, type: 2}
@@ -345,6 +346,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scrollFaceCanvas: {fileID: 5015748979021766235}
+  viewSpot: {fileID: 0}
+  tableSpot: {fileID: 0}
 --- !u!54 &6915945731263898950
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -361,3 +364,138 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &8896482279696816354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5180056166317018311}
+  - component: {fileID: 1434068119973411341}
+  - component: {fileID: 3965842372716786034}
+  m_Layer: 5
+  m_Name: Text (TMP) (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &5180056166317018311
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896482279696816354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.02}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.01}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7753067856913379452}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0.847}
+  m_SizeDelta: {x: 161.01, y: 13.7342}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &1434068119973411341
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896482279696816354}
+  m_CullTransparentMesh: 1
+--- !u!114 &3965842372716786034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8896482279696816354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: The Rules Of SPades
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: c558913d6cad85542bf21bf036056253, type: 2}
+  m_sharedMaterial: {fileID: 7228647798054678505, guid: c558913d6cad85542bf21bf036056253, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4278190080
+  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 11
+  m_fontSizeBase: 11
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 256
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: -0.009227758, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
