@@ -35,12 +35,6 @@ public class SettingsMenuManager : MonoBehaviour
 
     private List<Card> cardsToToggle = new List<Card>();
     #endregion
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
     {
