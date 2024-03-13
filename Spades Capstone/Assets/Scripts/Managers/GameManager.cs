@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform discardSpot;
     // private List<Card> discardPile = new List<Card>();
     [SerializeField] private DiscardPile discardPile;
+    [SerializeField] private VFXPlayer slashFX;
 
     [HideInInspector] public Phase currentPhase;
     public static event Action<Phase> OnPhaseChanged;
@@ -256,7 +257,16 @@ public class GameManager : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
         Character newTrickWinner = DetermineTrickWinner();
-        // OnTrickTaken.Invoke(DetermineTrickWinner());
+
+        // VFX handling
+        if(newTrickWinner == Character.DEATH)
+        {
+            slashFX.TriggerFX(aiCard.gameObject.transform);
+        }
+        else { slashFX.TriggerFX(playerCard.gameObject.transform); }
+
+
+
         OnTrickTaken.Invoke(newTrickWinner);
         DiscardCardFromHand(playerCard);
         yield return new WaitForSeconds(1f);

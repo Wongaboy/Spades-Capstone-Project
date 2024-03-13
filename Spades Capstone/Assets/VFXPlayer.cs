@@ -17,6 +17,8 @@ public class VFXPlayer : MonoBehaviour
         }
         if (effect != null)
         {
+            effect.transform.position = pos.position; 
+            effect.transform.rotation = pos.rotation;
             effect.Play();
         }
     }
