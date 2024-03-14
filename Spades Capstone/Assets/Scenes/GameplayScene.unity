@@ -22519,7 +22519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   animator: {fileID: 1898248062}
-  introSceneName: GameplayScene
+  introSceneName: Credits
 --- !u!95 &1898248062
 Animator:
   serializedVersion: 5
