@@ -36,6 +36,7 @@ public class TallyBoard : MonoBehaviour
     [SerializeField] private TMP_Text AITrickText;
     [SerializeField] private TMP_Text PlayerBidText;
     [SerializeField] private TMP_Text AIBidText;
+    [SerializeField] private TMP_Text AIName;
     [SerializeField] private CardDisplay PlayerCard;
     [SerializeField] private CardDisplay AICard;
     [SerializeField] private VFXPlayer puffFX;
@@ -119,6 +120,14 @@ public class TallyBoard : MonoBehaviour
         {
             PlayerCard.show(card);
         }
+    }
+
+    public void updateAIName(string name)
+    {
+        AIName.text = name;
+        SoundFXManager.Instance.PlayChalkSFX(gameObject.transform, .2f);
+        puffFX.TriggerFX(AIName.gameObject.transform);
+
     }
 
     public void clearPlayedCard()
