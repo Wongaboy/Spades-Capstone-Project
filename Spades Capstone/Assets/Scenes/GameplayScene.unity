@@ -9354,7 +9354,6 @@ MonoBehaviour:
   dialogueSpeakerName: {fileID: 1066918783}
   dialogueText: {fileID: 1849219193}
   dialogueTextBox: {fileID: 711308208}
-  tallyBoardOpponentName: {fileID: 897941955116486597}
   pressSpaceText: {fileID: 1992116873}
   phaseDialogues:
   - {fileID: 11400000, guid: 3d2a2963d894a5444a4040c16a2c0c41, type: 2}
@@ -11638,6 +11637,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9734d872275744f1938bb1c0876e729, type: 3}
+--- !u!95 &1040480435 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: c9734d872275744f1938bb1c0876e729, type: 3}
+  m_PrefabInstance: {fileID: 1040480434}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1048854796
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -16737,6 +16741,7 @@ MonoBehaviour:
   aiHand: {fileID: 1418155876}
   aiHandUI: {fileID: 1882761155}
   displaySpot: {fileID: 722945933}
+  AIAnimator: {fileID: 1040480435}
 --- !u!4 &1418155875
 Transform:
   m_ObjectHideFlags: 0
@@ -25261,17 +25266,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 911297225358172406, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
   m_PrefabInstance: {fileID: 897941955116486595}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &897941955116486597 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 9214324352930032418, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}
-  m_PrefabInstance: {fileID: 897941955116486595}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4339140953191873067 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1317377990214669226, guid: b98f77b36b4d48842bb43030e1f22a68, type: 3}

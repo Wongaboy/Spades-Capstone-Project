@@ -138,6 +138,7 @@ public class DialogueManager : MonoBehaviour
     // Starts Going through Queue of DialogueSO's
     public void StartDialogue()
     {
+        AIManager.Instance.AIAnimator.Play("beginyap");
         isDialogueSequenceDone = false;
         dialogueTextBox.SetActive(true);
         currentDialogue = dialogueQueue.Dequeue();
@@ -161,6 +162,7 @@ public class DialogueManager : MonoBehaviour
     // At End of DialogueSO => deactivate DialogueBox OR Continue to next DialogueSO in queue
     public void EndDialogue()
     {
+        AIManager.Instance.AIAnimator.Play("endyap");
         if (dialogueQueue.Count <= 0)
         {
             dialogueTextBox.SetActive(false);

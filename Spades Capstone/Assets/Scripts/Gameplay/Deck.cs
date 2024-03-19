@@ -30,6 +30,7 @@ public class Deck : MonoBehaviour
     // Randomize the order of cards in the deck, now with a cool animation
     public IEnumerator Shuffle()
     {
+        AIManager.Instance.AIAnimator.Play("shuffle");
         isShuffling = true;
         System.Random shuffler = new();
         int currCard = cards.Count;

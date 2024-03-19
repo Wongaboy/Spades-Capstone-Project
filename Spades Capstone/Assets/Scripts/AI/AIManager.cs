@@ -31,6 +31,7 @@ public class AIManager : MonoBehaviour
     [SerializeField] Hand aiHand;
     [SerializeField] HandUI aiHandUI;
     [SerializeField] Transform displaySpot;
+    [SerializeField] public Animator AIAnimator;
     // [SerializeField] TMP_Text cardDisplay; // for testing only, will remove once we have stuff figured out
     // Tells if AI is leading the Trick
     private bool isTrickLead = true;
@@ -83,6 +84,7 @@ public class AIManager : MonoBehaviour
         {
             // Decides to Keep or Discard & then waits to switch Turn/Phase
             // cardDisplay.gameObject.SetActive(false); deprecated
+            AIAnimator.Play("drawcard");
             StartCoroutine(MakeDraftDecision(GameManager.Instance.DrawCard()));
         }
 
@@ -336,7 +338,9 @@ public class AIManager : MonoBehaviour
     // Function to perform AI Actions on Phase.AITURN
     private IEnumerator HandleAITurn()
     {
-        yield return new WaitForSeconds(2); // wait to preserve game flow
+        yield return new WaitForSeconds(1.5f); // wait to preserve game flow
+        AIAnimator.Play("playcard");
+        yield return new WaitForSeconds(.5f);
         // AI Determines what card to play and Plays It
         PlayCard();
     }
