@@ -28,7 +28,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] TMP_Text dialogueText;
     [SerializeField] GameObject dialogueTextBox;
 
-    [SerializeReference] TMP_Text tallyBoardOpponentName;
+    // [SerializeReference] TMP_Text tallyBoardOpponentName;
 
     [SerializeReference] GameObject pressSpaceText;
 
@@ -150,7 +150,7 @@ public class DialogueManager : MonoBehaviour
         if (currentDialogue.dialogueName != "???")
         {
             knownCharacterName = currentDialogue.dialogueName;
-            tallyBoardOpponentName.text = knownCharacterName;
+            TallyBoard.Instance.updateAIName(knownCharacterName);
         }
 
         dialogueSpeakerName.text = knownCharacterName;
